@@ -1,0 +1,38 @@
+.navbar{
+    background-color: #FF6665;
+    height:70px;
+}
+
+.logo{
+    width:75px;
+    height:70px;
+}
+
+.navbar-brand{
+    position:absolute;
+    left:85px;
+    top:25px;
+    color: white;
+    font-family: "Rubik";
+}
+
+.col-right{
+    position:absolute;
+    right:10px;
+    top:10px;
+
+}
+
+.home-btn{
+    background-color: #F2B84B;
+    color: white;
+    font-family: "Rubik";
+    font-size: 1em;
+}
+
+.logout-btn{
+    background-color: #7C7EF2;
+    color: white;
+    font-family: "Rubik";
+    font-size: 1em;
+}
