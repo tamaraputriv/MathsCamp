@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Container, Col} from 'react-bootstrap';
-import Logo from "../../images/logo-prelogin.png";
+import Logo from "../../images/logo-prelogin.svg";
 import "./Navbar.css";
 import 'bootstrap/dist/css/bootstrap.css';
 
