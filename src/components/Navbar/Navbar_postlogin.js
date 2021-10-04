@@ -3,6 +3,8 @@ import {Button, Container, Col} from 'react-bootstrap';
 import Logo from "../../images/Logo/logo-postlogin.svg";
 import "./Navbar_postlogin.css";
 import 'bootstrap/dist/css/bootstrap.css';
+import { DoorOpen } from 'react-bootstrap-icons';
+import { HouseDoor } from 'react-bootstrap-icons';
 
 export default function Navbar_postlogin(){
     return(
@@ -15,8 +17,8 @@ export default function Navbar_postlogin(){
             </Col>
             <Col lg={1.5}>
                 <div className="btn-toolbar">
-                    <Button className="btn-primary lg home-btn">Home</Button>
-                    <Button className="btn-primary lg logout-btn">Log out</Button>
+                    <Button className="btn-primary lg home-btn">Home <HouseDoor size={15}/></Button>
+                    <Button className="btn-primary lg logout-btn">Log out <DoorOpen size={15}/></Button>
                 </div>
             </Col>
         </Container>       
