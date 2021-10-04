@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Container, Col} from 'react-bootstrap';
-import Logo from "../../images/Logo/logo-prelogin.svg";
-import "./Navbar.css";
+import Logo from "../../images/Logo/logo-postlogin.svg";
+import "./Navbar_postlogin.css";
 import 'bootstrap/dist/css/bootstrap.css';
 
 //const path = window.location.pathname;
