@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LandingPage from './components/Navbar/LandingPage';
+import LandingPage from './components/Navbar/Navigationbar';
 import "@fontsource/rubik";
 
 function App() {

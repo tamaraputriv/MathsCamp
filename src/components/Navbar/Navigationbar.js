@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navbar, Nav, Button, Container} from 'react-bootstrap';
 import Logo from "../../images/logo-prelogin.png";
-import "./LandingPage.css";
+import "./Navigationbar.css";
 
 
 export default function LandingPage(){
