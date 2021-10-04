@@ -8,14 +8,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 export default function LandingPage(){
 
     return(
-        <Container className="navbar">
+        <Container fluid className="navbar">
             <Col>
                 <img className="logo" src={Logo} alt="Logo of a calculator"></img>   
             </Col>
-            <Col className="app-name-container">
+            <Col className="app-name-col">
                 <h5 className="navbar-brand">Maths Camp</h5>
             </Col>
-            <Col lg={2} className="btn-container">
+            <Col lg={1.5}>
                 <div className="btn-toolbar">
                     <Button className="p-2 btn-primary lg home-btn">Home</Button>
                     <Button className="p-2 btn-primary lg logout-btn">Log out</Button>
