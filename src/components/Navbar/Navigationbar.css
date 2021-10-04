@@ -1,19 +1,19 @@
 .navbar{
     background-color: #FF6665;
-    padding-left:0 !important;
-    padding-top:0 !important;
-    padding-bottom:0 !important;
-    max-width:100% !important;
+    padding-left: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    
 }
 
 .logo{
-    width:75px;
-    height:70px;
+    width: 75px;
+    height: 70px;
 }
 
-.app-name-container{
-    position:absolute;
-    margin-left:100px;
+.app-name-col{
+    position: absolute;
+    margin-left: 100px;
     margin-top: 8px;
 }
 
