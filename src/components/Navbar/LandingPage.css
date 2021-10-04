@@ -16,11 +16,10 @@
     font-family: "Rubik";
 }
 
-.col-right{
+.btn-container{
     position:absolute;
     right:10px;
     top:10px;
-
 }
 
 .home-btn{
