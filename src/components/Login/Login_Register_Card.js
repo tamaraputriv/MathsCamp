@@ -29,10 +29,7 @@ export default function Login_Register_Card(){
                 <Button onClick={handleRegister} className="btn-primary lg register-btn">Register<br/><CardList size={40}/></Button>
                 <Button onClick={handleLogin} className="btn-primary lg login-btn">Log in<br/><Key size={40}/></Button> 
             </ButtonToolbar>  
-        </Container>
-
-
-        
+        </Container>   
     );
 
 }

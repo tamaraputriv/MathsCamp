@@ -21,7 +21,6 @@ export default function Registercomponent(){
                                 <Form.Label>Username</Form.Label>
                                 <Form.Control type="name" placeholder="Enter a username"/>
                             </Form.Group>
-
                             <Form.Group controlId="formPassword" className="upperform">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Enter a password"/>
@@ -32,7 +31,7 @@ export default function Registercomponent(){
                                 <Form.Control type="email" placeholder="Enter an email"/>
                                 <p className="information-text">This email will be used for username and password recovery</p>
                             </Form.Group>
-                            <Button className="registersubmitbtn" variant="primary" type="submit">
+                            <Button className="registerbtn" variant="primary" type="submit">
                                 Register <CardList/>
                             </Button> 
                         </Form>

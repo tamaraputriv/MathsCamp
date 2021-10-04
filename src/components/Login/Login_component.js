@@ -21,12 +21,11 @@ export default function Logincomponent(){
                                 <Form.Label>Username</Form.Label>
                                 <Form.Control type="name" placeholder="Enter your username"/>
                             </Form.Group>
-
                             <Form.Group controlId="formPassword" className="upperform">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Enter your password"/>
                             </Form.Group>
-                            <Button className="registersubmitbtn" variant="primary" type="submit">Log in<Key/></Button> 
+                            <Button className="loginbtn" variant="primary" type="submit">Log in  <Key size={20}/></Button> 
                         </Form>
                     </Col> 
                 </Row>    
