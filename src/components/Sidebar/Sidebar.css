@@ -5,8 +5,8 @@
   padding-left: 45px;
   padding-right: 48px;
   width: 35%;
-  height: 100vh;
-  overflow: scroll;
+  overflow: hidden;
+  transition: 0.2s all ease;
 }
 
 .arrow-icon {
@@ -14,6 +14,11 @@
   height: 41px;
   padding: 0;
   position: absolute;
+}
+
+.arrow-icon:hover {
+  cursor: pointer;
+  color: #babbf8;
 }
 
 .sidebarH1 {
@@ -29,19 +34,26 @@
 }
 
 .sidebarP {
+  color: #ffffff;
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: -0.02em;
+  display: unset;
+  padding-right: 40px;
 }
 
 .unlocked-badge {
   margin: 9.5px;
-  height: 135px;
+  height: 120px;
 }
 
 .badge-row {
   margin-top: 32px;
+}
+
+.badge-col {
+  overflow: scroll;
 }
