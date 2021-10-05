@@ -1,16 +1,22 @@
 import React from "react";
 import "./Sidebar.css";
-import ArrowIcon from "../../images/Icons/chevron-double-left.svg";
+import { BsChevronDoubleRight } from "react-icons/bs";
 import UnlockedBagde from "../../images/Icons/unlocked-reward-badge.svg";
 import { Container, Col, Row } from "react-bootstrap";
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, toggle }) {
   return (
-    <Container className="sidebar-container">
+    <Container
+      className="sidebar-container"
+      style={{ width: isOpen ? "35%" : "10%" }}
+    >
       <Row className="icon-row">
         <Col></Col>
         <Col md="auto">
-          <img className="arrow-icon" src={ArrowIcon} alt="icon arrow" />
+          <BsChevronDoubleRight
+            className="arrow-icon"
+            alt="icon arrow"
+          ></BsChevronDoubleRight>
         </Col>
       </Row>
       <Row className="h1-row">
