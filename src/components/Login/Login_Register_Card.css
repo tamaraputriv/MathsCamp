@@ -1,0 +1,47 @@
+.login-container{
+    margin-top: 100px;
+}
+
+svg{
+    margin-bottom: 10px;
+}
+
+p{
+    font-size:13px;
+}
+
+.btn-toolbar{
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.login-btn{
+    background-color: #F2B84B;
+    border-color: #F0AC2B;
+    font-family: "Rubik";
+    margin-left: 12px;
+    width:160px;
+    height:110px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.login-btn:hover{
+    background-color: #F0AC2B;
+    border-color: #F0AC2B;
+}
+
+.register-btn{
+    background-color: #7C7EF2;
+    border-color: #5D5FEF;
+    font-family: "Rubik";
+    width:160px;
+    height:110px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.register-btn:hover{
+    background-color: #5D5FEF;
+    border-color: #5D5FEF;
+}
