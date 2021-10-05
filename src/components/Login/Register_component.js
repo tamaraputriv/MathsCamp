@@ -8,6 +8,7 @@ export default function Registercomponent(){
 
     const history = useHistory();
 
+    //TODO Add brugeren til databasen med default indstillinger
     const handleReg = () =>{
         history.push("/frontpage");
     }

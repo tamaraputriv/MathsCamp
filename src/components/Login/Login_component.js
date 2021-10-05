@@ -8,6 +8,7 @@ export default function Logincomponent(){
 
     const history = useHistory();
 
+    //TODO authenticate userens brugernavn og password
     const handleLog = () =>{
         history.push("/frontpage");
     }

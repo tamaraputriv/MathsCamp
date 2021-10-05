@@ -26,8 +26,8 @@ export default function Login_Register_Card(){
                 <p>Where exercising your brain is fun!</p>
             </div>  
             <ButtonToolbar className="btn-toolbar login-register-toolbar">
-                <Button onClick={handleRegister} className="btn-primary lg register-btn">Register<br/><CardList size={40}/></Button>
-                <Button onClick={handleLogin} className="btn-primary lg login-btn">Log in<br/><Key size={40}/></Button> 
+                <Button onClick={handleRegister} className="btn-primary lg register-btn">Register<br/><CardList size={50}/></Button>
+                <Button onClick={handleLogin} className="btn-primary lg login-btn">Log in<br/><Key size={50}/></Button> 
             </ButtonToolbar>  
         </Container>   
     );
