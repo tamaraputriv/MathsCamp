@@ -1,0 +1,62 @@
+.home-container {
+  margin-left: 40%;
+  position: absolute;
+  z-index: 1;
+  padding-top: 37px;
+}
+
+.welcome-h1 {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 41px;
+  letter-spacing: -0.02em;
+  color: #4d4d4d;
+}
+
+.homesection-btn-toolbar {
+  justify-content: center;
+  align-items: center;
+}
+
+.practice-btn {
+  background-color: #f2b84b;
+  border: none;
+  font-family: "Rubik";
+  margin-right: 20px;
+  width: 270px;
+  height: 214px;
+  font-family: Solway;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 58px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.practice-btn:hover {
+  background-color: #f0ac2b;
+  border: none;
+}
+
+.exam-btn {
+  background-color: #7c7ef2;
+  border: none;
+  font-family: "Rubik";
+  width: 270px;
+  height: 214px;
+  font-family: Solway;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 58px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.exam-btn:hover {
+  background-color: #5d5fef;
+  border: none;
+}
