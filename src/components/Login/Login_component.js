@@ -1,5 +1,4 @@
-import {Tree} from 'react-bootstrap-icons';
-import { Key } from 'react-bootstrap-icons';
+import { Key, Tree } from 'react-bootstrap-icons';
 import {Container, Form, Col, Row, Button} from 'react-bootstrap';
 import "./Login_component.css";
 import React from "react";
@@ -9,7 +8,7 @@ export default function Logincomponent(){
     return(
         <Container className="login-container">     
             <div className="text-center">
-                <Tree size={30}/>
+                <Tree size={30} color="#4D4D4D"/>
                 <h1>Welcome to Maths Camp!</h1>
                 <p>Log in to play</p>
             </div>
@@ -30,9 +29,6 @@ export default function Logincomponent(){
                     </Col> 
                 </Row>    
             </Container>
-        </Container>
-
-        
+        </Container>   
     );
-
 }

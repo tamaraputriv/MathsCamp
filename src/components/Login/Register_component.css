@@ -6,8 +6,21 @@
     width:70%;
 }
 
+h1{
+    margin-top: 10px;
+    color: #4D4D4D;
+    font-family: "Solway";
+    font-weight: bold;
+}
+
+p{
+    font-size: 13px;
+    color: #4D4D4D;
+    font-family: "Rubik";
+}
+
 .information-text{
-    font-size:10px;
+    font-size:11px;
 }
 
 .registerbtn{
@@ -15,7 +28,7 @@
     width:425px;
     background-color: #7C7EF2;
     border-color: #7C7EF2;
- 
+    font-family: "Rubik";
 }
 
 .registerbtn:hover{

@@ -1,33 +1,40 @@
-.navbar{
+.navbar-postlogin{
     background-color: #FF6665;
     height: 70px;
 }
 
-.logo{
-    width:40px;
+.logo-postlogin{
+    width: 40px;
+    margin-left: 5px;
+    margin-top: 15px;
 }
 
-.app-name-col{
+.app-name-col-postlogin{
     position: absolute;
-    margin-left: 50px;
-    margin-top: 8px;
+    margin-left: 70px;
+    margin-top: 23px !important;
 }
 
-.navbar-brand{ 
+.navbar-brand-postlogin{ 
     color: white;
-    font-family: "Rubik";
-    font-size: 1.15rem !important;
+    font-family: "Solway";
+    font-size: 1.15rem;
 }
 
-.home-btn{
+.postlogin-toolbar{
+    margin-top: 15px;
+    justify-content: end;
+}
+
+.home-btn-postlogin{
     background-color: #F2B84B !important;
-    border-color: #f7ac22 !important;
+    border-color: #f7ac22  !important;
     font-family: "Rubik" !important;
 }
 
-.logout-btn{
+.logout-btn-postlogin{
     background-color: #7C7EF2 !important;
     border-color: #696bf5 !important;
     font-family: "Rubik" !important;
-    margin-left: 12px !important;
+    margin-left: 12px;
 }

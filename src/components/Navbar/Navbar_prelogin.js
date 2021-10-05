@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Container, Col} from 'react-bootstrap';
+import {Container, Col, Row} from 'react-bootstrap';
 import Logo from "../../images/Logo/logo-prelogin.svg";
 import "./Navbar_prelogin.css";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -14,19 +14,17 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Navbar_prelogin(){
     return(
-        <Container fluid className="navbar">
-            
+        <Container fluid className="navbar-prelogin">
+            <Row>
                 <Col>
-                <div className="logo-container">
-
-                   
-                        <img className="logo" src={Logo} alt="Logo of a calculator"></img>   
-                  </div> 
+                    <div className="logo-container-prelogin">
+                        <img className="logo-prelogin" src={Logo} alt="Logo of a calculator"></img>   
+                    </div> 
                 </Col>
-            
-            <Col className="app-name-col">
-                <h5 className="navbar-brand">Maths Camp</h5>
-            </Col>
+                <Col className="app-name-col-prelogin">
+                    <h5 className="navbar-brand-prelogin">Maths Camp</h5>
+                </Col>
+            </Row>
         </Container>       
     );
 }

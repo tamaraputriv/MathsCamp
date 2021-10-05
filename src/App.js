@@ -5,6 +5,7 @@ import RegisterPage from './pages/Registerpage';
 import LoginPage from './pages/Loginpage';
 import 'bootstrap/dist/css/bootstrap.css';
 import "@fontsource/rubik";
+import "@fontsource/solway";
 
 function App() {
   return (
