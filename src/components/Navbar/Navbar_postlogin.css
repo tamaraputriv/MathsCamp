@@ -19,6 +19,9 @@
     color: white;
     font-family: "Solway";
     font-size: 1.15rem;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.02em;
 }
 
 .postlogin-toolbar{

@@ -1,9 +1,16 @@
 import { Container, Form, Col, Row, Button } from 'react-bootstrap';
 import { CardList, Tree } from 'react-bootstrap-icons';
+import { useHistory } from 'react-router';
 import "./Register_component.css";
 import React from "react";
 
 export default function Registercomponent(){
+
+    const history = useHistory();
+
+    const handleReg = () =>{
+        history.push("/frontpage");
+    }
 
     return(
         <Container className="login-container">     
@@ -29,7 +36,7 @@ export default function Registercomponent(){
                                 <Form.Control type="email" placeholder="Enter an email"/>
                                 <p className="information-text">This email will be used for username and password recovery</p>
                             </Form.Group>
-                            <Button className="registerbtn" variant="primary" type="submit">
+                            <Button onClick={handleReg} className="registerbtn" variant="primary" type="submit">
                                 Register <CardList/>
                             </Button> 
                         </Form>

@@ -1,9 +1,16 @@
 import { Key, Tree } from 'react-bootstrap-icons';
 import {Container, Form, Col, Row, Button} from 'react-bootstrap';
+import { useHistory } from 'react-router';
 import "./Login_component.css";
 import React from "react";
 
 export default function Logincomponent(){
+
+    const history = useHistory();
+
+    const handleLog = () =>{
+        history.push("/frontpage");
+    }
 
     return(
         <Container className="login-container">     
@@ -24,7 +31,7 @@ export default function Logincomponent(){
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Enter your password"/>
                             </Form.Group>
-                            <Button className="loginbtn" variant="primary" type="submit">Log in  <Key size={20}/></Button> 
+                            <Button onClick={handleLog}className="loginbtn" variant="primary" type="submit">Log in  <Key size={20}/></Button> 
                         </Form>
                     </Col> 
                 </Row>    
