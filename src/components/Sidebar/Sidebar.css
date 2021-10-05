@@ -1,0 +1,47 @@
+.sidebar-container {
+  color: #ffffff;
+  background: #7c7ef2;
+  margin: 0;
+  padding-left: 45px;
+  padding-right: 48px;
+  width: 35%;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.arrow-icon {
+  width: 43px;
+  height: 41px;
+  padding: 0;
+  position: absolute;
+}
+
+.sidebarH1 {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 58px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 10px;
+  margin-top: 45px;
+}
+
+.sidebarP {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+}
+
+.unlocked-badge {
+  margin: 9.5px;
+  height: 135px;
+}
+
+.badge-row {
+  margin-top: 32px;
+}
