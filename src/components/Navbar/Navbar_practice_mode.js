@@ -1,9 +1,7 @@
 import React from 'react';
 import {Button, Container, Col} from 'react-bootstrap';
 import Logo from "../../images/Logo/logo-prelogin.svg";
-import { DoorOpen } from 'react-bootstrap-icons';
-import { HouseDoor } from 'react-bootstrap-icons';
-import { Gem } from 'react-bootstrap-icons';
+import { DoorOpen, HouseDoor, Gem } from 'react-bootstrap-icons';
 import "./Navbar_practice_mode.css";
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -12,7 +10,7 @@ export default function Navbar_practice_mode(){
     return(
         <Container fluid className="navbar">
             <Col>
-            <div className="logo-container">
+                <div className="logo-container">
                     <img className="logo" src={Logo} alt="Logo of a calculator"></img>   
                 </div> 
             </Col>

@@ -1,4 +1,4 @@
-.navbar{
+.navbar-prelogin{
     background-color: #FF6665;
     height: 70px;
     padding-left: 0 !important;
@@ -6,26 +6,29 @@
     padding-bottom: 0 !important;
 }
 
-.logo-container{
+.logo-container-prelogin{
     background-color: #5D5FEF;
     width: 70px;
     height: 70px;
 }
 
-.logo{
+.logo-prelogin{
     width:40px;
     margin-left: 15px;
     margin-top: 15px;
 }
 
-.app-name-col{
+.app-name-col-prelogin{
     position: absolute;
+    margin-top: 23px !important;
     margin-left: 90px;
-    margin-top: 8px;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.02em; 
 }
 
-.navbar-brand{ 
+.navbar-brand-prelogin{ 
     color: white;
-    font-family: "Rubik";
-    font-size: 1.15rem !important;
+    font-family: "Solway";
+    font-size: 1.15rem;
 }

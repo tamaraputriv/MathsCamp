@@ -1,26 +1,48 @@
 .login-container{
-    margin-top: 100px;
-   
+    margin-top: 100px; 
 }
 
 .form-container{
     width:450px;
 }
 
+h1{
+    margin-top: 10px;
+    color: #4D4D4D;
+    font-family: "Solway";
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 58px;
+    letter-spacing: -0.02em;
+}
+
 p{
     font-size: 13px;
+    color: #4D4D4D;
+    font-family: "Rubik";
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.02em;
 }
 
 .upperform{
     margin-top: 20px;
+    font-family: "Rubik";
+    color: #4D4D4D;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: -0.02em;
 }
 
 .loginbtn{
     margin-top: 50px;
-    width:425px;
+    width: 425px;
+    font-family: "Rubik";
     background-color: #7C7EF2;
     border-color: #7C7EF2;
- 
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: -0.02em;
 }
 
 .loginbtn:hover{

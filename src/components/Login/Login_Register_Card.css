@@ -2,15 +2,20 @@
     margin-top: 100px;
 }
 
-svg{
-    margin-bottom: 10px;
+h1{
+    margin-top: 10px;
+    color: #4D4D4D;
+    font-family: "Solway";
+    font-weight: bold;
 }
 
 p{
-    font-size:13px;
+    font-size: 13px;
+    color: #4D4D4D;
+    font-family: "Rubik";
 }
 
-.btn-toolbar{
+.login-register-toolbar{
     justify-content: center;
     margin-top: 50px;
 }
@@ -20,9 +25,9 @@ p{
     border-color: #F0AC2B;
     font-family: "Rubik";
     margin-left: 12px;
-    width:160px;
-    height:110px;
-    font-size: 20px;
+    width: 220px;
+    height: 150px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -35,9 +40,9 @@ p{
     background-color: #7C7EF2;
     border-color: #5D5FEF;
     font-family: "Rubik";
-    width:160px;
-    height:110px;
-    font-size: 20px;
+    width: 220px;
+    height: 150px;
+    font-size: 30px;
     font-weight: bold;
 }
 
