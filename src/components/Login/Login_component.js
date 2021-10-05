@@ -9,7 +9,7 @@ export default function Logincomponent(){
         <Container className="login-container">     
             <div className="text-center">
                 <Tree size={30} color="#4D4D4D"/>
-                <h1>Welcome to Maths Camp!</h1>
+                <h1>Welcome back!</h1>
                 <p>Log in to play</p>
             </div>
             <Container className="form-container">

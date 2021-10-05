@@ -32,9 +32,20 @@
     font-family: "Rubik" !important;
 }
 
+
+.home-btn-postlogin:hover{
+    background-color: #F0AC2B;
+    border-color: #F0AC2B;
+}
+
 .logout-btn-postlogin{
     background-color: #7C7EF2 !important;
     border-color: #696bf5 !important;
     font-family: "Rubik" !important;
     margin-left: 12px;
+}
+
+.login-btn-postlogin:hover{
+    background-color: #5D5FEF;
+    border-color: #5D5FEF;
 }
