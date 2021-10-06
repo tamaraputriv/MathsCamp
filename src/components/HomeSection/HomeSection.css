@@ -13,6 +13,7 @@
   line-height: 41px;
   letter-spacing: -0.02em;
   color: #4d4d4d;
+  margin-bottom: 105px;
 }
 
 .homesection-btn-toolbar {
@@ -59,4 +60,57 @@
 .exam-btn:hover {
   background-color: #5d5fef;
   border: none;
+}
+
+h2 {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #4d4d4d;
+}
+
+.strike-h2 {
+  margin-top: 40px;
+  margin-bottom: 18px;
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.thead-light {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: #27272e;
+}
+
+.category-icon {
+  margin-right: 23px;
+}
+
+.category-col {
+  padding-right: 50px;
+}
+
+.table-header {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px !important;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: #8492a6 !important;
+}
+
+.body-text {
+  font-size: 18px !important;
+  color: #4d4d4d;
 }

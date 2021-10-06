@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./HomeSection.css";
 import { useHistory } from "react-router";
 import {
@@ -8,9 +8,15 @@ import {
   Button,
   ButtonToolbar,
   Card,
+  Table,
 } from "react-bootstrap";
+import { BsFillSunFill, BsFillFilterSquareFill, BsGem } from "react-icons/bs";
 
 export default function HomeSection({ isOpen, toggle }) {
+  const [daysPlayed, setDaysPlayed] = useState(0);
+  const [questionsAnswered, setQuestionAnswered] = useState(0);
+  const [points, setPoints] = useState(0);
+
   const history = useHistory();
 
   const handlePractice = () => {
@@ -20,6 +26,7 @@ export default function HomeSection({ isOpen, toggle }) {
   const handleExam = () => {
     history.push("/exam");
   };
+
   return (
     <Container
       className="home-container"
@@ -49,140 +56,64 @@ export default function HomeSection({ isOpen, toggle }) {
         <Col>Mascot Img</Col>
       </Row>
       <Row>
-        <Col>
-          <div class="table-responsive">
-            <table class="table table-hover table-nowrap">
-              <thead class="thead-light">
+        <h2 className="strike-h2">Your strikes</h2>
+      </Row>
+      <Row>
+        <Col lg={4}>
+          <div>
+            <Table>
+              <thead className="thead-light table-header">
                 <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Job Title</th>
-                  <th></th>
+                  <th scope="col" className="table-header">
+                    CATEGORY
+                  </th>
+                  <th scope="col" className="table-header">
+                    AMOUNT
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td data-label="Job Title">
-                    <a class="text-heading font-semibold" href="#">
-                      Robert Fox
-                    </a>
+                  <td className="body-text">
+                    <BsFillSunFill
+                      size={25}
+                      className="category-icon"
+                      color={"#F2B84B"}
+                    />
+                    Days you played
                   </td>
-                  <td data-label="Email">
-                    <span>Web Designer</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-label="Job Title">
-                    {/* <img alt="..." src="https://images.unsplash.com/photo-1610271340738-726e199f0258?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2"> */}
-                    <a class="text-heading font-semibold" href="#">
-                      Darlene Robertson
-                    </a>
-                  </td>
-                  <td data-label="Email">
-                    <span>Developer</span>
-                  </td>
-                  <td data-label="Phone">
-                    <a class="text-current" href="mailto:darlene@example.com">
-                      darlene@example.com
-                    </a>
-                  </td>
-                  <td data-label="Lead Score">
-                    <a class="text-current" href="tel:224-567-2662">
-                      224-567-2662
-                    </a>
-                  </td>
-                  <td data-label="Company">
-                    <span class="badge bg-soft-warning text-warning">5/10</span>
-                  </td>
-                  <td data-label="">
-                    <a class="text-current" href="#">
-                      Netguru
-                    </a>
-                  </td>
-                  <td data-label="" class="text-end">
-                    <div class="dropdown">
-                      <a
-                        class="text-muted"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <i class="bi bi-three-dots-vertical"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a href="#!" class="dropdown-item">
-                          Action
-                        </a>
-                        <a href="#!" class="dropdown-item">
-                          Another action
-                        </a>
-                        <a href="#!" class="dropdown-item">
-                          Something else here
-                        </a>
-                      </div>
-                    </div>
+                  <td data-label="Days played" className="body-text">
+                    {daysPlayed} days
                   </td>
                 </tr>
                 <tr>
-                  <td data-label="Job Title">
-                    {/* <img alt="..." src="https://images.unsplash.com/photo-1610878722345-79c5eaf6a48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2"> */}
-                    <a class="text-heading font-semibold" href="#">
-                      Theresa Webb
-                    </a>
+                  <td className="body-text">
+                    <BsFillFilterSquareFill
+                      size={25}
+                      className="category-icon"
+                      color={"#FF6665"}
+                    />
+                    Questions you answered
                   </td>
-                  <td data-label="Email">
-                    <span>Marketing Specialist</span>
+                  <td data-label="Questions you answered" className="body-text">
+                    <span>{questionsAnswered} questions</span>
                   </td>
-                  <td data-label="Phone">
-                    <a
-                      class="text-current"
-                      href="mailto:theresa.webb@example.com"
-                    >
-                      theresa.webb@example.com
-                    </a>
+                </tr>
+                <tr>
+                  <td className="body-text">
+                    <BsGem
+                      size={25}
+                      className="category-icon"
+                      color={"#7C7EF2"}
+                    />
+                    Your Points
                   </td>
-                  <td data-label="Lead Score">
-                    <a class="text-current" href="tel:401-505-6800">
-                      401-505-6800
-                    </a>
-                  </td>
-                  <td data-label="Company">
-                    <span class="badge bg-soft-danger text-danger">2/10</span>
-                  </td>
-                  <td data-label="">
-                    <a class="text-current" href="#">
-                      Figma
-                    </a>
-                  </td>
-                  <td data-label="" class="text-end">
-                    <div class="dropdown">
-                      <a
-                        class="text-muted"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <i class="bi bi-three-dots-vertical"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <a href="#!" class="dropdown-item">
-                          Action
-                        </a>
-                        <a href="#!" class="dropdown-item">
-                          Another action
-                        </a>
-                        <a href="#!" class="dropdown-item">
-                          Something else here
-                        </a>
-                      </div>
-                    </div>
+                  <td data-label="Your points" className="body-text">
+                    <span>{points} points</span>
                   </td>
                 </tr>
               </tbody>
-            </table>
+            </Table>
           </div>
         </Col>
       </Row>
