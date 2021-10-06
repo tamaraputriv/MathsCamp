@@ -1,11 +1,11 @@
-import NavBarPre from '../components/Navbar/Navbar_prelogin'
-import Login_component from '../components/Login/Login_component';
+import NavBarPre from "../components/Navbar/NavbarPrelogin";
+import LoginComponent from "../components/Login/LoginComponent";
 
-export default function LoginPage(){
-    return(
-        <div>
-            <NavBarPre/>
-            <Login_component/>
-        </div>
-    );
+export default function LoginPage() {
+  return (
+    <div>
+      <NavBarPre />
+      <LoginComponent />
+    </div>
+  );
 }

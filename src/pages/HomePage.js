@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
-import Navbar from "../components/Navbar/Navbar_postlogin";
+import Navbar from "../components/Navbar/NavbarPostlogin";
 import HomeSection from "../components/HomeSection/HomeSection";
 
 const HomePage = () => {

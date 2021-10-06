@@ -1,11 +1,11 @@
-import NavBarPre from '../components/Navbar/Navbar_prelogin'
-import Register_component from '../components/Login/Register_component';
+import NavBarPre from "../components/Navbar/NavbarPrelogin";
+import RegisterComponent from "../components/Login/RegisterComponent";
 
-export default function RegisterPage(){
-    return(
-        <div>
-            <NavBarPre/>
-            <Register_component/>
-        </div>
-    );
+export default function RegisterPage() {
+  return (
+    <div>
+      <NavBarPre />
+      <RegisterComponent />
+    </div>
+  );
 }
