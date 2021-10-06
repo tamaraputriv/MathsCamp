@@ -6,10 +6,7 @@ import { Container, Col, Row } from "react-bootstrap";
 
 export default function Sidebar({ isOpen, toggle }) {
   return (
-    <Container
-      className="sidebar-container"
-      style={{ width: isOpen ? "" : "15%", height: isOpen ? "100vh" : "100%" }}
-    >
+    <Container className="sidebar-container">
       <Row className="icon-row">
         <Col></Col>
         <Col md="auto">

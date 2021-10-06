@@ -7,12 +7,18 @@ import {
   Row,
   Button,
   ButtonToolbar,
-  Card,
   Table,
+  Image,
 } from "react-bootstrap";
-import { BsFillSunFill, BsFillFilterSquareFill, BsGem } from "react-icons/bs";
+import {
+  BsFillSunFill,
+  BsFillFilterSquareFill,
+  BsGem,
+  BsPerson,
+} from "react-icons/bs";
+import Mascot from "../../images/Mascots/mascot1.png";
 
-export default function HomeSection({ isOpen, toggle }) {
+export default function HomeSection() {
   const [daysPlayed, setDaysPlayed] = useState(0);
   const [questionsAnswered, setQuestionAnswered] = useState(0);
   const [points, setPoints] = useState(0);
@@ -27,33 +33,45 @@ export default function HomeSection({ isOpen, toggle }) {
     history.push("/exam");
   };
 
+  const handleChangeMascot = () => {
+    history.push("/mascot");
+  };
+
   return (
-    <Container
-      className="home-container"
-      style={{ marginLeft: isOpen ? "" : "20%" }}
-    >
+    <Container fluid className="home-container">
       <Row>
         <Col>
           <h1 className="welcome-h1">Welcome to your frontpage</h1>
         </Col>
       </Row>
       <Row>
-        <Col>
-          <Card body>
-            <ButtonToolbar className="homesection-btn-toolbar">
-              <Button
-                onClick={handlePractice}
-                className="btn-primary lg practice-btn"
-              >
-                Practice mode
-              </Button>
-              <Button onClick={handleExam} className="btn-primary lg exam-btn">
-                Exam mode
-              </Button>
-            </ButtonToolbar>
-          </Card>
+        <Col lg="auto">
+          <ButtonToolbar className="homesection-btn-toolbar">
+            <Button onClick={handlePractice} className="lg practice-btn">
+              Practice mode
+            </Button>
+            <Button onClick={handleExam} className="lg exam-btn">
+              Exam mode
+            </Button>
+          </ButtonToolbar>
         </Col>
-        <Col>Mascot Img</Col>
+        <Col>
+          <Row>
+            <div className="mascot-img-container">
+              <Image src={Mascot} />
+            </div>
+          </Row>
+          <Row>
+            <Button
+              onClick={handleChangeMascot}
+              className="change-mascot-btn"
+              variant="primary"
+              type="submit"
+            >
+              Change your mascot <BsPerson />
+            </Button>
+          </Row>
+        </Col>
       </Row>
       <Row>
         <h2 className="strike-h2">Your strikes</h2>
