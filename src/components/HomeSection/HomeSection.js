@@ -45,39 +45,41 @@ export default function HomeSection() {
         </Col>
       </Row>
       <Row>
-        <Col lg="auto">
-          <ButtonToolbar className="homesection-btn-toolbar">
+        <Col lg="7">
+          <div className="homesection-btn-div">
             <Button onClick={handlePractice} className="lg practice-btn">
               Practice mode
             </Button>
             <Button onClick={handleExam} className="lg exam-btn">
               Exam mode
             </Button>
-          </ButtonToolbar>
+          </div>
         </Col>
         <Col>
-          <Row>
-            <div className="mascot-img-container">
-              <Image src={Mascot} />
-            </div>
-          </Row>
-          <Row>
-            <Button
-              onClick={handleChangeMascot}
-              className="change-mascot-btn"
-              variant="primary"
-              type="submit"
-            >
-              Change your mascot <BsPerson />
-            </Button>
-          </Row>
+          <div className="mascot-div">
+            <Row>
+              <div className="mascot-img-container">
+                <Image src={Mascot} />
+              </div>
+            </Row>
+            <Row>
+              <Button
+                onClick={handleChangeMascot}
+                className="change-mascot-btn"
+                variant="primary"
+                type="submit"
+              >
+                Change your mascot <BsPerson />
+              </Button>
+            </Row>
+          </div>
         </Col>
       </Row>
       <Row>
         <h2 className="strike-h2">Your strikes</h2>
       </Row>
       <Row>
-        <Col lg={4}>
+        <Col lg={6}>
           <div>
             <Table>
               <thead className="thead-light table-header">

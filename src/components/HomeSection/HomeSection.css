@@ -13,13 +13,10 @@
   margin-bottom: 105px;
 }
 
-.homesection-btn-toolbar {
+.homesection-btn-div {
   display: flex;
-  justify-content: space-between;
-  padding: 40px 10px 40px 10px;
-  box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24),
-    0px 3px 8px -1px rgba(50, 50, 71, 0.05);
-  border-radius: 16px;
+  justify-content: left;
+  padding: 40px 0px 40px 0px;
 }
 
 .practice-btn {
@@ -35,6 +32,7 @@
   line-height: 58px;
   letter-spacing: -0.02em;
   text-align: center;
+  margin: 10px;
 }
 
 .practice-btn:hover {
@@ -55,6 +53,7 @@
   line-height: 58px;
   letter-spacing: -0.02em;
   text-align: center;
+  margin: 10px;
 }
 
 .exam-btn:hover {
@@ -130,4 +129,10 @@ h2 {
 .change-mascot-btn:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
+}
+
+.mascot-div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }

@@ -1,9 +1,9 @@
 .sidebar-container {
   color: #ffffff;
   background: #7c7ef2;
-  margin: 0;
   padding-left: 45px;
   padding-right: 48px;
+  height: 100vh;
   overflow: scroll;
 }
 
