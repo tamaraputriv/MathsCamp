@@ -1,15 +1,7 @@
-import React, { useState } from "react";
-import "./HomeSection.css";
+import React from "react";
+import "./UserInfo.css";
 import { useHistory } from "react-router";
-import {
-  Container,
-  Col,
-  Row,
-  Button,
-  ButtonToolbar,
-  Table,
-  Image,
-} from "react-bootstrap";
+import { Container, Col, Row, Button, Table, Image } from "react-bootstrap";
 import {
   BsFillSunFill,
   BsFillFilterSquareFill,
@@ -18,11 +10,12 @@ import {
 } from "react-icons/bs";
 import Mascot from "../../images/Mascots/mascot1.png";
 
-export default function HomeSection() {
-  const [daysPlayed, setDaysPlayed] = useState(0);
-  const [questionsAnswered, setQuestionAnswered] = useState(0);
-  const [points, setPoints] = useState(0);
-
+export default function UserInfo({
+  username,
+  total_points,
+  total_days_played,
+  total_answered_questions,
+}) {
   const history = useHistory();
 
   const handlePractice = () => {
@@ -41,7 +34,7 @@ export default function HomeSection() {
     <Container fluid className="home-container">
       <Row>
         <Col>
-          <h1 className="welcome-h1">Welcome to your frontpage</h1>
+          <h1 className="welcome-h1">Welcome to your frontpage, {username}</h1>
         </Col>
       </Row>
       <Row>
@@ -103,7 +96,7 @@ export default function HomeSection() {
                     Days you played
                   </td>
                   <td data-label="Days played" className="body-text">
-                    {daysPlayed} days
+                    {total_days_played} days
                   </td>
                 </tr>
                 <tr>
@@ -116,7 +109,7 @@ export default function HomeSection() {
                     Questions you answered
                   </td>
                   <td data-label="Questions you answered" className="body-text">
-                    <span>{questionsAnswered} questions</span>
+                    <span>{total_answered_questions} questions</span>
                   </td>
                 </tr>
                 <tr>
@@ -129,7 +122,7 @@ export default function HomeSection() {
                     Your Points
                   </td>
                   <td data-label="Your points" className="body-text">
-                    <span>{points} points</span>
+                    <span>{total_points} points</span>
                   </td>
                 </tr>
               </tbody>

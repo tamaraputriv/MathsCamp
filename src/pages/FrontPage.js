@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Navbar from "../components/Navbar/NavbarPostlogin";
-import HomeSection from "../components/HomeSection/HomeSection";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import UserInfo from "../components/UserInfo/UserInfo";
+import { User } from "../users/User";
 
-export default function HomePage() {
+export default function FrontPage() {
   const [isOpen, setIsOpen] = useState(true);
   const [columnSize, setColumnSize] = useState(4);
 
@@ -26,7 +27,7 @@ export default function HomePage() {
           <Sidebar isOpen={isOpen} toggle={toggle} />
         </Col>
         <Col>
-          <HomeSection />
+          <UserInfo {...User} />
         </Col>
       </Row>
     </>
