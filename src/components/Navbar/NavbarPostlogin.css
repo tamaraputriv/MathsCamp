@@ -1,55 +1,68 @@
-.navbar-postlogin{
-    background-color: #FF6665;
-    height: 70px;
+.nav {
+  height: 70px;
+  margin-top: -70px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.logo-postlogin{
-    width: 40px;
-    margin-left: 5px;
-    margin-top: 15px;
+.navbar-postlogin {
+  background-color: #ff6665;
+  height: 70px;
 }
 
-.app-name-col-postlogin{
-    position: absolute;
-    margin-left: 70px;
-    margin-top: 23px !important;
-    width: auto !important;
+.logo-postlogin {
+  width: 40px;
+  margin-left: 5px;
+  margin-top: 15px;
 }
 
-.navbar-brand-postlogin{ 
-    color: white;
-    font-family: "Solway";
-    font-size: 1.15rem;
-    font-size: 18px;
-    line-height: 21px;
-    letter-spacing: -0.02em;
+.app-name-col-postlogin {
+  position: absolute;
+  margin-left: 70px;
+  margin-top: 23px !important;
+  width: auto !important;
 }
 
-.postlogin-toolbar{
-    margin-top: 15px;
-    justify-content: end;
+.app-name-col-postlogin {
+  position: absolute;
+  margin-left: 70px;
+  margin-top: 23px !important;
 }
 
-.home-btn-postlogin{
-    background-color: #F2B84B !important;
-    border-color: #f7ac22  !important;
-    font-family: "Rubik" !important;
+.navbar-brand-postlogin {
+  color: white;
+  font-family: "Solway";
+  font-size: 1.15rem;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
 }
 
-
-.home-btn-postlogin:hover{
-    background-color: #F0AC2B;
-    border-color: #F0AC2B;
+.postlogin-toolbar {
+  margin-top: 15px;
+  justify-content: end;
 }
 
-.logout-btn-postlogin{
-    background-color: #7C7EF2 !important;
-    border-color: #696bf5 !important;
-    font-family: "Rubik" !important;
-    margin-left: 12px;
+.home-btn-postlogin {
+  background-color: #f2b84b !important;
+  border-color: #f7ac22 !important;
+  font-family: "Rubik" !important;
 }
 
-.login-btn-postlogin:hover{
-    background-color: #5D5FEF;
-    border-color: #5D5FEF;
+.home-btn-postlogin:hover {
+  background-color: #f0ac2b;
+  border-color: #f0ac2b;
+}
+
+.logout-btn-postlogin {
+  background-color: #7c7ef2 !important;
+  border-color: #696bf5 !important;
+  font-family: "Rubik" !important;
+  margin-left: 12px;
+}
+
+.login-btn-postlogin:hover {
+  background-color: #5d5fef;
+  border-color: #5d5fef;
 }
