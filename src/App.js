@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LandingPage from "./pages/Landingpage";
+import LandingPage from "./pages/LandingPage";
 import RegisterPage from "./pages/Registerpage";
-import LoginPage from "./pages/Loginpage";
+import LoginPage from "./pages/LoginPage";
 import FrontPage from "./pages/FrontPage";
 import PracticePage from "./pages/PracticePage";
+import MascotPage from "./pages/EditMascotPage";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fontsource/rubik";
 import "@fontsource/solway";
+import EditMascotPage from "./pages/EditMascotPage";
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/frontpage" component={FrontPage} />
           <Route exact path="/practice" component={PracticePage} />
+          <Route exact path="/mascot" component={EditMascotPage} />
         </Switch>
       </Router>
     </div>

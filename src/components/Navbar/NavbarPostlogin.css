@@ -13,6 +13,7 @@
     position: absolute;
     margin-left: 70px;
     margin-top: 23px !important;
+    width: auto !important;
 }
 
 .navbar-brand-postlogin{ 
