@@ -36,7 +36,7 @@ export default function LoginComponent() {
               </Form.Group>
               <Button
                 onClick={handleLog}
-                className="loginbtn"
+                className="login-button"
                 variant="primary"
                 type="submit"
               >

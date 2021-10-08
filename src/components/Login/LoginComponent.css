@@ -34,7 +34,7 @@ p{
     letter-spacing: -0.02em;
 }
 
-.loginbtn{
+.login-button{
     margin-top: 50px;
     width: 425px;
     font-family: "Rubik";
@@ -45,7 +45,7 @@ p{
     letter-spacing: -0.02em;
 }
 
-.loginbtn:hover{
+.login-button:hover{
     background-color: #5D5FEF;
     border-color: #5D5FEF;
 }
