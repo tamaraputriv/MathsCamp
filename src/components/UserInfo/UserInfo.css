@@ -1,0 +1,138 @@
+.home-container {
+  padding-top: 37px;
+}
+
+.welcome-h1 {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 41px;
+  letter-spacing: -0.02em;
+  color: #4d4d4d;
+  margin-bottom: 105px;
+}
+
+.homesection-btn-div {
+  display: flex;
+  justify-content: left;
+  padding: 40px 0px 40px 0px;
+}
+
+.practice-btn {
+  background-color: #f2b84b;
+  border: none;
+  font-family: "Rubik";
+  width: 270px;
+  height: 214px;
+  font-family: Solway;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 58px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 10px;
+}
+
+.practice-btn:hover {
+  background-color: #f0ac2b;
+  border: none;
+}
+
+.exam-btn {
+  background-color: #7c7ef2;
+  border: none;
+  font-family: "Rubik";
+  width: 270px;
+  height: 214px;
+  font-family: Solway;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 58px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 10px;
+}
+
+.exam-btn:hover {
+  background-color: #5d5fef;
+  border: none;
+}
+
+h2 {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #4d4d4d;
+}
+
+.strike-h2 {
+  margin-top: 40px;
+  margin-bottom: 18px;
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.thead-light {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: #27272e;
+}
+
+.category-icon {
+  margin-right: 23px;
+}
+
+.category-col {
+  padding-right: 50px;
+}
+
+.table-header {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px !important;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: #8492a6 !important;
+}
+
+.body-text {
+  font-size: 18px !important;
+  color: #4d4d4d;
+}
+
+.mascot-img-container {
+  width: 300px;
+}
+
+.change-mascot-btn {
+  margin-top: 10px;
+  width: 247px;
+  background-color: #7c7ef2;
+  border-color: #7c7ef2;
+  font-family: "Rubik";
+}
+
+.change-mascot-btn:hover {
+  background-color: #5d5fef;
+  border-color: #5d5fef;
+}
+
+.mascot-div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

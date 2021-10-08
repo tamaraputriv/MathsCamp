@@ -1,0 +1,36 @@
+.navbar-prelogin {
+  background-color: #ff6665;
+  height: 70px;
+  padding-left: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  position: sticky;
+  z-index: 10;
+}
+
+.logo-container-prelogin {
+  background-color: #5d5fef;
+  width: 70px;
+  height: 70px;
+}
+
+.logo-prelogin {
+  width: 40px;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.app-name-col-prelogin {
+  position: absolute;
+  margin-top: 23px !important;
+  margin-left: 90px;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+}
+
+.navbar-brand-prelogin {
+  color: white;
+  font-family: "Solway";
+  font-size: 1.15rem;
+}
