@@ -3,6 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//import firebase from 'firebase/index';
+//import { initializeApp } from '@firebase/firestore';
+
+/*const firebaseConfig = {
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  databaseURL: process.env.REACT_APP_databaseURL,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+};
+
+firebase.initializeApp(firebaseConfig);
+firebase.firestore();*/
 
 ReactDOM.render(
   <React.StrictMode>

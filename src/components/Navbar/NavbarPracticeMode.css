@@ -49,7 +49,7 @@
     margin-left: 12px !important;
 }
 
-.login-btn:hover{
+.logout-btn:hover{
     background-color: #5D5FEF;
     border-color: #5D5FEF;
 }
