@@ -9,7 +9,7 @@
 .arrow-icon {
   width: 43px;
   height: 41px;
-  background-color: rebeccapurple;
+  /* background-color: rebeccapurple; */
 }
 
 .arrow-icon:hover {
@@ -21,12 +21,13 @@
   font-family: Solway;
   font-style: normal;
   font-weight: bold;
-  font-size: 34px;
+  font-size: 38px;
   line-height: 58px;
   letter-spacing: -0.02em;
   color: #ffffff;
   margin-bottom: 10px;
-  background-color: red;
+  margin-top: 10px;
+  /* background-color: red; */
 }
 
 .sidebar-header {

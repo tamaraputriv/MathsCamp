@@ -32,7 +32,7 @@ export default function UserInfo({
   };
 
   const [isOpen, setIsOpen] = useState(true);
-  const [columnSize, setColumnSize] = useState(4);
+  const [columnSize, setColumnSize] = useState(5);
 
   const toggle = () => {
     if (isOpen) {
@@ -40,7 +40,7 @@ export default function UserInfo({
       setColumnSize(3);
     } else {
       setIsOpen(true);
-      setColumnSize(4);
+      setColumnSize(5);
     }
   };
 
@@ -64,7 +64,8 @@ export default function UserInfo({
                   Practice mode
                 </Button>
                 <Button onClick={handleExam} className="lg exam-btn">
-                  Exam mode
+                  Exam <br />
+                  mode
                 </Button>
               </div>
             </Col>
