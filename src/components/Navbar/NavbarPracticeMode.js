@@ -2,10 +2,22 @@ import React from "react";
 import { Button, Container, Col } from "react-bootstrap";
 import Logo from "../../images/Logo/logo-prelogin.svg";
 import { DoorOpen, HouseDoor, Gem } from "react-bootstrap-icons";
+import { useHistory } from "react-router";
 import "./NavbarPracticeMode.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function Navbar_practice_mode() {
+
+  const history = useHistory();
+
+    const handleLogOut = () => {
+      history.push("/");
+    };
+
+    const handleHome = () => {
+      history.push("/frontpage");
+    };
+
   return (
     <Container fluid className="navbar">
       <Col>
@@ -20,10 +32,10 @@ export default function Navbar_practice_mode() {
       </Col>
       <Col lg={1.5}>
         <div className="btn-toolbar">
-          <Button className="btn-primary lg home-btn">
+          <Button className="btn-primary lg home-btn" onClick={handleHome}>
             Home <HouseDoor size={15} />
           </Button>
-          <Button className="btn-primary lg logout-btn">
+          <Button className="btn-primary lg logout-btn" onClick={handleLogOut}>
             Log out <DoorOpen size={15} />
           </Button>
         </div>
