@@ -6,30 +6,10 @@ import UserInfo from "../components/UserInfo/UserInfo";
 import { User } from "../users/User";
 
 export default function FrontPage() {
-  const [isOpen, setIsOpen] = useState(true);
-  const [columnSize, setColumnSize] = useState(4);
-
-  const toggle = () => {
-    if (isOpen) {
-      setIsOpen(false);
-      setColumnSize(2);
-    } else {
-      setIsOpen(true);
-      setColumnSize(4);
-    }
-  };
-
   return (
-    <>
+    <div>
       <Navbar />
-      <Row>
-        <Col lg={columnSize}>
-          <Sidebar isOpen={isOpen} toggle={toggle} />
-        </Col>
-        <Col>
-          <UserInfo {...User} />
-        </Col>
-      </Row>
-    </>
+      <UserInfo {...User} />
+    </div>
   );
 }
