@@ -12,10 +12,11 @@
   z-index: 1;
 }
 
-.logo-postlogin {
-  width: 40px;
-  margin-left: 5px;
-  margin-top: 15px;
+.app-name-col-postlogin {
+  position: absolute;
+  margin-left: 70px;
+  margin-top: 23px !important;
+  width: auto !important;
 }
 
 .app-name-col-postlogin {

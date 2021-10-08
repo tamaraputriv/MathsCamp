@@ -15,7 +15,7 @@ import "bootstrap/dist/css/bootstrap.css";
 export default function Navbar_prelogin() {
   return (
     <Container fluid className="navbar-prelogin">
-      <Row>
+      <Row className="row-prelogin">
         <Col>
           <div className="logo-container-prelogin">
             <img

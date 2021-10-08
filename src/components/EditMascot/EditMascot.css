@@ -1,0 +1,74 @@
+.mascot-container{
+    padding-top: 20px;
+}
+
+.point-circle{
+    display:inline-block;
+    background-color:#F0AC2B;
+    border-radius: 25px;
+    height:40px;
+    width:90px;
+    padding-top:10px;
+    margin-top: 70px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+}
+
+.mascot-card{
+    margin-top:20px;
+}
+
+.mascot-name{
+    font-family: "Solway";
+    font-weight: bold;
+    color: #4D4D4D;
+    font-size: 20px;
+}
+
+.top-point-text{
+    color:white;
+    font-size: 24px;
+    font-family: "Rubik";
+}
+
+.buy-mascot-btn{
+    width:150px;
+    background-color: #F2B84B;
+    border-color: #f7ac22;
+    font-family: "Rubik";
+}
+
+.buy-mascot-btn:hover{
+    background-color: #F0AC2B;
+    border-color: #F0AC2B;
+}
+
+.point-text{
+    color: #4D4D4D;
+    font-size: 18px;
+    font-family: "Rubik";
+}
+
+.owned{
+    border: none;
+    background: none;
+}
+
+.go-back-btn-container{
+   position:absolute;
+   right:0;
+   margin-right: 90px;
+   margin-top: 50px;
+   margin-bottom: 200px;
+}
+
+.go-back-btn{
+    background-color: #7C7EF2;
+    border-color: #696bf5;
+    font-family: "Rubik";
+}
+
+.go-back-btn:hover{
+    background-color: #5D5FEF;
+    border-color: #5D5FEF;
+}
