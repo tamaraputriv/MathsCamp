@@ -1,0 +1,15 @@
+export const Question = {
+  id: 0,
+  question: "Add 110 and 110 together. What is the result?",
+  category: 1,
+  type: 1,
+  level: 1,
+  option_A: "200",
+  option_B: "120",
+  option_C: "100",
+  option_D: "220",
+  correct_answer: "4",
+  hint: "Try setting the question up like this..",
+  explanation: null,
+  imgsrc: null,
+};
