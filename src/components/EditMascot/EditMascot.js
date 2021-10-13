@@ -19,7 +19,7 @@ export default function EditMascot(){
     return(
         <Container className="mascot-container">
             <div className="point-container">
-                <Gem color="#F2B84B" size={50}/><div className="point-circle" rounded><p className="top-point-text text-center">50</p></div>
+                <Gem color="#F2B84B" size={50}/><div className="point-circle"><p className="top-point-text text-center">50</p></div>
             </div>
             <Row>
                 <Col>

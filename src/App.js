@@ -5,7 +5,6 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import FrontPage from "./pages/FrontPage";
 import PracticePage from "./pages/PracticePage";
-import MascotPage from "./pages/EditMascotPage";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fontsource/rubik";
 import "@fontsource/solway";
