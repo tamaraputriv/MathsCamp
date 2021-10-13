@@ -13,8 +13,8 @@ export default function Sidebar({ isOpen, toggle }) {
       }}
     >
       <Row className="icon-row">
-        <Col lg="10">
-          <h1
+        <div className="sidebar-header">
+          <p
             className="sidebarH1"
             style={{
               fontSize: isOpen ? "" : "20px",
@@ -22,10 +22,7 @@ export default function Sidebar({ isOpen, toggle }) {
             }}
           >
             Your Collection
-          </h1>
-        </Col>
-        <Col>
-          {" "}
+          </p>
           {isOpen ? (
             <BsChevronDoubleLeft
               onClick={toggle}
@@ -39,13 +36,13 @@ export default function Sidebar({ isOpen, toggle }) {
               alt="icon arrow"
             ></BsChevronDoubleRight>
           )}
-        </Col>
+        </div>
       </Row>
       <Row>
         <Col>
           <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
-            Your collection is empty! Go to Practice mode and earn your first
-            reward.
+            Your collection is empty! <br /> Go to Practice mode and earn your
+            first reward.
           </p>
         </Col>
       </Row>
@@ -55,73 +52,61 @@ export default function Sidebar({ isOpen, toggle }) {
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
           <img
             className="unlocked-badge"
             src={UnlockedBagde}
             alt="unlocked badge"
-            style={{ height: isOpen ? "" : "80px" }}
           />
         </Col>
       </Row>

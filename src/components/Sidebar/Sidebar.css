@@ -1,17 +1,15 @@
 .sidebar-container {
   color: #ffffff;
   background: #7c7ef2;
-  padding-left: 45px;
+  padding-left: 20px;
   padding-right: 0px;
-  height: calc(100vh - 70px);
+  height: 100%;
 }
 
 .arrow-icon {
   width: 43px;
   height: 41px;
-  padding: 0;
-  margin: 0;
-  background-color: rebeccapurple;
+  /* background-color: rebeccapurple; */
 }
 
 .arrow-icon:hover {
@@ -23,13 +21,19 @@
   font-family: Solway;
   font-style: normal;
   font-weight: bold;
-  font-size: 34px;
+  font-size: 38px;
   line-height: 58px;
   letter-spacing: -0.02em;
   color: #ffffff;
   margin-bottom: 10px;
-  width: fit-content;
-  background-color: red;
+  margin-top: 10px;
+  /* background-color: red; */
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .sidebarP {
@@ -46,7 +50,7 @@
 
 .unlocked-badge {
   margin: 9.5px;
-  height: 120px;
+  height: 100px;
 }
 
 .badge-row {

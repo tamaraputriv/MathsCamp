@@ -30,13 +30,12 @@
   background-color: #f2b84b;
   border: none;
   font-family: "Rubik";
-  width: 270px;
-  height: 214px;
+  width: 210px;
+  height: 100px;
   font-family: Solway;
-  font-size: 48px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 700;
-  line-height: 58px;
   letter-spacing: -0.02em;
   text-align: center;
   margin: 10px;
@@ -51,13 +50,12 @@
   background-color: #7c7ef2;
   border: none;
   font-family: "Rubik";
-  width: 270px;
-  height: 214px;
+  width: 210px;
+  height: 100px;
   font-family: Solway;
-  font-size: 48px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 700;
-  line-height: 58px;
   letter-spacing: -0.02em;
   text-align: center;
   margin: 10px;
@@ -140,9 +138,9 @@ h2 {
 
 .userinfo-col {
   padding-left: 10px;
+  /* background-color: yellow; */
 }
 
-.mascot-col {
-  margin-top: 220px;
-  height: fit-content;
+.home-mascot-col {
+  /* background-color: red; */
 }
