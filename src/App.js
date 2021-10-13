@@ -5,10 +5,10 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import FrontPage from "./pages/FrontPage";
 import PracticePage from "./pages/PracticePage";
+import EditMascotPage from "./pages/EditMascotPage";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fontsource/rubik";
 import "@fontsource/solway";
-import EditMascotPage from "./pages/EditMascotPage";
 
 function App() {
   return (

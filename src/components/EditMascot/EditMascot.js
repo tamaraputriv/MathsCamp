@@ -2,6 +2,7 @@ import React from "react";
 import {Card, Button, Container, Row, Col} from "react-bootstrap";
 import { Gem, ChevronLeft } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
+import Parse from "parse";
 import "./EditMascot.css";
 import Mascot1 from "../../images/Mascots/mascot1.png";
 import Mascot2 from "../../images/Mascots/mascot3.png";
@@ -15,6 +16,36 @@ export default function EditMascot(){
     const handleGoBack = () => {
       history.push("/frontpage");
     };
+
+    //Saving your First Data Object on Back4App
+    /*async function newUser() {
+    const students = new Parse.Object("Student");
+  
+    students.set("Username", "John Snow");
+    students.set("Password", "hej");
+    try {
+      let result = await students.save()
+      alert('New object created with objectId: ' + result.id);
+      } catch(error) {
+          alert('Failed to create new object, with error code: ' + error.message);
+      }
+    } */
+  
+    //Reading your First Data Object from Back4App
+    async function newUser() {
+        //const Student = Parse.Object.extend('Students');
+        const query = new Parse.Query('Students');
+    
+    try {
+      const person = await query.get("PRf3WjglIw");
+      const name = person.get("Username");
+      const age = person.get("Password");
+    
+      alert(`Name: ${name} age: ${age}`);
+      } catch (error) {
+      alert(`Failed to retrieve the object, with error code: ${error.message}`);
+      }
+    }  
 
     return(
         <Container className="mascot-container">
@@ -42,7 +73,7 @@ export default function EditMascot(){
                             <Card.Text>
                             <p className="point-text"><Gem color="#F2B84B"/> 100 points</p>
                             </Card.Text>
-                            <Button className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
+                            <Button onClick={newUser} className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
                         </Card.Body>
                     </Card>
                 </Col>

@@ -3,21 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-//import firebase from 'firebase/index';
-//import { initializeApp } from '@firebase/firestore';
+/*import { initializeParse } from '@parse/react';
 
-/*const firebaseConfig = {
-  apiKey: process.env.REACT_APP_apiKey,
-  authDomain: process.env.REACT_APP_authDomain,
-  databaseURL: process.env.REACT_APP_databaseURL,
-  projectId: process.env.REACT_APP_projectId,
-  storageBucket: process.env.REACT_APP_storageBucket,
-  messagingSenderId: process.env.REACT_APP_messagingSenderId,
-  appId: process.env.REACT_APP_appId,
-};
+initializeParse(
+  'mathapp.b4a.io',
+  'V9n8X7uIrcCMcJre0nqCFfnyaka6MwkvrN5vnBcv',
+  'iTt0twJCFnn5sNxOXzNb7Ek9YC6mEKRQ98aoVey8'
+);*/
+import Parse from 'parse';
 
-firebase.initializeApp(firebaseConfig);
-firebase.firestore();*/
+Parse.serverURL = 'https://mathapp.b4a.io';
+Parse.initialize(
+  'V9n8X7uIrcCMcJre0nqCFfnyaka6MwkvrN5vnBcv',
+  'iTt0twJCFnn5sNxOXzNb7Ek9YC6mEKRQ98aoVey8'
+);
 
 ReactDOM.render(
   <React.StrictMode>
