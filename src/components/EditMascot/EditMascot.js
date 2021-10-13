@@ -17,40 +17,43 @@ export default function EditMascot(){
       history.push("/frontpage");
     };
 
-    //Saving your First Data Object on Back4App
-    /*async function newUser() {
-    const students = new Parse.Object("Student");
-  
-    students.set("Username", "John Snow");
-    students.set("Password", "hej");
-    try {
-      let result = await students.save()
-      alert('New object created with objectId: ' + result.id);
-      } catch(error) {
-          alert('Failed to create new object, with error code: ' + error.message);
-      }
-    } */
-  
-    //Reading your First Data Object from Back4App
+    //Creating a new student
     async function newUser() {
+        const students = new Parse.Object("Students");
+        try{
+            students.set("Username", "Fredi");
+            students.set("Password", "test");
+            let result = await students.save()
+
+            alert('New object created with objectId: ' + result.id);
+        } catch(error) {
+            alert('Failed to create new object, with error code: ' + error.message);
+        }
+    }
+  
+    //Getting a students username and password
+    async function getUser() {
         //const Student = Parse.Object.extend('Students');
         const query = new Parse.Query('Students');
     
-    try {
-      const person = await query.get("PRf3WjglIw");
-      const name = person.get("Username");
-      const age = person.get("Password");
-    
-      alert(`Name: ${name} age: ${age}`);
-      } catch (error) {
-      alert(`Failed to retrieve the object, with error code: ${error.message}`);
-      }
+        try {
+            const person = await query.get("PRf3WjglIw");
+            const name = person.get("Username");
+            const age = person.get("Password");
+            
+            alert(`Name: ${name} age: ${age}`);
+        } catch (error) {
+            alert(`Failed to retrieve the object, with error code: ${error.message}`);
+        }
     }  
 
     return(
         <Container className="mascot-container">
             <div className="point-container">
-                <Gem color="#F2B84B" size={50}/><div className="point-circle"><p className="top-point-text text-center">50</p></div>
+                <Gem color="#F2B84B" size={50}/>
+                <div className="point-circle">
+                    <p className="top-point-text text-center">50</p>
+                </div>
             </div>
             <Row>
                 <Col>
@@ -58,8 +61,8 @@ export default function EditMascot(){
                     <Card.Img variant="top" src={Mascot1} />
                         <Card.Body className="text-center">
                             <Card.Title className="mascot-name">Emma</Card.Title>
-                            <Card.Text>
-                            <p className="point-text"><Gem color="#F2B84B"/> Owned</p>
+                            <Card.Text className="point-text">
+                            <Gem color="#F2B84B"/> Owned
                             </Card.Text>
                             <Button className="buy-mascot-btn owned" variant="primary">Buy mascot <Gem/></Button>
                         </Card.Body>
@@ -70,8 +73,8 @@ export default function EditMascot(){
                     <Card.Img variant="top" src={Mascot2} />
                         <Card.Body className="text-center">
                             <Card.Title className="mascot-name">Laura</Card.Title>
-                            <Card.Text>
-                            <p className="point-text"><Gem color="#F2B84B"/> 100 points</p>
+                            <Card.Text className="point-text">
+                            <Gem color="#F2B84B"/> 100 points
                             </Card.Text>
                             <Button onClick={newUser} className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
                         </Card.Body>
@@ -82,8 +85,8 @@ export default function EditMascot(){
                     <Card.Img variant="top" src={Mascot3} />
                         <Card.Body className="text-center">
                             <Card.Title className="mascot-name">Jules</Card.Title>
-                            <Card.Text>
-                            <p className="point-text"><Gem color="#F2B84B"/> 200 points</p>
+                            <Card.Text className="point-text">
+                            <Gem color="#F2B84B"/> 200 points
                             </Card.Text>
                             <Button className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
                         </Card.Body>
@@ -94,8 +97,8 @@ export default function EditMascot(){
                     <Card.Img variant="top" src={Mascot4} />
                         <Card.Body className="text-center">
                             <Card.Title className="mascot-name">Mark</Card.Title>
-                            <Card.Text>
-                            <p className="point-text"><Gem color="#F2B84B"/> 200 points</p>
+                            <Card.Text className="point-text">
+                            <Gem color="#F2B84B"/> 200 points
                             </Card.Text>
                             <Button className="buy-mascot-btn"variant="primary">Buy mascot <Gem/></Button>
                         </Card.Body>

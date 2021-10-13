@@ -3,13 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-/*import { initializeParse } from '@parse/react';
-
-initializeParse(
-  'mathapp.b4a.io',
-  'V9n8X7uIrcCMcJre0nqCFfnyaka6MwkvrN5vnBcv',
-  'iTt0twJCFnn5sNxOXzNb7Ek9YC6mEKRQ98aoVey8'
-);*/
 import Parse from 'parse';
 
 Parse.serverURL = 'https://mathapp.b4a.io';
