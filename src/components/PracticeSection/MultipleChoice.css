@@ -2,16 +2,20 @@
   display: flex;
   align-items: center;
   height: 800px;
-  justify-content: center;
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
 }
 
 .question-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  width: 600px;
+  margin: 10px;
 }
 
 .title-card {
@@ -19,9 +23,13 @@
     0px 3px 8px -1px rgba(50, 50, 71, 0.05);
   border-radius: 16px;
   margin-bottom: 21px;
+}
+
+.question-description {
   font-size: 18px;
   line-height: 21px;
   color: #4d4d4d;
+  margin-top: 10px;
 }
 
 .options-form {
@@ -40,6 +48,7 @@
 
 .quiz-btn {
   margin: 15px;
+  font-size: 18px;
 }
 
 .hint-btn {
@@ -62,6 +71,7 @@
   font-family: "Rubik";
   margin-right: 0;
   width: 135px;
+  height: 48px;
 }
 
 .submit-btn:hover {
@@ -76,8 +86,13 @@
 
 .btn-icon {
   margin-left: 4px;
+  margin-bottom: 4px;
 }
 
 .quiz-mascot-img {
   width: 291px;
+}
+
+.img-col {
+  margin-left: 100px;
 }

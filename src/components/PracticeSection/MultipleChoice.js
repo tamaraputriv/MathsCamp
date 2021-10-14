@@ -19,16 +19,19 @@ export default function MultipleChoice({
   option_B,
   option_C,
   option_D,
+  option_E,
   correct_answer,
   hint,
 }) {
   return (
-    <Container className="multiple-container">
-      <Row className="justify-content-md-center">
+    <Container fluid className="multiple-container">
+      <Row>
         <Col className="question-col">
-          <Card className="title-card" style={{ width: "600px" }}>
+          <Card className="title-card">
             <Card.Body className="text-center">
-              <Card.Title>{question}</Card.Title>
+              <Card.Title className="question-description">
+                {question}
+              </Card.Title>
             </Card.Body>
           </Card>
           <Form>
@@ -36,7 +39,7 @@ export default function MultipleChoice({
               <Card.Body className="text-center">
                 <fieldset className="options-form">
                   <Form.Group as={Row}>
-                    <Col>
+                    <Col sm={0}>
                       <Form.Check
                         type="radio"
                         value={option_A}
@@ -63,6 +66,12 @@ export default function MultipleChoice({
                         name="formHorizontalRadios"
                         id="option4"
                       />
+                      <Form.Check
+                        type="radio"
+                        label={`${option_E}`}
+                        name="formHorizontalRadios"
+                        id="option5"
+                      />
                     </Col>
                   </Form.Group>
                 </fieldset>
@@ -70,7 +79,7 @@ export default function MultipleChoice({
             </Card>
             <Form.Group as={Row} className="mb-8 mt-8">
               <div className="btn-div">
-                <Button className="hint-btn quiz-btn" type="button">
+                <Button className="hint-btn quiz-btn">
                   Hint
                   <BsLifePreserver className="btn-icon" />
                 </Button>
@@ -81,7 +90,7 @@ export default function MultipleChoice({
             </Form.Group>
           </Form>
         </Col>
-        <Col>
+        <Col md="auto" className="img-col">
           <Image src={Mascot} className="quiz-mascot-img" />
         </Col>
       </Row>
