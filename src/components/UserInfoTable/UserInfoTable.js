@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import "./UserInfoTable.css";
 import { BsFillSunFill, BsFillFilterSquareFill, BsGem } from "react-icons/bs";
 
 export default function UserInfoTable({

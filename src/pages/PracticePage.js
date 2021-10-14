@@ -8,7 +8,7 @@ export default function PracticePage() {
   return (
     <div>
       <Navbar />
-      {Question.type == 1 ? (
+      {Question.type === 1 ? (
         <MultipleChoice {...Question} />
       ) : (
         <Input {...Question} />

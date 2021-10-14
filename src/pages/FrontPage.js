@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import Sidebar from "../components/Sidebar/Sidebar";
+import React from "react";
 import Navbar from "../components/Navbar/NavbarPostlogin";
-import { Row, Col } from "react-bootstrap";
 import UserInfo from "../components/UserInfo/UserInfo";
 import { User } from "../users/User";
 

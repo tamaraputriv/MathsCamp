@@ -41,8 +41,8 @@ export default function Sidebar({ isOpen, toggle }) {
       <Row>
         <Col>
           <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
-            Your collection is empty! <br /> Go to Practice mode and earn your
-            first reward.
+            Your collection is empty! Go to Practice mode and earn your first
+            reward.
           </p>
         </Col>
       </Row>

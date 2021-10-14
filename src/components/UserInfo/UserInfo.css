@@ -93,6 +93,12 @@ h2 {
   width: 231px;
 }
 
+.mascot-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .change-mascot-btn {
   margin-top: 10px;
   width: 247px;
@@ -104,8 +110,4 @@ h2 {
 .change-mascot-btn:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
-}
-
-.userinfo-col {
-  padding-left: 10px;
 }
