@@ -26,10 +26,9 @@ export default function UserInfo() {
   const [isOpen, setIsOpen] = useState(true);
   const [columnSize, setColumnSize] = useState(4);
   const [username, setUsername] = useState("");
-  // const [total_points, setTotal_points] = useState(0);
-  // const [total_days_played, setTotal_days_played] = useState(0);
-  // const [total_answered_questions, setTotal_answered_questions] = useState(0);
-  // const [readResults, setReadResults] = useState([]);
+  const [total_points, setTotal_points] = useState(0);
+  const [last_active_day, setLast_active_day] = useState(Date);
+  const [total_answered_questions, setTotal_answered_questions] = useState(0);
 
   const toggle = () => {
     if (isOpen) {
@@ -41,23 +40,6 @@ export default function UserInfo() {
     }
   };
 
-  // const readStudent = async function () {
-  //   // Reading parse objects is done by using Parse.Query
-  //   const parseQuery = new Parse.Query("Studentinfo");
-  //   try {
-  //     let student = await parseQuery.find();
-  //     // Be aware that empty or invalid queries return as an empty array
-  //     // Set results to state variable
-  //     setReadResults(student);
-  //     console.log(student);
-  //     return true;
-  //   } catch (error) {
-  //     // Error can be caused by lack of Internet connection
-  //     alert(`Error! ${error.message}`);
-  //     return false;
-  //   }
-  // };
-
   const retrieveStudent = async () => {
     const Student = Parse.Object.extend("Studentinfo");
     const query = new Parse.Query(Student);
@@ -65,7 +47,13 @@ export default function UserInfo() {
     query.get("AazMFClZa7").then(
       (student) => {
         var username = student.get("username");
+        var total_points = student.get("total_points");
+        // var last_active_day = student.get("last_active_day");
+        var total_answered_questions = student.get("total_answered_questions");
         setUsername(username);
+        setTotal_points(total_points);
+        // setLast_active_day(last_active_day);
+        setTotal_answered_questions(total_answered_questions);
 
         // The object was retrieved successfully.
         console.log("Name: " + username);
@@ -80,7 +68,9 @@ export default function UserInfo() {
     );
   };
 
-  useEffect(() => {retrieveStudent()});
+  useEffect(() => {
+    retrieveStudent();
+  });
 
   return (
     <Container className="home-container">
@@ -93,9 +83,7 @@ export default function UserInfo() {
           style={{ paddingLeft: isOpen ? "20px" : "100px" }}
         >
           <div>
-            <h1 className="welcome-h1">
-              Welcome {username}
-            </h1>
+            <h1 className="welcome-h1">Welcome {username}</h1>
           </div>
           <Row>
             <Col md="auto">
@@ -131,9 +119,9 @@ export default function UserInfo() {
           <Row>
             <Col lg={7}>
               <UserInfoTable
-              // total_points={total_points}
-              // total_days_played={total_days_played}
-              // total_answered_questions={total_answered_questions}
+                total_points={total_points}
+                // last_active_day={last_active_day}
+                total_answered_questions={total_answered_questions}
               />
             </Col>
           </Row>

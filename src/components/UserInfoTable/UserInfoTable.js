@@ -5,7 +5,7 @@ import { BsFillSunFill, BsFillFilterSquareFill, BsGem } from "react-icons/bs";
 
 export default function UserInfoTable({
   total_points,
-  total_days_played,
+  last_active_day,
   total_answered_questions,
 }) {
   return (
@@ -31,7 +31,7 @@ export default function UserInfoTable({
             Days you played
           </td>
           <td data-label="Days played" className="body-text">
-            {total_days_played} days
+            {last_active_day} days
           </td>
         </tr>
         <tr>
