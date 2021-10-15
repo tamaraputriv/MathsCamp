@@ -23,7 +23,7 @@ export default function RegisterComponent() {
     setEmail(e.target.value);
   }
 
-  const handleReg = async (e) => {
+  /*const handleReg = async (e) => {
     e.preventDefault();
     if (password === "" || username === "") {
       alert("You need to fill out a username and password");
@@ -38,10 +38,32 @@ export default function RegisterComponent() {
         student.set("parental_email", email);
         let result = await student.save();
         console.log("New object created with objectId: " + result.id);
-        history.push('/frontpage');
     } catch(error) {
         console.log("Failed to create new object, with error code: " + error.message);
     }
+  };*/
+
+  const handleReg = async (e) => {
+    e.preventDefault();
+    if (password === "" || username === "") {
+      alert("You need to fill out a username and password");
+      return;
+    }
+    const Student = new Parse.Object.extend("Studentinfo");
+    const student = new Student();
+
+    student.set("username", username);
+    student.set("password", password);
+    student.set("reward_badge_ids", []);
+    student.set("owned_mascot_ids", []);
+    student.set("parental_email", email);
+
+    student.save().then((s) => {
+      console.log("New object created with objectId: " + s.id);
+      history.push("/frontpage");
+    }, (error) => {
+      console.log("Failed to create new object, with error code: " + error.message);
+    }); 
   };
 
   return (

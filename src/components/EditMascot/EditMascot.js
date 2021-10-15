@@ -23,8 +23,7 @@ export default function EditMascot(){
         try{
             students.set("Username", "Fredi");
             students.set("Password", "test");
-            let result = await students.save()
-
+            let result = await students.save();
             alert('New object created with objectId: ' + result.id);
         } catch(error) {
             alert('Failed to create new object, with error code: ' + error.message);
@@ -33,15 +32,13 @@ export default function EditMascot(){
   
     //Getting a students username and password
     async function getUser() {
-        //const Student = Parse.Object.extend('Students');
         const query = new Parse.Query('Students');
     
         try {
             const person = await query.get("PRf3WjglIw");
             const name = person.get("Username");
-            const age = person.get("Password");
-            
-            alert(`Name: ${name} age: ${age}`);
+            const age = person.get("Password"); 
+            alert(`Name: ${name} password: ${age}`);
         } catch (error) {
             alert(`Failed to retrieve the object, with error code: ${error.message}`);
         }

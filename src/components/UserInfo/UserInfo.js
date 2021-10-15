@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Parse from "parse/dist/parse.min.js";
+import Parse from "parse";
 import Sidebar from "../Sidebar/Sidebar";
 import "./UserInfo.css";
 import { useHistory } from "react-router";
@@ -59,8 +59,8 @@ export default function UserInfo() {
   // };
 
   const retrieveStudent = async () => {
-    var Student = Parse.Object.extend("Studentinfo");
-    var query = new Parse.Query(Student);
+    const Student = Parse.Object.extend("Studentinfo");
+    const query = new Parse.Query(Student);
 
     query.get("AazMFClZa7").then(
       (student) => {
@@ -68,7 +68,7 @@ export default function UserInfo() {
         setUsername(username);
 
         // The object was retrieved successfully.
-        alert("Name: " + username);
+        console.log("Name: " + username);
       },
       (error) => {
         // The object was not retrieved successfully.
@@ -80,9 +80,7 @@ export default function UserInfo() {
     );
   };
 
-  // useEffect(() => {
-  //   retrieveStudent();
-  // });
+  useEffect(() => {retrieveStudent()});
 
   return (
     <Container className="home-container">
@@ -96,7 +94,7 @@ export default function UserInfo() {
         >
           <div>
             <h1 className="welcome-h1">
-              Welcome {retrieveStudent()} {username}
+              Welcome {username}
             </h1>
           </div>
           <Row>
