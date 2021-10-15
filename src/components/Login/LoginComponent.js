@@ -2,13 +2,37 @@ import { Key, Tree } from "react-bootstrap-icons";
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import "./LoginComponent.css";
-import React from "react";
+import React, { useState } from "react";
+import Parse from "parse";
 
 export default function LoginComponent() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
+  
+  const updateUsername = (e) => {
+    setUsername(e.target.value);
+  }
 
-  //TODO authenticate userens brugernavn og password
-  const handleLog = () => {
+  const updatePassword = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const handleLog  = async (e) => {
+    e.preventDeafult();
+    const query = new Parse.Query('Studentinfo');
+    
+      try {
+          //const user = await query.get("AazMFClZa7");
+          const user = await query.find("Username" == username);
+          const name = user.get("Username");
+          const password = user.get("Password");
+          
+          alert(`Name: ${name} age: ${password}`);
+      } catch (error) {
+          alert(`Failed to retrieve the object, with error code: ${error.message}`);
+      }
+
     history.push("/frontpage");
   };
 
@@ -22,12 +46,12 @@ export default function LoginComponent() {
       <Container className="form-container">
         <Row>
           <Col>
-            <Form>
+            <Form onSubmit={handleLog}>
               <Form.Group controlId="formUserName" className="upperform">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="name" placeholder="Enter your username" />
+                <Form.Control type="name" placeholder="Enter your username" onChange={updateUsername}/>
               </Form.Group>
-              <Form.Group controlId="formPassword" className="upperform">
+              <Form.Group controlId="formPassword" className="upperform" onChange={updatePassword}>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
@@ -35,7 +59,6 @@ export default function LoginComponent() {
                 />
               </Form.Group>
               <Button
-                onClick={handleLog}
                 className="login-button"
                 variant="primary"
                 type="submit"
