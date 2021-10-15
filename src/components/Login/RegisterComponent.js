@@ -38,11 +38,14 @@ export default function RegisterComponent() {
         student.set("parental_email", email);
         let result = await student.save();
         console.log("New object created with objectId: " + result.id);
-        history.push("/frontpage");
+        goToFrontPage();
     } catch(error) {
         console.log("Failed to create new object, with error code: " + error.message);
     }
+  };
 
+  const goToFrontPage = () => {
+    history.push("/frontpage");
   };
 
   return (
