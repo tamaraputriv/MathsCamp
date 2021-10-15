@@ -17,8 +17,8 @@ export default function Sidebar({ isOpen, toggle }) {
           <p
             className="sidebarH1"
             style={{
-              fontSize: isOpen ? "" : "20px",
-              marginBottom: isOpen ? "" : "0",
+              fontSize: isOpen ? "" : "18px",
+              marginBottom: isOpen ? "" : "0px",
             }}
           >
             Your Collection
@@ -46,7 +46,12 @@ export default function Sidebar({ isOpen, toggle }) {
           </p>
         </Col>
       </Row>
-      <Row className="badge-row">
+      <Row
+        className="badge-row"
+        style={{
+          marginTop: isOpen ? "" : "0px",
+        }}
+      >
         <Col className="badge-col">
           <img
             className="unlocked-badge"
