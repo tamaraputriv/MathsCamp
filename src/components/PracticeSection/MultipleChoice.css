@@ -95,4 +95,24 @@
 
 .img-col {
   margin-left: 100px;
+  position: relative;
+}
+
+.speakboble {
+  position: absolute;
+  z-index: 1;
+  top: -120px;
+  right: 200px;
+}
+
+.speakboble-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  top: -80px;
+  right: 250px;
+  width: 200px;
+  height: 170px;
 }
