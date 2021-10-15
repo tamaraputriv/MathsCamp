@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -11,6 +11,7 @@ import {
 import "./MultipleChoice.css";
 import { BsLifePreserver, BsCheckCircle } from "react-icons/bs";
 import Mascot from "../../images/Mascots/mascot1.png";
+import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 
 export default function MultipleChoice({
   question,
@@ -24,6 +25,8 @@ export default function MultipleChoice({
   hint,
   imgsrc,
 }) {
+  const [showHint, setShowHint] = useState(false);
+
   return (
     <Container fluid className="multiple-container">
       <Row>
@@ -83,7 +86,7 @@ export default function MultipleChoice({
             </Card>
             <Form.Group as={Row} className="mb-8 mt-8">
               <div className="btn-div">
-                <Button className="hint-btn quiz-btn">
+                <Button className="hint-btn quiz-btn" onClick={setShowHint}>
                   Hint
                   <BsLifePreserver className="btn-icon" />
                 </Button>
@@ -95,6 +98,12 @@ export default function MultipleChoice({
           </Form>
         </Col>
         <Col md="auto" className="img-col">
+          <div style={{ display: showHint ? "" : "none" }}>
+            <Image src={SpeakBoble} className="speakboble" />
+            <div className="speakboble-text">
+              <p>{hint}</p>
+            </div>
+          </div>
           <Image src={Mascot} className="quiz-mascot-img" />
         </Col>
       </Row>
