@@ -14,3 +14,23 @@ export const Question = {
   explanation: null,
   imgsrc: null,
 };
+
+export const QuestionInput = {
+  id: 0,
+  question:
+    "Complete the missing numbers in each of the number sequences below:",
+  category: 1,
+  type: 2,
+  level: 1,
+  option_A: "28",
+  option_B: "25",
+  option_C: "22",
+  option_D: null,
+  option_E: null,
+  option_F: "13",
+  option_G: "10",
+  correct_answer: "541",
+  hint: "Hint",
+  explanation: null,
+  imgsrc: null,
+};

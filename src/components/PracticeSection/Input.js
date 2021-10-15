@@ -19,12 +19,18 @@ export default function Input({
   option_B,
   option_C,
   option_D,
+  option_E,
+  option_F,
+  option_G,
   correct_answer,
   hint,
 }) {
   return (
     <Container fluid className="multiple-container">
       <Row>
+        <Col md="auto" className="question-img-col">
+          <Image />
+        </Col>
         <Col className="question-col">
           <Card className="title-card">
             <Card.Body className="text-center">
@@ -62,6 +68,24 @@ export default function Input({
                       <Form.Check
                         type="radio"
                         label={`${option_D}`}
+                        name="formHorizontalRadios"
+                        id="option4"
+                      />
+                      <Form.Check
+                        type="radio"
+                        label={`${option_E}`}
+                        name="formHorizontalRadios"
+                        id="option4"
+                      />
+                      <Form.Check
+                        type="radio"
+                        label={`${option_F}`}
+                        name="formHorizontalRadios"
+                        id="option4"
+                      />
+                      <Form.Check
+                        type="radio"
+                        label={`${option_G}`}
                         name="formHorizontalRadios"
                         id="option4"
                       />
