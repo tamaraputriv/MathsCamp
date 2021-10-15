@@ -15,34 +15,7 @@ export default function EditMascot(){
 
     const handleGoBack = () => {
       history.push("/frontpage");
-    };
-
-    //Creating a new student
-    async function newUser() {
-        const students = new Parse.Object("Students");
-        try{
-            students.set("Username", "Fredi");
-            students.set("Password", "test");
-            let result = await students.save();
-            alert('New object created with objectId: ' + result.id);
-        } catch(error) {
-            alert('Failed to create new object, with error code: ' + error.message);
-        }
-    }
-  
-    //Getting a students username and password
-    async function getUser() {
-        const query = new Parse.Query('Students');
-    
-        try {
-            const person = await query.get("PRf3WjglIw");
-            const name = person.get("Username");
-            const age = person.get("Password"); 
-            alert(`Name: ${name} password: ${age}`);
-        } catch (error) {
-            alert(`Failed to retrieve the object, with error code: ${error.message}`);
-        }
-    }  
+    }; 
 
     return(
         <Container className="mascot-container">
@@ -73,7 +46,7 @@ export default function EditMascot(){
                             <Card.Text className="point-text">
                             <Gem color="#F2B84B"/> 100 points
                             </Card.Text>
-                            <Button onClick={newUser} className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
+                            <Button className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
                         </Card.Body>
                     </Card>
                 </Col>

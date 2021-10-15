@@ -18,21 +18,21 @@ export default function LoginComponent() {
     setPassword(e.target.value);
   }
 
-  const handleLog  = async (e) => {
-    e.preventDeafult();
-    const query = new Parse.Query('Studentinfo');
-    
-      try {
-          //const user = await query.get("AazMFClZa7");
-          const user = await query.find("Username" == username);
-          const name = user.get("Username");
-          const password = user.get("Password");
-          
-          alert(`Name: ${name} age: ${password}`);
-      } catch (error) {
-          alert(`Failed to retrieve the object, with error code: ${error.message}`);
-      }
-
+  const handleLog = async (e) => {
+    e.preventDefault();
+    if (password === "" || username === "") {
+      alert("You need to fill out a username and password");
+      return;
+    }
+    const Student = new Parse.Object.extend("Studentinfo");
+    const query = new Parse.Query(Student);
+    query.equalTo("username", username);
+    query.equalTo("password", password);
+    const result = await query.find();
+    for(let i = 0; i < result.length; i++){
+      const user = result[i];
+      console.log("Hentede brugeren med id: " + user.id + " med brugernavn: " + user.get("username"));
+    }
     history.push("/frontpage");
   };
 
@@ -53,18 +53,9 @@ export default function LoginComponent() {
               </Form.Group>
               <Form.Group controlId="formPassword" className="upperform" onChange={updatePassword}>
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter your password"
-                />
+                <Form.Control type="password" placeholder="Enter your password"/>
               </Form.Group>
-              <Button
-                className="login-button"
-                variant="primary"
-                type="submit"
-              >
-                Log in <Key size={20} />
-              </Button>
+              <Button className="login-button" variant="primary" type="submit">Log in <Key size={20} /></Button>
             </Form>
           </Col>
         </Row>
