@@ -58,27 +58,27 @@ export default function UserInfo() {
   //   }
   // };
 
-  // const retrieveStudent = async () => {
-  //   var Student = Parse.Object.extend("Studentinfo");
-  //   var query = new Parse.Query(Student);
+  const retrieveStudent = async () => {
+    var Student = Parse.Object.extend("Studentinfo");
+    var query = new Parse.Query(Student);
 
-  //   query.get("lHuM92lCeM").then(
-  //     (student) => {
-  //       var username = student.get("username");
-  //       setUsername(username);
+    query.get("AazMFClZa7").then(
+      (student) => {
+        var username = student.get("username");
+        setUsername(username);
 
-  //       // The object was retrieved successfully.
-  //       alert("Name: " + username);
-  //     },
-  //     (error) => {
-  //       // The object was not retrieved successfully.
-  //       // error is a Parse.Error with an error code and message.
-  //       alert(
-  //         "Failed to retrieve the object, with error code: " + error.message
-  //       );
-  //     }
-  //   );
-  // };
+        // The object was retrieved successfully.
+        alert("Name: " + username);
+      },
+      (error) => {
+        // The object was not retrieved successfully.
+        // error is a Parse.Error with an error code and message.
+        alert(
+          "Failed to retrieve the object, with error code: " + error.message
+        );
+      }
+    );
+  };
 
   // useEffect(() => {
   //   retrieveStudent();
@@ -95,7 +95,9 @@ export default function UserInfo() {
           style={{ paddingLeft: isOpen ? "20px" : "100px" }}
         >
           <div>
-            <h1 className="welcome-h1">Welcome {username}</h1>
+            <h1 className="welcome-h1">
+              Welcome {retrieveStudent()} {username}
+            </h1>
           </div>
           <Row>
             <Col md="auto">
