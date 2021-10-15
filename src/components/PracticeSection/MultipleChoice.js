@@ -22,10 +22,14 @@ export default function MultipleChoice({
   option_E,
   correct_answer,
   hint,
+  imgsrc,
 }) {
   return (
     <Container fluid className="multiple-container">
       <Row>
+        <Col md="auto" className="question-img-col">
+          <Image />
+        </Col>
         <Col className="question-col">
           <Card className="title-card">
             <Card.Body className="text-center">
