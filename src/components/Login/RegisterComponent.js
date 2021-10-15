@@ -6,11 +6,10 @@ import React, { useState } from "react";
 import Parse from "parse";
 
 export default function RegisterComponent() {
-  
-  const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const history = useHistory();
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -24,7 +23,8 @@ export default function RegisterComponent() {
     setEmail(e.target.value);
   }
 
-  async function handleReg(){
+  const handleReg = async (e) => {
+    e.preventDefault();
     if (password === "" || username === "") {
       alert("You need to fill out a username and password");
       return;
@@ -38,14 +38,10 @@ export default function RegisterComponent() {
         student.set("parental_email", email);
         let result = await student.save();
         console.log("New object created with objectId: " + result.id);
-        goToFrontPage();
+        history.push('/frontpage');
     } catch(error) {
         console.log("Failed to create new object, with error code: " + error.message);
     }
-  };
-
-  const goToFrontPage = () => {
-    history.push("/frontpage");
   };
 
   return (
@@ -74,7 +70,7 @@ export default function RegisterComponent() {
                   This email will be used for username and password recovery
                 </p>
               </Form.Group>
-              <Button className="registerbtn" variant="primary" type="submit">Register<CardList/></Button>
+              <Button className="registerbtn" variant="primary" type="submit">Register <CardList/></Button>
             </Form>
           </Col>
         </Row>
