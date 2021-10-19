@@ -1,4 +1,9 @@
 export const User = {
+  /*constructor(id, username, password){
+    this.id = id;
+    this.username = username;
+    this.password = password;
+  }*/
   id: 0,
   username: "test-user",
   password: "test-password",
@@ -10,4 +15,4 @@ export const User = {
   chosen_mascot_id: 1,
   owned_mascot_ids: [1],
   checked_explanation: 3,
-};
+}

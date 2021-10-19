@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import "./LoginComponent.css";
 import React, { useState } from "react";
 import Parse from "parse";
+import myUserObject from "../../users/UserId";
 
 export default function LoginComponent() {
   const [username, setUsername] = useState("");
@@ -28,12 +29,14 @@ export default function LoginComponent() {
     const query = new Parse.Query(Student);
     query.equalTo("username", username);
     query.equalTo("password", password);
-    const result = await query.find();
-    for(let i = 0; i < result.length; i++){
-      const user = result[i];
-      console.log("Hentede brugeren med id: " + user.id + " med brugernavn: " + user.get("username"));
-    }
-    history.push("/frontpage");
+    query.first().then((result) => {
+      myUserObject.id = result.id;
+      //Object.freeze(myUserObject);
+      console.log("Hentede brugeren med id: " + result.id + " med brugernavn: " + result.get("username"));
+      history.push("/frontpage");
+    }).catch((error) => {
+      alert("The username or password is incorrect");
+    });
   };
 
   return (

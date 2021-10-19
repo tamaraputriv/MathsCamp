@@ -1,6 +1,7 @@
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { CardList, Tree } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
+import myUserObject from "../../users/UserId";
 import "./RegisterComponent.css";
 import React, { useState } from "react";
 import Parse from "parse";
@@ -23,47 +24,39 @@ export default function RegisterComponent() {
     setEmail(e.target.value);
   }
 
-  /*const handleReg = async (e) => {
-    e.preventDefault();
-    if (password === "" || username === "") {
-      alert("You need to fill out a username and password");
-      return;
-    }
-    const student = new Parse.Object("Studentinfo");
-    try{
-        student.set("username", username);
-        student.set("password", password);
-        student.set("reward_badge_ids", []);
-        student.set("owned_mascot_ids", []);
-        student.set("parental_email", email);
-        let result = await student.save();
-        console.log("New object created with objectId: " + result.id);
-    } catch(error) {
-        console.log("Failed to create new object, with error code: " + error.message);
-    }
-  };*/
-
   const handleReg = async (e) => {
     e.preventDefault();
     if (password === "" || username === "") {
       alert("You need to fill out a username and password");
       return;
+    }else{
+      const Student = new Parse.Object.extend("Studentinfo");
+      const query = new Parse.Query(Student);
+      query.equalTo("username", username);
+      let result = await query.find();
+      if(result.length > 0){
+        alert("The username is already in use");
+      }else{
+        const Student = new Parse.Object.extend("Studentinfo");
+        const student = new Student();
+        student.set("username", username);
+        student.set("password", password);
+        student.set("reward_badge_ids", []);
+        student.set("owned_mascot_ids", []);
+        student.set("parental_email", email);
+        var date = new Date().toLocaleDateString();
+        student.add("active_days", date);
+
+        student.save().then((s) => {
+          console.log("New object created with objectId: " + s.id);
+          myUserObject.id = s.id;
+          //Object.freeze(myUserObject);
+          history.push("/frontpage");
+        }).catch((error) => {
+          alert("Something went wrong while registering you as a user. Please try again!")
+        });
+      }
     }
-    const Student = new Parse.Object.extend("Studentinfo");
-    const student = new Student();
-
-    student.set("username", username);
-    student.set("password", password);
-    student.set("reward_badge_ids", []);
-    student.set("owned_mascot_ids", []);
-    student.set("parental_email", email);
-
-    student.save().then((s) => {
-      console.log("New object created with objectId: " + s.id);
-      history.push("/frontpage");
-    }, (error) => {
-      console.log("Failed to create new object, with error code: " + error.message);
-    }); 
   };
 
   return (

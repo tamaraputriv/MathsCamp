@@ -4,14 +4,6 @@ import Logo from "../../images/Logo/logo-prelogin.svg";
 import "./NavbarPrelogin.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-//const path = window.location.pathname;
-
-/*const Logo = () => {
-    if(path = '/'){
-
-    }
-};*/
-
 export default function Navbar_prelogin() {
   return (
     <Container fluid className="navbar-prelogin">
