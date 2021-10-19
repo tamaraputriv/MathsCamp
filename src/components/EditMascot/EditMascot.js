@@ -33,6 +33,9 @@ import Mascot24 from "../../images/Mascots/mascot24.png";
 export default function EditMascot(){
     const history = useHistory();
     const [mascots, setMascots] = useState([]);
+    const [owned_mascot_ids, setOwnedMascotIds] = useState([]);
+    const [active_mascot_id, setActiveMascotId] = useState("");
+    const [total_points, setTotalPoints] = useState(0);
 
     const handleGoBack = () => {
       history.push("/frontpage");
@@ -47,6 +50,36 @@ export default function EditMascot(){
 
     useEffect(() => {
         fetchMascots();
+    }, []);
+
+    const fetchStudent = async () => {
+        const Student = Parse.Object.extend("Studentinfo");
+        const query = new Parse.Query(Student);
+
+        query.get(myUserObject.id).then(
+        (student) => {
+            var owned = student.get("owned_mascot_ids");
+            var active = student.get("active_mascot_id");
+            var points = student.get("total_points");
+            setOwnedMascotIds(owned);
+            setActiveMascotId(active);
+            setTotalPoints(points);
+
+            // The object was retrieved successfully.
+            console.log("Points" + total_points);
+            console.log("Active" + active_mascot_id);
+            console.log(owned_mascot_ids);
+            console.log(myUserObject.id);
+        },
+        (error) => {
+            // The object was not retrieved successfully.
+            alert("Failed to retrieve the user, with error code: " + error.message);
+        }
+        );
+    }
+
+    useEffect(() => {
+        fetchStudent();
     }, []);
 
     
@@ -129,6 +162,17 @@ export default function EditMascot(){
         }
     }
 
+    const isOwned = (mascot_id) => {
+        for(var i = 0; i < owned_mascot_ids-1; i++){
+            if(owned_mascot_ids[i].includes(mascot_id)){
+                console.log(mascot_id + " " + owned_mascot_ids[i] + " " + owned_mascot_ids[i].includes(mascot_id));
+                return "buy-mascot-btn owned";
+            }
+        }
+        console.log(mascot_id + " " + owned_mascot_ids[i] + " " + owned_mascot_ids[i].includes(mascot_id));
+        return "buy-mascot-btn";
+    }
+
     return(
         <Container className="mascot-container">
             <div className="point-container">
@@ -139,7 +183,6 @@ export default function EditMascot(){
             </div>
             <Row>
                 {mascots.map((mascot) => (
-                <div key={mascot.id}>
                     <Col>
                         <Card className="mascot-card" style={{ width: '16rem' }}>
                         <Card.Img variant="top" src={getMascotImage(mascots.indexOf(mascot))} />
@@ -148,11 +191,10 @@ export default function EditMascot(){
                                 <Card.Text className="point-text">
                                 <Gem color="#F2B84B"/> {mascot.attributes.required_points} points
                                 </Card.Text>
-                                <Button className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
+                                <Button className={isOwned(mascot.id)} variant="primary">Buy mascot <Gem/></Button>
                             </Card.Body>
                         </Card>
-                    </Col>
-                </div>  
+                    </Col> 
                 ))}   
             </Row>
             <div className="go-back-btn-container">
