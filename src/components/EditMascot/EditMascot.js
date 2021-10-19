@@ -124,6 +124,8 @@ export default function EditMascot(){
             case 23: {
                 return Mascot24;
             }
+            default:
+                alert("The mascot images cannot be loaded. Please contact your teacher!")
         }
     }
 
@@ -144,7 +146,7 @@ export default function EditMascot(){
                             <Card.Body className="text-center">
                                 <Card.Title className="mascot-name">{mascot.attributes.name}</Card.Title>
                                 <Card.Text className="point-text">
-                                <Gem color="#F2B84B"/> {mascot.attributes.price} points
+                                <Gem color="#F2B84B"/> {mascot.attributes.required_points} points
                                 </Card.Text>
                                 <Button className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
                             </Card.Body>
@@ -158,5 +160,4 @@ export default function EditMascot(){
             </div>
         </Container>
     );
-
 }
