@@ -116,3 +116,20 @@
   width: 200px;
   height: 170px;
 }
+
+.form-control:not(active) {
+  color: white;
+}
+
+.form-control:focus {
+  color: black;
+}
+
+.form-check-input:checked {
+  background-color: #f2b84b;
+  border-color: #f2b84b;
+}
+
+.form-check-label:checked {
+  background-color: #5d5fef;
+}
