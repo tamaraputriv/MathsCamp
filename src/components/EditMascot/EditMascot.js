@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {Card, Button, Container, Row, Col} from "react-bootstrap";
 import { Gem, ChevronLeft } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
+import myUserObject from "../../users/UserId";
 import Parse from "parse";
 import "./EditMascot.css";
 import Mascot1 from "../../images/Mascots/mascot1.png";
@@ -33,7 +34,6 @@ export default function EditMascot(){
     const history = useHistory();
     const [mascots, setMascots] = useState([]);
 
-
     const handleGoBack = () => {
       history.push("/frontpage");
     }; 
@@ -47,7 +47,7 @@ export default function EditMascot(){
 
     useEffect(() => {
         fetchMascots();
-      }, []);
+    }, []);
 
     
     const getMascotImage = (index) => {

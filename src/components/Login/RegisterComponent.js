@@ -46,6 +46,7 @@ export default function RegisterComponent() {
         student.set("parental_email", email);
         var date = new Date().toLocaleDateString();
         student.add("active_days", date);
+        student.add("owned_mascot_ids", "arB9fEWmFp");
 
         student.save().then((s) => {
           console.log("New object created with objectId: " + s.id);
