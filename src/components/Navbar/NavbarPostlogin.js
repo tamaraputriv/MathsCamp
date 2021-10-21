@@ -5,13 +5,15 @@ import "./NavbarPostlogin.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { useHistory } from "react-router";
 import { DoorOpen, HouseDoor } from "react-bootstrap-icons";
-import myUserObject from "../../users/UserId";
+import Parse from "parse";
 
 export default function Navbar_postlogin() {
   const history = useHistory();
 
   const handleLogOut = () => {
-    myUserObject.id = "";
+    Parse.User.logOut().then(() => {
+      const currentUser = Parse.User.current();
+    });
     history.push("/");
   };
 

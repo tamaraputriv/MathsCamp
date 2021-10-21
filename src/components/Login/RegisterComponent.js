@@ -1,7 +1,6 @@
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { CardList, Tree } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
-import myUserObject from "../../users/UserId";
 import "./RegisterComponent.css";
 import React, { useState } from "react";
 import Parse from "parse";
@@ -24,41 +23,33 @@ export default function RegisterComponent() {
     setEmail(e.target.value);
   }
 
-  const handleReg = async (e) => {
+  //Signin checks if the username and email are unique. It also checks stores the password securely. 
+  const handleRegUser = async (e) => {
     e.preventDefault();
     if (password === "" || username === "") {
       alert("You need to fill out a username and password");
       return;
     }else{
-      const Student = new Parse.Object.extend("Studentinfo");
-      const query = new Parse.Query(Student);
-      query.equalTo("username", username);
-      let result = await query.find();
-      if(result.length > 0){
-        alert("The username is already in use");
-      }else{
-        const Student = new Parse.Object.extend("Studentinfo");
-        const student = new Student();
+        const student = new Parse.User();
         student.set("username", username);
         student.set("password", password);
-        student.set("reward_badge_ids", []);
-        student.set("owned_mascot_ids", []);
-        student.set("parental_email", email);
-        var date = new Date().toLocaleDateString();
-        student.add("active_days", date);
-        student.add("owned_mascot_ids", "arB9fEWmFp");
-
-        student.save().then((s) => {
-          console.log("New object created with objectId: " + s.id);
-          myUserObject.id = s.id;
-          //Object.freeze(myUserObject);
+        //student.set("email", email);
+        //student.set("reward_badge_ids", []);
+        //student.set("owned_mascot_ids", []);
+        //student.set("parental_email", email);
+        //var date = new Date().toLocaleDateString();
+        //student.add("active_days", date);
+        //student.add("owned_mascot_ids", "arB9fEWmFp");
+        try {
+          await student.signUp();
+          console.log("New user created with objectId: " + student.id);
           history.push("/frontpage");
-        }).catch((error) => {
-          alert("Something went wrong while registering you as a user. Please try again!")
-        });
+        } catch (error) {
+          alert("Something went wrong while registering you as a user. Please try again!");
+          console.log(error);
+        }
       }
-    }
-  };
+  }
 
   return (
     <Container className="login-container">
@@ -70,7 +61,7 @@ export default function RegisterComponent() {
       <Container className="form-container">
         <Row>
           <Col>
-            <Form onSubmit={handleReg}>
+            <Form onSubmit={handleRegUser}>
               <Form.Group controlId="formUserName" className="upperform">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="name" placeholder="Enter a username" onChange={updateUsername}/>

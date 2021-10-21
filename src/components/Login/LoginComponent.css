@@ -6,6 +6,10 @@
     width:450px;
 }
 
+.form-control:not(active) {
+    color: black !important;
+}
+
 h1{
     margin-top: 10px;
     color: #4D4D4D;

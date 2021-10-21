@@ -5,14 +5,16 @@ import { DoorOpen, HouseDoor, Gem } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
 import "./NavbarPracticeMode.css";
 import "bootstrap/dist/css/bootstrap.css";
-import myUserObject from "../../users/UserId";
+import Parse from "parse";
 
 export default function Navbar_practice_mode() {
 
   const history = useHistory();
 
     const handleLogOut = () => {
-      myUserObject.id = "";
+      Parse.User.logOut().then(() => {
+        const currentUser = Parse.User.current();  
+      });
       history.push("/");
     };
 
