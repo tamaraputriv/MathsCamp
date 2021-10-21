@@ -1,7 +1,6 @@
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { CardList, Tree } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
-import myUserObject from "../../users/UserId";
 import "./RegisterComponent.css";
 import React, { useState } from "react";
 import Parse from "parse";
@@ -24,41 +23,34 @@ export default function RegisterComponent() {
     setEmail(e.target.value);
   }
 
+  //Signin checks if the username and email are unique. It also checks stores the password securely. 
   const handleReg = async (e) => {
     e.preventDefault();
+    /*Parse.User.logOut().then(() => {
+      const currentUser = Parse.User.current();
+    });*/
     if (password === "" || username === "") {
       alert("You need to fill out a username and password");
       return;
     }else{
-      const Student = new Parse.Object.extend("Studentinfo");
-      const query = new Parse.Query(Student);
-      query.equalTo("username", username);
-      let result = await query.find();
-      if(result.length > 0){
-        alert("The username is already in use");
-      }else{
-        const Student = new Parse.Object.extend("Studentinfo");
-        const student = new Student();
-        student.set("username", username);
-        student.set("password", password);
-        student.set("reward_badge_ids", []);
-        student.set("owned_mascot_ids", []);
-        student.set("parental_email", email);
+        const user = new Parse.User();
+        user.set("username", username);
+        user.set("password", password);
+        user.set("email", email);
+        user.set("total_points", 800);
         var date = new Date().toLocaleDateString();
-        student.add("active_days", date);
-        student.add("owned_mascot_ids", "arB9fEWmFp");
-
-        student.save().then((s) => {
-          console.log("New object created with objectId: " + s.id);
-          myUserObject.id = s.id;
-          //Object.freeze(myUserObject);
+        user.add("active_days", date);
+        user.add("owned_mascot_ids", "arB9fEWmFp");
+        try {
+          await user.signUp();
+          console.log("New user created with objectId: " + user.id);
           history.push("/frontpage");
-        }).catch((error) => {
-          alert("Something went wrong while registering you as a user. Please try again!")
-        });
+        } catch (error) {
+          alert("Something went wrong while registering you as a user. Please try again!");
+          //console.log(error);
+        }
       }
-    }
-  };
+  }
 
   return (
     <Container className="login-container">

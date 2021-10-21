@@ -1,9 +1,4 @@
 export const User = {
-  /*constructor(id, username, password){
-    this.id = id;
-    this.username = username;
-    this.password = password;
-  }*/
   id: 0,
   username: "test-user",
   password: "test-password",

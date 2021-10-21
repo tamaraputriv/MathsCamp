@@ -5,7 +5,6 @@ import "./UserInfo.css";
 import { useHistory } from "react-router";
 import { Container, Col, Row, Button, Image, Card } from "react-bootstrap";
 import { BsPerson } from "react-icons/bs";
-import myUserObject from "../../users/UserId";
 import Mascot from "../../images/Mascots/mascot1.png";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
 
@@ -41,34 +40,27 @@ export default function UserInfo() {
     }
   };
 
-  const retrieveStudent = async () => {
-    const Student = Parse.Object.extend("Studentinfo");
-    const query = new Parse.Query(Student);
-
-    query.get(myUserObject.id).then(
-      (student) => {
-        var username = student.get("username");
-        var total_points = student.get("total_points");
-        var active_days = student.get("active_days");
-        var total_answered_questions = student.get("total_answered_questions");
+  const retrieveUser = async () => {
+    const user = Parse.User.current();
+    if (user) {
+        var username = user.get("username");
+        var total_points = user.get("total_points");
+        var active_days = user.get("active_days");
+        var total_answered_questions = user.get("total_answered_questions");
         setUsername(username);
         setTotal_points(total_points);
         set_active_days(active_days);
         setTotal_answered_questions(total_answered_questions);
-
-        // The object was retrieved successfully.
+        
         console.log("Name: " + username);
-        console.log(myUserObject.id);
-      },
-      (error) => {
-        // The object was not retrieved successfully.
-        alert("Failed to retrieve the user, with error code: " + error.message);
-      }
-    );
+        console.log(user.id);
+    } else {
+        history.push("/login");
+    }
   };
 
   useEffect(() => {
-    retrieveStudent();
+    retrieveUser();
   }, []);
 
   return (
