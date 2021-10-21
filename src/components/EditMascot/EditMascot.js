@@ -60,7 +60,6 @@ export default function EditMascot(){
             setOwnedMascotIds(owned);
             setActiveMascotId(active);
             setTotalPoints(points);
-
             // The object was retrieved successfully.
             console.log(user.id);
         }else{
@@ -155,17 +154,6 @@ export default function EditMascot(){
         }
     }
 
-    const isOwned = (mascot_id) => {
-        for(var i = 0; i < owned_mascot_ids; i++){
-            if(owned_mascot_ids[i].includes(mascot_id)){
-                console.log(mascot_id + " " + owned_mascot_ids[i] + " " + owned_mascot_ids[i].includes(mascot_id));
-                return "buy-mascot-btn owned";
-            }
-        }
-        console.log(mascot_id + " " + owned_mascot_ids[i] + " " + owned_mascot_ids[i].includes(mascot_id));
-        return "buy-mascot-btn";
-    }
-
     return(
         <Container className="mascot-container">
             <div className="point-container">
@@ -176,7 +164,7 @@ export default function EditMascot(){
             </div>
             <Row>
                 {mascots.map((mascot) => (
-                    <Col key = {mascot.id}>
+                    <Col key = {mascot.id}> 
                         <Card className="mascot-card" style={{ width: '16rem' }}>
                         <Card.Img variant="top" src={getMascotImage(mascots.indexOf(mascot))} />
                             <Card.Body className="text-center">
@@ -184,11 +172,9 @@ export default function EditMascot(){
                                 <Card.Text className="point-text">
                                 <Gem color="#F2B84B"/> {mascot.attributes.required_points} points
                                 </Card.Text>
-                                {owned_mascot_ids.includes(mascot.id) &&
-                                    <Button className="buy-mascot-btn owned" variant="primary">Buy mascot <Gem/></Button>
-                                }
-                                {!owned_mascot_ids.includes(mascot.id) &&
-                                    <Button className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
+                                {owned_mascot_ids.includes(mascot.id)
+                                    ?<Button className="owned" variant="primary">Buy mascot <Gem/></Button>
+                                    :<Button className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
                                 }
                             </Card.Body>
                         </Card>

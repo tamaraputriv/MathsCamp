@@ -26,12 +26,32 @@ export default function LoginComponent() {
     }
     try{
       const user = await Parse.User.logIn(username, password);
-      console.log("Hentede brugeren med id: " + user.id);
-      history.push("/frontpage");
+      if(user){
+        var active = await user.get("active_days");
+        var date = new Date().toLocaleDateString();
+        console.log(date);
+        console.log(active);
+        if(!active.find(element => element == date)){
+          console.log(!active.find((element) => element == date));
+          user.add("active_days", date);
+          user.save();
+        }
+        console.log("Hentede brugeren med id: " + user.id);
+        history.push("/frontpage");
+      }
     }catch(error){
-      alert("The username or password is incorrect");
+      alert("The username or password is incorrect" + error);
     }  
   };
+
+  const addActiveDay = (active, user) => {
+      var date = new Date().toLocaleDateString();
+      if(!active.includes(date)){
+        console.log(!active.includes(date));
+        user.add("active_days", date);
+      
+    }
+  }
 
   return (
     <Container className="login-container">

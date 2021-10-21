@@ -26,30 +26,25 @@ export default function MultipleChoice() {
   const [category, setCategory] = useState("");
 
   // Level
-  const [number_level, setNumberLevel] = useState();
-  const [algebra_level, setAlgebraLevel] = useState();
-  const [measurement_level, setMeasurementLevel] = useState();
-  const [geometry_level, setGeometryLevel] = useState();
-  const [statistics_level, setStatisticsLevel] = useState();
+  const [level, setLevel] = useState(0);
 
   // Correct answered in levels
-  const [number_correct, setNumberCorrect] = useState([]);
-  const [algebra_correct, setAlgebraCorrect] = useState([]);
-  const [measurement_correct, setMeasurementCorrect] = useState([]);
-  const [geometry_correct, setGeometryCorrect] = useState([]);
-  const [statistics_correct, setStatisticsCorrect] = useState([]);
+  const [correct_ids, setCorrectIds] = useState([]);
 
-  const doQueryByName = async function (level) {
+
+  const doQueryByName = async (level) => {
     const query1 = new Parse.Query("Questions");
     query1.equalTo("cat", category);
-    const query2 = new Parse.Query("Questions");
-    query2.equalTo("level", level);
-    const query = new Parse.Query("Questions");
-    query._andQuery([query1, query2]);
+    console.log(category);
+    //const query2 = new Parse.Query("Questions");
+    query1.equalTo("level", level);
+    console.log(level);
+    //const query = new Parse.Query("Questions");
+    //query._andQuery([query1, query2]);
     try {
-      let questions = await query.find();
-      console.log(questions);
-      for (let question of questions) {
+      let question = await query1.first();
+      console.log(question);
+      if(question) {
         var description = question.get("description");
         var options = question.get("options");
         var correct_answer = question.get("correct_answer");
@@ -69,37 +64,20 @@ export default function MultipleChoice() {
     }
   };
 
-  const retrieveStudent = async () => {
-    const query = new Parse.Query("Studentinfo");
-    query
-      .get("AazMFClZa7")
-      .then((student) => {
+  const retrieveStudent = (category) => {
+    const student = Parse.User.current();
+    if (student) {
         var total_points = student.get("total_points");
-        var number_level = student.get("number_level");
-        var number_correct = student.get("number_correct_answered");
-        var algebra_level = student.get("algebra_level");
-        var algebra_correct = student.get("algebra_correct_answered");
-        var measurement_level = student.get("measurement_level");
-        var measurement_correct = student.get("measurement_correct_answered");
-        var geometry_level = student.get("geometry_level");
-        var geometry_correct = student.get("geometry_correct_answered");
-        var statistics_level = student.get("statistics_level");
-        var statistics_correct = student.get("statistics_correct_answered");
+        const level = student.get(category + "_level");
+        var correct = student.get(category + "_correct_ids");
         setTotalPoints(total_points);
-        setNumberLevel(number_level);
-        setAlgebraLevel(algebra_level);
-        setMeasurementLevel(measurement_level);
-        setGeometryLevel(geometry_level);
-        setStatisticsLevel(statistics_level);
-        setNumberCorrect(number_correct);
-        setAlgebraCorrect(algebra_correct);
-        setMeasurementCorrect(measurement_correct);
-        setGeometryCorrect(geometry_correct);
-        setStatisticsCorrect(statistics_correct);
-      })
-      .catch((error) => {
-        alert("The username or password is incorrect");
-      });
+        setLevel(level);
+        setCorrectIds(correct);
+        console.log(level + " " + category);
+        return level;
+    }else{
+      alert("The user couldn't be retrieved");
+    }
   };
 
   function getRandomInt(max) {
@@ -123,7 +101,7 @@ export default function MultipleChoice() {
   };
 
   // returns a level and category
-  const getInfo = (category) => {
+  /*const getInfo = (category) => {
     var level;
     if (category === "number") {
       level = number_level;
@@ -134,11 +112,11 @@ export default function MultipleChoice() {
     } else if (category === "statistics") {
       level = statistics_level;
     } else {
-      var level = geometry_level;
+      level = geometry_level;
     }
     console.log("today's level is " + level);
     return level;
-  };
+  };*/
 
   const handleChange = (e) => {
     e.persist();
@@ -154,9 +132,12 @@ export default function MultipleChoice() {
     }
   };
 
+  /*useEffect(() => {
+    retrieveStudent(getRandomCategoryId());
+  }, []);*/
+
   useEffect(() => {
-    retrieveStudent();
-    doQueryByName(getInfo(getRandomCategoryId()));
+    doQueryByName(retrieveStudent(getRandomCategoryId()));
   }, []);
 
   return (
