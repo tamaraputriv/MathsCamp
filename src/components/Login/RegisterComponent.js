@@ -24,29 +24,30 @@ export default function RegisterComponent() {
   }
 
   //Signin checks if the username and email are unique. It also checks stores the password securely. 
-  const handleRegUser = async (e) => {
+  const handleReg = async (e) => {
     e.preventDefault();
+    /*Parse.User.logOut().then(() => {
+      const currentUser = Parse.User.current();
+    });*/
     if (password === "" || username === "") {
       alert("You need to fill out a username and password");
       return;
     }else{
-        const student = new Parse.User();
-        student.set("username", username);
-        student.set("password", password);
-        //student.set("email", email);
-        //student.set("reward_badge_ids", []);
-        //student.set("owned_mascot_ids", []);
-        //student.set("parental_email", email);
-        //var date = new Date().toLocaleDateString();
-        //student.add("active_days", date);
-        //student.add("owned_mascot_ids", "arB9fEWmFp");
+        const user = new Parse.User();
+        user.set("username", username);
+        user.set("password", password);
+        user.set("email", email);
+        user.set("total_points", 800);
+        var date = new Date().toLocaleDateString();
+        user.add("active_days", date);
+        user.add("owned_mascot_ids", "arB9fEWmFp");
         try {
-          await student.signUp();
-          console.log("New user created with objectId: " + student.id);
+          await user.signUp();
+          console.log("New user created with objectId: " + user.id);
           history.push("/frontpage");
         } catch (error) {
           alert("Something went wrong while registering you as a user. Please try again!");
-          console.log(error);
+          //console.log(error);
         }
       }
   }
@@ -61,7 +62,7 @@ export default function RegisterComponent() {
       <Container className="form-container">
         <Row>
           <Col>
-            <Form onSubmit={handleRegUser}>
+            <Form onSubmit={handleReg}>
               <Form.Group controlId="formUserName" className="upperform">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="name" placeholder="Enter a username" onChange={updateUsername}/>
