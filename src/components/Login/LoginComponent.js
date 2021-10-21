@@ -47,12 +47,12 @@ export default function LoginComponent() {
               
               <Form.Group controlId="formUserName" className="upperform">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Enter your username" onChange={updateUsername}/>
+                <Form.Control type="name" placeholder="Enter your username" onChange={updateUsername}/>
               </Form.Group>
               
               <Form.Group controlId="formPassword" className="upperform">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="text" placeholder="Enter your password" onChange={updatePassword}/>
+                <Form.Control type="password" placeholder="Enter your password" onChange={updatePassword}/>
               </Form.Group>
               
               <Button className="login-button" variant="primary" type="submit">Log in <Key size={20} /></Button>

@@ -50,8 +50,8 @@
 }
 
 .owned {
-  border: none;
-  background: none;
+  border: none !important;
+  background: none !important;
 }
 
 .go-back-btn-container {

@@ -41,10 +41,8 @@ export default function UserInfo() {
   };
 
   const retrieveUser = async () => {
-
     const user = Parse.User.current();
     if (user) {
-        // do stuff with the user
         var username = user.get("username");
         var total_points = user.get("total_points");
         var active_days = user.get("active_days");
@@ -53,12 +51,10 @@ export default function UserInfo() {
         setTotal_points(total_points);
         set_active_days(active_days);
         setTotal_answered_questions(total_answered_questions);
-
-        // The object was retrieved successfully.
+        
         console.log("Name: " + username);
         console.log(user.id);
     } else {
-        alert("Failed to retrieve the user");
         history.push("/login");
     }
   };

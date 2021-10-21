@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Gem, ChevronLeft } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
-import myUserObject from "../../users/UserId";
 import Parse from "parse";
 import "./EditMascot.css";
 import Mascot1 from "../../images/Mascots/mascot1.png";
@@ -53,33 +52,27 @@ export default function EditMascot(){
     }, []);
 
     const fetchStudent = async () => {
-        const Student = Parse.Object.extend("Studentinfo");
-        const query = new Parse.Query(Student);
-
-        query.get(myUserObject.id).then(
-        (student) => {
-            var owned = student.get("owned_mascot_ids");
-            var active = student.get("active_mascot_id");
-            var points = student.get("total_points");
+        const user = Parse.User.current();
+        if (user) {
+            var owned = user.get("owned_mascot_ids");
+            var active = user.get("active_mascot_id");
+            var points = user.get("total_points");
             setOwnedMascotIds(owned);
             setActiveMascotId(active);
             setTotalPoints(points);
 
             // The object was retrieved successfully.
-            console.log("Points" + total_points);
-            console.log("Active" + active_mascot_id);
-            console.log(owned_mascot_ids);
-            console.log(myUserObject.id);
-        },
-        (error) => {
-            // The object was not retrieved successfully.
-            alert("Failed to retrieve the user, with error code: " + error.message);
+            console.log(user.id);
+        }else{
+            alert("Failed to retrieve the user.");
         }
-        );
     }
 
     useEffect(() => {
         fetchStudent();
+        console.log("Points" + total_points);
+        console.log("Active" + active_mascot_id);
+        console.log(owned_mascot_ids);
     }, []);
 
     
@@ -163,7 +156,7 @@ export default function EditMascot(){
     }
 
     const isOwned = (mascot_id) => {
-        for(var i = 0; i < owned_mascot_ids-1; i++){
+        for(var i = 0; i < owned_mascot_ids; i++){
             if(owned_mascot_ids[i].includes(mascot_id)){
                 console.log(mascot_id + " " + owned_mascot_ids[i] + " " + owned_mascot_ids[i].includes(mascot_id));
                 return "buy-mascot-btn owned";
@@ -178,12 +171,12 @@ export default function EditMascot(){
             <div className="point-container">
                 <Gem color="#F2B84B" size={50}/>
                 <div className="point-circle">
-                    <p className="top-point-text text-center">50</p>
+                    <p className="top-point-text text-center">{total_points}</p>
                 </div>
             </div>
             <Row>
                 {mascots.map((mascot) => (
-                    <Col>
+                    <Col key = {mascot.id}>
                         <Card className="mascot-card" style={{ width: '16rem' }}>
                         <Card.Img variant="top" src={getMascotImage(mascots.indexOf(mascot))} />
                             <Card.Body className="text-center">
@@ -191,7 +184,12 @@ export default function EditMascot(){
                                 <Card.Text className="point-text">
                                 <Gem color="#F2B84B"/> {mascot.attributes.required_points} points
                                 </Card.Text>
-                                <Button className={isOwned(mascot.id)} variant="primary">Buy mascot <Gem/></Button>
+                                {owned_mascot_ids.includes(mascot.id) &&
+                                    <Button className="buy-mascot-btn owned" variant="primary">Buy mascot <Gem/></Button>
+                                }
+                                {!owned_mascot_ids.includes(mascot.id) &&
+                                    <Button className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
+                                }
                             </Card.Body>
                         </Card>
                     </Col> 
