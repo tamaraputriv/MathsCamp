@@ -11,9 +11,7 @@ export default function Navbar_postlogin() {
   const history = useHistory();
 
   const handleLogOut = () => {
-    Parse.User.logOut().then(() => {
-      const currentUser = Parse.User.current();
-    });
+    Parse.User.logOut();
     history.push("/");
   };
 

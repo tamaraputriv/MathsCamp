@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Parse from "parse";
 import Sidebar from "../Sidebar/Sidebar";
 import "./UserInfo.css";

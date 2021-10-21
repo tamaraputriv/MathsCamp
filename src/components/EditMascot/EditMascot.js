@@ -69,9 +69,9 @@ export default function EditMascot(){
 
     useEffect(() => {
         fetchStudent();
-        console.log("Points" + total_points);
-        console.log("Active" + active_mascot_id);
-        console.log(owned_mascot_ids);
+        //console.log("Points" + total_points);
+        //console.log("Active" + active_mascot_id);
+        //console.log(owned_mascot_ids);
     }, []);
 
     

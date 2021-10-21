@@ -32,24 +32,20 @@ export default function MultipleChoice() {
   const [correct_ids, setCorrectIds] = useState([]);
 
 
-  const doQueryByName = async (level) => {
+  const doQueryByName = async (info) => {
     const query1 = new Parse.Query("Questions");
-    query1.equalTo("cat", category);
+    query1.equalTo("cat", info.category);
     console.log(category);
-    //const query2 = new Parse.Query("Questions");
-    query1.equalTo("level", level);
-    console.log(level);
-    //const query = new Parse.Query("Questions");
-    //query._andQuery([query1, query2]);
+    query1.equalTo("level", info.level);
     try {
       let question = await query1.first();
       console.log(question);
       if(question) {
-        var description = question.get("description");
-        var options = question.get("options");
-        var correct_answer = question.get("correct_answer");
-        var hint = question.get("hint");
-        var image = question.get("img_src");
+        const description = question.get("description");
+        const options = question.get("options");
+        const correct_answer = question.get("correct_answer");
+        const hint = question.get("hint");
+        const image = question.get("img_src");
         setDescription(description);
         setOptions(options);
         setCorrectAnswer(correct_answer);
@@ -57,24 +53,23 @@ export default function MultipleChoice() {
         setImage(image);
         console.log("getQuestion er blevet kaldt!");
       }
-      return true;
     } catch (error) {
       alert(`Error! ${error.message}`);
-      return false;
     }
   };
 
-  const retrieveStudent = (category) => {
+  const retrieveStudent = () => {
+    const category = getRandomCategoryId()
     const student = Parse.User.current();
     if (student) {
-        var total_points = student.get("total_points");
+        const total_points = student.get("total_points");
         const level = student.get(category + "_level");
-        var correct = student.get(category + "_correct_ids");
+        const correct = student.get(category + "_correct_ids");
         setTotalPoints(total_points);
         setLevel(level);
         setCorrectIds(correct);
         console.log(level + " " + category);
-        return level;
+        return {level, category};
     }else{
       alert("The user couldn't be retrieved");
     }
@@ -93,30 +88,12 @@ export default function MultipleChoice() {
       "statistics",
       "geometry",
     ];
-    var randomNumber = getRandomInt(5);
-    var category = categories[randomNumber];
+    let randomNumber = getRandomInt(5);
+    let category = categories[randomNumber];
     console.log("today's category is " + category);
     setCategory(category);
     return category;
   };
-
-  // returns a level and category
-  /*const getInfo = (category) => {
-    var level;
-    if (category === "number") {
-      level = number_level;
-    } else if (category === "algebra") {
-      level = algebra_level;
-    } else if (category === "measurement") {
-      level = measurement_level;
-    } else if (category === "statistics") {
-      level = statistics_level;
-    } else {
-      level = geometry_level;
-    }
-    console.log("today's level is " + level);
-    return level;
-  };*/
 
   const handleChange = (e) => {
     e.persist();
@@ -132,12 +109,8 @@ export default function MultipleChoice() {
     }
   };
 
-  /*useEffect(() => {
-    retrieveStudent(getRandomCategoryId());
-  }, []);*/
-
   useEffect(() => {
-    doQueryByName(retrieveStudent(getRandomCategoryId()));
+    doQueryByName(retrieveStudent());
   }, []);
 
   return (

@@ -12,9 +12,7 @@ export default function Navbar_practice_mode() {
   const history = useHistory();
 
     const handleLogOut = () => {
-      Parse.User.logOut().then(() => {
-        const currentUser = Parse.User.current();  
-      });
+      Parse.User.logOut();
       history.push("/");
     };
 

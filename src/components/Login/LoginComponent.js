@@ -31,8 +31,8 @@ export default function LoginComponent() {
         var date = new Date().toLocaleDateString();
         console.log(date);
         console.log(active);
-        if(!active.find(element => element == date)){
-          console.log(!active.find((element) => element == date));
+        if(!active.find(element => element === date)){
+          console.log(!active.find((element) => element === date));
           user.add("active_days", date);
           user.save();
         }
@@ -44,14 +44,14 @@ export default function LoginComponent() {
     }  
   };
 
-  const addActiveDay = (active, user) => {
+  /*const addActiveDay = (active, user) => {
       var date = new Date().toLocaleDateString();
       if(!active.includes(date)){
         console.log(!active.includes(date));
         user.add("active_days", date);
       
     }
-  }
+  }*/
 
   return (
     <Container className="login-container">
