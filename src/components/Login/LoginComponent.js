@@ -30,6 +30,7 @@ export default function LoginComponent() {
     query.equalTo("username", username);
     query.equalTo("password", password);
     query.first().then((result) => {
+      //var stringid = localStorage.uuid;
       myUserObject.id = result.id;
       //Object.freeze(myUserObject);
       console.log("Hentede brugeren med id: " + result.id + " med brugernavn: " + result.get("username"));

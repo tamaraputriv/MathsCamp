@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Card, Button, Container, Row, Col} from "react-bootstrap";
+import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Gem, ChevronLeft } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
 import myUserObject from "../../users/UserId";
