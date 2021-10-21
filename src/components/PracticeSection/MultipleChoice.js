@@ -22,38 +22,122 @@ export default function MultipleChoice() {
   const [correct_answer, setCorrectAnswer] = useState("");
   const [hint, setHint] = useState("");
   const [image, setImage] = useState("");
+  const [total_points, setTotalPoints] = useState(0);
+  const [category, setCategory] = useState("");
 
-  const retrieveQuestion = async () => {
-    const Question = Parse.Object.extend("Questions");
-    const query = new Parse.Query(Question);
+  // Level
+  const [number_level, setNumberLevel] = useState();
+  const [algebra_level, setAlgebraLevel] = useState();
+  const [measurement_level, setMeasurementLevel] = useState();
+  const [geometry_level, setGeometryLevel] = useState();
+  const [statistics_level, setStatisticsLevel] = useState();
 
-    query.get("61w4Jy1Wc0").then(
-      (question) => {
+  // Correct answered in levels
+  const [number_correct, setNumberCorrect] = useState([]);
+  const [algebra_correct, setAlgebraCorrect] = useState([]);
+  const [measurement_correct, setMeasurementCorrect] = useState([]);
+  const [geometry_correct, setGeometryCorrect] = useState([]);
+  const [statistics_correct, setStatisticsCorrect] = useState([]);
+
+  const doQueryByName = async function (level) {
+    const query1 = new Parse.Query("Questions");
+    query1.equalTo("cat", category);
+    const query2 = new Parse.Query("Questions");
+    query2.equalTo("level", level);
+    const query = new Parse.Query("Questions");
+    query._andQuery([query1, query2]);
+    try {
+      let questions = await query.find();
+      console.log(questions);
+      for (let question of questions) {
         var description = question.get("description");
-        var option_1 = question.get("option_1");
-        var option_2 = question.get("option_2");
-        var option_3 = question.get("option_3");
-        var option_4 = question.get("option_4");
-        var option_5 = question.get("option_5");
+        var options = question.get("options");
         var correct_answer = question.get("correct_answer");
         var hint = question.get("hint");
         var image = question.get("img_src");
         setDescription(description);
-        setOptions(
-          options.concat(option_1, option_2, option_3, option_4, option_5)
-        );
+        setOptions(options);
+        setCorrectAnswer(correct_answer);
         setHint(hint);
         setImage(image);
-        setCorrectAnswer(correct_answer);
-      },
-      (error) => {
-        // The object was not retrieved successfully.
-        // error is a Parse.Error with an error code and message.
-        alert(
-          "Failed to retrieve the object, with error code: " + error.message
-        );
+        console.log("getQuestion er blevet kaldt!");
       }
-    );
+      return true;
+    } catch (error) {
+      alert(`Error! ${error.message}`);
+      return false;
+    }
+  };
+
+  const retrieveStudent = async () => {
+    const query = new Parse.Query("Studentinfo");
+    query
+      .get("AazMFClZa7")
+      .then((student) => {
+        var total_points = student.get("total_points");
+        var number_level = student.get("number_level");
+        var number_correct = student.get("number_correct_answered");
+        var algebra_level = student.get("algebra_level");
+        var algebra_correct = student.get("algebra_correct_answered");
+        var measurement_level = student.get("measurement_level");
+        var measurement_correct = student.get("measurement_correct_answered");
+        var geometry_level = student.get("geometry_level");
+        var geometry_correct = student.get("geometry_correct_answered");
+        var statistics_level = student.get("statistics_level");
+        var statistics_correct = student.get("statistics_correct_answered");
+        setTotalPoints(total_points);
+        setNumberLevel(number_level);
+        setAlgebraLevel(algebra_level);
+        setMeasurementLevel(measurement_level);
+        setGeometryLevel(geometry_level);
+        setStatisticsLevel(statistics_level);
+        setNumberCorrect(number_correct);
+        setAlgebraCorrect(algebra_correct);
+        setMeasurementCorrect(measurement_correct);
+        setGeometryCorrect(geometry_correct);
+        setStatisticsCorrect(statistics_correct);
+      })
+      .catch((error) => {
+        alert("The username or password is incorrect");
+      });
+  };
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  // returns a category
+  const getRandomCategoryId = () => {
+    var categories = [
+      "number",
+      "algebra",
+      "measurement",
+      "statistics",
+      "geometry",
+    ];
+    var randomNumber = getRandomInt(5);
+    var category = categories[randomNumber];
+    console.log("today's category is " + category);
+    setCategory(category);
+    return category;
+  };
+
+  // returns a level and category
+  const getInfo = (category) => {
+    var level;
+    if (category === "number") {
+      level = number_level;
+    } else if (category === "algebra") {
+      level = algebra_level;
+    } else if (category === "measurement") {
+      level = measurement_level;
+    } else if (category === "statistics") {
+      level = statistics_level;
+    } else {
+      var level = geometry_level;
+    }
+    console.log("today's level is " + level);
+    return level;
   };
 
   const handleChange = (e) => {
@@ -71,7 +155,8 @@ export default function MultipleChoice() {
   };
 
   useEffect(() => {
-    retrieveQuestion();
+    retrieveStudent();
+    doQueryByName(getInfo(getRandomCategoryId()));
   }, []);
 
   return (
