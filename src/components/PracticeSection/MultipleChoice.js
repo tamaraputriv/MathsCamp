@@ -22,8 +22,11 @@ export default function MultipleChoice() {
   const [correct_answer, setCorrectAnswer] = useState("");
   const [hint, setHint] = useState("");
   const [image, setImage] = useState("");
+  const [currentQuestionId, setId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
+  const [points, setPoints] = useState(0);
+  // const [categoryArray, setCategoryArray] = useState([]);
 
   // Level
   const [level, setLevel] = useState(0);
@@ -31,27 +34,31 @@ export default function MultipleChoice() {
   // Correct answered in levels
   const [correct_ids, setCorrectIds] = useState([]);
 
-
-  const doQueryByName = async (info) => {
+  const doQueryByCatAndLevel = async (info) => {
     const query1 = new Parse.Query("Questions");
-    query1.equalTo("cat", info.category);
-    console.log(category);
+    query1.equalTo("category", info.category);
     query1.equalTo("level", info.level);
     try {
       let question = await query1.first();
-      console.log(question);
-      if(question) {
+      const currentQuestionId = question.id;
+
+      if (!correct_ids.includes(currentQuestionId)) {
+        console.log(question);
+        console.log("spørgsmålet er IKKE blevet besvaret");
+        const correct_answer = question.get("correct_answer");
         const description = question.get("description");
         const options = question.get("options");
-        const correct_answer = question.get("correct_answer");
         const hint = question.get("hint");
         const image = question.get("img_src");
+        setId(currentQuestionId);
         setDescription(description);
         setOptions(options);
         setCorrectAnswer(correct_answer);
         setHint(hint);
         setImage(image);
         console.log("getQuestion er blevet kaldt!");
+      } else {
+        console.log("spørgsmålet ER blevet besvaret");
       }
     } catch (error) {
       alert(`Error! ${error.message}`);
@@ -59,18 +66,19 @@ export default function MultipleChoice() {
   };
 
   const retrieveStudent = () => {
-    const category = getRandomCategoryId()
+    const category = getRandomCategory();
     const student = Parse.User.current();
     if (student) {
-        const total_points = student.get("total_points");
-        const level = student.get(category + "_level");
-        const correct = student.get(category + "_correct_ids");
-        setTotalPoints(total_points);
-        setLevel(level);
-        setCorrectIds(correct);
-        console.log(level + " " + category);
-        return {level, category};
-    }else{
+      const total_points = student.get("total_points");
+      const level = student.get(category + "_level");
+      const correct = student.get(category + "_correct_ids");
+      setTotalPoints(total_points);
+      setLevel(level);
+      setCorrectIds(correct);
+      console.log(correct);
+      console.log(level + " " + category);
+      return { level, category };
+    } else {
       alert("The user couldn't be retrieved");
     }
   };
@@ -79,19 +87,36 @@ export default function MultipleChoice() {
     return Math.floor(Math.random() * max);
   }
 
+  // const getCategories = async () => {
+  //   const Categories = Parse.Object.extend("Category");
+  //   const query = new Parse.Query(Categories);
+  //   try {
+  //     let queryResults = await query.find();
+  //     for (let result of queryResults) {
+  //       // You access `Parse.Objects` attributes by using `.get`
+  //       let category = result.get("category_name");
+  //       console.log(category);
+  //       setCategoryArray((categoryArray) => categoryArray.concat(category));
+  //     }
+  //     console.log(categoryArray);
+  //   } catch (error) {
+  //     alert(`Error! ${error.message}`);
+  //   }
+  // };
+
   // returns a category
-  const getRandomCategoryId = () => {
-    var categories = [
+  const getRandomCategory = () => {
+    const categories = [
       "number",
       "algebra",
       "measurement",
       "statistics",
       "geometry",
     ];
-    let randomNumber = getRandomInt(5);
-    let category = categories[randomNumber];
-    console.log("today's category is " + category);
+    const randomNumber = getRandomInt(5);
+    const category = categories[randomNumber];
     setCategory(category);
+    console.log("today's category is " + category);
     return category;
   };
 
@@ -101,8 +126,32 @@ export default function MultipleChoice() {
     setChosenOption(e.target.value);
   };
 
+  const addId = () => {
+    const idArray = [currentQuestionId];
+    const newCorrectArray = correct_answer.concat(idArray);
+    setCorrectAnswer(newCorrectArray);
+    console.log("spørgsmålet er blevet tilføjet array");
+    updateCorrect(currentQuestionId);
+  };
+
+  const updateCorrect = async function (currentQuestionId) {
+    const student = Parse.User.current();
+    try {
+      student.add(category + "_correct_ids", currentQuestionId);
+      await student.save();
+      // Success
+      alert("Success! To-do updated!");
+      return true;
+    } catch (error) {
+      // Error can be caused by lack of Internet connection
+      alert(`Error! ${error.message}`);
+      return false;
+    }
+  };
+
   const handleSubmit = () => {
     if (correct_answer === chosenOption) {
+      addId();
       alert("the answer is correct!");
     } else {
       alert("the answer is NOT correct!");
@@ -110,7 +159,7 @@ export default function MultipleChoice() {
   };
 
   useEffect(() => {
-    doQueryByName(retrieveStudent());
+    doQueryByCatAndLevel(retrieveStudent());
   }, []);
 
   return (
