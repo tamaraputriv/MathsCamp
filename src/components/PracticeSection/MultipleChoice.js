@@ -41,10 +41,10 @@ export default function MultipleChoice() {
     try {
       let question = await query1.first();
       const currentQuestionId = question.id;
-
-      if (!correct_ids.includes(currentQuestionId)) {
-        console.log(question);
-        console.log("spørgsmålet er IKKE blevet besvaret");
+      const correctArray = info.correct;
+      console.log("CORRECT IDS: " + info.correct);
+      if (!correctArray.includes(currentQuestionId)) {
+        console.log("UNanswered");
         const correct_answer = question.get("correct_answer");
         const description = question.get("description");
         const options = question.get("options");
@@ -56,9 +56,8 @@ export default function MultipleChoice() {
         setCorrectAnswer(correct_answer);
         setHint(hint);
         setImage(image);
-        console.log("getQuestion er blevet kaldt!");
       } else {
-        console.log("spørgsmålet ER blevet besvaret");
+        console.log("answered");
       }
     } catch (error) {
       alert(`Error! ${error.message}`);
@@ -76,8 +75,8 @@ export default function MultipleChoice() {
       setLevel(level);
       setCorrectIds(correct);
       console.log(correct);
-      console.log(level + " " + category);
-      return { level, category };
+      // console.log(level + " " + category);
+      return { level, category, correct };
     } else {
       alert("The user couldn't be retrieved");
     }
@@ -116,7 +115,7 @@ export default function MultipleChoice() {
     const randomNumber = getRandomInt(5);
     const category = categories[randomNumber];
     setCategory(category);
-    console.log("today's category is " + category);
+    console.log("CATEGORY: " + category);
     return category;
   };
 
@@ -139,11 +138,18 @@ export default function MultipleChoice() {
     try {
       student.add(category + "_correct_ids", currentQuestionId);
       await student.save();
-      // Success
-      alert("Success! To-do updated!");
-      return true;
     } catch (error) {
-      // Error can be caused by lack of Internet connection
+      alert(`Error! ${error.message}`);
+      return false;
+    }
+  };
+
+  const addPoints = async function () {
+    const student = Parse.User.current();
+    try {
+      let new_total_points = total_points + 5;
+      student.set("total_points", new_total_points);
+    } catch (error) {
       alert(`Error! ${error.message}`);
       return false;
     }
@@ -152,6 +158,7 @@ export default function MultipleChoice() {
   const handleSubmit = () => {
     if (correct_answer === chosenOption) {
       addId();
+      addPoints();
       alert("the answer is correct!");
     } else {
       alert("the answer is NOT correct!");
