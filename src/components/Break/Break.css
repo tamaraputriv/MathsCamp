@@ -1,0 +1,51 @@
+.multiple-container {
+  display: flex;
+  align-items: center;
+  height: 800px;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
+  color: #4d4d4d;
+}
+
+.text-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.h2-break {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 41px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  padding-bottom: 8px;
+}
+
+.p-break {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: center;
+  letter-spacing: -0.02em;
+  padding-bottom: 8px;
+}
+
+.done-break-btn {
+  margin-top: 10px;
+  width: 247px;
+  background-color: #f2b84b;
+  border-color: #f7ac22;
+  font-family: "Rubik";
+}
+
+.done-break-btn:hover {
+  background-color: #f0ac2b;
+  border-color: #f0ac2b;
+}
