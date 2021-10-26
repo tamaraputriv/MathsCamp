@@ -46,6 +46,8 @@ export default function Sidebar({ isOpen, toggle }) {
       fetchRewards();
   }, []);
 
+
+
   const getRewardImage = (index) => {
     switch(index){
         case 0: {
@@ -165,8 +167,7 @@ export default function Sidebar({ isOpen, toggle }) {
       <Row>
         <Col>
           <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
-            Your collection is empty! Go to Practice mode and earn your first
-            reward.
+            Hover the badges to learn how to win them!
           </p>
         </Col>
       </Row>
@@ -176,14 +177,16 @@ export default function Sidebar({ isOpen, toggle }) {
           marginTop: isOpen ? "" : "0px",
         }}
       >
-        <Col className="badge-col">
-          {rewards.map((reward) => (
-            <img
-            className="locked-badge"
-            src={getRewardImage(rewards.indexOf(reward))}
-            />
-          ))}
-        </Col>
+         <Col className="badge-col">
+            {rewards.map((reward) => (
+                <img
+                key={reward.id}
+                className="locked-badge"
+                src={getRewardImage(rewards.indexOf(reward))}
+                title={reward.attributes.description}
+                />
+            ))}
+          </Col>
       </Row>
     </Container>
   );
