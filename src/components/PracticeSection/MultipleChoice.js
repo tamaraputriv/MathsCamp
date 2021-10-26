@@ -75,7 +75,6 @@ export default function MultipleChoice() {
       setLevel(level);
       setCorrectIds(correct);
       console.log(correct);
-      // console.log(level + " " + category);
       return { level, category, correct };
     } else {
       alert("The user couldn't be retrieved");
@@ -86,24 +85,7 @@ export default function MultipleChoice() {
     return Math.floor(Math.random() * max);
   }
 
-  // const getCategories = async () => {
-  //   const Categories = Parse.Object.extend("Category");
-  //   const query = new Parse.Query(Categories);
-  //   try {
-  //     let queryResults = await query.find();
-  //     for (let result of queryResults) {
-  //       // You access `Parse.Objects` attributes by using `.get`
-  //       let category = result.get("category_name");
-  //       console.log(category);
-  //       setCategoryArray((categoryArray) => categoryArray.concat(category));
-  //     }
-  //     console.log(categoryArray);
-  //   } catch (error) {
-  //     alert(`Error! ${error.message}`);
-  //   }
-  // };
-
-  // returns a category
+  // returns a random category
   const getRandomCategory = () => {
     const categories = [
       "number",
@@ -125,43 +107,24 @@ export default function MultipleChoice() {
     setChosenOption(e.target.value);
   };
 
-  const addId = () => {
-    const idArray = [currentQuestionId];
-    const newCorrectArray = correct_answer.concat(idArray);
-    setCorrectAnswer(newCorrectArray);
-    console.log("spørgsmålet er blevet tilføjet array");
-    updateCorrect(currentQuestionId);
-  };
-
-  const updateCorrect = async function (currentQuestionId) {
-    const student = Parse.User.current();
-    try {
-      student.add(category + "_correct_ids", currentQuestionId);
-      await student.save();
-    } catch (error) {
-      alert(`Error! ${error.message}`);
-      return false;
-    }
-  };
-
-  const addPoints = async function () {
-    const student = Parse.User.current();
-    try {
-      let new_total_points = total_points + 5;
-      student.set("total_points", new_total_points);
-    } catch (error) {
-      alert(`Error! ${error.message}`);
-      return false;
-    }
-  };
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (correct_answer === chosenOption) {
-      addId();
-      addPoints();
-      alert("the answer is correct!");
+      const student = Parse.User.current();
+      if(student){
+        var new_total_points = total_points + 5;
+        student.set("total_points", new_total_points);
+        var idArray = [currentQuestionId];
+        var newCorrectArray = correct_answer.concat(idArray);
+        setCorrectIds(newCorrectArray);
+        student.add(category + "_correct_ids", currentQuestionId);
+        console.log("currentQuestionId" + currentQuestionId);
+        var correct = await student.get(category + "_correct_ids");
+        setCorrectAnswer(correct);
+        student.save();
+      }
+      alert("The answer is correct!");
     } else {
-      alert("the answer is NOT correct!");
+      alert("The answer is NOT correct!");
     }
   };
 
