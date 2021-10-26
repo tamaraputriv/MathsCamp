@@ -39,7 +39,6 @@ export default function Sidebar({ isOpen, toggle }) {
     const query = new Parse.Query(Rewards);
     const result = await query.find();
     setRewards(result);
-    console.log(result.length);
   };
 
   useEffect(() => {
