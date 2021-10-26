@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import "./Break.css";
 import { useHistory } from "react-router";
@@ -17,7 +17,7 @@ export default function Break() {
     <Container fluid className="multiple-container">
       <Row className="reward-row">
         <Col>
-          <Image src={Camel} style={{ width: 566 }} resizeMode="contain" />
+          <Image src={Camel} style={{ width: 566 }} />
         </Col>
         <Col className="text-div">
           <h2 className="h2-break">Time to take a break.</h2>
