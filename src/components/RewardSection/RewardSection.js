@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import "./RewardSection.css";
 import { useHistory } from "react-router";
 import { VscSmiley } from "react-icons/vsc";
 import { BsTrophy } from "react-icons/bs";
-import Parse from "parse";
 import reward from "../../images/Rewards/avocado.png";
 
 export default function RewardSection() {
@@ -18,22 +17,22 @@ export default function RewardSection() {
     history.push("/practice");
   };
 
-  const fetchStudent = async () => {
-    const user = Parse.User.current();
-    if (user) {
-      // The object was retrieved successfully.
-      console.log(user.id);
-    } else {
-      alert("Failed to retrieve the user.");
-    }
-  };
+  // const fetchStudent = async () => {
+  //   const user = Parse.User.current();
+  //   if (user) {
+  //     // The object was retrieved successfully.
+  //     console.log(user.id);
+  //   } else {
+  //     alert("Failed to retrieve the user.");
+  //   }
+  // };
 
   useEffect(() => {}, []);
   return (
     <Container fluid className="multiple-container">
       <Row className="reward-row">
         <Col>
-          <Image src={reward} style={{ width: 566 }} resizeMode="contain" />
+          <Image src={reward} style={{ width: 566 }} />
         </Col>
         <Col className="text-div">
           <h2 className="h2-reward">
