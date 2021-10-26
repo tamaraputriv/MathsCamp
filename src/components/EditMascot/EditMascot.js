@@ -51,6 +51,7 @@ export default function EditMascot(){
         fetchMascots();
     }, []);
 
+    
     const fetchStudent = async () => {
         const user = Parse.User.current();
         if (user) {
@@ -60,7 +61,6 @@ export default function EditMascot(){
             setOwnedMascotIds(owned);
             setActiveMascotId(active);
             setTotalPoints(points);
-            // The object was retrieved successfully.
             console.log(user.id);
         }else{
             alert("Failed to retrieve the user.");
@@ -69,9 +69,6 @@ export default function EditMascot(){
 
     useEffect(() => {
         fetchStudent();
-        //console.log("Points" + total_points);
-        //console.log("Active" + active_mascot_id);
-        //console.log(owned_mascot_ids);
     }, []);
 
     
@@ -154,6 +151,25 @@ export default function EditMascot(){
         }
     }
 
+    const buyMascot = async (mascotId, mascotPrice, points) => {
+        if(points >= mascotPrice){
+            const user = Parse.User.current();
+            if (user) {
+                user.add("owned_mascot_ids", mascotId);
+                points -= mascotPrice;
+                var owned = user.get("owned_mascot_ids");
+                setOwnedMascotIds(owned);
+                setTotalPoints(points);
+                console.log(points + mascotId);
+                user.set("total_points", points);
+                user.save();
+                console.log("added" + mascotId)
+            }
+        }else{
+            alert("You don't have enough points to buy this mascot.");
+        }
+    }
+
     return(
         <Container className="mascot-container">
             <div className="point-container">
@@ -173,8 +189,8 @@ export default function EditMascot(){
                                 <Gem color="#F2B84B"/> {mascot.attributes.required_points} points
                                 </Card.Text>
                                 {owned_mascot_ids.includes(mascot.id)
-                                    ?<Button className="owned" variant="primary">Buy mascot <Gem/></Button>
-                                    :<Button className="buy-mascot-btn" variant="primary">Buy mascot <Gem/></Button>
+                                    ?<Button className="buy-mascot-btn owned" variant="primary">Buy mascot <Gem/></Button>
+                                    :<Button className="buy-mascot-btn" variant="primary" onClick={() => buyMascot(mascot.id, mascot.attributes.required_points, total_points)}>Buy mascot <Gem/></Button>
                                 }
                             </Card.Body>
                         </Card>

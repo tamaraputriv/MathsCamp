@@ -29,8 +29,6 @@ export default function LoginComponent() {
       if(user){
         var active = await user.get("active_days");
         var date = new Date().toLocaleDateString();
-        console.log(date);
-        console.log(active);
         if(!active.find(element => element === date)){
           console.log(!active.find((element) => element === date));
           user.add("active_days", date);
@@ -40,18 +38,9 @@ export default function LoginComponent() {
         history.push("/frontpage");
       }
     }catch(error){
-      alert("The username or password is incorrect" + error);
+      alert("The username or password is incorrect!");
     }  
   };
-
-  /*const addActiveDay = (active, user) => {
-      var date = new Date().toLocaleDateString();
-      if(!active.includes(date)){
-        console.log(!active.includes(date));
-        user.add("active_days", date);
-      
-    }
-  }*/
 
   return (
     <Container className="login-container">
