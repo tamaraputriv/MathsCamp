@@ -16,7 +16,7 @@ export default function UserInfo() {
   };
 
   const handleExam = () => {
-    history.push("/reward");
+    history.push("/break");
   };
 
   const handleChangeMascot = () => {

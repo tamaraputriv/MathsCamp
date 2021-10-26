@@ -10,6 +10,7 @@ import RewardPage from "./pages/RewardPage";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fontsource/rubik";
 import "@fontsource/solway";
+import Break from "./pages/BreakPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/practice" component={PracticePage} />
           <Route exact path="/mascot" component={EditMascotPage} />
           <Route exaxt path="/reward" component={RewardPage} />
+          <Route exaxt path="/break" component={Break} />
         </Switch>
       </Router>
     </div>

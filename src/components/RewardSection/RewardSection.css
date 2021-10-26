@@ -34,11 +34,11 @@
 }
 
 .go-collection-btn {
-  border: none;
+  margin-top: 10px;
+  width: 247px;
   background-color: #7c7ef2;
   border-color: #7c7ef2;
   font-family: "Rubik";
-  margin-right: 0;
 }
 
 .go-collection-btn:hover {
