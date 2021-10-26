@@ -1,6 +1,9 @@
-.home-container {
+.container {
+  display: flex;
+  flex-direction: row;
   margin: 0;
   padding: 0;
+  max-width: 100%;
 }
 
 .welcome-h1 {
@@ -13,12 +16,6 @@
   color: #4d4d4d;
   margin-top: 37px;
   margin-bottom: 105px;
-}
-
-.homesection-btn-div {
-  display: flex;
-  justify-content: left;
-  padding: 40px 0px 40px 0px;
 }
 
 .practice-btn {
@@ -61,16 +58,6 @@
   border: none;
 }
 
-h2 {
-  font-family: Solway;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: -0.02em;
-  color: #4d4d4d;
-}
-
 .strike-h2 {
   margin-top: 40px;
   margin-bottom: 18px;
@@ -79,14 +66,8 @@ h2 {
   font-weight: bold;
   font-size: 20px;
   line-height: 24px;
-}
-
-.category-icon {
-  margin-right: 23px;
-}
-
-.category-col {
-  padding-right: 50px;
+  letter-spacing: -0.02em;
+  color: #4d4d4d;
 }
 
 .mascot-img {
@@ -97,6 +78,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: palevioletred;
 }
 
 .change-mascot-btn {
@@ -110,4 +92,17 @@ h2 {
 .change-mascot-btn:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
+}
+
+.info-col {
+  background-color: palegoldenrod;
+  margin-left: 20px;
+}
+
+.mascot-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 250px;
+  height: 100vh;
 }

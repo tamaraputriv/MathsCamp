@@ -7,6 +7,7 @@ import { Container, Col, Row, Button, Image, Card } from "react-bootstrap";
 import { BsPerson } from "react-icons/bs";
 import Mascot from "../../images/Mascots/mascot1.png";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
+import { DistributeVertical } from "react-bootstrap-icons";
 
 export default function UserInfo() {
   const history = useHistory();
@@ -64,58 +65,49 @@ export default function UserInfo() {
   }, []);
 
   return (
-    <Container className="home-container">
+    <Container className="container">
       <Row>
-        <Col lg={columnSize}>
+        <Col>
           <Sidebar isOpen={isOpen} toggle={toggle} />
         </Col>
-        <Col
-          className="userinfo-col"
-          style={{ paddingLeft: isOpen ? "20px" : "100px" }}
-        >
+        <Col className="info-col">
           <div>
             <h1 className="welcome-h1">Welcome {username}</h1>
           </div>
-          <Row>
-            <Col md="auto">
-              <Card className="title-card">
-                <Card.Body>
-                  <div className="homesection-btn-div">
-                    <Button onClick={handlePractice} className="practice-btn">
-                      Practice mode
-                    </Button>
-                    <Button onClick={handleExam} className="exam-btn">
-                      Exam <br />
-                      mode
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col className="mascot-col">
-              <Image src={Mascot} className="mascot-img" />
-              <Button
-                onClick={handleChangeMascot}
-                className="change-mascot-btn"
-                variant="primary"
-                type="submit"
-              >
-                Change your mascot <BsPerson />
-              </Button>
-            </Col>
-          </Row>
+          <Card>
+            <Card.Body>
+              <div>
+                <Button onClick={handlePractice} className="practice-btn">
+                  Practice mode
+                </Button>
+                <Button onClick={handleExam} className="exam-btn">
+                  Exam <br />
+                  mode
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
           <div>
             <h2 className="strike-h2">Your strikes</h2>
           </div>
-          <Row>
-            <Col lg={7}>
-              <UserInfoTable
-                total_points={total_points}
-                active_days={active_days.length}
-                total_answered_questions={total_answered_questions}
-              />
-            </Col>
-          </Row>
+          <UserInfoTable
+            total_points={total_points}
+            active_days={active_days.length}
+            total_answered_questions={total_answered_questions}
+          />
+        </Col>
+        <Col>
+          <div className="mascot-div">
+            <Image src={Mascot} className="mascot-img" />
+            <Button
+              onClick={handleChangeMascot}
+              className="change-mascot-btn"
+              variant="primary"
+              type="submit"
+            >
+              Change your mascot <BsPerson />
+            </Button>
+          </div>
         </Col>
       </Row>
     </Container>
