@@ -5,6 +5,7 @@ import UnlockedBagde from "../../images/Icons/unlocked-reward-badge.svg";
 import { Container, Col, Row } from "react-bootstrap";
 
 export default function Sidebar({ isOpen, toggle }) {
+  
   return (
     <Container
       className="sidebar-container"

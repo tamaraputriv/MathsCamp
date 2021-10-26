@@ -52,6 +52,7 @@
 .owned {
   border: none;
   background: none;
+  outline: 0 !important; 
 }
 
 .go-back-btn-container {
