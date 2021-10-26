@@ -16,7 +16,7 @@ export default function UserInfo() {
   };
 
   const handleExam = () => {
-    history.push("/exam");
+    history.push("/reward");
   };
 
   const handleChangeMascot = () => {
@@ -43,19 +43,19 @@ export default function UserInfo() {
   const retrieveUser = async () => {
     const user = Parse.User.current();
     if (user) {
-        var username = user.get("username");
-        var total_points = user.get("total_points");
-        var active_days = user.get("active_days");
-        var total_answered_questions = user.get("total_answered_questions");
-        setUsername(username);
-        setTotal_points(total_points);
-        set_active_days(active_days);
-        setTotal_answered_questions(total_answered_questions);
-        
-        console.log("Name: " + username);
-        console.log(user.id);
+      var username = user.get("username");
+      var total_points = user.get("total_points");
+      var active_days = user.get("active_days");
+      var total_answered_questions = user.get("total_answered_questions");
+      setUsername(username);
+      setTotal_points(total_points);
+      set_active_days(active_days);
+      setTotal_answered_questions(total_answered_questions);
+
+      console.log("Name: " + username);
+      console.log(user.id);
     } else {
-        history.push("/login");
+      history.push("/login");
     }
   };
 

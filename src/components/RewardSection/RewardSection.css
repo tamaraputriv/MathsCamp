@@ -1,0 +1,86 @@
+.multiple-container {
+  display: flex;
+  align-items: center;
+  height: 800px;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
+  color: #4d4d4d;
+}
+
+.reward-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 450px;
+}
+
+.practice-again-btn {
+  border: none;
+  background-color: #f2b84b;
+  border-color: #f7ac22;
+  font-family: "Rubik";
+}
+
+.practice-again-btn:hover {
+  background-color: #f0ac2b;
+  border-color: #f0ac2b;
+}
+
+.go-collection-btn {
+  border: none;
+  background-color: #7c7ef2;
+  border-color: #7c7ef2;
+  font-family: "Rubik";
+  margin-right: 0;
+}
+
+.go-collection-btn:hover {
+  background-color: #5d5fef;
+  border-color: #5d5fef;
+}
+
+.quiz-btn {
+  margin: 15px;
+  font-size: 18px;
+}
+
+.text-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.h2-reward {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 41px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  padding-bottom: 8px;
+}
+
+.p-reward {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  padding-bottom: 8px;
+}
+
+.btn-icon {
+  margin-left: 4px;
+  margin-bottom: 4px;
+}
