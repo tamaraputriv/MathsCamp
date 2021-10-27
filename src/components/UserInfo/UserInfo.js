@@ -25,7 +25,6 @@ export default function UserInfo() {
   };
 
   const [isOpen, setIsOpen] = useState(true);
-  const [columnSize, setColumnSize] = useState(4);
   const [username, setUsername] = useState("");
   const [total_points, setTotal_points] = useState(0);
   const [active_days, set_active_days] = useState([]);
@@ -34,10 +33,8 @@ export default function UserInfo() {
   const toggle = () => {
     if (isOpen) {
       setIsOpen(false);
-      setColumnSize(2);
     } else {
       setIsOpen(true);
-      setColumnSize(4);
     }
   };
 
@@ -69,12 +66,17 @@ export default function UserInfo() {
       <div
         className="sidebar-div"
         style={{
-          maxWidth: isOpen ? "" : "15%",
+          maxWidth: isOpen ? "30%" : "15%",
         }}
       >
         <Sidebar isOpen={isOpen} toggle={toggle} />
       </div>
-      <div className="user-info-col">
+      <div
+        className="user-info-col"
+        style={{
+          width: isOpen ? "70%" : "85%",
+        }}
+      >
         <div>
           <h1 className="user-welcome-h1">Welcome {username}</h1>
         </div>

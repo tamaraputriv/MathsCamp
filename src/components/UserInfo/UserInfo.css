@@ -7,7 +7,6 @@
 }
 
 .sidebar-div {
-  max-width: 30%;
   transition: max-width 0.5s;
 }
 
@@ -26,7 +25,6 @@
 .user-info-col {
   display: flex;
   flex-direction: column;
-  width: 70%;
   padding-left: 4%;
 }
 

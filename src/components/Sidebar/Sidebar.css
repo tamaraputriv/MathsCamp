@@ -46,8 +46,8 @@
 }
 
 .locked-badge {
-  margin: 9.5px;
-  height: 120px;
+  margin: 6px;
+  max-height: 120px;
 }
 
 .badge-col {
@@ -55,18 +55,7 @@
 }
 
 /* Medium screens */
-@media all and (max-width: 1000px) {
-  .sidebarH1 {
-    display: none;
-  }
-
-  .sidebarP {
-    display: none;
-  }
-
-  .arrow-icon {
-    display: none;
-  }
+@media all and (max-width: 1300px) {
 }
 
 /* Small screens */
