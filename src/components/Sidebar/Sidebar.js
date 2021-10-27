@@ -46,7 +46,7 @@ export default function Sidebar({ isOpen, toggle }) {
     if (student) {
       const student_rewards = student.get("reward_badge_ids");
       setStudentRewards(student_rewards);
-      console.log(student_rewards);
+      console.log("Student reward badge ids: " + student_rewards);
     } else {
       alert("The user couldn't be retrieved");
     }

@@ -13,6 +13,7 @@ import "./MultipleChoice.css";
 import { BsLifePreserver, BsCheckCircle } from "react-icons/bs";
 import Mascot from "../../images/Mascots/mascot1.png";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
+import { useHistory } from "react-router";
 
 export default function MultipleChoice() {
   const [showHint, setShowHint] = useState(false);
@@ -25,30 +26,24 @@ export default function MultipleChoice() {
   const [currentQuestionId, setId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
-  const [points, setPoints] = useState(0);
-
-  // Level
-  //const [level, setLevel] = useState(0);
-
-  // Correct answered in levels
   const [correct_ids, setCorrectIds] = useState([]);
+  const history = useHistory();
 
-  const doQueryByCatAndLevel = async (info) => {
-    const query1 = new Parse.Query("Questions");
-    query1.equalTo("category", info.category);
-    query1.equalTo("level", info.level);
+  const fetchQuestion = async (info) => {
+    const query = new Parse.Query("Questions");
+    query.equalTo("category", info.category);
+    query.equalTo("level", info.level);
     try {
-      let question = await query1.first();
+      let question = await query.first();
       const currentQuestionId = question.id;
-      const correctArray = info.correct;
-      console.log("CORRECT IDS: " + info.correct);
-      if (!correctArray.includes(currentQuestionId)) {
-        console.log("UNanswered");
-        const correct_answer = question.get("correct_answer");
-        const description = question.get("description");
-        const options = question.get("options");
-        const hint = question.get("hint");
-        const image = question.get("img_src");
+      console.log("Correct ids before retrieval of question: " + info.correct);
+      if (!(info.correct).includes(currentQuestionId)) {
+        console.log("This question is unanswered");
+        const correct_answer = await question.get("correct_answer");
+        const description = await question.get("description");
+        const options = await question.get("options");
+        const hint = await question.get("hint");
+        const image = await question.get("img_src");
         setId(currentQuestionId);
         setDescription(description);
         setOptions(options);
@@ -56,7 +51,7 @@ export default function MultipleChoice() {
         setHint(hint);
         setImage(image);
       } else {
-        console.log("answered");
+        console.log("There are no more questions in this category you haven't answered");
       }
     } catch (error) {
       alert(`Error! ${error.message}`);
@@ -71,9 +66,8 @@ export default function MultipleChoice() {
       const level = student.get(category + "_level");
       const correct = student.get(category + "_correct_ids");
       setTotalPoints(total_points);
-      setCorrectIds(correct);
-      console.log(correct);
-      return { level, category, correct };
+      //console.log("Correct ids from studentfetch: " + correct);
+      return {level, category, correct};
     } else {
       alert("The user couldn't be retrieved");
     }
@@ -83,7 +77,7 @@ export default function MultipleChoice() {
     return Math.floor(Math.random() * max);
   }
 
-  // returns a random category
+  //Returns a random category
   const getRandomCategory = () => {
     const categories = [
       "number",
@@ -94,14 +88,12 @@ export default function MultipleChoice() {
     ];
     const randomNumber = getRandomInt(5);
     const category = categories[randomNumber];
+    console.log("Category: " + category);
     setCategory(category);
-    console.log("CATEGORY: " + category);
     return category;
   };
 
   const handleChange = (e) => {
-    e.persist();
-    console.log(e.target.value);
     setChosenOption(e.target.value);
   };
 
@@ -111,23 +103,20 @@ export default function MultipleChoice() {
       if(student){
         var new_total_points = total_points + 5;
         student.set("total_points", new_total_points);
-        var idArray = [currentQuestionId];
-        var newCorrectArray = correct_answer.concat(idArray);
-        setCorrectIds(newCorrectArray);
         student.add(category + "_correct_ids", currentQuestionId);
-        console.log("currentQuestionId" + currentQuestionId);
-        var correct = await student.get(category + "_correct_ids");
-        setCorrectAnswer(correct);
         student.save();
+        console.log("CurrentQuestionId: " + currentQuestionId);
+        var correct = student.get(category + "_correct_ids");
+        setCorrectIds(correct);
       }
-      alert("The answer is correct!");
+      console.log("The answer is correct!");
     } else {
-      alert("The answer is NOT correct!");
+      console.log("The answer is NOT correct!");
     }
   };
 
   useEffect(() => {
-    doQueryByCatAndLevel(retrieveStudent());
+    fetchQuestion(retrieveStudent());
   }, []);
 
   return (
