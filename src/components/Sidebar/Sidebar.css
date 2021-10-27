@@ -43,14 +43,35 @@
   line-height: 21px;
   letter-spacing: -0.02em;
   display: unset;
-  background-color: palevioletred;
 }
 
 .locked-badge {
   margin: 9.5px;
-  height: 100px;
+  height: 120px;
 }
 
 .badge-col {
   padding-top: 20px;
+}
+
+/* Medium screens */
+@media all and (max-width: 1000px) {
+  .sidebarH1 {
+    display: none;
+  }
+
+  .sidebarP {
+    display: none;
+  }
+
+  .arrow-icon {
+    display: none;
+  }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .table-div {
+    max-width: fit-content;
+  }
 }

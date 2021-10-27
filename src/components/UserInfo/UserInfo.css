@@ -1,12 +1,17 @@
-.container {
+.user-container {
   display: flex;
   flex-direction: row;
   margin: 0;
   padding: 0;
-  max-width: 100%;
+  width: 100%;
 }
 
-.welcome-h1 {
+.sidebar-div {
+  max-width: 30%;
+  transition: max-width 0.5s;
+}
+
+.user-welcome-h1 {
   font-family: Solway;
   font-style: normal;
   font-weight: bold;
@@ -18,7 +23,18 @@
   margin-bottom: 105px;
 }
 
-.practice-btn {
+.user-info-col {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  padding-left: 4%;
+}
+
+.card-div {
+  padding-top: 10px;
+}
+
+.user-practice-btn {
   background-color: #f2b84b;
   border: none;
   font-family: "Rubik";
@@ -33,12 +49,12 @@
   margin: 10px;
 }
 
-.practice-btn:hover {
+.user-practice-btn:hover {
   background-color: #f0ac2b;
   border: none;
 }
 
-.exam-btn {
+.user-exam-btn {
   background-color: #7c7ef2;
   border: none;
   font-family: "Rubik";
@@ -53,12 +69,19 @@
   margin: 10px;
 }
 
-.exam-btn:hover {
+.user-exam-btn:hover {
   background-color: #5d5fef;
   border: none;
 }
 
-.strike-h2 {
+.card-mascot-div {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 85%;
+  justify-content: space-between;
+}
+
+.user-strike-h2 {
   margin-top: 40px;
   margin-bottom: 18px;
   font-family: Solway;
@@ -70,18 +93,30 @@
   color: #4d4d4d;
 }
 
-.mascot-img {
-  width: 231px;
+.table-div {
+  width: 500px;
 }
 
-.mascot-col {
+/* mascot section */
+.user-mascot-col {
+  display: flex;
+  flex-direction: column;
+  max-width: 35%;
+  background-color: palegoldenrod;
+}
+
+.user-mascot-div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: palevioletred;
+  padding-top: 10px;
 }
 
-.change-mascot-btn {
+.user-mascot-img {
+  width: 231px;
+}
+
+.user-change-mascot-btn {
   margin-top: 10px;
   width: 247px;
   background-color: #7c7ef2;
@@ -89,20 +124,25 @@
   font-family: "Rubik";
 }
 
-.change-mascot-btn:hover {
+.user-change-mascot-btn:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
 }
 
-.info-col {
-  background-color: palegoldenrod;
-  margin-left: 20px;
+/* Medium screens */
+@media all and (max-width: 1300px) {
+  .table-div {
+    width: fit-content;
+  }
+
+  .card {
+    max-width: fit-content;
+  }
 }
 
-.mascot-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 250px;
-  height: 100vh;
+/* Small screens */
+@media all and (max-width: 500px) {
+  .table-div {
+    max-width: fit-content;
+  }
 }

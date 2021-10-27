@@ -65,51 +65,56 @@ export default function UserInfo() {
   }, []);
 
   return (
-    <Container className="container">
-      <Row>
-        <Col>
-          <Sidebar isOpen={isOpen} toggle={toggle} />
-        </Col>
-        <Col className="info-col">
-          <div>
-            <h1 className="welcome-h1">Welcome {username}</h1>
-          </div>
-          <Card>
-            <Card.Body>
-              <div>
-                <Button onClick={handlePractice} className="practice-btn">
+    <div className="user-container">
+      <div
+        className="sidebar-div"
+        style={{
+          maxWidth: isOpen ? "" : "15%",
+        }}
+      >
+        <Sidebar isOpen={isOpen} toggle={toggle} />
+      </div>
+      <div className="user-info-col">
+        <div>
+          <h1 className="user-welcome-h1">Welcome {username}</h1>
+        </div>
+        <div className="card-mascot-div">
+          <div className="card-div">
+            <Card className="card">
+              <Card.Body>
+                <Button onClick={handlePractice} className="user-practice-btn">
                   Practice mode
                 </Button>
-                <Button onClick={handleExam} className="exam-btn">
+                <Button onClick={handleExam} className="user-exam-btn">
                   Exam <br />
                   mode
                 </Button>
-              </div>
-            </Card.Body>
-          </Card>
-          <div>
-            <h2 className="strike-h2">Your strikes</h2>
+              </Card.Body>
+            </Card>
           </div>
-          <UserInfoTable
-            total_points={total_points}
-            active_days={active_days.length}
-            total_answered_questions={total_answered_questions}
-          />
-        </Col>
-        <Col>
-          <div className="mascot-div">
-            <Image src={Mascot} className="mascot-img" />
+          <div className="user-mascot-div">
+            <Image src={Mascot} className="user-mascot-img" />
             <Button
               onClick={handleChangeMascot}
-              className="change-mascot-btn"
+              className="user-change-mascot-btn"
               variant="primary"
               type="submit"
             >
               Change your mascot <BsPerson />
             </Button>
           </div>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+        <div>
+          <h2 className="user-strike-h2">Your strikes</h2>
+        </div>
+        <div className="table-div">
+          <UserInfoTable
+            total_points={total_points}
+            active_days={active_days.length}
+            total_answered_questions={total_answered_questions}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

@@ -172,7 +172,7 @@ export default function Sidebar({ isOpen, toggle }) {
           Hover the badges to learn how to win them!
         </p>
       </div>
-      <div className="badge-col">
+      <div className="badge-col" style={{}}>
         {rewards.map((reward) => (
           <img
             key={reward.id}
