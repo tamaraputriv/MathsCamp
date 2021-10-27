@@ -26,10 +26,9 @@ export default function MultipleChoice() {
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
   const [points, setPoints] = useState(0);
-  // const [categoryArray, setCategoryArray] = useState([]);
 
   // Level
-  const [level, setLevel] = useState(0);
+  //const [level, setLevel] = useState(0);
 
   // Correct answered in levels
   const [correct_ids, setCorrectIds] = useState([]);
@@ -72,7 +71,6 @@ export default function MultipleChoice() {
       const level = student.get(category + "_level");
       const correct = student.get(category + "_correct_ids");
       setTotalPoints(total_points);
-      setLevel(level);
       setCorrectIds(correct);
       console.log(correct);
       return { level, category, correct };
