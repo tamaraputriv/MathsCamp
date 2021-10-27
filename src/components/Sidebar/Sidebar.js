@@ -30,9 +30,9 @@ import Badge23 from "../../images/Rewards/coffee.png";
 import Badge24 from "../../images/Rewards/love-letter.png";
 import Badge25 from "../../images/Rewards/calculator-badge.png";
 
-
 export default function Sidebar({ isOpen, toggle }) {
   const [rewards, setRewards] = useState([]);
+  const [studentRewards, setStudentRewards] = useState([]);
 
   const fetchRewards = async () => {
     const Rewards = new Parse.Object.extend("Reward");
@@ -41,152 +41,148 @@ export default function Sidebar({ isOpen, toggle }) {
     setRewards(result);
   };
 
+  const retrieveStudent = () => {
+    const student = Parse.User.current();
+    if (student) {
+      const student_rewards = student.get("reward_badge_ids");
+      setStudentRewards(student_rewards);
+      console.log(student_rewards);
+    } else {
+      alert("The user couldn't be retrieved");
+    }
+  };
+
   useEffect(() => {
-      fetchRewards();
+    retrieveStudent();
+    fetchRewards();
   }, []);
 
-
-
   const getRewardImage = (index) => {
-    switch(index){
-        case 0: {
-            return Badge1;
-        }
-        case 5: {
-            return Badge2;
-        }
-        case 10: {
-            return Badge3;
-        }
-        case 15: {
-            return Badge4;
-        }
-        case 20: {
-            return Badge5;
-        }
-        case 1: {
-            return Badge6;
-        }
-        case 6: {
-            return Badge7;
-        }
-        case 11: {
-            return Badge8;
-        }
-        case 16: {
-            return Badge9;
-        }
-        case 21: {
-            return Badge10;
-        }
-        case 2: {
-            return Badge11;
-        }
-        case 7: {
-            return Badge12;
-        }
-        case 12: {
-            return Badge13;
-        }
-        case 17: {
-            return Badge14;
-        }
-        case 22: {
-            return Badge15;
-        }
-        case 3: {
-            return Badge16;
-        }
-        case 8: {
-            return Badge17;
-        }
-        case 13: {
-            return Badge18;
-        }
-        case 18: {
-            return Badge19;
-        }
-        case 23: {
-            return Badge20;
-        }
-        case 4: {
-            return Badge21;
-        }
-        case 9: {
-            return Badge22;
-        }
-        case 14: {
-            return Badge23;
-        }
-        case 19: {
-            return Badge24;
-        }
-        case 24: {
-          return Badge25;
-        }
-        default:
-            alert("The reward images cannot be loaded. Please contact your teacher!")
+    switch (index) {
+      case 0: {
+        return Badge1;
+      }
+      case 5: {
+        return Badge2;
+      }
+      case 10: {
+        return Badge3;
+      }
+      case 15: {
+        return Badge4;
+      }
+      case 20: {
+        return Badge5;
+      }
+      case 1: {
+        return Badge6;
+      }
+      case 6: {
+        return Badge7;
+      }
+      case 11: {
+        return Badge8;
+      }
+      case 16: {
+        return Badge9;
+      }
+      case 21: {
+        return Badge10;
+      }
+      case 2: {
+        return Badge11;
+      }
+      case 7: {
+        return Badge12;
+      }
+      case 12: {
+        return Badge13;
+      }
+      case 17: {
+        return Badge14;
+      }
+      case 22: {
+        return Badge15;
+      }
+      case 3: {
+        return Badge16;
+      }
+      case 8: {
+        return Badge17;
+      }
+      case 13: {
+        return Badge18;
+      }
+      case 18: {
+        return Badge19;
+      }
+      case 23: {
+        return Badge20;
+      }
+      case 4: {
+        return Badge21;
+      }
+      case 9: {
+        return Badge22;
+      }
+      case 14: {
+        return Badge23;
+      }
+      case 19: {
+        return Badge24;
+      }
+      case 24: {
+        return Badge25;
+      }
+      default:
+        alert(
+          "The reward images cannot be loaded. Please contact your teacher!"
+        );
     }
-}
-
+  };
 
   return (
-    <Container
-      className="sidebar-container"
-      style={{
-        paddingLeft: isOpen ? "" : "10px",
-      }}
-    >
-      <Row className="icon-row">
-        <div className="sidebar-header">
-          <p
-            className="sidebarH1"
-            style={{
-              fontSize: isOpen ? "" : "18px",
-              marginBottom: isOpen ? "" : "0px",
-            }}
-          >
-            Your Collection
-          </p>
-          {isOpen ? (
-            <BsChevronDoubleLeft
-              onClick={toggle}
-              className="arrow-icon"
-              alt="icon arrow"
-            ></BsChevronDoubleLeft>
-          ) : (
-            <BsChevronDoubleRight
-              onClick={toggle}
-              className="arrow-icon"
-              alt="icon arrow"
-            ></BsChevronDoubleRight>
-          )}
-        </div>
-      </Row>
-      <Row>
-        <Col>
-          <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
-            Hover the badges to learn how to win them!
-          </p>
-        </Col>
-      </Row>
-      <Row
-        className="badge-row"
-        style={{
-          marginTop: isOpen ? "" : "0px",
-        }}
-      >
-         <Col className="badge-col">
-            {rewards.map((reward) => (
-                <img
-                key={reward.id}
-                className="locked-badge"
-                src={getRewardImage(rewards.indexOf(reward))}
-                title={reward.attributes.description}
-                />
-            ))}
-          </Col>
-      </Row>
-    </Container>
+    <div className="sidebar-container">
+      <div className="sidebar-header">
+        <p
+          className="sidebarH1"
+          style={{
+            fontSize: isOpen ? "" : "18px",
+            marginBottom: isOpen ? "" : "0px",
+          }}
+        >
+          Your Collection
+        </p>
+        {isOpen ? (
+          <BsChevronDoubleLeft
+            onClick={toggle}
+            className="arrow-icon"
+            alt="icon arrow"
+          ></BsChevronDoubleLeft>
+        ) : (
+          <BsChevronDoubleRight
+            onClick={toggle}
+            className="arrow-icon"
+            alt="icon arrow"
+          ></BsChevronDoubleRight>
+        )}
+      </div>
+      <div>
+        <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
+          Hover the badges to learn how to win them!
+        </p>
+      </div>
+      <div className="badge-col" style={{}}>
+        {rewards.map((reward) => (
+          <img
+            key={reward.id}
+            alt="reward"
+            className="locked-badge"
+            src={getRewardImage(rewards.indexOf(reward))}
+            title={reward.attributes.description}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

@@ -22,3 +22,11 @@
   font-size: 18px !important;
   color: #4d4d4d;
 }
+
+.category-icon {
+  margin-right: 23px;
+}
+
+.category-col {
+  padding-right: 50px;
+}

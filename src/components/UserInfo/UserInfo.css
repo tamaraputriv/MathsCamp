@@ -1,9 +1,16 @@
-.home-container {
+.user-container {
+  display: flex;
+  flex-direction: row;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
-.welcome-h1 {
+.sidebar-div {
+  transition: max-width 0.5s;
+}
+
+.user-welcome-h1 {
   font-family: Solway;
   font-style: normal;
   font-weight: bold;
@@ -15,13 +22,17 @@
   margin-bottom: 105px;
 }
 
-.homesection-btn-div {
+.user-info-col {
   display: flex;
-  justify-content: left;
-  padding: 40px 0px 40px 0px;
+  flex-direction: column;
+  padding-left: 4%;
 }
 
-.practice-btn {
+.card-div {
+  padding-top: 10px;
+}
+
+.user-practice-btn {
   background-color: #f2b84b;
   border: none;
   font-family: "Rubik";
@@ -36,12 +47,12 @@
   margin: 10px;
 }
 
-.practice-btn:hover {
+.user-practice-btn:hover {
   background-color: #f0ac2b;
   border: none;
 }
 
-.exam-btn {
+.user-exam-btn {
   background-color: #7c7ef2;
   border: none;
   font-family: "Rubik";
@@ -56,12 +67,21 @@
   margin: 10px;
 }
 
-.exam-btn:hover {
+.user-exam-btn:hover {
   background-color: #5d5fef;
   border: none;
 }
 
-h2 {
+.card-mascot-div {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 85%;
+  justify-content: space-between;
+}
+
+.user-strike-h2 {
+  margin-top: 40px;
+  margin-bottom: 18px;
   font-family: Solway;
   font-style: normal;
   font-weight: bold;
@@ -71,35 +91,30 @@ h2 {
   color: #4d4d4d;
 }
 
-.strike-h2 {
-  margin-top: 40px;
-  margin-bottom: 18px;
-  font-family: Solway;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 24px;
+.table-div {
+  width: 500px;
 }
 
-.category-icon {
-  margin-right: 23px;
+/* mascot section */
+.user-mascot-col {
+  display: flex;
+  flex-direction: column;
+  max-width: 35%;
+  background-color: palegoldenrod;
 }
 
-.category-col {
-  padding-right: 50px;
-}
-
-.mascot-img {
-  width: 231px;
-}
-
-.mascot-col {
+.user-mascot-div {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 10px;
 }
 
-.change-mascot-btn {
+.user-mascot-img {
+  width: 231px;
+}
+
+.user-change-mascot-btn {
   margin-top: 10px;
   width: 247px;
   background-color: #7c7ef2;
@@ -107,7 +122,25 @@ h2 {
   font-family: "Rubik";
 }
 
-.change-mascot-btn:hover {
+.user-change-mascot-btn:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
+}
+
+/* Medium screens */
+@media all and (max-width: 1300px) {
+  .table-div {
+    width: fit-content;
+  }
+
+  .card {
+    max-width: fit-content;
+  }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .table-div {
+    max-width: fit-content;
+  }
 }

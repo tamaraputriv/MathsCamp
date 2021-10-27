@@ -7,6 +7,7 @@ import { Container, Col, Row, Button, Image, Card } from "react-bootstrap";
 import { BsPerson } from "react-icons/bs";
 import Mascot from "../../images/Mascots/mascot1.png";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
+import { DistributeVertical } from "react-bootstrap-icons";
 
 export default function UserInfo() {
   const history = useHistory();
@@ -24,7 +25,6 @@ export default function UserInfo() {
   };
 
   const [isOpen, setIsOpen] = useState(true);
-  const [columnSize, setColumnSize] = useState(4);
   const [username, setUsername] = useState("");
   const [total_points, setTotal_points] = useState(0);
   const [active_days, set_active_days] = useState([]);
@@ -33,10 +33,8 @@ export default function UserInfo() {
   const toggle = () => {
     if (isOpen) {
       setIsOpen(false);
-      setColumnSize(2);
     } else {
       setIsOpen(true);
-      setColumnSize(4);
     }
   };
 
@@ -61,60 +59,61 @@ export default function UserInfo() {
   }, []);
 
   return (
-    <Container className="home-container">
-      <Row>
-        <Col lg={columnSize}>
-          <Sidebar isOpen={isOpen} toggle={toggle} />
-        </Col>
-        <Col
-          className="userinfo-col"
-          style={{ paddingLeft: isOpen ? "20px" : "100px" }}
-        >
-          <div>
-            <h1 className="welcome-h1">Welcome {username}</h1>
+    <div className="user-container">
+      <div
+        className="sidebar-div"
+        style={{
+          maxWidth: isOpen ? "30%" : "15%",
+        }}
+      >
+        <Sidebar isOpen={isOpen} toggle={toggle} />
+      </div>
+      <div
+        className="user-info-col"
+        style={{
+          width: isOpen ? "70%" : "85%",
+        }}
+      >
+        <div>
+          <h1 className="user-welcome-h1">Welcome {username}</h1>
+        </div>
+        <div className="card-mascot-div">
+          <div className="card-div">
+            <Card className="card">
+              <Card.Body>
+                <Button onClick={handlePractice} className="user-practice-btn">
+                  Practice mode
+                </Button>
+                <Button onClick={handleExam} className="user-exam-btn">
+                  Exam <br />
+                  mode
+                </Button>
+              </Card.Body>
+            </Card>
           </div>
-          <Row>
-            <Col md="auto">
-              <Card className="title-card">
-                <Card.Body>
-                  <div className="homesection-btn-div">
-                    <Button onClick={handlePractice} className="practice-btn">
-                      Practice mode
-                    </Button>
-                    <Button onClick={handleExam} className="exam-btn">
-                      Exam <br />
-                      mode
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col className="mascot-col">
-              <Image src={Mascot} className="mascot-img" />
-              <Button
-                onClick={handleChangeMascot}
-                className="change-mascot-btn"
-                variant="primary"
-                type="submit"
-              >
-                Change your mascot <BsPerson />
-              </Button>
-            </Col>
-          </Row>
-          <div>
-            <h2 className="strike-h2">Your strikes</h2>
+          <div className="user-mascot-div">
+            <Image src={Mascot} className="user-mascot-img" />
+            <Button
+              onClick={handleChangeMascot}
+              className="user-change-mascot-btn"
+              variant="primary"
+              type="submit"
+            >
+              Change your mascot <BsPerson />
+            </Button>
           </div>
-          <Row>
-            <Col lg={7}>
-              <UserInfoTable
-                total_points={total_points}
-                active_days={active_days.length}
-                total_answered_questions={total_answered_questions}
-              />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+        <div>
+          <h2 className="user-strike-h2">Your strikes</h2>
+        </div>
+        <div className="table-div">
+          <UserInfoTable
+            total_points={total_points}
+            active_days={active_days.length}
+            total_answered_questions={total_answered_questions}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
