@@ -49,9 +49,6 @@ export default function UserInfo() {
       setTotal_points(total_points);
       set_active_days(active_days);
       setTotal_answered_questions(total_answered_questions);
-
-      console.log("Name: " + username);
-      console.log(user.id);
     } else {
       history.push("/login");
     }
