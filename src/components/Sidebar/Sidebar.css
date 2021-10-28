@@ -46,6 +46,12 @@
   padding-right: 40px;
 }
 
+.unlocked-badge {
+  margin: 9.5px;
+  height: 100px;
+  opacity: 0.5;
+}
+
 .locked-badge {
   margin: 9.5px;
   height: 100px;
@@ -53,7 +59,4 @@
 
 .badge-row {
   margin-top: 32px;
-}
-
-.badge-col{
 }
