@@ -46,6 +46,10 @@
   border-radius: 16px;
 }
 
+.form-check-label {
+  margin-left: 8px;
+}
+
 .quiz-btn {
   margin: 15px;
   font-size: 18px;
@@ -131,11 +135,27 @@
   color: black;
 }
 
+.form-check {
+  display: flex;
+}
+
+.form-check:hover {
+  display: flex;
+  background-color: #d9d9fb;
+  border-radius: 6px;
+  border-left: 2px;
+  width: 540px;
+}
+
 .form-check-input:checked {
   background-color: #f2b84b;
   border-color: #f2b84b;
 }
 
-.form-check-label:checked {
-  background-color: #5d5fef;
+.form-check-input:focus {
+  box-shadow: none;
+}
+
+.form-check:checked {
+  background-color: #5d5fef !important;
 }
