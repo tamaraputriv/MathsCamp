@@ -37,7 +37,7 @@ export default function MultipleChoice() {
       let question = await query.first();
       const currentQuestionId = question.id;
       console.log("Correct ids before retrieval of question: " + info.correct);
-      if (!(info.correct).includes(currentQuestionId)) {
+      if (!info.correct.includes(currentQuestionId)) {
         console.log("This question is unanswered");
         const correct_answer = await question.get("correct_answer");
         const description = await question.get("description");
@@ -51,7 +51,9 @@ export default function MultipleChoice() {
         setHint(hint);
         setImage(image);
       } else {
-        console.log("There are no more questions in this category you haven't answered");
+        console.log(
+          "There are no more questions in this category you haven't answered"
+        );
       }
     } catch (error) {
       alert(`Error! ${error.message}`);
@@ -67,7 +69,7 @@ export default function MultipleChoice() {
       const correct = student.get(category + "_correct_ids");
       setTotalPoints(total_points);
       //console.log("Correct ids from studentfetch: " + correct);
-      return {level, category, correct};
+      return { level, category, correct };
     } else {
       alert("The user couldn't be retrieved");
     }
@@ -95,12 +97,13 @@ export default function MultipleChoice() {
 
   const handleChange = (e) => {
     setChosenOption(e.target.value);
+    removeDisabled();
   };
 
   const handleSubmit = async () => {
     if (correct_answer === chosenOption) {
       const student = Parse.User.current();
-      if(student){
+      if (student) {
         var new_total_points = total_points + 5;
         student.set("total_points", new_total_points);
         student.add(category + "_correct_ids", currentQuestionId);
@@ -113,6 +116,10 @@ export default function MultipleChoice() {
     } else {
       console.log("The answer is NOT correct!");
     }
+  };
+
+  const removeDisabled = () => {
+    document.getElementById("submit-btn").disabled = false;
   };
 
   useEffect(() => {
@@ -164,9 +171,11 @@ export default function MultipleChoice() {
                   <BsLifePreserver className="btn-icon" />
                 </Button>
                 <Button
+                  id="submit-btn"
                   className="submit-btn quiz-btn"
                   onClick={handleSubmit}
                   type="submit"
+                  disabled
                 >
                   Submit <BsCheckCircle className="btn-icon" />
                 </Button>

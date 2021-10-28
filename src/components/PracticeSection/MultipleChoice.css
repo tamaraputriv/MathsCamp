@@ -49,14 +49,14 @@
 .quiz-btn {
   margin: 15px;
   font-size: 18px;
+  width: 135px;
+  height: 48px;
+  font-family: "Rubik";
 }
 
 .hint-btn {
-  border: none;
   background-color: #f2b84b;
   border-color: #f7ac22;
-  font-family: "Rubik";
-  width: 110px;
 }
 
 .hint-btn:hover {
@@ -68,15 +68,21 @@
   border: none;
   background-color: #7c7ef2;
   border-color: #7c7ef2;
-  font-family: "Rubik";
-  margin-right: 0;
-  width: 135px;
-  height: 48px;
 }
 
 .submit-btn:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
+}
+
+.submit-btn:disabled {
+  background-color: #d9d9fb !important;
+  border: #d9d9fb !important;
+}
+
+.submit-btn-disabled:hover {
+  background-color: #d9d9fb;
+  border: #d9d9fb;
 }
 
 .btn-div {
