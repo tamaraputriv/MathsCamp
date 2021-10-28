@@ -79,7 +79,7 @@ export default function UserInfo() {
         </div>
         <div className="card-mascot-div">
           <div className="card-div">
-            <Card className="card">
+            <Card className="user-card">
               <Card.Body>
                 <Button onClick={handlePractice} className="user-practice-btn">
                   Practice mode
