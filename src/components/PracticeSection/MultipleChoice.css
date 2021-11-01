@@ -68,23 +68,23 @@
   border-color: #f0ac2b;
 }
 
-.submit-btn {
+.sub-btn {
   border: none;
   background-color: #7c7ef2;
   border-color: #7c7ef2;
 }
 
-.submit-btn:hover {
+.sub-btn:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
 }
 
-.submit-btn:disabled {
+.sub-btn:disabled {
   background-color: #d9d9fb !important;
   border: #d9d9fb !important;
 }
 
-.submit-btn-disabled:hover {
+.sub-btn-disabled:hover {
   background-color: #d9d9fb;
   border: #d9d9fb;
 }

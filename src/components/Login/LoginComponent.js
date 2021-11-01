@@ -53,7 +53,6 @@ export default function LoginComponent() {
         <Row>
           <Col>
             <Form onSubmit={handleLogUser}>
-              
               <Form.Group controlId="formUserName" className="upperform">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="name" placeholder="Enter your username" onChange={updateUsername}/>

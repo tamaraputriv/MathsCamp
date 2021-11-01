@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Parse from "parse";
-import {
-  Container,
-  Row,
-  Form,
-  Col,
-  Button,
-  Card,
-  Image,
-} from "react-bootstrap";
+import { Container, Row, Form, Col, Button, Card, Image } from "react-bootstrap";
 import "./MultipleChoice.css";
 import { BsLifePreserver, BsCheckCircle } from "react-icons/bs";
 import Mascot from "../../images/Mascots/mascot1.png";
@@ -26,18 +18,50 @@ export default function MultipleChoice() {
   const [image, setImage] = useState("");
   const [currentQuestionId, setId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
-  const [category, setCategory] = useState("");
+  const [level, setLevel] = useState(0);
+  //const [category, setCategory] = useState("");
+  const category = "number";
   const [correct_ids, setCorrectIds] = useState([]);
   const [active_mascot_index, setActiveMascotIndex] = useState(0);
   const history = useHistory();
+  /*function useForceUpdate(){
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update the state to force render
+  }
+  const forceUpdate = useForceUpdate();*/
 
   const fetchQuestion = async (info) => {
     const query = new Parse.Query("Questions");
-    query.equalTo("category", info.category);
+    console.log("Retrievestudent returned level: " + info.level + ", correctids: " + info.correct)
+    query.equalTo("category", category);
     query.equalTo("level", info.level);
     try {
-      let question = await query.first();
-      const currentQuestionId = question.id;
+      let question = await query.find();
+      console.log(question);
+      for(let i = 0; i < question.length; i++){
+        const currentId = question[i].id;
+        console.log(currentId);
+        if (!info.correct.includes(currentId)) {
+          console.log("This question is unanswered");
+          const correct_answer = await question[i].get("correct_answer");
+          const description = await question[i].get("description");
+          const options = await question[i].get("options");
+          const hint = await question[i].get("hint");
+          const image = await question[i].get("img_src");
+          setId(currentId);
+          setDescription(description);
+          setOptions(options);
+          setCorrectAnswer(correct_answer);
+          setHint(hint);
+          setImage(image);
+          break;
+        } else {
+          console.log(
+            "The question was in the correct id array"
+          );
+        }
+      }
+      /*const currentQuestionId = question.id;
       console.log("Correct ids before retrieval of question: " + info.correct);
       if (!info.correct.includes(currentQuestionId)) {
         console.log("This question is unanswered");
@@ -56,25 +80,28 @@ export default function MultipleChoice() {
         console.log(
           "There are no more questions in this category you haven't answered"
         );
-      }
+      }*/
     } catch (error) {
       alert(`Error! ${error.message}`);
     }
   };
 
   const retrieveStudent = () => {
-    const category = getRandomCategory();
+    //const category = getRandomCategory();
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");
       const level = student.get(category + "_level");
       const correct = student.get(category + "_correct_ids");
+      console.log("Student retrieved correctids: " + correct);
       //var activeMascot = student.get("active_mascot_id");
       //var activeMascotIndex = fetchMascots(activeMascot);
       //setActiveMascotIndex(activeMascotIndex);
       setTotalPoints(total_points);
+      setLevel(level);
+      setCorrectIds(correct);
       //console.log("Correct ids from studentfetch: " + correct);
-      return { level, category, correct };
+      return { level, correct };
     } else {
       alert("The user couldn't be retrieved");
     }
@@ -95,12 +122,12 @@ export default function MultipleChoice() {
   }
 
   //Returns a random category
-  const getRandomCategory = () => {
+  /*const getRandomCategory = () => {
     const categories = [
       "number",
       "algebra",
       "measurement",
-      "statistics",
+      //"statistics",
       "geometry",
     ];
     const randomNumber = getRandomInt(5);
@@ -108,7 +135,7 @@ export default function MultipleChoice() {
     console.log("Category: " + category);
     setCategory(category);
     return category;
-  };
+  };*/
 
   const handleChange = (e) => {
     setChosenOption(e.target.value);
@@ -117,32 +144,41 @@ export default function MultipleChoice() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (correct_answer === chosenOption) {
-      const student = Parse.User.current();
-      if (student) {
-        var new_total_points = total_points + 5;
-        student.set("total_points", new_total_points);
-        student.add(category + "_correct_ids", currentQuestionId);
-        student.save();
-        console.log("CurrentQuestionId: " + currentQuestionId);
-        var correct = student.get(category + "_correct_ids");
-        setCorrectIds(correct);
+      try{
+        const student = Parse.User.current();
+        if (student) {
+          var new_total_points = total_points + 5;
+          student.set("total_points", new_total_points); 
+          student.add(category + "_correct_ids", currentQuestionId);
+          console.log(currentQuestionId);
+          await student.save();
+          var correct = student.get(category + "_correct_ids");
+          setCorrectIds(correct);
+          console.log("Added to the database in submit: " + correct);
+          console.log("The answer is correct!");
+        }else {
+        console.log("The answer is NOT correct!");
+        } 
+        //setCorrectIds([...correct_ids, correct]);
+        //window.location.reload(false);
+      }catch(error){
+        alert("Could not submit your answer, try again!")
       }
-      console.log("The answer is correct!");
-    } else {
-      console.log("The answer is NOT correct!");
-    }
-    window.location.reload();
+    }  
   };
 
-  /*const removeDisabled = () => {
-    document.getElementById("submit-btn").disabled = false;
-  };*/
+  const getInfo = () => {
+    console.log("Level fra getInfo:" + level);
+    console.log("Correctids fra getInfo:" + correct_ids);
+    return {level, correct_ids};
+  }
 
   useEffect(() => {
     fetchQuestion(retrieveStudent());
   }, []);
 
   return (
+    
     <Container fluid className="multiple-container">
       <Row>
         <Col md="auto" className="question-img-col">
@@ -187,8 +223,8 @@ export default function MultipleChoice() {
                   <BsLifePreserver className="btn-icon" />
                 </Button>
                 <Button
-                  id="submit-btn"
-                  className="submit-btn quiz-btn"
+                  id="sub-btn"
+                  className="sub-btn quiz-btn"
                   onClick={handleSubmit}
                   type="submit"
                 >
@@ -207,6 +243,9 @@ export default function MultipleChoice() {
           </div>
           <Image src={Mascot} className="quiz-mascot-img" />
         </Col>
+      </Row>
+      <Row>
+        <Button onClick={() => fetchQuestion(retrieveStudent())}>Next question</Button>
       </Row>
     </Container>
   );
