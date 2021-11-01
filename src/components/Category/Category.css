@@ -1,0 +1,17 @@
+.category-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
+  background-color: palevioletred;
+}
+
+.button-container {
+  display: flex;
+  width: 50vw;
+  background-color: palegoldenrod;
+  justify-content: space-between;
+}

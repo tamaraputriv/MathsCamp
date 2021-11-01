@@ -3,17 +3,16 @@ import Parse from "parse";
 import Sidebar from "../Sidebar/Sidebar";
 import "./UserInfo.css";
 import { useHistory } from "react-router";
-import { Container, Col, Row, Button, Image, Card } from "react-bootstrap";
+import { Button, Image, Card } from "react-bootstrap";
 import { BsPerson } from "react-icons/bs";
 import Mascot from "../../images/Mascots/mascot1.png";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
-import { DistributeVertical } from "react-bootstrap-icons";
 
 export default function UserInfo() {
   const history = useHistory();
 
   const handlePractice = () => {
-    history.push("/practice");
+    history.push("/category");
   };
 
   const handleExam = () => {
