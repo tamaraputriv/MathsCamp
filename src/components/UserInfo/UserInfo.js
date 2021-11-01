@@ -15,7 +15,6 @@ export default function UserInfo() {
   const [active_days, set_active_days] = useState([]);
   const [total_answered_questions, setTotal_answered_questions] = useState(0);
   const [active_mascot_index, setActiveMascotIndex] = useState(0);
-  const [mascots, setMascots] = useState([]);
   const history = useHistory();
 
   const handlePractice = () => {
@@ -70,7 +69,8 @@ export default function UserInfo() {
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
     console.log(mascotIndex + " " + active_mascot_id);
     return mascotIndex;
-  };
+  }
+
   
   return (
     <div className="user-container">

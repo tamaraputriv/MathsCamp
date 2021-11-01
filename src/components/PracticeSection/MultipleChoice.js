@@ -14,6 +14,7 @@ import { BsLifePreserver, BsCheckCircle } from "react-icons/bs";
 import Mascot from "../../images/Mascots/mascot1.png";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import { useHistory } from "react-router";
+import { getMascotImage } from "../Utils";
 
 export default function MultipleChoice() {
   const [showHint, setShowHint] = useState(false);
@@ -27,6 +28,7 @@ export default function MultipleChoice() {
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
   const [correct_ids, setCorrectIds] = useState([]);
+  const [active_mascot_index, setActiveMascotIndex] = useState(0);
   const history = useHistory();
 
   const fetchQuestion = async (info) => {
@@ -67,6 +69,9 @@ export default function MultipleChoice() {
       const total_points = student.get("total_points");
       const level = student.get(category + "_level");
       const correct = student.get(category + "_correct_ids");
+      //var activeMascot = student.get("active_mascot_id");
+      //var activeMascotIndex = fetchMascots(activeMascot);
+      //setActiveMascotIndex(activeMascotIndex);
       setTotalPoints(total_points);
       //console.log("Correct ids from studentfetch: " + correct);
       return { level, category, correct };
@@ -74,6 +79,16 @@ export default function MultipleChoice() {
       alert("The user couldn't be retrieved");
     }
   };
+
+  /*const fetchMascots = async (active_mascot_id) => {
+    const Mascots = new Parse.Object.extend("Mascot");
+    const query = new Parse.Query(Mascots);
+    const mascotArray = await query.find();
+    var mascotIdArray = mascotArray.map((obj) => obj.id);
+    var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
+    console.log(mascotIndex + " " + active_mascot_id);
+    return mascotIndex;
+  }*/
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);

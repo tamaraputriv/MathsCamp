@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Parse from "parse";
 import "./Sidebar.css";
 import { BsChevronDoubleRight, BsChevronDoubleLeft } from "react-icons/bs";
-import UnlockedBagde from "../../images/Icons/unlocked-reward-badge.svg";
-import { Container, Col, Row } from "react-bootstrap";
 import Badge1 from "../../images/Rewards/orange.png";
 import Badge2 from "../../images/Rewards/head-scarf.png";
 import Badge3 from "../../images/Rewards/sky.png";
