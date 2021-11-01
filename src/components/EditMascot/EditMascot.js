@@ -151,7 +151,7 @@ export default function EditMascot(){
         }
     }
 
-    const buyMascot = async (mascotId, mascotPrice, points) => {
+    const buyMascot = (mascotId, mascotPrice, points) => {
         if(points >= mascotPrice){
             const user = Parse.User.current();
             if (user) {
@@ -170,7 +170,7 @@ export default function EditMascot(){
         }
     }
 
-    const pickMascot = async (mascotId) => {
+    const pickMascot = (mascotId) => {
         const user = Parse.User.current();
         if(user){
             user.set("active_mascot_id", mascotId);
