@@ -99,5 +99,6 @@ export const getMascotImage = (index) => {
         }
         default:
             alert("The mascot images cannot be loaded. Please contact your teacher!");
+            break;
     }
 }

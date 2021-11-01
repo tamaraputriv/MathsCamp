@@ -114,7 +114,8 @@ export default function MultipleChoice() {
     setChosenOption(e.target.value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (correct_answer === chosenOption) {
       const student = Parse.User.current();
       if (student) {
@@ -130,6 +131,7 @@ export default function MultipleChoice() {
     } else {
       console.log("The answer is NOT correct!");
     }
+    window.location.reload();
   };
 
   /*const removeDisabled = () => {
