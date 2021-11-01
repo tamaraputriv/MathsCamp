@@ -50,7 +50,7 @@ export default function Sidebar({ isOpen, toggle }) {
     if (student) {
       const rewards = student.get("reward_badge_ids");
       setStudentRewards(rewards);
-      console.log("Student reward badge ids: " + owned_rewards);
+      console.log("Student reward badge ids: " + rewards);
     } else {
       alert("The user couldn't be retrieved");
     }
@@ -177,11 +177,9 @@ export default function Sidebar({ isOpen, toggle }) {
       </div>
       <div className="badge-col" style={{}}>
         {rewards.map((reward) => (
-          <div className="reward-image-container">
-          {owned_rewards.includes(reward.id)
-            
+          <div className="reward-image-container" key={reward.id}>
+          {owned_rewards.includes(reward.id) 
             ?(<img
-            key={reward.id}
             alt="reward"
             className="unlocked-badge"
             src={getRewardImage(rewards.indexOf(reward))}

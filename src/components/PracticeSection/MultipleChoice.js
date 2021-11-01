@@ -97,7 +97,6 @@ export default function MultipleChoice() {
 
   const handleChange = (e) => {
     setChosenOption(e.target.value);
-    removeDisabled();
   };
 
   const handleSubmit = async () => {
@@ -118,9 +117,9 @@ export default function MultipleChoice() {
     }
   };
 
-  const removeDisabled = () => {
+  /*const removeDisabled = () => {
     document.getElementById("submit-btn").disabled = false;
-  };
+  };*/
 
   useEffect(() => {
     fetchQuestion(retrieveStudent());
@@ -175,7 +174,6 @@ export default function MultipleChoice() {
                   className="submit-btn quiz-btn"
                   onClick={handleSubmit}
                   type="submit"
-                  disabled
                 >
                   Submit <BsCheckCircle className="btn-icon" />
                 </Button>

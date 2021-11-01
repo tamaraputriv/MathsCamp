@@ -3,13 +3,19 @@ import Parse from "parse";
 import Sidebar from "../Sidebar/Sidebar";
 import "./UserInfo.css";
 import { useHistory } from "react-router";
-import { Container, Col, Row, Button, Image, Card } from "react-bootstrap";
+import { Button, Image, Card } from "react-bootstrap";
 import { BsPerson } from "react-icons/bs";
-import Mascot from "../../images/Mascots/mascot1.png";
+import { getMascotImage } from "../Utils";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
-import { DistributeVertical } from "react-bootstrap-icons";
 
 export default function UserInfo() {
+  const [isOpen, setIsOpen] = useState(true);
+  const [username, setUsername] = useState("");
+  const [total_points, setTotal_points] = useState(0);
+  const [active_days, set_active_days] = useState([]);
+  const [total_answered_questions, setTotal_answered_questions] = useState(0);
+  const [active_mascot_index, setActiveMascotIndex] = useState(0);
+  const [mascots, setMascots] = useState([]);
   const history = useHistory();
 
   const handlePractice = () => {
@@ -23,12 +29,6 @@ export default function UserInfo() {
   const handleChangeMascot = () => {
     history.push("/mascot");
   };
-
-  const [isOpen, setIsOpen] = useState(true);
-  const [username, setUsername] = useState("");
-  const [total_points, setTotal_points] = useState(0);
-  const [active_days, set_active_days] = useState([]);
-  const [total_answered_questions, setTotal_answered_questions] = useState(0);
 
   const toggle = () => {
     if (isOpen) {
@@ -45,10 +45,14 @@ export default function UserInfo() {
       var total_points = user.get("total_points");
       var active_days = user.get("active_days");
       var total_answered_questions = user.get("total_answered_questions");
+      var activeMascot = user.get("active_mascot_id");
+      var activeMascotIndex = await fetchMascots(activeMascot);
       setUsername(username);
       setTotal_points(total_points);
       set_active_days(active_days);
       setTotal_answered_questions(total_answered_questions);
+      setActiveMascotIndex(activeMascotIndex);
+      console.log(activeMascot);
     } else {
       history.push("/login");
     }
@@ -58,6 +62,16 @@ export default function UserInfo() {
     retrieveUser();
   }, []);
 
+  const fetchMascots = async (active_mascot_id) => {
+    const Mascots = new Parse.Object.extend("Mascot");
+    const query = new Parse.Query(Mascots);
+    const mascotArray = await query.find();
+    var mascotIdArray = mascotArray.map((obj) => obj.id);
+    var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
+    console.log(mascotIndex + " " + active_mascot_id);
+    return mascotIndex;
+  };
+  
   return (
     <div className="user-container">
       <div
@@ -92,7 +106,7 @@ export default function UserInfo() {
             </Card>
           </div>
           <div className="user-mascot-div">
-            <Image src={Mascot} className="user-mascot-img" />
+            <Image src={getMascotImage(active_mascot_index)} className="user-mascot-img"/>
             <Button
               onClick={handleChangeMascot}
               className="user-change-mascot-btn"
