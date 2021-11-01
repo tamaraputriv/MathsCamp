@@ -3,11 +3,13 @@ import { Button, Container, Col } from "react-bootstrap";
 import Logo from "../../images/Logo/logo-prelogin.svg";
 import { DoorOpen, HouseDoor, Gem } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
+import Parse from "parse";
+import { useEffect, useState } from "react";
 import "./NavbarPracticeMode.css";
 import "bootstrap/dist/css/bootstrap.css";
-import Parse from "parse";
 
 export default function Navbar_practice_mode() {
+  const [points, setPoints] = useState(0);
 
   const history = useHistory();
 
@@ -20,6 +22,18 @@ export default function Navbar_practice_mode() {
       history.push("/frontpage");
     };
 
+    const fetchPoints = () => {
+      const user = Parse.User.current();
+      if(user){
+        const totalPoints = user.get("total_points");
+        setPoints(totalPoints);
+      }
+    }
+
+    useEffect(() => {
+      fetchPoints();
+    }, []);
+
   return (
     <Container fluid className="navbar">
       <Col>
@@ -29,7 +43,7 @@ export default function Navbar_practice_mode() {
       </Col>
       <Col className="app-name-col">
         <h5 className="navbar-brand">
-          <Gem size={15} color="#F4C46B" /> 600
+          <Gem size={15} color="#F4C46B" /> {points}
         </h5>
       </Col>
       <Col lg={1.5}>
