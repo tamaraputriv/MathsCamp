@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Parse from "parse";
-import { Container, Row, Form, Col, Button, Card, Image } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Form,
+  Col,
+  Button,
+  Card,
+  Image,
+} from "react-bootstrap";
 import "./MultipleChoice.css";
-import { BsLifePreserver, BsCheckCircle } from "react-icons/bs";
+import {
+  BsLifePreserver,
+  BsCheckCircle,
+  BsChevronRight,
+  BsFileText,
+} from "react-icons/bs";
 import Mascot from "../../images/Mascots/mascot1.png";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import { useHistory } from "react-router";
@@ -19,20 +32,25 @@ export default function MultipleChoice() {
   const [currentQuestionId, setId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
-  
+  const [submitted, setSubmitted] = useState(false);
+
   const [active_mascot_index, setActiveMascotIndex] = useState(0);
   const history = useHistory();
 
-
   const fetchQuestion = async (info) => {
     const query = new Parse.Query("Questions");
-    console.log("Retrievestudent returned level: " + info.level + ", correctids: " + info.correct)
+    console.log(
+      "Retrievestudent returned level: " +
+        info.level +
+        ", correctids: " +
+        info.correct
+    );
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
     try {
       let question = await query.find();
       console.log(question);
-      for(let i = 0; i < question.length; i++){
+      for (let i = 0; i < question.length; i++) {
         const currentId = question[i].id;
         console.log(currentId);
         if (!info.correct.includes(currentId)) {
@@ -50,9 +68,7 @@ export default function MultipleChoice() {
           setImage(image);
           break;
         } else {
-          console.log(
-            "The question was in the correct id array"
-          );
+          console.log("The question was in the correct id array");
         }
       }
     } catch (error) {
@@ -114,25 +130,26 @@ export default function MultipleChoice() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
     if (correct_answer === chosenOption) {
-      try{
+      try {
         const student = Parse.User.current();
         if (student) {
           var new_total_points = total_points + 5;
-          student.set("total_points", new_total_points); 
+          student.set("total_points", new_total_points);
           student.add(category + "_correct_ids", currentQuestionId);
           console.log(currentQuestionId);
           await student.save();
           var correct = student.get(category + "_correct_ids");
           console.log("Added to the database in submit: " + correct);
           console.log("The answer is correct!");
-        }else {
-        console.log("The answer is NOT correct!");
-        } 
-      }catch(error){
-        alert("Could not submit your answer, try again!")
+        } else {
+          console.log("The answer is NOT correct!");
+        }
+      } catch (error) {
+        alert("Could not submit your answer, try again!");
       }
-    }  
+    }
   };
 
   useEffect(() => {
@@ -140,7 +157,6 @@ export default function MultipleChoice() {
   }, []);
 
   return (
-    
     <Container fluid className="multiple-container">
       <Row>
         <Col md="auto" className="question-img-col">
@@ -179,20 +195,37 @@ export default function MultipleChoice() {
             </Card>
 
             <Form.Group as={Row} className="mb-8 mt-8">
-              <div className="btn-div">
-                <Button className="hint-btn quiz-btn" onClick={setShowHint}>
-                  Hint
-                  <BsLifePreserver className="btn-icon" />
-                </Button>
-                <Button
-                  id="sub-btn"
-                  className="sub-btn quiz-btn"
-                  onClick={handleSubmit}
-                  type="submit"
-                >
-                  Submit <BsCheckCircle className="btn-icon" />
-                </Button>
-              </div>
+              {submitted ? (
+                <div className="btn-div">
+                  <Button className="expl-btn quiz-btn">
+                    Explanation
+                    <BsFileText className="btn-icon" />
+                  </Button>
+                  <Button
+                    className="next-btn quiz-btn"
+                    onClick={() => fetchQuestion(retrieveStudent())}
+                    type="submit"
+                  >
+                    Next question
+                    <BsChevronRight className="btn-icon" />
+                  </Button>
+                </div>
+              ) : (
+                <div className="btn-div">
+                  <Button className="hint-btn quiz-btn" onClick={setShowHint}>
+                    Hint
+                    <BsLifePreserver className="btn-icon" />
+                  </Button>
+                  <Button
+                    id="sub-btn"
+                    className="sub-btn quiz-btn"
+                    onClick={handleSubmit}
+                    type="submit"
+                  >
+                    Submit <BsCheckCircle className="btn-icon" />
+                  </Button>
+                </div>
+              )}
             </Form.Group>
           </Form>
         </Col>
@@ -206,9 +239,6 @@ export default function MultipleChoice() {
           <Image src={Mascot} className="quiz-mascot-img" />
         </Col>
       </Row>
-      <div>
-        <Button onClick={() => fetchQuestion(retrieveStudent())}>Next question</Button>
-      </div>
     </Container>
   );
 }
