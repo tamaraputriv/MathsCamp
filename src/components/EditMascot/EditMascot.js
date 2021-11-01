@@ -170,6 +170,15 @@ export default function EditMascot(){
         }
     }
 
+    const pickMascot = async (mascotId) => {
+        const user = Parse.User.current();
+        if(user){
+            user.set("active_mascot_id", mascotId);
+            user.save();
+            setActiveMascotId(mascotId);
+        }
+    }
+
     return(
         <Container className="mascot-container">
             <div className="point-container">
@@ -189,7 +198,10 @@ export default function EditMascot(){
                                 <Gem color="#F2B84B"/> {mascot.attributes.required_points} points
                                 </Card.Text>
                                 {owned_mascot_ids.includes(mascot.id)
-                                    ?<Button className="buy-mascot-btn owned" variant="primary">Buy mascot <Gem/></Button>
+                                    ?[(active_mascot_id === mascot.id
+                                        ?<div className="active-mascot-btn">Active mascot</div>
+                                        :<Button className="pick-mascot-btn" variant="primary" onClick={() => pickMascot(mascot.id)}>Pick mascot </Button>
+                                    )]
                                     :<Button className="buy-mascot-btn" variant="primary" onClick={() => buyMascot(mascot.id, mascot.attributes.required_points, total_points)}>Buy mascot <Gem/></Button>
                                 }
                             </Card.Body>

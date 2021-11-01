@@ -49,10 +49,24 @@
   font-family: "Rubik";
 }
 
-.owned {
+.pick-mascot-btn{
+  width: 150px;
+  background-color: #f2b84b;
+  border-color: #f7ac22;
+  font-family: "Rubik";
+}
+
+.pick-mascot-btn:hover {
+  background-color: #f0ac2b;
+  border-color: #f0ac2b;
+}
+
+.active-mascot-btn{
   border: none;
   background: none;
   outline: 0 !important; 
+  color:#4d4d4d;
+  font-style: italic;
 }
 
 .go-back-btn-container {
