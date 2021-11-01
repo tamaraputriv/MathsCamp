@@ -131,10 +131,10 @@ export default function MultipleChoice() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
-    if (correct_answer === chosenOption) {
-      try {
-        const student = Parse.User.current();
-        if (student) {
+    try {
+      const student = Parse.User.current();
+      if (student) {
+        if (correct_answer === chosenOption) {
           var new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
           student.add(category + "_correct_ids", currentQuestionId);
@@ -146,9 +146,11 @@ export default function MultipleChoice() {
         } else {
           console.log("The answer is NOT correct!");
         }
-      } catch (error) {
-        alert("Could not submit your answer, try again!");
+        student.increment("total_answered_questions");
+        await student.save();
       }
+    } catch (error) {
+      alert("Could not submit your answer, try again!");
     }
   };
 
