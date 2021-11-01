@@ -45,13 +45,25 @@
   display: unset;
 }
 
+.unlocked-badge {
+  margin: 6px;
+  max-height: 120px;
+  max-width: 120px;
+}
+
 .locked-badge {
   margin: 6px;
   max-height: 120px;
+  max-width: 120px;
+  opacity: 0.4;
 }
 
 .badge-col {
   padding-top: 20px;
+}
+
+.reward-image-container{
+  display: inline-block;
 }
 
 /* Medium screens */

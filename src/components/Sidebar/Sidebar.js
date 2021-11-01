@@ -32,7 +32,7 @@ import Badge25 from "../../images/Rewards/calculator-badge.png";
 
 export default function Sidebar({ isOpen, toggle }) {
   const [rewards, setRewards] = useState([]);
-  const [studentRewards, setStudentRewards] = useState([]);
+  const [owned_rewards, setStudentRewards] = useState([]);
 
   const fetchRewards = async () => {
     const Rewards = new Parse.Object.extend("Reward");
@@ -41,12 +41,16 @@ export default function Sidebar({ isOpen, toggle }) {
     setRewards(result);
   };
 
-  const retrieveStudent = () => {
+  useEffect(() => {
+    fetchRewards();
+  }, []);
+
+  const retrieveStudent = async () => {
     const student = Parse.User.current();
     if (student) {
-      const student_rewards = student.get("reward_badge_ids");
-      setStudentRewards(student_rewards);
-      console.log("Student reward badge ids: " + student_rewards);
+      const rewards = student.get("reward_badge_ids");
+      setStudentRewards(rewards);
+      console.log("Student reward badge ids: " + owned_rewards);
     } else {
       alert("The user couldn't be retrieved");
     }
@@ -54,7 +58,6 @@ export default function Sidebar({ isOpen, toggle }) {
 
   useEffect(() => {
     retrieveStudent();
-    fetchRewards();
   }, []);
 
   const getRewardImage = (index) => {
@@ -174,13 +177,25 @@ export default function Sidebar({ isOpen, toggle }) {
       </div>
       <div className="badge-col" style={{}}>
         {rewards.map((reward) => (
-          <img
+          <div className="reward-image-container">
+          {owned_rewards.includes(reward.id)
+            
+            ?(<img
+            key={reward.id}
+            alt="reward"
+            className="unlocked-badge"
+            src={getRewardImage(rewards.indexOf(reward))}
+            title={reward.attributes.description}
+            />)
+            :(<img
             key={reward.id}
             alt="reward"
             className="locked-badge"
             src={getRewardImage(rewards.indexOf(reward))}
             title={reward.attributes.description}
-          />
+            />) 
+          }
+           </div>
         ))}
       </div>
     </div>
