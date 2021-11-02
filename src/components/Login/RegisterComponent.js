@@ -3,7 +3,7 @@ import { CardList, Tree } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
 import "./RegisterComponent.css";
 import React, { useState } from "react";
-import {Parse, setAsyncStorage} from "parse";
+import Parse from "parse";
 
 export default function RegisterComponent() {
   const [username, setUsername] = useState("");
@@ -26,7 +26,6 @@ export default function RegisterComponent() {
   //Signin checks if the username and email are unique. It also checks stores the password securely. 
   const handleReg = async (e) => {
     e.preventDefault();
-    //setAsyncStorage(null);
     if (password === "" || username === "") {
       alert("You need to fill out a username and password");
       return;
@@ -42,11 +41,9 @@ export default function RegisterComponent() {
         user.add("owned_mascot_ids", "arB9fEWmFp");
         try {
           await user.signUp();
-          console.log("New user created with objectId: " + user.id);
           history.push("/frontpage");
         } catch (error) {
           alert("Something went wrong while registering you as a user. Please try again!");
-          console.log(error.message);
         }
       }
   }

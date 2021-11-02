@@ -51,7 +51,6 @@ export default function UserInfo() {
       set_active_days(active_days);
       setTotal_answered_questions(total_answered_questions);
       setActiveMascotIndex(activeMascotIndex);
-      console.log(activeMascot);
     } else {
       history.push("/login");
     }

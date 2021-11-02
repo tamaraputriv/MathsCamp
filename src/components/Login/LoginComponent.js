@@ -30,11 +30,9 @@ export default function LoginComponent() {
         var active = await user.get("active_days");
         var date = new Date().toLocaleDateString();
         if(!active.find(element => element === date)){
-          console.log(!active.find((element) => element === date));
           user.add("active_days", date);
           user.save();
         }
-        console.log("Hentede brugeren med id: " + user.id);
         history.push("/frontpage");
       }
     }catch(error){
