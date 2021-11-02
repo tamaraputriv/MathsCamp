@@ -51,9 +51,6 @@ export default function EditMascot(){
         fetchStudent();
     }, []);
 
-    
-    
-
     const buyMascot = (mascotId, mascotPrice, points) => {
         if(points >= mascotPrice){
             const user = Parse.User.current();

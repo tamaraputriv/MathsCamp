@@ -32,9 +32,7 @@ export default function MultipleChoice() {
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
-
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
-  const history = useHistory();
 
   const fetchQuestion = async (info) => {
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
@@ -56,11 +54,11 @@ export default function MultipleChoice() {
         console.log(currentId);
         if (!info.correct.includes(currentId)) {
           console.log("This question is unanswered");
-          const correct_answer = await question[i].get("correct_answer");
-          const description = await question[i].get("description");
-          const options = await question[i].get("options");
-          const hint = await question[i].get("hint");
-          const image = await question[i].get("img_src");
+          const correct_answer = question[i].get("correct_answer");
+          const description = question[i].get("description");
+          const options = question[i].get("options");
+          const hint = question[i].get("hint");
+          const image = question[i].get("img_src");
           setId(currentId);
           setDescription(description);
           setOptions(options);
@@ -103,6 +101,10 @@ export default function MultipleChoice() {
     console.log(mascotIndex + " " + active_mascot_id);
     return mascotIndex;
   }
+
+  useEffect(() => {
+    fetchQuestion(retrieveStudent());
+  }, []);
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -152,10 +154,6 @@ export default function MultipleChoice() {
       alert("Could not submit your answer, try again!");
     }
   };
-
-  useEffect(() => {
-    fetchQuestion(retrieveStudent());
-  }, []);
 
   return (
     <Container fluid className="multiple-container">
