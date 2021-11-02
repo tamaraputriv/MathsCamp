@@ -184,12 +184,12 @@ export default function Sidebar({ isOpen, toggle }) {
             title={reward.attributes.description}
             />)
             :(<img
-            key={reward.id}
-            alt="reward"
-            className="locked-badge"
-            src={getRewardImage(rewards.indexOf(reward))}
-            title={reward.attributes.description}
-            />) 
+              key={reward.id}
+              alt="reward"
+              className="locked-badge"
+              src={getRewardImage(rewards.indexOf(reward))}
+              title={reward.attributes.description}
+              />) 
           }
            </div>
         ))}
