@@ -3,7 +3,6 @@ import Parse from "parse";
 import { Container, Row, Form, Col, Button, Card, Image } from "react-bootstrap";
 import "./MultipleChoice.css";
 import { BsLifePreserver, BsCheckCircle } from "react-icons/bs";
-import Mascot from "../../images/Mascots/mascot1.png";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import { useHistory } from "react-router";
 import { getMascotImage } from "../Utils";
@@ -25,6 +24,8 @@ export default function MultipleChoice() {
 
 
   const fetchQuestion = async (info) => {
+    var activeMascotIndex = await fetchMascots(info.activeMascotId);
+    setActiveMascotIndex(activeMascotIndex);
     const query = new Parse.Query("Questions");
     console.log("Retrievestudent returned level: " + info.level + ", correctids: " + info.correct)
     query.equalTo("category", info.category);
@@ -70,16 +71,14 @@ export default function MultipleChoice() {
       console.log("Student retrieved correctids: " + correct);
       setTotalPoints(total_points);
       setCategory(category);
-      //var activeMascot = student.get("active_mascot_id");
-      //var activeMascotIndex = fetchMascots(activeMascot);
-      //setActiveMascotIndex(activeMascotIndex);
-      return { level, correct, category };
+      var activeMascotId = student.get("active_mascot_id");
+      return { level, correct, category, activeMascotId };
     } else {
       alert("The user couldn't be retrieved");
     }
   };
 
-  /*const fetchMascots = async (active_mascot_id) => {
+  const fetchMascots = async (active_mascot_id) => {
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
     const mascotArray = await query.find();
@@ -87,7 +86,7 @@ export default function MultipleChoice() {
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
     console.log(mascotIndex + " " + active_mascot_id);
     return mascotIndex;
-  }*/
+  }
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -203,7 +202,7 @@ export default function MultipleChoice() {
               <p>{hint}</p>
             </div>
           </div>
-          <Image src={Mascot} className="quiz-mascot-img" />
+          <Image src={getMascotImage(active_mascot_index)} className="quiz-mascot-img" />
         </Col>
       </Row>
       <div>

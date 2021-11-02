@@ -67,7 +67,6 @@ export default function UserInfo() {
     const mascotArray = await query.find();
     var mascotIdArray = mascotArray.map((obj) => obj.id);
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
-    console.log(mascotIndex + " " + active_mascot_id);
     return mascotIndex;
   }
 
