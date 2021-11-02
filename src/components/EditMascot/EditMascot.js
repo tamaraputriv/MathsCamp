@@ -23,7 +23,6 @@ export default function EditMascot(){
         const query = new Parse.Query(Mascots);
         const result = await query.find();
         const removeBlank = result.filter((e) => e.attributes.required_points > 0);
-        console.log(removeBlank);
         setMascots(removeBlank);
     };
 
@@ -41,7 +40,6 @@ export default function EditMascot(){
             setOwnedMascotIds(owned);
             setActiveMascotId(active);
             setTotalPoints(points);
-            console.log(user.id);
         }else{
             alert("Failed to retrieve the user.");
         }
@@ -60,15 +58,16 @@ export default function EditMascot(){
                 setTotalPoints(points);
                 var owned = user.get("owned_mascot_ids");
                 var wonRewardId = getMascotReward(owned.length);
-                if(wonRewardId !== ""){
+                var hasWon = (wonRewardId !== "");
+                if(hasWon){
                     user.add("reward_badge_ids", wonRewardId);
-                    //Add en eller anden form for (du har vundet en reward!)
                 }
                 setOwnedMascotIds(owned);
-                console.log(points + mascotId);
                 user.set("total_points", points);
                 user.save();
-                console.log("added" + mascotId)
+                if(hasWon){
+                    history.push("/reward");
+                }
             }
         }else{
             alert("You don't have enough points to buy this mascot.");

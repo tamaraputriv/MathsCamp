@@ -103,7 +103,7 @@ export default function Sidebar({ isOpen, toggle }) {
           ></BsChevronDoubleRight>
         )}
       </div>
-      {!hasWonReward 
+      {hasWonReward 
          ? (<div className="text-center reward_container">
               <p className="reward_message">Congratulations! You have won a reward, check it out!</p>
               <Button className="see_reward_btn" onClick={handleSeeReward}>See reward  <BsTrophy/></Button>
