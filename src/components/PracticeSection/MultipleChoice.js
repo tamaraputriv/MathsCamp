@@ -33,7 +33,7 @@ export default function MultipleChoice() {
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const [active_mascot_index, setActiveMascotIndex] = useState(0);
+  const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const history = useHistory();
 
   const fetchQuestion = async (info) => {

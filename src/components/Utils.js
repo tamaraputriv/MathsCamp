@@ -22,6 +22,7 @@ import Mascot21 from "../images/Mascots/mascot21.png";
 import Mascot22 from "../images/Mascots/mascot22.png";
 import Mascot23 from "../images/Mascots/mascot23.png";
 import Mascot24 from "../images/Mascots/mascot24.png";
+import BlankImage from "../images/Mascots/blank-image.PNG";
 
 export const getMascotImage = (index) => {
     switch(index){
@@ -96,6 +97,9 @@ export const getMascotImage = (index) => {
         }
         case 23: {
             return Mascot24;
+        }
+        case 24:{
+            return BlankImage;
         }
         default:
             alert("The mascot images cannot be loaded. Please contact your teacher!");

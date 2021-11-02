@@ -22,7 +22,9 @@ export default function EditMascot(){
         const Mascots = new Parse.Object.extend("Mascot");
         const query = new Parse.Query(Mascots);
         const result = await query.find();
-        setMascots(result);
+        const removeBlank = result.filter((e) => e.attributes.required_points > 0);
+        console.log(removeBlank);
+        setMascots(removeBlank);
     };
 
     useEffect(() => {
