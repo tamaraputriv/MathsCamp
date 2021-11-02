@@ -60,7 +60,7 @@ export default function EditMascot(){
                 setTotalPoints(points);
                 var owned = user.get("owned_mascot_ids");
                 var wonRewardId = getMascotReward(owned.length);
-                if(wonRewardId != ""){
+                if(wonRewardId !== ""){
                     user.add("reward_badge_ids", wonRewardId);
                     //Add en eller anden form for (du har vundet en reward!)
                 }

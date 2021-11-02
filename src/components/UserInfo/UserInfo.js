@@ -68,8 +68,7 @@ export default function UserInfo() {
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
     return mascotIndex;
   }
-
-  
+ 
   return (
     <div className="user-container">
       <div
