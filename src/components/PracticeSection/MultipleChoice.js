@@ -80,8 +80,8 @@ export default function MultipleChoice() {
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");
-      const level = student.get(category + "_level");
       const correct = student.get(category + "_correct_ids");
+      const level = student.get(category + "_level");
       console.log("Student retrieved correctids: " + correct);
       setTotalPoints(total_points);
       setCategory(category);
@@ -142,6 +142,10 @@ export default function MultipleChoice() {
           console.log(currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
+          // Remember to change from 2 to 7
+          if (correct.length == 2) {
+            student.increment(category + "_level");
+          }
           console.log("Added to the database in submit: " + correct);
           console.log("The answer is correct!");
         } else {
