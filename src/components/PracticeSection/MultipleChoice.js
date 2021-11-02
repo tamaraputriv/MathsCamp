@@ -100,7 +100,7 @@ export default function MultipleChoice() {
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
     console.log(mascotIndex + " " + active_mascot_id);
     return mascotIndex;
-  }
+  };
 
   useEffect(() => {
     fetchQuestion(retrieveStudent());
@@ -140,7 +140,7 @@ export default function MultipleChoice() {
           student.set("total_points", new_total_points);
           student.add(category + "_correct_ids", currentQuestionId);
           console.log(currentQuestionId);
-          await student.save();
+          student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
           console.log("Added to the database in submit: " + correct);
           console.log("The answer is correct!");
@@ -235,7 +235,10 @@ export default function MultipleChoice() {
               <p>{hint}</p>
             </div>
           </div>
-          <Image src={getMascotImage(active_mascot_index)} className="quiz-mascot-img" />
+          <Image
+            src={getMascotImage(active_mascot_index)}
+            className="quiz-mascot-img"
+          />
         </Col>
       </Row>
     </Container>
