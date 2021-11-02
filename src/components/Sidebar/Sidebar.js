@@ -46,7 +46,15 @@ export default function Sidebar({ isOpen, toggle }) {
   const retrieveStudent = async () => {
     const student = Parse.User.current();
     if (student) {
-      const rewards = student.get("reward_badge_ids");
+      var active_days = student.get("active_days");
+      var wonRewardId = getActiveDayReward(active_days.length);
+      var rewards = student.get("reward_badge_ids");
+      if(wonRewardId !== "" && !rewards.includes(wonRewardId)){
+        student.add("reward_badge_ids", wonRewardId);
+        //Add en eller anden form for (du har vundet en reward!)
+        student.save();
+        rewards = await student.get("reward_badge_ids");
+      }
       setStudentRewards(rewards);
     } else {
       alert("The user couldn't be retrieved");
@@ -56,6 +64,29 @@ export default function Sidebar({ isOpen, toggle }) {
   useEffect(() => {
     retrieveStudent();
   }, []);
+
+  const getActiveDayReward = (length) => {
+    switch(length){
+        case 3: {
+            return "Xn9GW6PD18";
+        }
+        case 5: {
+            return "BDOyMkhoXE";
+        }
+        case 7: {
+            return "1qWSzGiLPd";
+        }
+        case 11: {
+            return "ThWu7K9V65";
+        }
+        case 15: {
+            return "K4Sp4TC7SA";
+        }
+        default: {
+            return "";
+        }
+    }
+  }
 
   const getRewardImage = (index) => {
     switch (index) {

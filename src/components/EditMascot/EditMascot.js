@@ -57,9 +57,14 @@ export default function EditMascot(){
             if (user) {
                 user.add("owned_mascot_ids", mascotId);
                 points -= mascotPrice;
-                var owned = user.get("owned_mascot_ids");
-                setOwnedMascotIds(owned);
                 setTotalPoints(points);
+                var owned = user.get("owned_mascot_ids");
+                var wonRewardId = getMascotReward(owned.length);
+                if(wonRewardId !== ""){
+                    user.add("reward_badge_ids", wonRewardId);
+                    //Add en eller anden form for (du har vundet en reward!)
+                }
+                setOwnedMascotIds(owned);
                 console.log(points + mascotId);
                 user.set("total_points", points);
                 user.save();
@@ -69,6 +74,30 @@ export default function EditMascot(){
             alert("You don't have enough points to buy this mascot.");
         }
     }
+
+    const getMascotReward = (length) => {
+        switch(length){
+            case 3: {
+                return "Q6AkAx4llp";
+            }
+            case 5: {
+                return "skz6uxOpI6";
+            }
+            case 7: {
+                return "6U3vVNGZOO";
+            }
+            case 9: {
+                return "A66daWHfAy";
+            }
+            case 11: {
+                return "liTmaZ30Tb";
+            }
+            default: {
+                return "";
+            }
+        }
+    }
+
 
     const pickMascot = (mascotId) => {
         const user = Parse.User.current();
