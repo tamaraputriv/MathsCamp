@@ -22,11 +22,13 @@ import { getMascotImage } from "../Utils";
 
 export default function MultipleChoice() {
   const [showHint, setShowHint] = useState(false);
+  const [showExplanation, setShowExplanation] = useState(false);
   const [description, setDescription] = useState("");
   const [options, setOptions] = useState([]);
   const [chosenOption, setChosenOption] = useState("");
   const [correct_answer, setCorrectAnswer] = useState("");
   const [hint, setHint] = useState("");
+  const [explanation, setExplanation] = useState("");
   const [image, setImage] = useState("");
   const [currentQuestionId, setId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
@@ -58,12 +60,14 @@ export default function MultipleChoice() {
           const description = question[i].get("description");
           const options = question[i].get("options");
           const hint = question[i].get("hint");
+          const explanation = question[i].get("explanation");
           const image = question[i].get("img_src");
           setId(currentId);
           setDescription(description);
           setOptions(options);
           setCorrectAnswer(correct_answer);
           setHint(hint);
+          setExplanation(explanation);
           setImage(image);
           break;
         } else {
@@ -127,6 +131,22 @@ export default function MultipleChoice() {
 
   const handleChange = (e) => {
     setChosenOption(e.target.value);
+  };
+
+  const toggleHint = () => {
+    if (showHint) {
+      setShowHint(false);
+    } else {
+      setShowHint(true);
+    }
+  };
+
+  const toggleExplanation = () => {
+    if (showExplanation) {
+      setShowExplanation(false);
+    } else {
+      setShowExplanation(true);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -200,10 +220,23 @@ export default function MultipleChoice() {
             <Form.Group as={Row} className="mb-8 mt-8">
               {submitted ? (
                 <div className="btn-div">
-                  <Button className="expl-btn quiz-btn">
-                    Explanation
-                    <BsFileText className="btn-icon" />
-                  </Button>
+                  {showExplanation ? (
+                    <Button
+                      className="close-expl-btn quiz-btn"
+                      onClick={toggleExplanation}
+                    >
+                      Close explanation
+                      <BsFileText className="btn-icon" />
+                    </Button>
+                  ) : (
+                    <Button
+                      className="expl-btn quiz-btn"
+                      onClick={toggleExplanation}
+                    >
+                      Explanation
+                      <BsFileText className="btn-icon" />
+                    </Button>
+                  )}
                   <Button
                     className="next-btn quiz-btn"
                     onClick={() => fetchQuestion(retrieveStudent())}
@@ -215,10 +248,20 @@ export default function MultipleChoice() {
                 </div>
               ) : (
                 <div className="btn-div">
-                  <Button className="hint-btn quiz-btn" onClick={setShowHint}>
-                    Hint
-                    <BsLifePreserver className="btn-icon" />
-                  </Button>
+                  {showHint ? (
+                    <Button
+                      className="close-hint-btn quiz-btn"
+                      onClick={toggleHint}
+                    >
+                      Close hint
+                      <BsLifePreserver className="btn-icon" />
+                    </Button>
+                  ) : (
+                    <Button className="hint-btn quiz-btn" onClick={toggleHint}>
+                      Hint
+                      <BsLifePreserver className="btn-icon" />
+                    </Button>
+                  )}
                   <Button
                     id="sub-btn"
                     className="sub-btn quiz-btn"
@@ -231,6 +274,9 @@ export default function MultipleChoice() {
               )}
             </Form.Group>
           </Form>
+          <div style={{ display: showExplanation ? "" : "none" }}>
+            <div className="explanation-div"> {explanation}</div>
+          </div>
         </Col>
         <Col md="auto" className="img-col">
           <div style={{ display: showHint ? "" : "none" }}>
@@ -244,6 +290,9 @@ export default function MultipleChoice() {
             className="quiz-mascot-img"
           />
         </Col>
+      </Row>
+      <Row>
+        <Col></Col>
       </Row>
     </Container>
   );
