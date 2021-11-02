@@ -164,6 +164,7 @@
 
 .form-check {
   display: flex;
+  width: 540px;
 }
 
 .form-check:hover {
@@ -171,7 +172,6 @@
   background-color: #d9d9fb;
   border-radius: 6px;
   border-left: 2px;
-  width: 540px;
 }
 
 .form-check-input:checked {
