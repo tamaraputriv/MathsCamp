@@ -66,6 +66,45 @@
   display: inline-block;
 }
 
+.reward_container{
+  background-color:#F2B84B;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.reward_message{
+  color: #ffffff;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.see_reward_btn{
+  background-color: #7C7EF2;
+  border-color: #5D5FEF;
+  font-family: "Rubik";
+}
+
+.see_reward_btn:hover{
+  background-color: #5D5FEF;
+  border-color: #5D5FEF;
+}
+
+.close_btn{
+  background-color: #FF8887;
+  border-color: #ff6665;
+  font-family: "Rubik";
+  margin-left: 10px;
+}
+
+.close_btn:hover{
+  background-color: #ff6665;
+  border-color: #ff6665;
+}
+
 /* Medium screens */
 @media all and (max-width: 1300px) {
 }

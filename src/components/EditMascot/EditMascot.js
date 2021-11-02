@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
-import { Gem, ChevronLeft } from "react-bootstrap-icons";
+import { Gem, ChevronLeft, Person } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
 import Parse from "parse";
 import "./EditMascot.css";
@@ -98,7 +98,6 @@ export default function EditMascot(){
         }
     }
 
-
     const pickMascot = (mascotId) => {
         const user = Parse.User.current();
         if(user){
@@ -129,7 +128,7 @@ export default function EditMascot(){
                                 {owned_mascot_ids.includes(mascot.id)
                                     ?[(active_mascot_id === mascot.id
                                         ?<div key={mascot.id} className="active-mascot-btn">Active mascot</div>
-                                        :<Button key={mascot.id} className="pick-mascot-btn" variant="primary" onClick={() => pickMascot(mascot.id)}>Pick mascot </Button>
+                                        :<Button key={mascot.id} className="pick-mascot-btn" variant="primary" onClick={() => pickMascot(mascot.id)}>Pick mascot <Person/></Button>
                                     )]
                                     :<Button key={mascot.id} className="buy-mascot-btn" variant="primary" onClick={() => buyMascot(mascot.id, mascot.attributes.required_points, total_points)}>Buy mascot <Gem/></Button>
                                 }

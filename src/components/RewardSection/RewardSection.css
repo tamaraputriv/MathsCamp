@@ -35,7 +35,6 @@
 
 .go-collection-btn {
   margin-top: 10px;
-  width: 247px;
   background-color: #7c7ef2;
   border-color: #7c7ef2;
   font-family: "Rubik";
@@ -47,7 +46,7 @@
 }
 
 .quiz-btn {
-  margin: 15px;
+  margin: 10px;
   font-size: 18px;
 }
 
@@ -83,4 +82,9 @@
 .btn-icon {
   margin-left: 4px;
   margin-bottom: 4px;
+}
+
+.trophy-icon{
+  margin-left: 4px;
+  margin-right: 7px;
 }
