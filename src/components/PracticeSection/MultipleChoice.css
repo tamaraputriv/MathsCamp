@@ -196,26 +196,45 @@
 
 .img-col {
   margin-left: 100px;
+  margin-top: 80px;
   position: relative;
 }
 
 .speakboble {
   position: absolute;
-  z-index: 1;
-  top: -120px;
-  right: 200px;
+  z-index: 0;
+  top: -134px;
+  right: 141px;
 }
 
 .speakboble-text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  top: -91px;
+  right: 190px;
+  width: 200px;
+  height: 170px;
+}
+
+.speakboble-header {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   z-index: 1;
-  top: -80px;
-  right: 250px;
+  top: -150px;
+  right: 224px;
   width: 200px;
   height: 170px;
+  font-family: Solway;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 41px;
+  letter-spacing: -0.02em;
 }
 
 .explanation-div {
@@ -242,6 +261,16 @@
   display: flex;
   width: 540px;
 }
+
+/* .wrong-answer {
+  background-color: #ff6665;
+  border-radius: 6px;
+}
+
+.correct-answer {
+  background-color: #64ed82;
+  border-radius: 6px;
+} */
 
 .form-check:hover {
   display: flex;

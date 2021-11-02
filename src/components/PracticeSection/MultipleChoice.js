@@ -23,6 +23,7 @@ import { getMascotImage } from "../Utils";
 export default function MultipleChoice() {
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
+  const [showMotivation, setShowMotivation] = useState(false);
   const [description, setDescription] = useState("");
   const [options, setOptions] = useState([]);
   const [chosenOption, setChosenOption] = useState("");
@@ -34,6 +35,14 @@ export default function MultipleChoice() {
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isCorrect, setIsCorrect] = useState();
+  const [motivationH1, setMotivationH1] = useState(["Correct!", "Oh well.."]);
+  const [correctMotivation, setCorrectMotivation] = useState([
+    "You're a true math master. Let's do another question.",
+  ]);
+  const [wrongMotivation, setWrongMotivation] = useState([
+    "That wasn’t quite right. Take a look at the explanantion.",
+  ]);
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
 
   const fetchQuestion = async (info) => {
@@ -152,10 +161,12 @@ export default function MultipleChoice() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
+    setShowMotivation(true);
     try {
       const student = Parse.User.current();
       if (student) {
         if (correct_answer === chosenOption) {
+          setIsCorrect(true);
           var new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
           student.add(category + "_correct_ids", currentQuestionId);
@@ -170,6 +181,7 @@ export default function MultipleChoice() {
           console.log("The answer is correct!");
         } else {
           console.log("The answer is NOT correct!");
+          setIsCorrect(false);
         }
         student.increment("total_answered_questions");
         await student.save();
@@ -206,8 +218,8 @@ export default function MultipleChoice() {
                             value={option}
                             label={`${option}`}
                             name="formHorizontalRadios"
-                            className="option-text"
                             onChange={handleChange}
+                            className=""
                           />
                         </div>
                       ))}
@@ -283,6 +295,19 @@ export default function MultipleChoice() {
             <Image src={SpeakBoble} className="speakboble" />
             <div className="speakboble-text">
               <p>{hint}</p>
+            </div>
+          </div>
+          <div style={{ display: showMotivation ? "" : "none" }}>
+            <Image src={SpeakBoble} className="speakboble" />
+            <div className="speakboble-header">
+              {isCorrect ? <>{motivationH1[0]}</> : <>{motivationH1[1]}</>}
+            </div>
+            <div className="speakboble-text">
+              {isCorrect ? (
+                <>{correctMotivation[0]}</>
+              ) : (
+                <>{wrongMotivation[0]}</>
+              )}
             </div>
           </div>
           <Image
