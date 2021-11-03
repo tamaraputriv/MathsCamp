@@ -231,7 +231,7 @@ export default function MultipleChoice() {
                             label={`${option}`}
                             name="formHorizontalRadios"
                             onChange={handleChange}
-                            id={option}
+                            disabled={submitted ? true : false}
                             className={
                               submitted ? checkAnswer(`${option}`) : ""
                             }
