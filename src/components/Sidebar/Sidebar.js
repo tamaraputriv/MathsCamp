@@ -31,7 +31,6 @@ export default function Sidebar({ isOpen, toggle }) {
       var rewards = student.get("reward_badge_ids");
       if(wonRewardId !== "" && !rewards.includes(wonRewardId)){
         student.add("reward_badge_ids", wonRewardId);
-        //Add en eller anden form for (du har vundet en reward!)
         student.save();
         rewards = await student.get("reward_badge_ids");
         setHasWonReward(true);
