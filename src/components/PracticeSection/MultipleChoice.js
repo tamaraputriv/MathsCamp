@@ -158,6 +158,18 @@ export default function MultipleChoice() {
     }
   };
 
+  const checkAnswer = (option) => {
+    var optionClass = "";
+    if (option === chosenOption) {
+      if (option === correct_answer) {
+        optionClass = "correct-answer";
+      } else {
+        optionClass = "wrong-answer";
+      }
+    }
+    return optionClass;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -219,7 +231,10 @@ export default function MultipleChoice() {
                             label={`${option}`}
                             name="formHorizontalRadios"
                             onChange={handleChange}
-                            className=""
+                            id={option}
+                            className={
+                              submitted ? checkAnswer(`${option}`) : ""
+                            }
                           />
                         </div>
                       ))}

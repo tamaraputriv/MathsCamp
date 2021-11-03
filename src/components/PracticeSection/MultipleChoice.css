@@ -262,7 +262,7 @@
   width: 540px;
 }
 
-/* .wrong-answer {
+.wrong-answer {
   background-color: #ff6665;
   border-radius: 6px;
 }
@@ -270,7 +270,7 @@
 .correct-answer {
   background-color: #64ed82;
   border-radius: 6px;
-} */
+}
 
 .form-check:hover {
   display: flex;
