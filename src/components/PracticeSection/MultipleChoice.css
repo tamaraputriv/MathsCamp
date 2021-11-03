@@ -8,6 +8,10 @@
   justify-content: space-around;
 }
 
+.question-row {
+  margin-top: 100px;
+}
+
 .question-col {
   display: flex;
   flex-direction: column;
@@ -196,7 +200,7 @@
 
 .img-col {
   margin-left: 100px;
-  margin-top: 80px;
+  margin-top: 20px;
   position: relative;
 }
 
