@@ -1,21 +1,33 @@
 .mascot-container {
-  padding-top: 20px;
+  padding-top: 50px;
+  padding-bottom: 200px;
 }
 
 .point-circle {
   display: inline-block;
-  background-color: #F0AC2B;
-  border-radius: 25px;
+  background-color: #f0ac2b;
+  border-radius: 16px;
   height: 40px;
   width: 90px;
   padding-top: 10px;
-  margin-top: 70px;
-  margin-bottom: 50px;
+  margin-top: 5px;
   margin-left: 20px;
+}
+
+.point-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 50px 20px 0;
+}
+
+.points-div {
+  display: flex;
 }
 
 .mascot-card {
   margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 8px;
 }
 
 .mascot-name {
@@ -33,6 +45,7 @@
 
 .buy-mascot-btn {
   width: 150px;
+  height: 45px;
   background-color: #f2b84b;
   border-color: #f7ac22;
   font-family: "Rubik";
@@ -43,7 +56,7 @@
   border-color: #f0ac2b;
 }
 
-.buy-mascot-btn:not(:disabled){
+.buy-mascot-btn:not(:disabled) {
   background-color: #f2b84b;
   border-color: #f7ac22;
 }
@@ -52,44 +65,48 @@
   color: #4d4d4d;
   font-size: 18px;
   font-family: "Rubik";
+  margin-bottom: 30px;
 }
 
-.pick-mascot-btn{
-  width: 150px;
-  background-color: #f2b84b;
-  border-color: #f7ac22;
+.pick-mascot-btn {
+  background-color: #7c7ef2;
+  border-color: #7c7ef2;
   font-family: "Rubik";
+  width: 150px;
+  height: 48px;
 }
 
 .pick-mascot-btn:hover {
-  background-color: #f0ac2b;
-  border-color: #f0ac2b;
+  background-color: #5d5fef;
+  border-color: #5d5fef;
 }
 
-.active-mascot-btn{
+.active-mascot-btn {
   border: none;
+  height: 45px;
   background: none;
-  outline: 0 !important; 
-  color:#4d4d4d;
+  outline: 0 !important;
+  color: #4d4d4d;
   font-style: italic;
+  visibility: hidden;
 }
 
 .go-back-btn-container {
-  position: absolute;
-  right: 0;
-  margin-right: 90px;
+  display: flex;
   margin-top: 50px;
-  margin-bottom: 200px;
+  margin-right: 50px;
+  justify-content: flex-end;
 }
 
 .go-back-btn {
   background-color: #7c7ef2;
   border-color: #696bf5;
   font-family: "Rubik";
+  width: 135px;
+  height: 45px;
 }
 
 .go-back-btn:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
 }
-
