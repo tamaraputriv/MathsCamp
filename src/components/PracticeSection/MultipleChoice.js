@@ -174,6 +174,7 @@ export default function MultipleChoice() {
     e.preventDefault();
     setSubmitted(true);
     setShowMotivation(true);
+    setShowHint(false);
     try {
       const student = Parse.User.current();
       if (student) {
