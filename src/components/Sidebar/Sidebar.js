@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import Parse from "parse";
 import "./Sidebar.css";
 import { Button } from "react-bootstrap";
-import { BsChevronDoubleRight, BsChevronDoubleLeft, BsTrophy, BsX } from "react-icons/bs";
+import {
+  BsChevronDoubleRight,
+  BsChevronDoubleLeft,
+  BsTrophy,
+  BsX,
+} from "react-icons/bs";
 import { useHistory } from "react-router";
 import { getRewardImage } from "../Utils";
 
@@ -29,7 +34,7 @@ export default function Sidebar({ isOpen, toggle }) {
       var active_days = student.get("active_days");
       var wonRewardId = getActiveDayReward(active_days.length);
       var rewards = student.get("reward_badge_ids");
-      if(wonRewardId !== "" && !rewards.includes(wonRewardId)){
+      if (wonRewardId !== "" && !rewards.includes(wonRewardId)) {
         student.add("reward_badge_ids", wonRewardId);
         student.save();
         rewards = await student.get("reward_badge_ids");
@@ -46,40 +51,40 @@ export default function Sidebar({ isOpen, toggle }) {
   }, []);
 
   const getActiveDayReward = (length) => {
-    switch(length){
+    switch (length) {
       case 3: {
-          return "Xn9GW6PD18";
+        return "Xn9GW6PD18";
       }
       case 5: {
-          return "BDOyMkhoXE";
+        return "BDOyMkhoXE";
       }
       case 7: {
-          return "1qWSzGiLPd";
+        return "1qWSzGiLPd";
       }
       case 11: {
-          return "ThWu7K9V65";
+        return "ThWu7K9V65";
       }
       case 15: {
-          return "K4Sp4TC7SA";
+        return "K4Sp4TC7SA";
       }
       default: {
-          return "";
+        return "";
       }
     }
-  }
+  };
 
   const handleSeeReward = () => {
     history.push("/reward");
-  }
+  };
 
   const handleClose = () => {
     setHasWonReward(false);
-  }
+  };
 
   return (
     <div className="sidebar-container">
       <div className="sidebar-header">
-        <p
+        <h1
           className="sidebarH1"
           style={{
             fontSize: isOpen ? "" : "18px",
@@ -87,7 +92,7 @@ export default function Sidebar({ isOpen, toggle }) {
           }}
         >
           Your Collection
-        </p>
+        </h1>
         {isOpen ? (
           <BsChevronDoubleLeft
             onClick={toggle}
@@ -102,14 +107,21 @@ export default function Sidebar({ isOpen, toggle }) {
           ></BsChevronDoubleRight>
         )}
       </div>
-      {hasWonReward 
-         ? (<div className="text-center reward_container">
-              <p className="reward_message">Congratulations! You have won a reward, check it out!</p>
-              <Button className="see_reward_btn" onClick={handleSeeReward}>See reward  <BsTrophy/></Button>
-              <Button className="close_btn" onClick={handleClose}>Close <BsX size={21}/></Button>
-            </div>)
-         :(<div></div>)
-      }
+      {hasWonReward ? (
+        <div className="text-center reward_container">
+          <p className="reward_message">
+            Congratulations! You have won a reward, check it out!
+          </p>
+          <Button className="see_reward_btn" onClick={handleSeeReward}>
+            See reward <BsTrophy />
+          </Button>
+          <Button className="close_btn" onClick={handleClose}>
+            Close <BsX size={21} />
+          </Button>
+        </div>
+      ) : (
+        <div></div>
+      )}
       <div>
         <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
           Hover the badges to learn how to win them!
@@ -118,22 +130,23 @@ export default function Sidebar({ isOpen, toggle }) {
       <div className="badge-col" style={{}}>
         {rewards.map((reward) => (
           <div className="reward-image-container" key={reward.id}>
-          {owned_rewards.includes(reward.id) 
-            ?(<img
-            alt="reward"
-            className="unlocked-badge"
-            src={getRewardImage(rewards.indexOf(reward))}
-            title={reward.attributes.description}
-            />)
-            :(<img
-              key={reward.id}
-              alt="reward"
-              className="locked-badge"
-              src={getRewardImage(rewards.indexOf(reward))}
-              title={reward.attributes.description}
-              />) 
-          }
-           </div>
+            {owned_rewards.includes(reward.id) ? (
+              <img
+                alt="reward"
+                className="unlocked-badge"
+                src={getRewardImage(rewards.indexOf(reward))}
+                title={reward.attributes.description}
+              />
+            ) : (
+              <img
+                key={reward.id}
+                alt="reward"
+                className="locked-badge"
+                src={getRewardImage(rewards.indexOf(reward))}
+                title={reward.attributes.description}
+              />
+            )}
+          </div>
         ))}
       </div>
     </div>
