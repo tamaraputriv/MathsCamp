@@ -67,8 +67,8 @@ export default function UserInfo() {
     var mascotIdArray = mascotArray.map((obj) => obj.id);
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
     return mascotIndex;
-  }
- 
+  };
+
   return (
     <div className="user-container">
       <div
@@ -86,24 +86,19 @@ export default function UserInfo() {
         }}
       >
         <div>
-          <h1 className="user-welcome-h1">Welcome {username}</h1>
+          <h1 className="user-welcome-h1">Welcome {username}!</h1>
         </div>
         <div className="card-mascot-div">
           <div className="card-div">
-            <Card className="user-card">
-              <Card.Body>
-                <Button onClick={handlePractice} className="user-practice-btn">
-                  Practice mode
-                </Button>
-                <Button onClick={handleExam} className="user-exam-btn">
-                  Exam <br />
-                  mode
-                </Button>
-              </Card.Body>
-            </Card>
+            <Button onClick={handlePractice} className="user-practice-btn">
+              Start practice
+            </Button>
           </div>
           <div className="user-mascot-div">
-            <Image src={getMascotImage(active_mascot_index)} className="user-mascot-img"/>
+            <Image
+              src={getMascotImage(active_mascot_index)}
+              className="user-mascot-img"
+            />
             <Button
               onClick={handleChangeMascot}
               className="user-change-mascot-btn"

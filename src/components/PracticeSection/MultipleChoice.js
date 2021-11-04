@@ -175,6 +175,7 @@ export default function MultipleChoice() {
     e.preventDefault();
     setSubmitted(true);
     setShowMotivation(true);
+    setShowHint(false);
     try {
       const student = Parse.User.current();
       if (student) {
@@ -187,7 +188,7 @@ export default function MultipleChoice() {
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
           // Remember to change from 2 to 7
-          if (correct.length == 2) {
+          if (correct.length == 7) {
             student.increment(category + "_level");
           }
           console.log("Added to the database in submit: " + correct);
@@ -208,7 +209,7 @@ export default function MultipleChoice() {
 
   return (
     <Container fluid className="multiple-container">
-      <Row>
+      <Row className="question-row">
         <Col md="auto" className="question-img-col">
           <Image src={image} />
         </Col>
