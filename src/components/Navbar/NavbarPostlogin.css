@@ -36,10 +36,11 @@
   justify-content: end;
 }
 
-.home-btn-postlogin {
-  background-color: #f2b84b !important;
-  border-color: #f7ac22 !important;
-  font-family: "Rubik" !important;
+.home-btn-postlogin,
+.home-btn-postlogin:not(:disabled) {
+  background-color: #f2b84b;
+  border-color: #f7ac22;
+  font-family: "Rubik";
 }
 
 .home-btn-postlogin:hover {
@@ -47,14 +48,20 @@
   border-color: #f0ac2b;
 }
 
-.logout-btn-postlogin {
-  background-color: #7c7ef2 !important;
-  border-color: #696bf5 !important;
-  font-family: "Rubik" !important;
+.home-btn-postlogin:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.logout-btn-postlogin,
+.logout-btn-postlogin:not(:disabled) {
+  background-color: #7c7ef2;
+  border-color: #696bf5;
+  font-family: "Rubik";
   margin-left: 12px;
 }
 
-.login-btn-postlogin:hover {
+.logout-btn-postlogin:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
 }

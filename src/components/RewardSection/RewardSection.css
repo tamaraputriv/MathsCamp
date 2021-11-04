@@ -21,7 +21,8 @@
   width: 450px;
 }
 
-.practice-again-btn {
+.practice-again-btn,
+.practice-again-btn:not(:disabled) {
   border: none;
   background-color: #f2b84b;
   border-color: #f7ac22;
@@ -33,7 +34,8 @@
   border-color: #f0ac2b;
 }
 
-.go-collection-btn {
+.go-collection-btn,
+.go-collection-btn:not(:disabled) {
   margin-top: 10px;
   background-color: #7c7ef2;
   border-color: #7c7ef2;
@@ -73,7 +75,7 @@
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 21px;
+  line-height: 26px;
   text-align: center;
   letter-spacing: -0.02em;
   padding-bottom: 8px;
@@ -84,7 +86,7 @@
   margin-bottom: 4px;
 }
 
-.trophy-icon{
+.trophy-icon {
   margin-left: 4px;
   margin-right: 7px;
 }
