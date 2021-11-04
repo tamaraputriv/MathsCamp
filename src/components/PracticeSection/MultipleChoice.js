@@ -92,6 +92,7 @@ export default function MultipleChoice() {
     const category = getRandomCategory();
     const student = Parse.User.current();
     if (student) {
+      //Adde checks for reward
       const total_points = student.get("total_points");
       const correct = student.get(category + "_correct_ids");
       const level = student.get(category + "_level");
@@ -179,7 +180,7 @@ export default function MultipleChoice() {
       if (student) {
         if (correct_answer === chosenOption) {
           setIsCorrect(true);
-          var new_total_points = total_points + 5;
+          var new_total_points = total_points + 10;
           student.set("total_points", new_total_points);
           student.add(category + "_correct_ids", currentQuestionId);
           console.log(currentQuestionId);
@@ -192,6 +193,8 @@ export default function MultipleChoice() {
           console.log("Added to the database in submit: " + correct);
           console.log("The answer is correct!");
         } else {
+          var new_total_points = total_points + 5;
+          student.set("total_points", new_total_points);
           console.log("The answer is NOT correct!");
           setIsCorrect(false);
         }
