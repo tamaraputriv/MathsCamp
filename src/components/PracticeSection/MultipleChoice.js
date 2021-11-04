@@ -36,13 +36,15 @@ export default function MultipleChoice() {
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState();
-  const [motivationH1, setMotivationH1] = useState(["Correct!", "Oh well.."]);
-  const [correctMotivation, setCorrectMotivation] = useState([
-    "You're a true math master. Let's do another question.",
-  ]);
-  const [wrongMotivation, setWrongMotivation] = useState([
+  const motivationH1 = ["Correct!", "Oh well.."];
+  const correctMotivation = [
+    "You're a true math master. Let's do another question.", 
+    ""
+  ];
+  const wrongMotivation = [
     "That wasn’t quite right. Take a look at the explanantion.",
-  ]);
+    ""
+  ];
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
 
   const fetchQuestion = async (info) => {
