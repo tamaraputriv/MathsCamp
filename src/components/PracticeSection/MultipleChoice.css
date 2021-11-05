@@ -300,6 +300,14 @@
   background-color: #5d5fef !important;
 }
 
+.reward-container {
+  background-color: #f2b84b;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+}
+
 fraction {
   display: inline-grid;
 

@@ -15,6 +15,8 @@ import {
   BsCheckCircle,
   BsChevronRight,
   BsFileText,
+  BsX,
+  BsTrophy
 } from "react-icons/bs";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import { useHistory } from "react-router";
@@ -36,6 +38,7 @@ export default function MultipleChoice() {
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState();
+  const [hasWonReward, setHasWonReward] = useState(false);
   //const [brøk1, setBrøk1] = useState("");
   //const [brøk2, setBrøk2] = useState("");
   const motivationH1 = ["Correct!", "Oh well.."];
@@ -105,7 +108,6 @@ export default function MultipleChoice() {
     const category = "number";//getRandomCategory();
     const student = Parse.User.current();
     if (student) {
-      //Adde checks for reward
       const total_points = student.get("total_points");
       const correct = student.get(category + "_correct_ids");
       const level = student.get(category + "_level");
@@ -176,7 +178,7 @@ export default function MultipleChoice() {
         if((totalexplanation % 20) === 0 || totalexplanation === 5){
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
-          history.push("reward");
+          setHasWonReward(true);
         }
       }
     }
@@ -217,6 +219,19 @@ export default function MultipleChoice() {
           }
           console.log("Added to the database in submit: " + correct);
           console.log("The answer is correct!");
+          //Reward kode
+          const total_correct = student.get("total_correct_questions");
+          const total_answered = student.get("total_answered_questions");
+          console.log((total_answered%20));
+          if((total_correct % 20) === 0 || total_correct === 5){
+            const reward = getTotalCorrectReward(total_correct);
+            student.add("reward_badge_ids", reward);
+            setHasWonReward(true);
+          }else if((total_answered % 20) === 0 || total_answered === 5){
+            const reward = getTotalAnsweredReward(total_answered);
+            student.add("reward_badge_ids", reward);
+            setHasWonReward(true);
+          }
         } else {
           var new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
@@ -230,28 +245,6 @@ export default function MultipleChoice() {
       alert("Could not submit your answer, try again!");
     }
   };
-
-  const handleNext = () => {
-    const student = Parse.User.current();
-    if(student){
-      const total_correct = student.get("total_correct_questions");
-      const total_answered = student.get("total_answered_questions");
-      console.log((total_answered%20));
-      if((total_correct % 20) === 0 || total_correct === 5){
-        const reward = getTotalCorrectReward(total_correct);
-        student.add("reward_badge_ids", reward);
-        history.push("/reward");
-        console.log("Vundet total correct");
-      }else if((total_answered % 20) === 0 || total_answered === 5){
-        console.log("Vundet total answered");
-        const reward = getTotalAnsweredReward(total_answered);
-        student.add("reward_badge_ids", reward);
-        history.push("/reward");
-      }else{
-        fetchQuestion(retrieveStudent);
-      }
-    }
-  }
 
   const getTotalAnsweredReward = (length) => {
     switch (length) {
@@ -322,6 +315,14 @@ export default function MultipleChoice() {
     }
   };
 
+  const handleSeeReward = () => {
+    history.push("/reward");
+  };
+
+  const handleClose = () => {
+    setHasWonReward(false);
+  };
+
   return (
     <Container fluid className="multiple-container">
       <Row className="question-row">
@@ -388,7 +389,7 @@ export default function MultipleChoice() {
                   )}
                   <Button
                     className="next-btn quiz-btn"
-                    onClick={handleNext}
+                    onClick={() => fetchQuestion(retrieveStudent)}
                     type="submit"
                   >
                     Next question
@@ -453,6 +454,21 @@ export default function MultipleChoice() {
           />
         </Col>
       </Row>
+      {hasWonReward ? (
+        <div className="text-center reward-container">
+          <p className="reward_message">
+            Congratulations! You have won a reward, check it out!
+          </p>
+          <Button className="see_reward_btn" onClick={handleSeeReward}>
+            See reward <BsTrophy />
+          </Button>
+          <Button className="close_btn" onClick={handleClose}>
+            Close <BsX size={21} />
+          </Button>
+        </div>
+      ) : (
+        <div></div>
+      )}
       <Row>
         <Col></Col>
       </Row>
