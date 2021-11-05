@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import "./RewardSection.css";
 import { useHistory } from "react-router";
 import { VscSmiley } from "react-icons/vsc";
-import { BsChevronLeft } from "react-icons/bs";
+import { BsChevronRight } from "react-icons/bs";
 import { Trophy } from "react-bootstrap-icons";
 import { getRewardImage } from "../Utils";
 import Parse from "parse";
@@ -36,7 +36,7 @@ export default function RewardSection() {
     query.equalTo("objectId", reward_id);
     const reward = await query.first();
     const description = reward.attributes.description;
-    const index = rewardArray.map(element => element.id).indexOf(reward_id);
+    const index = rewardArray.map((element) => element.id).indexOf(reward_id);
     const imgsrc = getRewardImage(index);
     setDescription(description);
     setImage(imgsrc);
@@ -55,9 +55,15 @@ export default function RewardSection() {
         </Col>
         <Col className="text-div">
           <h2 className="h2-reward">
-            Congratulations! <br/> You won a new reward
+            Congratulations! <br /> You won a new badge
           </h2>
-          <p className="p-reward">You earned your reward for this task:<br/> <b>{description} </b> <Trophy className="trophy-icon"/> Good job!<br/>You can now see it in your collection</p>
+          <p className="p-reward">
+            You earned your badge for this task:
+            <br /> <b>{description} </b> <Trophy className="trophy-icon" />{" "}
+            <br />
+            Good job!
+            <br />
+          </p>
           <div className="button-div ">
             <Button
               className="practice-again-btn quiz-btn"
@@ -69,7 +75,7 @@ export default function RewardSection() {
               className="go-collection-btn quiz-btn"
               onClick={handleGoBack}
             >
-              Go back <BsChevronLeft className="btn-icon" />
+              Go back <BsChevronRight className="btn-icon" />
             </Button>
           </div>
         </Col>

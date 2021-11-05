@@ -43,7 +43,8 @@
   font-family: "Rubik";
 }
 
-.buy-mascot-btn {
+.buy-mascot-btn,
+.buy-mascot-btn:not(:disabled) {
   width: 150px;
   height: 45px;
   background-color: #f2b84b;
@@ -56,11 +57,6 @@
   border-color: #f0ac2b;
 }
 
-.buy-mascot-btn:not(:disabled) {
-  background-color: #f2b84b;
-  border-color: #f7ac22;
-}
-
 .point-text {
   color: #4d4d4d;
   font-size: 18px;
@@ -68,7 +64,8 @@
   margin-bottom: 30px;
 }
 
-.pick-mascot-btn {
+.pick-mascot-btn,
+.pick-mascot-btn:not(:disabled) {
   background-color: #7c7ef2;
   border-color: #7c7ef2;
   font-family: "Rubik";
@@ -98,7 +95,8 @@
   justify-content: flex-end;
 }
 
-.go-back-btn {
+.go-back-btn,
+.go-back-btn:not(:disabled) {
   background-color: #7c7ef2;
   border-color: #696bf5;
   font-family: "Rubik";

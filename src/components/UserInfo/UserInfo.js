@@ -86,7 +86,13 @@ export default function UserInfo() {
         }}
       >
         <div>
-          <h1 className="user-welcome-h1">Welcome {username}!</h1>
+          <h1 className="user-welcome-h1">
+            Welcome {}
+            {username}!
+          </h1>
+        </div>
+        <div>
+          <p>Start practice your math skills to earn more points and badges.</p>
         </div>
         <div className="card-mascot-div">
           <div className="card-div">

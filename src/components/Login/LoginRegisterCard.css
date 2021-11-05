@@ -1,52 +1,54 @@
-.login-container{
-    margin-top: 100px;
+.login-container {
+  margin-top: 100px;
 }
 
-h1{
-    margin-top: 10px;
-    color: #4D4D4D;
-    font-family: "Solway";
-    font-weight: bold;
+h1 {
+  margin-top: 10px;
+  color: #4d4d4d;
+  font-family: "Solway";
+  font-weight: bold;
 }
 
-p{
-    font-size: 13px;
-    color: #4D4D4D;
-    font-family: "Rubik";
+p {
+  font-size: 13px;
+  color: #4d4d4d;
+  font-family: "Rubik";
 }
 
-.login-register-toolbar{
-    justify-content: center;
-    margin-top: 50px;
+.login-register-toolbar {
+  justify-content: center;
+  margin-top: 50px;
 }
 
-.login-btn{
-    background-color: #F2B84B;
-    border-color: #F0AC2B;
-    font-family: "Rubik";
-    margin-left: 12px;
-    width: 220px;
-    height: 150px;
-    font-size: 30px;
-    font-weight: bold;
+.login-btn,
+.login-btn:not(:disabled) {
+  background-color: #f2b84b;
+  border-color: #f0ac2b;
+  font-family: "Rubik";
+  margin-left: 12px;
+  width: 220px;
+  height: 150px;
+  font-size: 30px;
+  font-weight: bold;
 }
 
-.login-btn:hover{
-    background-color: #F0AC2B;
-    border-color: #F0AC2B;
+.login-btn:hover {
+  background-color: #f0ac2b;
+  border-color: #f0ac2b;
 }
 
-.register-btn{
-    background-color: #7C7EF2;
-    border-color: #5D5FEF;
-    font-family: "Rubik";
-    width: 220px;
-    height: 150px;
-    font-size: 30px;
-    font-weight: bold;
+.register-btn,
+.register-btn:not(:disabled) {
+  background-color: #7c7ef2;
+  border-color: #5d5fef;
+  font-family: "Rubik";
+  width: 220px;
+  height: 150px;
+  font-size: 30px;
+  font-weight: bold;
 }
 
-.register-btn:hover{
-    background-color: #5D5FEF;
-    border-color: #5D5FEF;
+.register-btn:hover {
+  background-color: #5d5fef;
+  border-color: #5d5fef;
 }

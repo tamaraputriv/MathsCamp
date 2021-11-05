@@ -40,12 +40,12 @@ export default function MultipleChoice() {
   //const [brøk2, setBrøk2] = useState("");
   const motivationH1 = ["Correct!", "Oh well.."];
   const correctMotivation = [
-    "You're a true math master. Let's do another question.", 
-    ""
+    "You're a true math master. Let's do another question.",
+    "",
   ];
   const wrongMotivation = [
     "That wasn’t quite right. Take a look at the explanantion.",
-    ""
+    "",
   ];
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
 
@@ -247,6 +247,9 @@ export default function MultipleChoice() {
           <Image src={image} />
         </Col>
         <Col className="question-col">
+          <div className="category-h1">
+            <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
+          </div>
           <Card className="title-card">
             <Card.Body className="text-center">
               <Card.Title className="question-description">

@@ -1,55 +1,57 @@
-.navbar{
-    background-color: #FF6665;
-    height: 70px;
-    padding-left: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+.navbar {
+  background-color: #ff6665;
+  height: 70px;
+  padding-left: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
-.logo-container{
-    background-color: #5D5FEF;
-    width: 70px;
-    height: 70px;
+.logo-container {
+  background-color: #5d5fef;
+  width: 70px;
+  height: 70px;
 }
 
-.logo{
-    width: 40px;
-    margin-left: 15px;
-    margin-top: 15px;
+.logo {
+  width: 40px;
+  margin-left: 15px;
+  margin-top: 15px;
 }
 
-.app-name-col{
-    position: absolute;
-    margin-left: 90px;
-    margin-top: 8px;
-    width: auto !important;
+.app-name-col {
+  position: absolute;
+  margin-left: 90px;
+  margin-top: 8px;
+  width: auto !important;
 }
 
-.navbar-brand{ 
-    color: #F4C46B;
-    font-family: "Solway";
-    font-size: 1rem;
+.navbar-brand {
+  color: #f4c46b;
+  font-family: "Solway";
+  font-size: 1rem;
 }
 
-.home-btn{
-    background-color: #F2B84B !important;
-    border-color: #f7ac22 !important;
-    font-family: "Rubik" !important;
+.home-btn,
+.home-btn:not(:disabled) {
+  background-color: #f2b84b;
+  border-color: #f7ac22;
+  font-family: "Rubik";
 }
 
-.home-btn:hover{
-    background-color: #F0AC2B;
-    border-color: #F0AC2B;
+.home-btn:hover {
+  background-color: #f0ac2b;
+  border-color: #f0ac2b;
 }
 
-.logout-btn{
-    background-color: #7C7EF2 !important;
-    border-color: #696bf5 !important;
-    font-family: "Rubik" !important;
-    margin-left: 12px !important;
+.logout-btn,
+.logout-btn:not(:disabled) {
+  background-color: #7c7ef2;
+  border-color: #696bf5;
+  font-family: "Rubik";
+  margin-left: 12px;
 }
 
-.logout-btn:hover{
-    background-color: #5D5FEF;
-    border-color: #5D5FEF;
+.logout-btn:hover {
+  background-color: #5d5fef;
+  border-color: #5d5fef;
 }
