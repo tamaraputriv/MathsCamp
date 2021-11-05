@@ -36,6 +36,8 @@ export default function MultipleChoice() {
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState();
+  //const [brøk1, setBrøk1] = useState("");
+  //const [brøk2, setBrøk2] = useState("");
   const motivationH1 = ["Correct!", "Oh well.."];
   const correctMotivation = [
     "You're a true math master. Let's do another question.", 
@@ -74,6 +76,14 @@ export default function MultipleChoice() {
           const explanation = question[i].get("explanation");
           const image = question[i].get("img_src");
           setId(currentId);
+          /*if(explanation.includes("*")){
+            const splitArray = explanation.split("*");
+            const splitNumbers = splitArray[1].split("/");
+            const number1 = splitNumbers[0];
+            const number2 = splitNumbers[1];
+            const brøk = "<fraction> <numer>" + number1 +"</numer>" + number2 + "</fraction>";
+            setBrøk1(brøk);
+          }*/
           setDescription(description);
           setOptions(options);
           setCorrectAnswer(correct_answer);
@@ -91,7 +101,7 @@ export default function MultipleChoice() {
   };
 
   const retrieveStudent = () => {
-    const category = getRandomCategory();
+    const category = "number";//getRandomCategory();
     const student = Parse.User.current();
     if (student) {
       //Adde checks for reward
@@ -190,8 +200,9 @@ export default function MultipleChoice() {
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
           // Remember to change from 2 to 7
-          if (correct.length == 7) {
+          if (correct.length === 7) {
             student.increment(category + "_level");
+            student.set(category + "_correct_ids", []);
           }
           console.log("Added to the database in submit: " + correct);
           console.log("The answer is correct!");
@@ -208,6 +219,26 @@ export default function MultipleChoice() {
       alert("Could not submit your answer, try again!");
     }
   };
+
+  const handleNext = () => {
+    const student = Parse.User.current();
+    if(student){
+      const total_correct = student.get("total_correct_questions");
+      const total_answered = student.get("total_answered_questions");
+      console.log((total_answered%20));
+      if((total_correct % 20) === 0 || total_correct === 5){
+        //vundet en medalje
+        console.log("Vundet total correct");
+        //add reward badge til studerendes array samt finde id'et
+        fetchQuestion(retrieveStudent);
+      }else if((total_answered % 20) === 0 || total_answered === 5){
+        console.log("Vundet total answered");
+        fetchQuestion(retrieveStudent);
+      }else{
+        fetchQuestion(retrieveStudent);
+      }
+    }
+  }
 
   return (
     <Container fluid className="multiple-container">
@@ -272,7 +303,7 @@ export default function MultipleChoice() {
                   )}
                   <Button
                     className="next-btn quiz-btn"
-                    onClick={() => fetchQuestion(retrieveStudent())}
+                    onClick={handleNext}
                     type="submit"
                   >
                     Next question
