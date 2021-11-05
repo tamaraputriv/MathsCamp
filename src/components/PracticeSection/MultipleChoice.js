@@ -39,6 +39,7 @@ export default function MultipleChoice() {
   //const [brøk1, setBrøk1] = useState("");
   //const [brøk2, setBrøk2] = useState("");
   const motivationH1 = ["Correct!", "Oh well.."];
+  const history = useHistory();
   const correctMotivation = [
     "You're a true math master. Let's do another question.",
     "",
@@ -168,6 +169,16 @@ export default function MultipleChoice() {
       setShowExplanation(false);
     } else {
       setShowExplanation(true);
+      const student = Parse.User.current();
+      if (student){
+        student.increment("checked_explanation");
+        const totalexplanation = student.get("checked_explanation");
+        if((totalexplanation % 20) === 0 || totalexplanation === 5){
+          const reward = getExplanationReward(totalexplanation);
+          student.add("reward_badge_ids", reward);
+          history.push("reward");
+        }
+      }
     }
   };
 
@@ -227,18 +238,89 @@ export default function MultipleChoice() {
       const total_answered = student.get("total_answered_questions");
       console.log((total_answered%20));
       if((total_correct % 20) === 0 || total_correct === 5){
-        //vundet en medalje
+        const reward = getTotalCorrectReward(total_correct);
+        student.add("reward_badge_ids", reward);
+        history.push("/reward");
         console.log("Vundet total correct");
-        //add reward badge til studerendes array samt finde id'et
-        fetchQuestion(retrieveStudent);
       }else if((total_answered % 20) === 0 || total_answered === 5){
         console.log("Vundet total answered");
-        fetchQuestion(retrieveStudent);
+        const reward = getTotalAnsweredReward(total_answered);
+        student.add("reward_badge_ids", reward);
+        history.push("/reward");
       }else{
         fetchQuestion(retrieveStudent);
       }
     }
   }
+
+  const getTotalAnsweredReward = (length) => {
+    switch (length) {
+      case 5: {
+        return "QmMHU6HOyE";
+      }
+      case 20: {
+        return "GwG4dzfCuT";
+      }
+      case 40: {
+        return "5IFox85lUC";
+      }
+      case 60: {
+        return "pjukkloh3r";
+      }
+      case 80: {
+        return "0qfqFayIZw";
+      }
+      default: {
+        return "";
+      }
+    }
+  };
+
+  const getTotalCorrectReward = (length) => {
+    switch (length) {
+      case 5: {
+        return "QzQhNUEEp3";
+      }
+      case 20: {
+        return "IxEXq05Whj";
+      }
+      case 40: {
+        return "tSi2TA2olv";
+      }
+      case 60: {
+        return "SlmCKp4FMX";
+      }
+      case 80: {
+        return "f6C0n4oGX6";
+      }
+      default: {
+        return "";
+      }
+    }
+  };
+
+  const getExplanationReward = (length) => {
+    switch (length) {
+      case 5: {
+        return "gRPbOWs9nE";
+      }
+      case 20: {
+        return "HwjknOcp4Y";
+      }
+      case 40: {
+        return "rCADOvIMcB";
+      }
+      case 60: {
+        return "zonuJlC6ZN";
+      }
+      case 80: {
+        return "TBYdE77gyD";
+      }
+      default: {
+        return "";
+      }
+    }
+  };
 
   return (
     <Container fluid className="multiple-container">

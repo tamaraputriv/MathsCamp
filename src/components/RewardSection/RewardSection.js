@@ -17,8 +17,8 @@ export default function RewardSection() {
     history.goBack();
   };
 
-  const handleNewQuiz = () => {
-    history.push("/practice");
+  const handleCollection = () => {
+    history.push("/frontpage");
   };
 
   const getReward = async () => {
@@ -66,13 +66,13 @@ export default function RewardSection() {
           </p>
           <div className="button-div ">
             <Button
-              className="practice-again-btn quiz-btn"
-              onClick={handleNewQuiz}
+              className="practice-again-btn quiz_btn"
+              onClick={handleCollection}
             >
-              Go to quiz <VscSmiley className="btn-icon" />
+              See collection <VscSmiley className="btn-icon" />
             </Button>
             <Button
-              className="go-collection-btn quiz-btn"
+              className="go-collection-btn quiz_btn"
               onClick={handleGoBack}
             >
               Go back <BsChevronRight className="btn-icon" />
