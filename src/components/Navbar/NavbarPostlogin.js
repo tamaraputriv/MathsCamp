@@ -24,7 +24,7 @@ export default function NavbarPostlogin() {
     <Container fluid className="navbar-postlogin">
       <Row>
         <Col>
-          <img className="logo-postlogin" src={Logo} alt="Logo of a calculator"></img>
+          <img className="logo-postlogin" src={Logo} alt="Logo of a calculator" onClick={handleHome}></img>
         </Col>
         <Col className="app-name-col-postlogin">
           <h6 className="navbar-brand-postlogin">Maths Camp</h6>

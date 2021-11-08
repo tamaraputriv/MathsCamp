@@ -39,7 +39,7 @@ export default function NavbarPracticeMode() {
     <Container fluid className="navbar">
       <Col>
         <div className="logo-container">
-          <img className="logo" src={Logo} alt="Logo of a calculator"></img>
+          <img className="logo" src={Logo} alt="Logo of a calculator" onClick={handleHome}></img>
         </div>
       </Col>
       <Col className="app-name-col">

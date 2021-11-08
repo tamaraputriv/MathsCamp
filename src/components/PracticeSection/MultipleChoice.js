@@ -105,7 +105,7 @@ export default function MultipleChoice() {
   };
 
   const retrieveStudent = () => {
-    const category = "number";//getRandomCategory();
+    const category = "geometry";//getRandomCategory();
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");
@@ -225,19 +225,22 @@ export default function MultipleChoice() {
           //Reward kode
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
-          console.log((total_answered%20));
           if((total_correct % 20) === 0 || total_correct === 5){
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
-          }if((total_answered % 20) === 0 || total_answered === 5){
+            console.log("Er inde i total_correct");
+          }
+          if((total_answered % 20) === 0 || total_answered === 5){
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
+            //Det her virker ikke hvis de får to rewards
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
+            console.log("Er inde i total");
           }
         } else {
           var new_total_points = total_points + 5;

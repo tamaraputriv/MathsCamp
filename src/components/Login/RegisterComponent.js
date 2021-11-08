@@ -45,7 +45,6 @@ export default function RegisterComponent() {
         user.set("username", username);
         user.set("password", password);
         user.set("email", email);
-        user.set("total_points", 800);
         var date = new Date().toLocaleDateString();
         user.add("active_days", date);
         user.add("owned_mascot_ids", "arB9fEWmFp");
