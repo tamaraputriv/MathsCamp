@@ -3,10 +3,10 @@ import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Gem, Person } from "react-bootstrap-icons";
 import { BsChevronRight } from "react-icons/bs";
 import { useHistory } from "react-router";
+import { getMascotImage } from "../Utils";
+import Swal from "sweetalert2";
 import Parse from "parse";
 import "./EditMascot.css";
-import { getMascotImage } from "../Utils";
-import Swal from 'sweetalert2';
 
 export default function EditMascot() {
   const history = useHistory();
