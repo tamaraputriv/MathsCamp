@@ -16,14 +16,14 @@ p {
 }
 
 .login-register-toolbar {
-  justify-content: center;
+  justify-content: center !important;
   margin-top: 50px;
 }
 
 .login-btn,
 .login-btn:not(:disabled) {
-  background-color: #f2b84b;
-  border-color: #f0ac2b;
+  background-color: #f2b84b !important;
+  border-color: #f0ac2b !important;
   font-family: "Rubik";
   margin-left: 12px;
   width: 220px;
@@ -33,14 +33,14 @@ p {
 }
 
 .login-btn:hover {
-  background-color: #f0ac2b;
-  border-color: #f0ac2b;
+  background-color: #f0ac2b !important;
+  border-color: #f0ac2b !important;
 }
 
 .register-btn,
 .register-btn:not(:disabled) {
-  background-color: #7c7ef2;
-  border-color: #5d5fef;
+  background-color: #7c7ef2 !important;
+  border-color: #5d5fef !important;
   font-family: "Rubik";
   width: 220px;
   height: 150px;
@@ -49,6 +49,6 @@ p {
 }
 
 .register-btn:hover {
-  background-color: #5d5fef;
-  border-color: #5d5fef;
+  background-color: #5d5fef !important;
+  border-color: #5d5fef !important;
 }

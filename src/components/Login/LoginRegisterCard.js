@@ -1,8 +1,9 @@
+import React from "react";
 import { Tree, CardList, Key } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
 import { Container, Button, ButtonToolbar } from "react-bootstrap";
-import React from "react";
 import "./LoginRegisterCard.css";
+import "bootstrap/dist/css/bootstrap.css"
 
 export default function LoginRegisterCard() {
   const history = useHistory();
