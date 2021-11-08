@@ -179,6 +179,9 @@ export default function MultipleChoice() {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
           setHasWonReward(true);
+          const points = student.get("total_points");
+          const rewardPoints = points + 50;
+          student.set("total_points", rewardPoints);
         }
       }
     }
@@ -227,10 +230,14 @@ export default function MultipleChoice() {
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
+            const rewardPoints = new_total_points + 50;
+            student.set("total_points", rewardPoints);
           }if((total_answered % 20) === 0 || total_answered === 5){
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
+            const rewardPoints = new_total_points + 50;
+            student.set("total_points", rewardPoints);
           }
         } else {
           var new_total_points = total_points + 5;

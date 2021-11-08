@@ -56,14 +56,17 @@ export default function EditMascot() {
         user.add("owned_mascot_ids", mascotId);
         points -= mascotPrice;
         setTotalPoints(points);
+        user.set("total_points", points);
         var owned = user.get("owned_mascot_ids");
+        setOwnedMascotIds(owned);   
         var wonRewardId = getMascotReward(owned.length);
         var hasWon = wonRewardId !== "";
         if (hasWon) {
           user.add("reward_badge_ids", wonRewardId);
-        }
-        setOwnedMascotIds(owned);
-        user.set("total_points", points);
+          const rewardPoints = points + 50;
+          user.set("total_points", rewardPoints);
+          setTotalPoints(rewardPoints);
+        }   
         user.save();
         if (hasWon) {
           history.push("/reward");
