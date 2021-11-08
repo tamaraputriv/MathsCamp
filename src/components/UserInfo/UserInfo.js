@@ -92,7 +92,7 @@ export default function UserInfo() {
           </h1>
         </div>
         <div>
-          <p>Start practice your math skills to earn more points and badges.</p>
+          <p>Start practicing your math skills to earn points and badges</p>
         </div>
         <div className="card-mascot-div">
           <div className="card-div">

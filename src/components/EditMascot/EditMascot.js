@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import Parse from "parse";
 import "./EditMascot.css";
 import { getMascotImage } from "../Utils";
+import Swal from 'sweetalert2';
 
 export default function EditMascot() {
   const history = useHistory();
@@ -69,7 +70,12 @@ export default function EditMascot() {
         }
       }
     } else {
-      alert("You don't have enough points to buy this mascot.");
+      Swal.fire({
+        title: "You don't have enough points to buy this mascot!",
+        text: "You can earn more points by answering math questions",
+        icon: "error",
+        confirmButtonText: "OK"
+      })
     }
   };
 

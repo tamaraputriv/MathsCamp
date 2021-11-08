@@ -227,7 +227,7 @@ export default function MultipleChoice() {
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
-          }else if((total_answered % 20) === 0 || total_answered === 5){
+          }if((total_answered % 20) === 0 || total_answered === 5){
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
