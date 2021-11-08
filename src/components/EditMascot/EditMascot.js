@@ -15,10 +15,13 @@ export default function EditMascot() {
   const [active_mascot_id, setActiveMascotId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
 
+  //Redirects the user to the frontpage
   const handleGoBack = () => {
     history.push("/frontpage");
   };
 
+  /*Fetches the mascots from the database and removes the blank mascot used as a placeholder
+  on the frontpage and in the multiplechoice section*/
   const fetchMascots = async () => {
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
@@ -31,6 +34,7 @@ export default function EditMascot() {
     fetchMascots();
   }, []);
 
+  //Fetches the student and sets the states used in this component
   const fetchStudent = async () => {
     const user = Parse.User.current();
     if (user) {
@@ -49,6 +53,8 @@ export default function EditMascot() {
     fetchStudent();
   }, []);
 
+  /*Checks if a student has sufficient points to buy a mascot. If they do, checks if 
+  the student has won a reward for owning a certain number of mascots*/
   const buyMascot = (mascotId, mascotPrice, points) => {
     if (points >= mascotPrice) {
       const user = Parse.User.current();
@@ -82,6 +88,7 @@ export default function EditMascot() {
     }
   };
 
+  //Returns the id of a reward based on the amount of mascots a user owns
   const getMascotReward = (length) => {
     switch (length) {
       case 3: {
@@ -105,6 +112,7 @@ export default function EditMascot() {
     }
   };
 
+  //Sets the user's active mascot to the mascotId given as a parameter
   const pickMascot = (mascotId) => {
     const user = Parse.User.current();
     if (user) {
