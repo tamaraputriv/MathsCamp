@@ -101,43 +101,10 @@ export default function MultipleChoice() {
           console.log("The question was in the correct id array");
         }
       }
-      /*for (let i = 0; i < question.length; i++) {
-        const currentId = question[i].id;
-        console.log(currentId);
-        if (!info.correct.includes(currentId)) {
-          console.log("This question is unanswered");
-          const correct_answer = question[i].get("correct_answer");
-          const description = question[i].get("description");
-          const options = question[i].get("options");
-          const hint = question[i].get("hint");
-          const explanation = question[i].get("explanation");
-          const image = question[i].get("img_src");
-          setId(currentId);
-          ////// andet snip
-          setDescription(description);
-          setOptions(options);
-          setCorrectAnswer(correct_answer);
-          setHint(hint);
-          setExplanation(explanation);
-          setImage(image);
-          break;
-        } else {
-          console.log("The question was in the correct id array");
-        }
-      }*/
     } catch (error) {
       alert(`Error! ${error.message}`);
     }
   };
-
-   /*if(explanation.includes("*")){
-            const splitArray = explanation.split("*");
-            const splitNumbers = splitArray[1].split("/");
-            const number1 = splitNumbers[0];
-            const number2 = splitNumbers[1];
-            const brøk = "<fraction> <numer>" + number1 +"</numer>" + number2 + "</fraction>";
-            setBrøk1(brøk);
-          }*/
 
   const retrieveStudent = () => {
     const category = "number";//getRandomCategory();
@@ -253,7 +220,6 @@ export default function MultipleChoice() {
           console.log(currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
-          // Remember to change from 2 to 7
           if (correct.length === 7) {
             student.increment(category + "_level");
             student.set(category + "_correct_ids", []);
@@ -279,6 +245,14 @@ export default function MultipleChoice() {
         } else {
           var new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
+          const total_answered = student.get("total_answered_questions");
+          if((total_answered % 20) === 0 || total_answered === 5){
+            const reward = getTotalAnsweredReward(total_answered);
+            student.add("reward_badge_ids", reward);
+            setHasWonReward(true);
+            const rewardPoints = new_total_points + 50;
+            student.set("total_points", rewardPoints);
+          }
           console.log("The answer is NOT correct!");
           setIsCorrect(false);
         }
