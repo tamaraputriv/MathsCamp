@@ -16,7 +16,7 @@ import {
   BsChevronRight,
   BsFileText,
   BsX,
-  BsTrophy
+  BsTrophy,
 } from "react-icons/bs";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import { useHistory } from "react-router";
@@ -26,6 +26,7 @@ export default function MultipleChoice() {
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showMotivation, setShowMotivation] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
   const [description, setDescription] = useState("");
   const [options, setOptions] = useState([]);
   const [chosenOption, setChosenOption] = useState("");
@@ -38,22 +39,35 @@ export default function MultipleChoice() {
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState();
+  const motivationH1Correct = [
+    "Correct!",
+    "Well done!",
+    "You're a star",
+    "Yes, correct!",
+  ];
+  const motivationH1Wrong = [
+    "Woops!",
+    "Oh well..",
+    "Next time!",
+    "Better luck time!",
+  ];
   const [hasWonReward, setHasWonReward] = useState(false);
   //const [brøk1, setBrøk1] = useState("");
   //const [brøk2, setBrøk2] = useState("");
-  const motivationH1 = ["Correct!", "Oh well.."];
   const history = useHistory();
   const correctMotivation = [
     "You're a true math master. Let's do another question.",
-    "",
+    "You are doing so great! Keep on going.",
   ];
   const wrongMotivation = [
     "That wasn’t quite right. Take a look at the explanantion.",
-    "",
+    "Math can be hard. Try taking a look at the explanation.",
+    "You still got this! Take a look at the explanation and keep going.",
   ];
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
 
   const fetchQuestion = async (info) => {
+    setShowMotivation(false);
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
     const query = new Parse.Query("Questions");
@@ -69,7 +83,7 @@ export default function MultipleChoice() {
       let question = await query.find();
       console.log(question);
       let foundQuestion = false;
-      while(!foundQuestion){
+      while (!foundQuestion) {
         let i = getRandomInt(9);
         const currentId = question[i].id;
         console.log(currentId);
@@ -80,7 +94,10 @@ export default function MultipleChoice() {
           const options = question[i].get("options");
           const hint = question[i].get("hint");
           const explanation = question[i].get("explanation");
-          const image = question[i].get("img_src");
+          if (question[i].get("question_image")) {
+            const imageFileURL = question[i].get("question_image")._url;
+            setImage(imageFileURL);
+          }
           setId(currentId);
           /*if(explanation.includes("*")){
             const splitArray = explanation.split("*");
@@ -95,19 +112,18 @@ export default function MultipleChoice() {
           setCorrectAnswer(correct_answer);
           setHint(hint);
           setExplanation(explanation);
-          setImage(image);
           foundQuestion = true;
         } else {
           console.log("The question was in the correct id array");
         }
       }
     } catch (error) {
-      alert(`Error! ${error.message}`);
+      console.log(`Error! ${error.message}`);
     }
   };
 
   const retrieveStudent = () => {
-    const category = "number";//getRandomCategory();
+    const category = "number"; //getRandomCategory();
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");
@@ -122,7 +138,6 @@ export default function MultipleChoice() {
       alert("The user couldn't be retrieved");
     }
   };
-
 
   //TODO denne her giver -1 nogle gange når man har svaret på nogle spørgsmål i træk
   const fetchMascots = async (active_mascot_id) => {
@@ -143,7 +158,6 @@ export default function MultipleChoice() {
     return Math.floor(Math.random() * max);
   }
 
-  //Returns a random category
   const getRandomCategory = () => {
     const categories = [
       "number",
@@ -158,6 +172,12 @@ export default function MultipleChoice() {
     return category;
   };
 
+  const getRandomMotivation = (motivationArray) => {
+    let motivation =
+      motivationArray[Math.floor(Math.random() * motivationArray.length)];
+    return motivation;
+  };
+
   const handleChange = (e) => {
     setChosenOption(e.target.value);
   };
@@ -166,6 +186,7 @@ export default function MultipleChoice() {
     if (showHint) {
       setShowHint(false);
     } else {
+      setShowWarning(false);
       setShowHint(true);
     }
   };
@@ -176,10 +197,10 @@ export default function MultipleChoice() {
     } else {
       console.log("Inde i setshow true");
       const student = Parse.User.current();
-      if (student){
+      if (student) {
         student.increment("checked_explanation");
         const totalexplanation = student.get("checked_explanation");
-        if((totalexplanation % 20) === 0 || totalexplanation === 5){
+        if (totalexplanation % 20 === 0 || totalexplanation === 5) {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
           const points = student.get("total_points");
@@ -204,11 +225,25 @@ export default function MultipleChoice() {
     return optionClass;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const showWarning = () => {
+    setShowHint(false);
+    setShowWarning(true);
+  };
+
+  const showMotivation = () => {
+    setShowWarning(false);
     setSubmitted(true);
     setShowMotivation(true);
     setShowHint(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!chosenOption) {
+      showWarning();
+    } else {
+      showMotivation();
+    }
     try {
       const student = Parse.User.current();
       if (student) {
@@ -229,13 +264,14 @@ export default function MultipleChoice() {
           console.log("The answer is correct!");
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
-          if((total_answered % 20) === 0 || total_answered === 5){
+          if (total_answered % 20 === 0 || total_answered === 5) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
-          }if((total_correct % 20) === 0 || total_correct === 5){
+          }
+          if (total_correct % 20 === 0 || total_correct === 5) {
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
@@ -247,7 +283,7 @@ export default function MultipleChoice() {
           var new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
           const total_answered = student.get("total_answered_questions");
-          if((total_answered % 20) === 0 || total_answered === 5){
+          if (total_answered % 20 === 0 || total_answered === 5) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
@@ -260,7 +296,7 @@ export default function MultipleChoice() {
         await student.save();
       }
     } catch (error) {
-      alert("Could not submit your answer, try again!");
+      console.log(`Error! ${error.message}`);
     }
   };
 
@@ -344,8 +380,8 @@ export default function MultipleChoice() {
   return (
     <Container fluid className="multiple-container">
       <Row className="question-row">
-        <Col md="auto" className="question-img-col">
-          <Image src={image} />
+        <Col className="question-img-col">
+          <Image src={image} className="question-img" />
         </Col>
         <Col className="question-col">
           <div className="category-h1">
@@ -450,19 +486,38 @@ export default function MultipleChoice() {
           <div style={{ display: showHint ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
             <div className="speakboble-text">
-              <p>{hint}</p>
+              {hint ? (
+                <p>{hint}</p>
+              ) : (
+                <>
+                  <h2>Sorry,</h2>
+                  <p>
+                    there's no hint for this question. Try ask your teacher for
+                    help.
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+          <div style={{ display: showWarning ? "" : "none" }}>
+            <Image src={SpeakBoble} className="speakboble" />
+            <div className="speakboble-text">
+              <h2>Hold your horses!</h2>
+              <p>You need to pick an option.</p>
             </div>
           </div>
           <div style={{ display: showMotivation ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
-            <div className="speakboble-header">
-              {isCorrect ? <>{motivationH1[0]}</> : <>{motivationH1[1]}</>}
-            </div>
             <div className="speakboble-text">
               {isCorrect ? (
-                <>{correctMotivation[0]}</>
+                <h2>{getRandomMotivation(motivationH1Correct)}</h2>
               ) : (
-                <>{wrongMotivation[0]}</>
+                <h2>{getRandomMotivation(motivationH1Wrong)}</h2>
+              )}
+              {isCorrect ? (
+                <p>{getRandomMotivation(correctMotivation)}</p>
+              ) : (
+                <p>{getRandomMotivation(wrongMotivation)}</p>
               )}
             </div>
           </div>
