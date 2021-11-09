@@ -24,6 +24,7 @@ export default function MultipleChoice() {
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showMotivation, setShowMotivation] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
   const [description, setDescription] = useState("");
   const [options, setOptions] = useState([]);
   const [chosenOption, setChosenOption] = useState("");
@@ -36,18 +37,31 @@ export default function MultipleChoice() {
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState();
-  const motivationH1 = ["Correct!", "Oh well.."];
+  const motivationH1Correct = [
+    "Correct!",
+    "Well done!",
+    "You're a star",
+    "Yes, correct!",
+  ];
+  const motivationH1Wrong = [
+    "Woops!",
+    "Oh well..",
+    "Next time!",
+    "Better luck time!",
+  ];
   const correctMotivation = [
     "You're a true math master. Let's do another question.",
-    "",
+    "You are doing so great! Keep on going.",
   ];
   const wrongMotivation = [
     "That wasn’t quite right. Take a look at the explanantion.",
-    "",
+    "Math can be hard. Try taking a look at the explanation.",
+    "You still got this! Take a look at the explanation and keep going.",
   ];
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
 
   const fetchQuestion = async (info) => {
+    setShowMotivation(false);
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
     const query = new Parse.Query("Questions");
@@ -72,21 +86,23 @@ export default function MultipleChoice() {
           const options = question[i].get("options");
           const hint = question[i].get("hint");
           const explanation = question[i].get("explanation");
-          const image = question[i].get("img_src");
+          if (question[i].get("question_image")) {
+            const imageFileURL = question[i].get("question_image")._url;
+            setImage(imageFileURL);
+          }
           setId(currentId);
           setDescription(description);
           setOptions(options);
           setCorrectAnswer(correct_answer);
           setHint(hint);
           setExplanation(explanation);
-          setImage(image);
           break;
         } else {
           console.log("The question was in the correct id array");
         }
       }
     } catch (error) {
-      alert(`Error! ${error.message}`);
+      console.log(`Error! ${error.message}`);
     }
   };
 
@@ -126,7 +142,6 @@ export default function MultipleChoice() {
     return Math.floor(Math.random() * max);
   }
 
-  //Returns a random category
   const getRandomCategory = () => {
     const categories = [
       "number",
@@ -141,6 +156,12 @@ export default function MultipleChoice() {
     return category;
   };
 
+  const getRandomMotivation = (motivationArray) => {
+    let motivation =
+      motivationArray[Math.floor(Math.random() * motivationArray.length)];
+    return motivation;
+  };
+
   const handleChange = (e) => {
     setChosenOption(e.target.value);
   };
@@ -149,6 +170,7 @@ export default function MultipleChoice() {
     if (showHint) {
       setShowHint(false);
     } else {
+      setShowWarning(false);
       setShowHint(true);
     }
   };
@@ -175,45 +197,51 @@ export default function MultipleChoice() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setShowMotivation(true);
-    setShowHint(false);
-    try {
-      const student = Parse.User.current();
-      if (student) {
-        if (correct_answer === chosenOption) {
-          setIsCorrect(true);
-          var new_total_points = total_points + 10;
-          student.set("total_points", new_total_points);
-          student.add(category + "_correct_ids", currentQuestionId);
-          console.log(currentQuestionId);
-          student.increment("total_correct_questions");
-          var correct = student.get(category + "_correct_ids");
-          // Remember to change from 2 to 7
-          if (correct.length == 7) {
-            student.increment(category + "_level");
+    if (!chosenOption) {
+      setShowHint(false);
+      setShowWarning(true);
+    } else {
+      setShowWarning(false);
+      setSubmitted(true);
+      setShowMotivation(true);
+      setShowHint(false);
+      try {
+        const student = Parse.User.current();
+        if (student) {
+          if (correct_answer === chosenOption) {
+            setIsCorrect(true);
+            var new_total_points = total_points + 10;
+            student.set("total_points", new_total_points);
+            student.add(category + "_correct_ids", currentQuestionId);
+            console.log(currentQuestionId);
+            student.increment("total_correct_questions");
+            var correct = student.get(category + "_correct_ids");
+            // Remember to change from 2 to 7
+            if (correct.length == 7) {
+              student.increment(category + "_level");
+            }
+            console.log("Added to the database in submit: " + correct);
+            console.log("The answer is correct!");
+          } else {
+            var new_total_points = total_points + 5;
+            student.set("total_points", new_total_points);
+            console.log("The answer is NOT correct!");
+            setIsCorrect(false);
           }
-          console.log("Added to the database in submit: " + correct);
-          console.log("The answer is correct!");
-        } else {
-          var new_total_points = total_points + 5;
-          student.set("total_points", new_total_points);
-          console.log("The answer is NOT correct!");
-          setIsCorrect(false);
+          student.increment("total_answered_questions");
+          await student.save();
         }
-        student.increment("total_answered_questions");
-        await student.save();
+      } catch (error) {
+        alert("Could not submit your answer, try again!");
       }
-    } catch (error) {
-      alert("Could not submit your answer, try again!");
     }
   };
 
   return (
     <Container fluid className="multiple-container">
       <Row className="question-row">
-        <Col md="auto" className="question-img-col">
-          <Image src={image} />
+        <Col className="question-img-col">
+          <Image src={image} className="question-img" />
         </Col>
         <Col className="question-col">
           <div className="category-h1">
@@ -318,19 +346,38 @@ export default function MultipleChoice() {
           <div style={{ display: showHint ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
             <div className="speakboble-text">
-              <p>{hint}</p>
+              {hint ? (
+                <p>{hint}</p>
+              ) : (
+                <>
+                  <h2>Sorry,</h2>
+                  <p>
+                    there's no hint for this question. Try ask your teacher for
+                    help.
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+          <div style={{ display: showWarning ? "" : "none" }}>
+            <Image src={SpeakBoble} className="speakboble" />
+            <div className="speakboble-text">
+              <h2>Hold your horses!</h2>
+              <p>You need to pick an option.</p>
             </div>
           </div>
           <div style={{ display: showMotivation ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
-            <div className="speakboble-header">
-              {isCorrect ? <>{motivationH1[0]}</> : <>{motivationH1[1]}</>}
-            </div>
             <div className="speakboble-text">
               {isCorrect ? (
-                <>{correctMotivation[0]}</>
+                <h2>{getRandomMotivation(motivationH1Correct)}</h2>
               ) : (
-                <>{wrongMotivation[0]}</>
+                <h2>{getRandomMotivation(motivationH1Wrong)}</h2>
+              )}
+              {isCorrect ? (
+                <p>{getRandomMotivation(correctMotivation)}</p>
+              ) : (
+                <p>{getRandomMotivation(wrongMotivation)}</p>
               )}
             </div>
           </div>
