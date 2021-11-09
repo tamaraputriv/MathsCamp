@@ -15,6 +15,8 @@ import {
   BsCheckCircle,
   BsChevronRight,
   BsFileText,
+  BsX,
+  BsTrophy,
 } from "react-icons/bs";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import { useHistory } from "react-router";
@@ -49,6 +51,10 @@ export default function MultipleChoice() {
     "Next time!",
     "Better luck time!",
   ];
+  const [hasWonReward, setHasWonReward] = useState(false);
+  //const [brøk1, setBrøk1] = useState("");
+  //const [brøk2, setBrøk2] = useState("");
+  const history = useHistory();
   const correctMotivation = [
     "You're a true math master. Let's do another question.",
     "You are doing so great! Keep on going.",
@@ -76,7 +82,9 @@ export default function MultipleChoice() {
     try {
       let question = await query.find();
       console.log(question);
-      for (let i = 0; i < question.length; i++) {
+      let foundQuestion = false;
+      while (!foundQuestion) {
+        let i = getRandomInt(9);
         const currentId = question[i].id;
         console.log(currentId);
         if (!info.correct.includes(currentId)) {
@@ -91,12 +99,20 @@ export default function MultipleChoice() {
             setImage(imageFileURL);
           }
           setId(currentId);
+          /*if(explanation.includes("*")){
+            const splitArray = explanation.split("*");
+            const splitNumbers = splitArray[1].split("/");
+            const number1 = splitNumbers[0];
+            const number2 = splitNumbers[1];
+            const brøk = "<fraction> <numer>" + number1 +"</numer>" + number2 + "</fraction>";
+            setBrøk1(brøk);
+          }*/
           setDescription(description);
           setOptions(options);
           setCorrectAnswer(correct_answer);
           setHint(hint);
           setExplanation(explanation);
-          break;
+          foundQuestion = true;
         } else {
           console.log("The question was in the correct id array");
         }
@@ -107,10 +123,9 @@ export default function MultipleChoice() {
   };
 
   const retrieveStudent = () => {
-    const category = getRandomCategory();
+    const category = "number"; //getRandomCategory();
     const student = Parse.User.current();
     if (student) {
-      //Adde checks for reward
       const total_points = student.get("total_points");
       const correct = student.get(category + "_correct_ids");
       const level = student.get(category + "_level");
@@ -124,6 +139,7 @@ export default function MultipleChoice() {
     }
   };
 
+  //TODO denne her giver -1 nogle gange når man har svaret på nogle spørgsmål i træk
   const fetchMascots = async (active_mascot_id) => {
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
@@ -180,6 +196,19 @@ export default function MultipleChoice() {
       setShowExplanation(false);
     } else {
       setShowExplanation(true);
+      const student = Parse.User.current();
+      if (student) {
+        student.increment("checked_explanation");
+        const totalexplanation = student.get("checked_explanation");
+        if (totalexplanation % 20 === 0 || totalexplanation === 5) {
+          const reward = getExplanationReward(totalexplanation);
+          student.add("reward_badge_ids", reward);
+          setHasWonReward(true);
+          const points = student.get("total_points");
+          const rewardPoints = points + 50;
+          student.set("total_points", rewardPoints);
+        }
+      }
     }
   };
 
@@ -195,46 +224,156 @@ export default function MultipleChoice() {
     return optionClass;
   };
 
+  const showWarning = () => {
+    setShowHint(false);
+    setShowWarning(true);
+  };
+
+  const showMotivation = () => {
+    setShowWarning(false);
+    setSubmitted(true);
+    setShowMotivation(true);
+    setShowHint(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!chosenOption) {
-      setShowHint(false);
-      setShowWarning(true);
+      showWarning();
     } else {
-      setShowWarning(false);
-      setSubmitted(true);
-      setShowMotivation(true);
-      setShowHint(false);
-      try {
-        const student = Parse.User.current();
-        if (student) {
-          if (correct_answer === chosenOption) {
-            setIsCorrect(true);
-            var new_total_points = total_points + 10;
-            student.set("total_points", new_total_points);
-            student.add(category + "_correct_ids", currentQuestionId);
-            console.log(currentQuestionId);
-            student.increment("total_correct_questions");
-            var correct = student.get(category + "_correct_ids");
-            // Remember to change from 2 to 7
-            if (correct.length == 7) {
-              student.increment(category + "_level");
-            }
-            console.log("Added to the database in submit: " + correct);
-            console.log("The answer is correct!");
-          } else {
-            var new_total_points = total_points + 5;
-            student.set("total_points", new_total_points);
-            console.log("The answer is NOT correct!");
-            setIsCorrect(false);
+      showMotivation();
+    }
+    try {
+      const student = Parse.User.current();
+      if (student) {
+        student.increment("total_answered_questions");
+        if (correct_answer === chosenOption) {
+          setIsCorrect(true);
+          var new_total_points = total_points + 10;
+          student.set("total_points", new_total_points);
+          student.add(category + "_correct_ids", currentQuestionId);
+          console.log(currentQuestionId);
+          student.increment("total_correct_questions");
+          var correct = student.get(category + "_correct_ids");
+          if (correct.length === 7) {
+            student.increment(category + "_level");
+            student.set(category + "_correct_ids", []);
           }
-          student.increment("total_answered_questions");
-          await student.save();
+          console.log("Added to the database in submit: " + correct);
+          console.log("The answer is correct!");
+          const total_correct = student.get("total_correct_questions");
+          const total_answered = student.get("total_answered_questions");
+          if (total_answered % 20 === 0 || total_answered === 5) {
+            const reward = getTotalAnsweredReward(total_answered);
+            student.add("reward_badge_ids", reward);
+            setHasWonReward(true);
+            const rewardPoints = new_total_points + 50;
+            student.set("total_points", rewardPoints);
+          }
+          if (total_correct % 20 === 0 || total_correct === 5) {
+            const reward = getTotalCorrectReward(total_correct);
+            student.add("reward_badge_ids", reward);
+            setHasWonReward(true);
+            const originalpoints = student.get("total_points");
+            const rewardPoints = originalpoints + 50;
+            student.set("total_points", rewardPoints);
+          }
+        } else {
+          var new_total_points = total_points + 5;
+          student.set("total_points", new_total_points);
+          const total_answered = student.get("total_answered_questions");
+          if (total_answered % 20 === 0 || total_answered === 5) {
+            const reward = getTotalAnsweredReward(total_answered);
+            student.add("reward_badge_ids", reward);
+            setHasWonReward(true);
+            const rewardPoints = new_total_points + 50;
+            student.set("total_points", rewardPoints);
+          }
+          console.log("The answer is NOT correct!");
+          setIsCorrect(false);
         }
-      } catch (error) {
-        alert("Could not submit your answer, try again!");
+        await student.save();
+      }
+    } catch (error) {
+      console.log(`Error! ${error.message}`);
+    }
+  };
+
+  const getTotalAnsweredReward = (length) => {
+    switch (length) {
+      case 5: {
+        return "QmMHU6HOyE";
+      }
+      case 20: {
+        return "GwG4dzfCuT";
+      }
+      case 40: {
+        return "5IFox85lUC";
+      }
+      case 60: {
+        return "pjukkloh3r";
+      }
+      case 80: {
+        return "0qfqFayIZw";
+      }
+      default: {
+        return "";
       }
     }
+  };
+
+  const getTotalCorrectReward = (length) => {
+    switch (length) {
+      case 5: {
+        return "QzQhNUEEp3";
+      }
+      case 20: {
+        return "IxEXq05Whj";
+      }
+      case 40: {
+        return "tSi2TA2olv";
+      }
+      case 60: {
+        return "SlmCKp4FMX";
+      }
+      case 80: {
+        return "f6C0n4oGX6";
+      }
+      default: {
+        return "";
+      }
+    }
+  };
+
+  const getExplanationReward = (length) => {
+    switch (length) {
+      case 5: {
+        return "gRPbOWs9nE";
+      }
+      case 20: {
+        return "HwjknOcp4Y";
+      }
+      case 40: {
+        return "rCADOvIMcB";
+      }
+      case 60: {
+        return "zonuJlC6ZN";
+      }
+      case 80: {
+        return "TBYdE77gyD";
+      }
+      default: {
+        return "";
+      }
+    }
+  };
+
+  const handleSeeReward = () => {
+    history.push("/reward");
+  };
+
+  const handleClose = () => {
+    setHasWonReward(false);
   };
 
   return (
@@ -303,7 +442,7 @@ export default function MultipleChoice() {
                   )}
                   <Button
                     className="next-btn quiz-btn"
-                    onClick={() => fetchQuestion(retrieveStudent())}
+                    onClick={() => fetchQuestion(retrieveStudent)}
                     type="submit"
                   >
                     Next question
@@ -387,6 +526,21 @@ export default function MultipleChoice() {
           />
         </Col>
       </Row>
+      {hasWonReward ? (
+        <div className="text-center reward-container">
+          <p className="reward_message">
+            Congratulations! You have won a reward, check it out!
+          </p>
+          <Button className="see_reward_btn" onClick={handleSeeReward}>
+            See reward <BsTrophy />
+          </Button>
+          <Button className="close_btn" onClick={handleClose}>
+            Close <BsX size={21} />
+          </Button>
+        </div>
+      ) : (
+        <div></div>
+      )}
       <Row>
         <Col></Col>
       </Row>

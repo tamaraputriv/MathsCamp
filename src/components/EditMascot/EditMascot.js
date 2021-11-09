@@ -3,9 +3,10 @@ import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Gem, Person } from "react-bootstrap-icons";
 import { BsChevronRight } from "react-icons/bs";
 import { useHistory } from "react-router";
+import { getMascotImage } from "../Utils";
+import Swal from "sweetalert2";
 import Parse from "parse";
 import "./EditMascot.css";
-import { getMascotImage } from "../Utils";
 
 export default function EditMascot() {
   const history = useHistory();
@@ -14,10 +15,13 @@ export default function EditMascot() {
   const [active_mascot_id, setActiveMascotId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
 
+  //Redirects the user to the frontpage
   const handleGoBack = () => {
     history.push("/frontpage");
   };
 
+  /*Fetches the mascots from the database and removes the blank mascot used as a placeholder
+  on the frontpage and in the multiplechoice section*/
   const fetchMascots = async () => {
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
@@ -30,6 +34,7 @@ export default function EditMascot() {
     fetchMascots();
   }, []);
 
+  //Fetches the student and sets the states used in this component
   const fetchStudent = async () => {
     const user = Parse.User.current();
     if (user) {
@@ -48,6 +53,8 @@ export default function EditMascot() {
     fetchStudent();
   }, []);
 
+  /*Checks if a student has sufficient points to buy a mascot. If they do, checks if 
+  the student has won a reward for owning a certain number of mascots*/
   const buyMascot = (mascotId, mascotPrice, points) => {
     if (points >= mascotPrice) {
       const user = Parse.User.current();
@@ -55,24 +62,33 @@ export default function EditMascot() {
         user.add("owned_mascot_ids", mascotId);
         points -= mascotPrice;
         setTotalPoints(points);
+        user.set("total_points", points);
         var owned = user.get("owned_mascot_ids");
+        setOwnedMascotIds(owned);   
         var wonRewardId = getMascotReward(owned.length);
         var hasWon = wonRewardId !== "";
         if (hasWon) {
           user.add("reward_badge_ids", wonRewardId);
-        }
-        setOwnedMascotIds(owned);
-        user.set("total_points", points);
+          const rewardPoints = points + 50;
+          user.set("total_points", rewardPoints);
+          setTotalPoints(rewardPoints);
+        }   
         user.save();
         if (hasWon) {
           history.push("/reward");
         }
       }
     } else {
-      alert("You don't have enough points to buy this mascot.");
+      Swal.fire({
+        title: "You don't have enough points to buy this mascot!",
+        text: "You can earn more points by answering math questions",
+        icon: "error",
+        confirmButtonText: "OK"
+      })
     }
   };
 
+  //Returns the id of a reward based on the amount of mascots a user owns
   const getMascotReward = (length) => {
     switch (length) {
       case 3: {
@@ -96,6 +112,7 @@ export default function EditMascot() {
     }
   };
 
+  //Sets the user's active mascot to the mascotId given as a parameter
   const pickMascot = (mascotId) => {
     const user = Parse.User.current();
     if (user) {

@@ -39,6 +39,9 @@ export default function Sidebar({ isOpen, toggle }) {
         student.save();
         rewards = await student.get("reward_badge_ids");
         setHasWonReward(true);
+        const points = student.get("total_points");
+        const rewardPoints = points + 50;
+        student.set("total_points", rewardPoints);
       }
       setStudentRewards(rewards);
     } else {

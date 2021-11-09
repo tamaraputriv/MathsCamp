@@ -49,169 +49,171 @@ import Badge23 from "../images/Rewards/coffee.png";
 import Badge24 from "../images/Rewards/love-letter.png";
 import Badge25 from "../images/Rewards/calculator-badge.png";
 
+/*Returns a mascot image based on the index of the mascot in the mascot array 
+retrieved from the database*/
 export const getMascotImage = (index) => {
-    switch(index){
-        case 0: {
-            return Mascot1;
-        }
-        case 1: {
-            return Mascot2;
-        }
-        case 2: {
-            return Mascot3;
-        }
-        case 3: {
-            return Mascot4;
-        }
-        case 4: {
-            return Mascot5;
-        }
-        case 5: {
-            return Mascot6;
-        }
-        case 6: {
-            return Mascot7;
-        }
-        case 7: {
-            return Mascot8;
-        }
-        case 8: {
-            return Mascot9;
-        }
-        case 9: {
-            return Mascot10;
-        }
-        case 10: {
-            return Mascot11;
-        }
-        case 11: {
-            return Mascot12;
-        }
-        case 12: {
-            return Mascot13;
-        }
-        case 13: {
-            return Mascot14;
-        }
-        case 14: {
-            return Mascot15;
-        }
-        case 15: {
-            return Mascot16;
-        }
-        case 16: {
-            return Mascot17;
-        }
-        case 17: {
-            return Mascot18;
-        }
-        case 18: {
-            return Mascot19;
-        }
-        case 19: {
-            return Mascot20;
-        }
-        case 20: {
-            return Mascot21;
-        }
-        case 21: {
-            return Mascot22;
-        }
-        case 22: {
-            return Mascot23;
-        }
-        case 23: {
-            return Mascot24;
-        }
-        case 24:{
-            return BlankImage;
-        }
-        default:
-            alert("The mascot images cannot be loaded. Please contact your teacher!");
-            break;
+  switch(index){
+    case 0: {
+        return Mascot1;
     }
+    case 1: {
+        return Mascot2;
+    }
+    case 2: {
+        return Mascot3;
+    }
+    case 3: {
+        return Mascot4;
+    }
+    case 4: {
+        return Mascot5;
+    }
+    case 5: {
+        return Mascot6;
+    }
+    case 6: {
+        return Mascot7;
+    }
+    case 7: {
+        return Mascot8;
+    }
+    case 8: {
+        return Mascot9;
+    }
+    case 9: {
+        return Mascot10;
+    }
+    case 10: {
+        return Mascot11;
+    }
+    case 11: {
+        return Mascot12;
+    }
+    case 12: {
+        return Mascot13;
+    }
+    case 13: {
+        return Mascot14;
+    }
+    case 14: {
+        return Mascot15;
+    }
+    case 15: {
+        return Mascot16;
+    }
+    case 16: {
+        return Mascot17;
+    }
+    case 17: {
+        return Mascot18;
+    }
+    case 18: {
+        return Mascot19;
+    }
+    case 19: {
+        return Mascot20;
+    }
+    case 20: {
+        return Mascot21;
+    }
+    case 21: {
+        return Mascot22;
+    }
+    case 22: {
+        return Mascot23;
+    }
+    case 23: {
+        return Mascot24;
+    }
+    case 24:{
+        return BlankImage;
+    }
+    default:
+      alert("The mascot images cannot be loaded. Please contact your teacher!");
+      break;
+  }
 }
 
+/*Returns a reward image based on the index of the reward in the reward array 
+retrieved from the database*/
 export const getRewardImage = (index) => {
-    switch (index) {
-      case 0: {
-        return Badge1;
-      }
-      case 5: {
-        return Badge2;
-      }
-      case 10: {
-        return Badge3;
-      }
-      case 15: {
-        return Badge4;
-      }
-      case 20: {
-        return Badge5;
-      }
-      case 1: {
-        return Badge6;
-      }
-      case 6: {
-        return Badge7;
-      }
-      case 11: {
-        return Badge8;
-      }
-      case 16: {
-        return Badge9;
-      }
-      case 21: {
-        return Badge10;
-      }
-      case 2: {
-        return Badge11;
-      }
-      case 7: {
-        return Badge12;
-      }
-      case 12: {
-        return Badge13;
-      }
-      case 17: {
-        return Badge14;
-      }
-      case 22: {
-        return Badge15;
-      }
-      case 3: {
-        return Badge16;
-      }
-      case 8: {
-        return Badge17;
-      }
-      case 13: {
-        return Badge18;
-      }
-      case 18: {
-        return Badge19;
-      }
-      case 23: {
-        return Badge20;
-      }
-      case 4: {
-        return Badge21;
-      }
-      case 9: {
-        return Badge22;
-      }
-      case 14: {
-        return Badge23;
-      }
-      case 19: {
-        return Badge24;
-      }
-      case 24: {
-        return Badge25;
-      }
-      default:
-        alert(
-          "The reward images cannot be loaded. Please contact your teacher!"
-        );
+  switch (index) {
+    case 0: {
+      return Badge1;
     }
-  };
+    case 5: {
+      return Badge2;
+    }
+    case 10: {
+      return Badge3;
+    }
+    case 15: {
+      return Badge4;
+    }
+    case 20: {
+      return Badge5;
+    }
+    case 1: {
+      return Badge6;
+    }
+    case 6: {
+      return Badge7;
+    }
+    case 11: {
+      return Badge8;
+    }
+    case 16: {
+      return Badge9;
+    }
+    case 21: {
+      return Badge10;
+    }
+    case 2: {
+      return Badge11;
+    }
+    case 7: {
+      return Badge12;
+    }
+    case 12: {
+      return Badge13;
+    }
+    case 17: {
+      return Badge14;
+    }
+    case 22: {
+      return Badge15;
+    }
+    case 3: {
+      return Badge16;
+    }
+    case 8: {
+      return Badge17;
+    }
+    case 13: {
+      return Badge18;
+    }
+    case 18: {
+      return Badge19;
+    }
+    case 23: {
+      return Badge20;
+    }
+    case 4: {
+      return Badge21;
+    }
+    case 9: {
+      return Badge22;
+    }
+    case 14: {
+      return Badge23;
+    }
+    case 19: {
+      return Badge24;
+    }
+    case 24: {
+      return Badge25;
+    }
+    default:
+      alert("The reward images cannot be loaded. Please contact your teacher!");
+  }
+};
