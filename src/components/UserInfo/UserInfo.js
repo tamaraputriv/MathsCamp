@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Parse from "parse";
 import Sidebar from "../Sidebar/Sidebar";
 import { useHistory } from "react-router";
-import { Button, Image, Card } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import { BsPerson } from "react-icons/bs";
 import { getMascotImage } from "../Utils";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
@@ -19,10 +19,6 @@ export default function UserInfo() {
 
   const handlePractice = () => {
     history.push("/practice");
-  };
-
-  const handleExam = () => {
-    history.push("/break");
   };
 
   const handleChangeMascot = () => {

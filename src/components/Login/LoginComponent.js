@@ -2,7 +2,7 @@ import { Key, Tree } from "react-bootstrap-icons";
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import React, { useState } from "react";
-import Parse, { ParseUser, RequestPasswordResetCallback } from "parse";
+import Parse from "parse";
 import Swal from "sweetalert2";
 import "./LoginComponent.css";
 
@@ -55,27 +55,7 @@ export default function LoginComponent() {
   };
 
   const handleResetPassword = () => {
-    Swal.fire({
-      title: "Forgot your password?",
-      text: "Click OK to send the password to the recovery email you provided",
-      icon: "error",
-      confirmButtonText: "OK"
-    }).then(function (){
-      sendEmail();
-    })
-  }
-
-  const sendEmail = () => {
-      ParseUser.requestPasswordResetInBackground("frederikke.drejer.therkildsen@gmail.com",
-      new RequestPasswordResetCallback());
-
-    /*catch(ParseException e){
-      if (e == null) {
-      // An email was successfully sent with reset instructions.
-      } else {
-      // Something went wrong. Look at the ParseException to see what's up.
-      }
-    } */   
+    history.push("/requestReset");
   }
 
   return (

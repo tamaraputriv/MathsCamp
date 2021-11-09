@@ -197,7 +197,7 @@ export default function MultipleChoice() {
   const toggleExplanation = () => {
     if (!showExplanation) {
       const student = Parse.User.current();
-      if (student && explanation != undefined) {
+      if (student && explanation !== undefined) {
         student.increment("checked_explanation");
         const totalexplanation = student.get("checked_explanation");
         if ((totalexplanation % 20 === 0 || totalexplanation === 5) && 0 < totalexplanation && totalexplanation < 81) {
@@ -251,7 +251,7 @@ export default function MultipleChoice() {
         student.increment("total_answered_questions");
         if (correct_answer === chosenOption) {
           setIsCorrect(true);
-          var new_total_points = total_points + 10;
+          let new_total_points = total_points + 10;
           student.set("total_points", new_total_points);
           student.add(category + "_correct_ids", currentQuestionId);
           console.log(currentQuestionId);
@@ -281,7 +281,7 @@ export default function MultipleChoice() {
             student.set("total_points", rewardPoints);
           }
         } else {
-          var new_total_points = total_points + 5;
+          let new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
           const total_answered = student.get("total_answered_questions");
           if ((total_answered % 20 === 0 || total_answered === 5) && 0 < total_answered && total_answered < 81) {
@@ -526,7 +526,7 @@ export default function MultipleChoice() {
           {" "}
           <div>
               {showExplanation ? 
-                (explanation != undefined ? (
+                (explanation !== undefined ? (
                   <div className="explanation-div">
                     <div className="explanation-text">{explanation}</div>
                     <div className="explanation-img">
