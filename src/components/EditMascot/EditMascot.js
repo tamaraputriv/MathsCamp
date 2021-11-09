@@ -45,7 +45,12 @@ export default function EditMascot() {
       setActiveMascotId(active);
       setTotalPoints(points);
     } else {
-      alert("Failed to retrieve the user.");
+      Swal.fire({
+        title: "Oops, something went wrong!",
+        text: "Please try to refresh the page",
+        icon: "error",
+        confirmButtonText: "OK"
+      })
     }
   };
 

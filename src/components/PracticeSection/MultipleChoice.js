@@ -1,26 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Parse from "parse";
-import {
-  Container,
-  Row,
-  Form,
-  Col,
-  Button,
-  Card,
-  Image,
-} from "react-bootstrap";
-import "./MultipleChoice.css";
-import {
-  BsLifePreserver,
-  BsCheckCircle,
-  BsChevronRight,
-  BsFileText,
-  BsX,
-  BsTrophy,
-} from "react-icons/bs";
-import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
+import Swal from "sweetalert2";
+import { Container, Row, Form, Col, Button, Card, Image } from "react-bootstrap";
+import { BsLifePreserver, BsCheckCircle, BsChevronRight, BsFileText, BsX, BsTrophy } from "react-icons/bs";
 import { useHistory } from "react-router";
 import { getMascotImage } from "../Utils";
+import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
+import "./MultipleChoice.css";
 
 export default function MultipleChoice() {
   const [showHint, setShowHint] = useState(false);
@@ -119,6 +105,12 @@ export default function MultipleChoice() {
       }
     } catch (error) {
       console.log(`Error! ${error.message}`);
+      Swal.fire({
+        title: "Oops, something went wrong!",
+        text: "Please try to refresh the page",
+        icon: "error",
+        confirmButtonText: "OK"
+      })
     }
   };
 
@@ -135,7 +127,13 @@ export default function MultipleChoice() {
       var activeMascotId = student.get("active_mascot_id");
       return { level, correct, category, activeMascotId };
     } else {
-      alert("The user couldn't be retrieved");
+      console.log("The user couldn't be retrieved");
+      Swal.fire({
+        title: "Oops, something went wrong!",
+        text: "Please try to refresh the page",
+        icon: "error",
+        confirmButtonText: "OK"
+      })
     }
   };
 
@@ -297,6 +295,12 @@ export default function MultipleChoice() {
       }
     } catch (error) {
       console.log(`Error! ${error.message}`);
+      Swal.fire({
+        title: "Oops, something went wrong!",
+        text: "Please try to refresh the page",
+        icon: "error",
+        confirmButtonText: "OK"
+      })
     }
   };
 

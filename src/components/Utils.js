@@ -48,6 +48,7 @@ import Badge22 from "../images/Rewards/helmet-man.png";
 import Badge23 from "../images/Rewards/coffee.png";
 import Badge24 from "../images/Rewards/love-letter.png";
 import Badge25 from "../images/Rewards/calculator-badge.png";
+import Swal from "sweetalert2";
 
 /*Returns a mascot image based on the index of the mascot in the mascot array 
 retrieved from the database*/
@@ -129,8 +130,13 @@ export const getMascotImage = (index) => {
         return BlankImage;
     }
     default:
-      alert("The mascot images cannot be loaded. Please contact your teacher!");
-      break;
+      console.log("The mascot images cannot be loaded");
+      Swal.fire({
+        title: "Oops, something went wrong!",
+        text: "Please try to refresh the page",
+        icon: "error",
+        confirmButtonText: "OK"
+      })
   }
 }
 
@@ -214,6 +220,12 @@ export const getRewardImage = (index) => {
       return Badge25;
     }
     default:
-      alert("The reward images cannot be loaded. Please contact your teacher!");
+      console.log("The mascot images cannot be loaded");
+      Swal.fire({
+        title: "Oops, something went wrong!",
+        text: "Please try to refresh the page",
+        icon: "error",
+        confirmButtonText: "OK"
+      })
   }
 };

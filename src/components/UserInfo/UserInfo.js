@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Parse from "parse";
 import Sidebar from "../Sidebar/Sidebar";
-import "./UserInfo.css";
 import { useHistory } from "react-router";
 import { Button, Image, Card } from "react-bootstrap";
 import { BsPerson } from "react-icons/bs";
 import { getMascotImage } from "../Utils";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
+import "./UserInfo.css";
 
 export default function UserInfo() {
   const [isOpen, setIsOpen] = useState(true);

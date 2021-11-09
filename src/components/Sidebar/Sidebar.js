@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Parse from "parse";
 import "./Sidebar.css";
+import Swal from "sweetalert2";
 import { Button } from "react-bootstrap";
-import {
-  BsChevronDoubleRight,
-  BsChevronDoubleLeft,
-  BsTrophy,
-  BsX,
-} from "react-icons/bs";
+import { BsChevronDoubleRight, BsChevronDoubleLeft, BsTrophy, BsX } from "react-icons/bs";
 import { useHistory } from "react-router";
 import { getRewardImage } from "../Utils";
 
@@ -45,7 +41,13 @@ export default function Sidebar({ isOpen, toggle }) {
       }
       setStudentRewards(rewards);
     } else {
-      alert("The user couldn't be retrieved");
+      console.log("The user couldn't be retrieved");
+      Swal.fire({
+        title: "Oops, something went wrong!",
+        text: "Please try to refresh the page",
+        icon: "error",
+        confirmButtonText: "OK"
+      })
     }
   };
 
