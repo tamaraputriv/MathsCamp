@@ -192,20 +192,20 @@ export default function MultipleChoice() {
   };
 
   const toggleExplanation = () => {
-    if (showExplanation) {
-      setShowExplanation(false);
-    } else {
+    if (!showExplanation) {
       console.log("Inde i setshow true");
       const student = Parse.User.current();
       if (student) {
         student.increment("checked_explanation");
         const totalexplanation = student.get("checked_explanation");
-        if (totalexplanation % 20 === 0 || totalexplanation === 5) {
+        console.log("Total explanation:" + totalexplanation);
+        if ((totalexplanation % 20 === 0 || totalexplanation === 5) && 0 < totalexplanation && totalexplanation < 81) {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
           const points = student.get("total_points");
           const rewardPoints = points + 50;
           student.set("total_points", rewardPoints);
+          student.save();
           setHasWonReward(true);
         }
       }
@@ -225,12 +225,12 @@ export default function MultipleChoice() {
     return optionClass;
   };
 
-  const showWarning = () => {
+  const showSubmitWarning = () => {
     setShowHint(false);
     setShowWarning(true);
   };
 
-  const showMotivation = () => {
+  const showSubmitMotivation = () => {
     setShowWarning(false);
     setSubmitted(true);
     setShowMotivation(true);
@@ -240,9 +240,9 @@ export default function MultipleChoice() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!chosenOption) {
-      showWarning();
+      showSubmitWarning();
     } else {
-      showMotivation();
+      showSubmitMotivation();
     }
     try {
       const student = Parse.User.current();
@@ -264,14 +264,14 @@ export default function MultipleChoice() {
           console.log("The answer is correct!");
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
-          if (total_answered % 20 === 0 || total_answered === 5) {
+          if ((total_answered % 20 === 0 || total_answered === 5) && 0 < total_answered && total_answered < 81) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
           }
-          if (total_correct % 20 === 0 || total_correct === 5) {
+          if ((total_correct % 20 === 0 || total_correct === 5) && 0 < total_correct && total_correct < 81) {
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
@@ -283,7 +283,7 @@ export default function MultipleChoice() {
           var new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
           const total_answered = student.get("total_answered_questions");
-          if (total_answered % 20 === 0 || total_answered === 5) {
+          if ((total_answered % 20 === 0 || total_answered === 5) && 0 < total_answered && total_answered < 81) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
@@ -424,23 +424,13 @@ export default function MultipleChoice() {
             <Form.Group as={Row} className="mb-8 mt-8">
               {submitted ? (
                 <div className="btn-div">
-                  {showExplanation ? (
-                    <Button
-                      className="close-expl-btn quiz-btn"
-                      onClick={toggleExplanation}
-                    >
-                      Close explanation
-                      <BsFileText className="btn-icon" />
-                    </Button>
-                  ) : (
-                    <Button
-                      className="expl-btn quiz-btn"
-                      onClick={toggleExplanation}
-                    >
-                      Explanation
-                      <BsFileText className="btn-icon" />
-                    </Button>
-                  )}
+                  <Button
+                    className="expl-btn quiz-btn"
+                    onClick={toggleExplanation}
+                  >
+                    Explanation
+                    <BsFileText className="btn-icon" />
+                  </Button>
                   <Button
                     className="next-btn quiz-btn"
                     onClick={() => fetchQuestion(retrieveStudent)}
