@@ -196,21 +196,19 @@ export default function MultipleChoice() {
 
   const toggleExplanation = () => {
     if (!showExplanation) {
-      console.log("Inde i setshow true");
       const student = Parse.User.current();
-      if (student) {
+      if (student && explanation != undefined) {
         student.increment("checked_explanation");
         const totalexplanation = student.get("checked_explanation");
-        console.log("Total explanation:" + totalexplanation);
         if ((totalexplanation % 20 === 0 || totalexplanation === 5) && 0 < totalexplanation && totalexplanation < 81) {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
           const points = student.get("total_points");
           const rewardPoints = points + 50;
           student.set("total_points", rewardPoints);
-          student.save();
           setHasWonReward(true);
         }
+        student.save();
       }
       setShowExplanation(true);
     }
