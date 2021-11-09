@@ -248,15 +248,30 @@ h2 {
 }
 
 .explanation-div {
-  max-width: 600px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.explanation-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  padding: 20px;
   font-family: Rubik;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 30px;
   letter-spacing: -0.02em;
   text-align: left;
   color: #4d4d4d;
+}
+
+.explanation-img {
+  max-height: 300px;
+  max-width: 300px;
 }
 
 .form-control:not(active) {
@@ -311,7 +326,6 @@ h2 {
 .question-img {
   max-height: 300px;
   max-width: 300px;
-  max-width: fit-content;
 }
 
 .reward-container {
