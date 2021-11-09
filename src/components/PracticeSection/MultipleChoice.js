@@ -68,7 +68,9 @@ export default function MultipleChoice() {
     try {
       let question = await query.find();
       console.log(question);
-      for (let i = 0; i < question.length; i++) {
+      let foundQuestion = false;
+      while(!foundQuestion){
+        let i = getRandomInt(9);
         const currentId = question[i].id;
         console.log(currentId);
         if (!info.correct.includes(currentId)) {
@@ -94,18 +96,51 @@ export default function MultipleChoice() {
           setHint(hint);
           setExplanation(explanation);
           setImage(image);
-          break;
+          foundQuestion = true;
         } else {
           console.log("The question was in the correct id array");
         }
       }
+      /*for (let i = 0; i < question.length; i++) {
+        const currentId = question[i].id;
+        console.log(currentId);
+        if (!info.correct.includes(currentId)) {
+          console.log("This question is unanswered");
+          const correct_answer = question[i].get("correct_answer");
+          const description = question[i].get("description");
+          const options = question[i].get("options");
+          const hint = question[i].get("hint");
+          const explanation = question[i].get("explanation");
+          const image = question[i].get("img_src");
+          setId(currentId);
+          ////// andet snip
+          setDescription(description);
+          setOptions(options);
+          setCorrectAnswer(correct_answer);
+          setHint(hint);
+          setExplanation(explanation);
+          setImage(image);
+          break;
+        } else {
+          console.log("The question was in the correct id array");
+        }
+      }*/
     } catch (error) {
       alert(`Error! ${error.message}`);
     }
   };
 
+   /*if(explanation.includes("*")){
+            const splitArray = explanation.split("*");
+            const splitNumbers = splitArray[1].split("/");
+            const number1 = splitNumbers[0];
+            const number2 = splitNumbers[1];
+            const brøk = "<fraction> <numer>" + number1 +"</numer>" + number2 + "</fraction>";
+            setBrøk1(brøk);
+          }*/
+
   const retrieveStudent = () => {
-    const category = "geometry";//getRandomCategory();
+    const category = "number";//getRandomCategory();
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");
@@ -121,6 +156,8 @@ export default function MultipleChoice() {
     }
   };
 
+
+  //TODO denne her giver -1 nogle gange når man har svaret på nogle spørgsmål i træk
   const fetchMascots = async (active_mascot_id) => {
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
@@ -207,6 +244,7 @@ export default function MultipleChoice() {
     try {
       const student = Parse.User.current();
       if (student) {
+        student.increment("total_answered_questions");
         if (correct_answer === chosenOption) {
           setIsCorrect(true);
           var new_total_points = total_points + 10;
@@ -222,25 +260,21 @@ export default function MultipleChoice() {
           }
           console.log("Added to the database in submit: " + correct);
           console.log("The answer is correct!");
-          //Reward kode
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
-          if((total_correct % 20) === 0 || total_correct === 5){
-            const reward = getTotalCorrectReward(total_correct);
-            student.add("reward_badge_ids", reward);
-            setHasWonReward(true);
-            const rewardPoints = new_total_points + 50;
-            student.set("total_points", rewardPoints);
-            console.log("Er inde i total_correct");
-          }
           if((total_answered % 20) === 0 || total_answered === 5){
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
-            //Det her virker ikke hvis de får to rewards
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
-            console.log("Er inde i total");
+          }if((total_correct % 20) === 0 || total_correct === 5){
+            const reward = getTotalCorrectReward(total_correct);
+            student.add("reward_badge_ids", reward);
+            setHasWonReward(true);
+            const originalpoints = student.get("total_points");
+            const rewardPoints = originalpoints + 50;
+            student.set("total_points", rewardPoints);
           }
         } else {
           var new_total_points = total_points + 5;
@@ -248,7 +282,6 @@ export default function MultipleChoice() {
           console.log("The answer is NOT correct!");
           setIsCorrect(false);
         }
-        student.increment("total_answered_questions");
         await student.save();
       }
     } catch (error) {
