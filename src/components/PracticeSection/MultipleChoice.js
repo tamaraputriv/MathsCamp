@@ -224,12 +224,12 @@ export default function MultipleChoice() {
     return optionClass;
   };
 
-  const showWarning = () => {
+  const showSubmitWarning = () => {
     setShowHint(false);
     setShowWarning(true);
   };
 
-  const showMotivation = () => {
+  const showSubmitMotivation = () => {
     setShowWarning(false);
     setSubmitted(true);
     setShowMotivation(true);
@@ -239,9 +239,9 @@ export default function MultipleChoice() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!chosenOption) {
-      showWarning();
+      showSubmitWarning();
     } else {
-      showMotivation();
+      showSubmitMotivation();
     }
     try {
       const student = Parse.User.current();
