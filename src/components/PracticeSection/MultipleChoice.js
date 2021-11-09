@@ -19,7 +19,8 @@ export default function MultipleChoice() {
   const [correct_answer, setCorrectAnswer] = useState("");
   const [hint, setHint] = useState("");
   const [explanation, setExplanation] = useState("");
-  const [image, setImage] = useState("");
+  const [questionImage, setQuestionImage] = useState("");
+  const [explanationImage, setExplanationImage] = useState("");
   const [currentQuestionId, setId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
@@ -81,8 +82,13 @@ export default function MultipleChoice() {
           const hint = question[i].get("hint");
           const explanation = question[i].get("explanation");
           if (question[i].get("question_image")) {
-            const imageFileURL = question[i].get("question_image")._url;
-            setImage(imageFileURL);
+            const questionImageURL = question[i].get("question_image")._url;
+            setQuestionImage(questionImageURL);
+          }
+          if (question[i].get("explanation_image")) {
+            const explanationImageURL =
+              question[i].get("explanation_image")._url;
+            setExplanationImage(explanationImageURL);
           }
           setId(currentId);
           /*if(explanation.includes("*")){
@@ -385,7 +391,7 @@ export default function MultipleChoice() {
     <Container fluid className="multiple-container">
       <Row className="question-row">
         <Col className="question-img-col">
-          <Image src={image} className="question-img" />
+          <Image src={questionImage} className="question-img" />
         </Col>
         <Col className="question-col">
           <div className="category-h1">
@@ -472,9 +478,6 @@ export default function MultipleChoice() {
               )}
             </Form.Group>
           </Form>
-          <div style={{ display: showExplanation ? "" : "none" }}>
-            <div className="explanation-div"> {explanation}</div>
-          </div>
         </Col>
         <Col md="auto" className="img-col">
           <div style={{ display: showHint ? "" : "none" }}>
@@ -521,6 +524,19 @@ export default function MultipleChoice() {
           />
         </Col>
       </Row>
+      <Row>
+        <Col>
+          {" "}
+          <div style={{ display: showExplanation ? "" : "none" }}>
+            <div className="explanation-div">
+              <div className="explanation-text">{explanation}</div>
+              <div className="explanation-img">
+                <Image src={explanationImage} className="explanation-img" />
+              </div>
+            </div>
+          </div>
+        </Col>
+      </Row>
       {hasWonReward ? (
         <div className="text-center reward-container">
           <p className="reward_message">
@@ -536,9 +552,6 @@ export default function MultipleChoice() {
       ) : (
         <div></div>
       )}
-      <Row>
-        <Col></Col>
-      </Row>
     </Container>
   );
 }
