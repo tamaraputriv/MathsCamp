@@ -55,88 +55,82 @@ retrieved from the database*/
 export const getMascotImage = (index) => {
   switch(index){
     case 0: {
-        return Mascot1;
+      return Mascot1;
     }
     case 1: {
-        return Mascot2;
+      return Mascot2;
     }
     case 2: {
-        return Mascot3;
+      return Mascot3;
     }
     case 3: {
-        return Mascot4;
+      return Mascot4;
     }
     case 4: {
-        return Mascot5;
+      return Mascot5;
     }
     case 5: {
-        return Mascot6;
+      return Mascot6;
     }
     case 6: {
-        return Mascot7;
+      return Mascot7;
     }
     case 7: {
-        return Mascot8;
+      return Mascot8;
     }
     case 8: {
-        return Mascot9;
+      return Mascot9;
     }
     case 9: {
-        return Mascot10;
+      return Mascot10;
     }
     case 10: {
-        return Mascot11;
+      return Mascot11;
     }
     case 11: {
-        return Mascot12;
+      return Mascot12;
     }
     case 12: {
-        return Mascot13;
+      return Mascot13;
     }
     case 13: {
-        return Mascot14;
+      return Mascot14;
     }
     case 14: {
-        return Mascot15;
+      return Mascot15;
     }
     case 15: {
-        return Mascot16;
+      return Mascot16;
     }
     case 16: {
-        return Mascot17;
+      return Mascot17;
     }
     case 17: {
-        return Mascot18;
+      return Mascot18;
     }
     case 18: {
-        return Mascot19;
+      return Mascot19;
     }
     case 19: {
-        return Mascot20;
+      return Mascot20;
     }
     case 20: {
-        return Mascot21;
+      return Mascot21;
     }
     case 21: {
-        return Mascot22;
+      return Mascot22;
     }
     case 22: {
-        return Mascot23;
+      return Mascot23;
     }
     case 23: {
-        return Mascot24;
+      return Mascot24;
     }
     case 24:{
-        return BlankImage;
+      return BlankImage;
     }
     default:
-      console.log("The mascot images cannot be loaded");
-      Swal.fire({
-        title: "Oops, something went wrong!",
-        text: "Please try to refresh the page",
-        icon: "error",
-        confirmButtonText: "OK"
-      })
+      return BlankImage;
   }
 }
 

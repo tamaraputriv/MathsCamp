@@ -91,8 +91,8 @@ export default function MultipleChoice() {
             setExplanationImage(explanationImageURL);
           }
           setId(currentId);
-          /*if(explanation.includes("*")){
-            const splitArray = explanation.split("*");
+          /*if(explanation.includes("/fraction")){
+            const splitArray = explanation.split("");
             const splitNumbers = splitArray[1].split("/");
             const number1 = splitNumbers[0];
             const number2 = splitNumbers[1];
@@ -143,7 +143,6 @@ export default function MultipleChoice() {
     }
   };
 
-  //TODO denne her giver -1 nogle gange når man har svaret på nogle spørgsmål i træk
   const fetchMascots = async (active_mascot_id) => {
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
