@@ -195,7 +195,7 @@ export default function MultipleChoice() {
     if (showExplanation) {
       setShowExplanation(false);
     } else {
-      setShowExplanation(true);
+      console.log("Inde i setshow true");
       const student = Parse.User.current();
       if (student) {
         student.increment("checked_explanation");
@@ -203,12 +203,13 @@ export default function MultipleChoice() {
         if (totalexplanation % 20 === 0 || totalexplanation === 5) {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
-          setHasWonReward(true);
           const points = student.get("total_points");
           const rewardPoints = points + 50;
           student.set("total_points", rewardPoints);
+          setHasWonReward(true);
         }
       }
+      setShowExplanation(true);
     }
   };
 
