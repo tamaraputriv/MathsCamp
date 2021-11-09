@@ -11,7 +11,7 @@ export default function RequestReset(){
         setEmail(e.target.value);
     }
 
-    const doRequestPasswordReset = async function () {
+    const doRequestPasswordReset = async () => {
         // Note that this value come from state variables linked to your text input
         try {
             await Parse.User.requestPasswordReset(email);
@@ -34,11 +34,11 @@ export default function RequestReset(){
           <Container className="form-container">
             <Row>
               <Col>
-                <Form onSubmit={doRequestPasswordReset}>
+                <Form>
                   <Form.Group controlId="formEmail" className="upperform">
                     <Form.Control type="email" placeholder="Enter an email" onChange={updateEmail}/>
                   </Form.Group>
-                  <Button className="send-button" variant="primary" type="submit">Send <Key size={20} /></Button>
+                  <Button className="send-button" variant="primary" onClick={doRequestPasswordReset}>Send <Key size={20} /></Button>
                 </Form>
               </Col>
             </Row>
