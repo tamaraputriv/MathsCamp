@@ -121,7 +121,7 @@ export default function MultipleChoice() {
   };
 
   const retrieveStudent = () => {
-    const category = "number"; //getRandomCategory();
+    const category = getRandomCategory();//"number"; 
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");
@@ -166,7 +166,7 @@ export default function MultipleChoice() {
       "number",
       "algebra",
       "measurement",
-      //"statistics",
+      "statistics",
       "geometry",
     ];
     const randomNumber = getRandomInt(4);
@@ -524,13 +524,23 @@ export default function MultipleChoice() {
       <Row>
         <Col>
           {" "}
-          <div style={{ display: showExplanation ? "" : "none" }}>
-            <div className="explanation-div">
-              <div className="explanation-text">{explanation}</div>
-              <div className="explanation-img">
-                <Image src={explanationImage} className="explanation-img" />
-              </div>
-            </div>
+          <div>
+              {showExplanation ? 
+                (explanation != undefined ? (
+                  <div className="explanation-div">
+                    <div className="explanation-text">{explanation}</div>
+                    <div className="explanation-img">
+                    <Image src={explanationImage} className="explanation-img" />
+                    </div>
+                  </div>
+                  ):(
+                  <div className="explanation-div" style={{ display: showExplanation ? "" : "none" }}>
+                    <div className="explanation-text">Sorry, there is no explanation for this questions.</div>
+                  </div>
+                  )
+                ) : (
+                  <div></div>
+                )} 
           </div>
         </Col>
       </Row>

@@ -2,7 +2,7 @@ import { Key, Tree } from "react-bootstrap-icons";
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import React, { useState } from "react";
-import Parse from "parse";
+import Parse, { ParseUser, RequestPasswordResetCallback } from "parse";
 import Swal from "sweetalert2";
 import "./LoginComponent.css";
 
@@ -54,6 +54,30 @@ export default function LoginComponent() {
     }  
   };
 
+  const handleResetPassword = () => {
+    Swal.fire({
+      title: "Forgot your password?",
+      text: "Click OK to send the password to the recovery email you provided",
+      icon: "error",
+      confirmButtonText: "OK"
+    }).then(function (){
+      sendEmail();
+    })
+  }
+
+  const sendEmail = () => {
+      ParseUser.requestPasswordResetInBackground("frederikke.drejer.therkildsen@gmail.com",
+      new RequestPasswordResetCallback());
+
+    /*catch(ParseException e){
+      if (e == null) {
+      // An email was successfully sent with reset instructions.
+      } else {
+      // Something went wrong. Look at the ParseException to see what's up.
+      }
+    } */   
+  }
+
   return (
     <Container className="login-container">
       <div className="text-center">
@@ -72,6 +96,7 @@ export default function LoginComponent() {
               <Form.Group controlId="formPassword" className="upperform">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Enter your password" onChange={updatePassword}/>
+                <p className="information-text" onClick={handleResetPassword}>Forgot your password?</p>
               </Form.Group>   
               <Button className="login-button" variant="primary" type="submit">Log in <Key size={20} /></Button>
             </Form>
