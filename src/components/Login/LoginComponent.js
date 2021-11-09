@@ -76,7 +76,7 @@ export default function LoginComponent() {
               <Form.Group controlId="formPassword" className="upperform">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Enter your password" onChange={updatePassword}/>
-                <p className="information-text" onClick={handleResetPassword}>Forgot your password?</p>
+                <p className="forgot-text" onClick={handleResetPassword}>Forgot your password? Click me!</p>
               </Form.Group>   
               <Button className="login-button" variant="primary" type="submit">Log in <Key size={20} /></Button>
             </Form>

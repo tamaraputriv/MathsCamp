@@ -54,7 +54,7 @@ export default function RegisterComponent() {
         } catch (error) {
           Swal.fire({
             title: "Oops!",
-            text: "Something went wrong while registering you as a user. Please try again!",
+            text: "Something went wrong while registering you as a user: " + error.message + ". Please try again!",
             icon: "error",
             confirmButtonText: "OK"
           })
@@ -84,7 +84,7 @@ export default function RegisterComponent() {
               <Form.Group controlId="formEmail" className="upperform">
                 <Form.Label>Parental email (optional)</Form.Label>
                 <Form.Control type="email" placeholder="Enter an email" onChange={updateEmail}/>
-                <p className="information-text">This email will be used for username and password recovery</p>
+                <p className="information-text">This email will be used for password recovery</p>
               </Form.Group>
               <Button className="registerbtn" variant="primary" type="submit">Register <CardList/></Button>
             </Form>

@@ -54,3 +54,21 @@ p {
     background-color: #5d5fef;
     border-color: #5d5fef;
 }
+  
+.go-back-button,
+.go-back-button:not(:disabled) {
+    position: absolute;
+    bottom: 50px;
+    right:50px;
+    font-family: "Rubik";
+    background-color: #7c7ef2;
+    border-color: #7c7ef2;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: -0.02em;
+}
+
+.go-back-button:hover {
+    background-color: #5d5fef;
+    border-color: #5d5fef;
+}

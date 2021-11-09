@@ -20,13 +20,17 @@ h1 {
   letter-spacing: -0.02em;
 }
 
-p {
+.forgot-text {
   font-size: 13px;
   color: #4d4d4d;
   font-family: "Rubik";
-  font-size: 18px;
   line-height: 21px;
   letter-spacing: -0.02em;
+}
+
+.forgot-text:hover{
+  color:black;
+  cursor:pointer;
 }
 
 .upperform {
@@ -40,7 +44,7 @@ p {
 
 .login-button,
 .login-button:not(:disabled) {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 425px;
   font-family: "Rubik";
   background-color: #7c7ef2;
