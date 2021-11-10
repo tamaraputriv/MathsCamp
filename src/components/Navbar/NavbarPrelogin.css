@@ -6,12 +6,14 @@
   padding-bottom: 0 !important;
   position: sticky;
   z-index: 10;
+  cursor: default;
 }
 
 .logo-container-prelogin {
   background-color: #5d5fef;
   width: 70px;
   height: 70px;
+  cursor: pointer;
 }
 
 .logo-prelogin {
