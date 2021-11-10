@@ -511,7 +511,7 @@ export default function MultipleChoice() {
             </Form.Group>
           </Form>
         </Col>
-        <Col className="mascot-col">
+        <Col md="auto" className="mascot-col">
           <div style={{ display: showHint ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
             <div className="speakboble-text">
