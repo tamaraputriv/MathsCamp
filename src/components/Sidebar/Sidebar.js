@@ -3,7 +3,12 @@ import Parse from "parse";
 import "./Sidebar.css";
 import Swal from "sweetalert2";
 import { Button } from "react-bootstrap";
-import { BsChevronDoubleRight, BsChevronDoubleLeft, BsTrophy, BsX } from "react-icons/bs";
+import {
+  BsChevronDoubleRight,
+  BsChevronDoubleLeft,
+  BsTrophy,
+  BsX,
+} from "react-icons/bs";
 import { useHistory } from "react-router";
 import { getRewardImage } from "../Utils";
 
@@ -46,8 +51,8 @@ export default function Sidebar({ isOpen, toggle }) {
         title: "Oops, something went wrong!",
         text: "Please try to refresh the page",
         icon: "error",
-        confirmButtonText: "OK"
-      })
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -138,7 +143,7 @@ export default function Sidebar({ isOpen, toggle }) {
             {owned_rewards.includes(reward.id) ? (
               <img
                 alt="reward"
-                className="unlocked-badge"
+                className="unlocked-badge selector"
                 src={getRewardImage(rewards.indexOf(reward))}
                 title={reward.attributes.description}
               />
@@ -146,7 +151,7 @@ export default function Sidebar({ isOpen, toggle }) {
               <img
                 key={reward.id}
                 alt="reward"
-                className="locked-badge"
+                className="locked-badge selector"
                 src={getRewardImage(rewards.indexOf(reward))}
                 title={reward.attributes.description}
               />
