@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
+import { Trophy } from "react-bootstrap-icons";
 import { BsChevronRight } from "react-icons/bs";
 import { useHistory } from "react-router";
 import Parse from "parse";
@@ -30,6 +31,7 @@ export default function BadgeInfo() {
     <Container className="mascot-container">
       <div className="point-container">
         <div className="points-div">
+          <Trophy color="#F2B84B" size={50} />
           <div className="header-circle">
             <p className="top-point-text text-center">Badge Library</p>
           </div>
