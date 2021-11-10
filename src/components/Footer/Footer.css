@@ -16,6 +16,7 @@
 .row-2 {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .logo-c {
