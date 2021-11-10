@@ -20,12 +20,6 @@ p {
 .login-btn:not(:disabled) {
   background-color: #f2b84b !important;
   border-color: #f0ac2b !important;
-  font-family: "Rubik";
-  margin-left: 12px;
-  width: 220px;
-  height: 150px;
-  font-size: 30px;
-  font-weight: bold;
 }
 
 .login-btn:hover {
@@ -37,14 +31,25 @@ p {
 .register-btn:not(:disabled) {
   background-color: #7c7ef2 !important;
   border-color: #5d5fef !important;
-  font-family: "Rubik";
-  width: 220px;
-  height: 150px;
-  font-size: 30px;
-  font-weight: bold;
 }
 
 .register-btn:hover {
   background-color: #5d5fef !important;
   border-color: #5d5fef !important;
+}
+
+.landing-btn {
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  width: 300px;
+  height: 214px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px !important;
+  line-height: 41px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-right: 20px;
 }
