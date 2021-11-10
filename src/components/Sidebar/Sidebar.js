@@ -87,6 +87,10 @@ export default function Sidebar({ isOpen, toggle }) {
     history.push("/reward");
   };
 
+  const handleSeeBadgePage = () => {
+    history.push("/badgeinfo");
+  };
+
   const handleClose = () => {
     setHasWonReward(false);
   };
@@ -134,7 +138,11 @@ export default function Sidebar({ isOpen, toggle }) {
       )}
       <div>
         <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
-          Hover the badges to learn how to win them!
+          Hover the badges to learn how to win them. <br /> Or read more{" "}
+          <span className="pointer-cursor" onClick={handleSeeBadgePage}>
+            here
+          </span>
+          .
         </p>
       </div>
       <div className="badge-col" style={{}}>

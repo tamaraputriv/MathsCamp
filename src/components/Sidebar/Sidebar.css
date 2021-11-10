@@ -114,6 +114,11 @@
   -ms-user-select: none;
 }
 
+.pointer-cursor {
+  cursor: pointer;
+  color: #babbf8;
+}
+
 /* Medium screens */
 @media all and (max-width: 1300px) {
 }

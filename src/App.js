@@ -8,6 +8,7 @@ import PracticePage from "./pages/PracticePage";
 import EditMascotPage from "./pages/EditMascotPage";
 import RewardPage from "./pages/RewardPage";
 import Request from "./pages/Reset";
+import BadgeInfoPage from "./pages/BadgeInfoPage";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fontsource/rubik";
 import "@fontsource/solway";
@@ -27,7 +28,7 @@ function App() {
           <Route exaxt path="/reward" component={RewardPage} />
           <Route exaxt path="/requestReset" component={Request} />
           <Route exaxt path="/break" component={Break} />
-          
+          <Route exaxt path="/badgeinfo" component={BadgeInfoPage} />
         </Switch>
       </Router>
     </div>

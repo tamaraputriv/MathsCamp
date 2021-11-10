@@ -1,0 +1,32 @@
+.reward-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 8px;
+  width: 200px;
+}
+
+.filter-btn,
+.filter-btn:not(:disabled) {
+  background-color: #7c7ef2;
+  border-color: #696bf5;
+  font-family: "Rubik";
+  width: 135px;
+  height: 45px;
+  margin-right: 10px;
+}
+
+.filter-btn:hover {
+  background-color: #5d5fef;
+  border-color: #5d5fef;
+}
+
+.header-circle {
+  display: inline-block;
+  background-color: #f0ac2b;
+  border-radius: 16px;
+  height: 40px;
+  width: 200px;
+  padding-top: 10px;
+  margin-top: 5px;
+  margin-left: 20px;
+}
