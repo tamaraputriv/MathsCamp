@@ -86,7 +86,8 @@ export default function MultipleChoice() {
       console.log(question);
       let foundQuestion = false;
       while (!foundQuestion) {
-        let i = getRandomInt(9);
+        //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
+        let i = getRandomInt(5);
         const currentId = question[i].id;
         console.log(currentId);
         if (!info.correct.includes(currentId)) {
@@ -184,7 +185,8 @@ export default function MultipleChoice() {
       // "statistics",
       "geometry",
     ];
-    const randomNumber = getRandomInt(4);
+    //TODO Add alle kategorierne og ændre 3 til 5 når vi har spørgsmål nok
+    const randomNumber = getRandomInt(3);
     const category = categories[randomNumber];
     console.log("Category: " + category);
     return category;
