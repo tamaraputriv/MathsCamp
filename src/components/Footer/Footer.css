@@ -1,0 +1,94 @@
+.footer-c {
+  display: flex;
+  flex-direction: column;
+  background-color: #5d5fef;
+  justify-content: space-between;
+  height: 200px;
+  padding: 20px;
+}
+
+.row-1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.row-2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.logo-c {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+}
+
+.rights-c {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo-name {
+  margin-top: 20px;
+  color: white;
+  font-family: "Solway";
+  font-size: 1.15rem;
+}
+
+.footer-logo {
+  height: 40px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+.rights {
+  display: flex;
+  align-self: flex-end;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+.email-link {
+  cursor: pointer;
+  color: white;
+  font-family: Rubik;
+  font-style: normal;
+}
+
+.contact-btn,
+.contact-btn:not(:disabled) {
+  background-color: #ff6665;
+  border-color: #ff6665;
+  font-family: "Rubik";
+  width: 150px;
+  height: 48px;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.contact-btn:hover {
+  background-color: #ff4443;
+  border-color: #ff4443;
+}
+
+.contact-btn:focus,
+.contact-btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+a,
+a:hover {
+  color: white;
+}
+
+.contact-link {
+  text-decoration: none;
+}
+
+/* Medium screens */
+@media all and (max-width: 1000px) {
+}

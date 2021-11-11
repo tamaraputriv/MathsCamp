@@ -1,8 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Parse from "parse";
 import Swal from "sweetalert2";
-import { Container, Row, Form, Col, Button, Card, Image } from "react-bootstrap";
-import { BsLifePreserver, BsCheckCircle, BsChevronRight, BsFileText, BsX, BsTrophy } from "react-icons/bs";
+import {
+  Container,
+  Row,
+  Form,
+  Col,
+  Button,
+  Card,
+  Image,
+} from "react-bootstrap";
+import {
+  BsLifePreserver,
+  BsCheckCircle,
+  BsChevronRight,
+  BsFileText,
+  BsX,
+  BsTrophy,
+} from "react-icons/bs";
 import { useHistory } from "react-router";
 import { getMascotImage } from "../Utils";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
@@ -115,13 +130,13 @@ export default function MultipleChoice() {
         title: "Oops, something went wrong!",
         text: "Please try to refresh the page",
         icon: "error",
-        confirmButtonText: "OK"
-      })
+        confirmButtonText: "OK",
+      });
     }
   };
 
   const retrieveStudent = () => {
-    const category = getRandomCategory();//"number"; 
+    const category = getRandomCategory(); //"number";
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");
@@ -138,8 +153,8 @@ export default function MultipleChoice() {
         title: "Oops, something went wrong!",
         text: "Please try to refresh the page",
         icon: "error",
-        confirmButtonText: "OK"
-      })
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -164,9 +179,9 @@ export default function MultipleChoice() {
   const getRandomCategory = () => {
     const categories = [
       "number",
-      "algebra",
+      // "algebra",
       "measurement",
-      "statistics",
+      // "statistics",
       "geometry",
     ];
     const randomNumber = getRandomInt(4);
@@ -200,7 +215,11 @@ export default function MultipleChoice() {
       if (student && explanation !== undefined) {
         student.increment("checked_explanation");
         const totalexplanation = student.get("checked_explanation");
-        if ((totalexplanation % 20 === 0 || totalexplanation === 5) && 0 < totalexplanation && totalexplanation < 81) {
+        if (
+          (totalexplanation % 20 === 0 || totalexplanation === 5) &&
+          0 < totalexplanation &&
+          totalexplanation < 81
+        ) {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
           const points = student.get("total_points");
@@ -265,14 +284,22 @@ export default function MultipleChoice() {
           console.log("The answer is correct!");
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
-          if ((total_answered % 20 === 0 || total_answered === 5) && 0 < total_answered && total_answered < 81) {
+          if (
+            (total_answered % 20 === 0 || total_answered === 5) &&
+            0 < total_answered &&
+            total_answered < 81
+          ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
           }
-          if ((total_correct % 20 === 0 || total_correct === 5) && 0 < total_correct && total_correct < 81) {
+          if (
+            (total_correct % 20 === 0 || total_correct === 5) &&
+            0 < total_correct &&
+            total_correct < 81
+          ) {
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
@@ -284,7 +311,11 @@ export default function MultipleChoice() {
           let new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
           const total_answered = student.get("total_answered_questions");
-          if ((total_answered % 20 === 0 || total_answered === 5) && 0 < total_answered && total_answered < 81) {
+          if (
+            (total_answered % 20 === 0 || total_answered === 5) &&
+            0 < total_answered &&
+            total_answered < 81
+          ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             setHasWonReward(true);
@@ -302,8 +333,8 @@ export default function MultipleChoice() {
         title: "Oops, something went wrong!",
         text: "Please try to refresh the page",
         icon: "error",
-        confirmButtonText: "OK"
-      })
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -392,7 +423,11 @@ export default function MultipleChoice() {
         </Col>
         <Col className="question-col">
           <div className="category-h1">
-            <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
+            {category ? (
+              <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
+            ) : (
+              <></>
+            )}
           </div>
           <Card className="title-card">
             <Card.Body className="text-center">
@@ -476,7 +511,7 @@ export default function MultipleChoice() {
             </Form.Group>
           </Form>
         </Col>
-        <Col md="auto" className="img-col">
+        <Col md="auto" className="mascot-col">
           <div style={{ display: showHint ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
             <div className="speakboble-text">
@@ -525,22 +560,27 @@ export default function MultipleChoice() {
         <Col>
           {" "}
           <div>
-              {showExplanation ? 
-                (explanation !== undefined ? (
-                  <div className="explanation-div">
-                    <div className="explanation-text">{explanation}</div>
-                    <div className="explanation-img">
+            {showExplanation ? (
+              explanation !== undefined ? (
+                <div className="explanation-div">
+                  <div className="explanation-text">{explanation}</div>
+                  <div className="explanation-img">
                     <Image src={explanationImage} className="explanation-img" />
-                    </div>
                   </div>
-                  ):(
-                  <div className="explanation-div" style={{ display: showExplanation ? "" : "none" }}>
-                    <div className="explanation-text">Sorry, there is no explanation for this questions.</div>
+                </div>
+              ) : (
+                <div
+                  className="explanation-div"
+                  style={{ display: showExplanation ? "" : "none" }}
+                >
+                  <div className="explanation-text">
+                    Sorry, there is no explanation for this questions.
                   </div>
-                  )
-                ) : (
-                  <div></div>
-                )} 
+                </div>
+              )
+            ) : (
+              <div></div>
+            )}
           </div>
         </Col>
       </Row>

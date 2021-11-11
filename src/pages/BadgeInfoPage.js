@@ -1,12 +1,12 @@
 import NavbarPost from "../components/Navbar/NavbarPostlogin";
-import EditMascot from "../components/EditMascot/EditMascot";
+import BadgeInfo from "../components/BadgeInfo/BadgeInfo";
 import Footer from "../components/Footer/Footer";
 
 export default function EditMascotPage() {
   return (
     <div>
       <NavbarPost />
-      <EditMascot />
+      <BadgeInfo />
       <Footer />
     </div>
   );

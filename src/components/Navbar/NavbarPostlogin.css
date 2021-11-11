@@ -1,12 +1,14 @@
 .navbar-postlogin {
   background-color: #ff6665;
   height: 70px;
+  cursor: default;
 }
 
 .logo-postlogin {
   width: 40px;
   margin-left: 5px;
   margin-top: 15px;
+  cursor: pointer;
 }
 
 .app-name-col-postlogin {
