@@ -8,6 +8,8 @@
 }
 
 .question-row {
+  display: flex;
+  flex-wrap: nowrap;
   margin-top: 50px;
 }
 
@@ -334,11 +336,4 @@ h2 {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: auto;
-}
-
-/* Medium screens */
-@media all and (max-width: 1000px) {
-  .question-img-col {
-    margin-top: 400px;
-  }
 }
