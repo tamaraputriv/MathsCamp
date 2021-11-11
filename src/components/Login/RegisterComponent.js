@@ -54,10 +54,11 @@ export default function RegisterComponent() {
         } catch (error) {
           Swal.fire({
             title: "Oops!",
-            text: "Something went wrong while registering you as a user: " + error.message + ". Please try again!",
+            text: "Something went wrong while registering you as a user: " + error.message + " Please try again!",
             icon: "error",
             confirmButtonText: "OK"
           })
+          console.log(error.message);
         }
       }
   }
