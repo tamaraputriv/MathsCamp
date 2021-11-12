@@ -87,7 +87,7 @@ export default function MultipleChoice() {
       let foundQuestion = false;
       while (!foundQuestion) {
         //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
-        let i = getRandomInt(5);
+        let i = getRandomInt(3);
         const currentId = question[i].id;
         console.log(currentId);
         if (!info.correct.includes(currentId)) {
@@ -278,7 +278,8 @@ export default function MultipleChoice() {
           console.log(currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
-          if (correct.length === 7) {
+          //TODO ændrer når vi har alle spørgsmål i databasen
+          if (correct.length === 3) {
             student.increment(category + "_level");
             student.set(category + "_correct_ids", []);
           }
