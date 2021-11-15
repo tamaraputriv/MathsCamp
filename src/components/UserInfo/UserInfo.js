@@ -67,7 +67,9 @@ export default function UserInfo() {
 
   return (
     <div className="user-container">
-      <Sidebar isOpen={isOpen} toggle={toggle} />
+      <div className="sidebar-color-container">
+        <Sidebar isOpen={isOpen} toggle={toggle} />
+      </div>
       <div
         className="user-info-col"
         style={{
