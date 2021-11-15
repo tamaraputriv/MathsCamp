@@ -20,6 +20,11 @@
   border-color: #5d5fef;
 }
 
+.locked-card{
+  filter: blur(7px);
+  opacity: 0.4;
+}
+
 .header-circle {
   display: inline-block;
   background-color: #f0ac2b;
@@ -30,3 +35,13 @@
   margin-top: 5px;
   margin-left: 20px;
 }
+
+.selector {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+
