@@ -15,7 +15,6 @@ export default function PracticePage() {
     >
       <Navbar />
       <MultipleChoice />
-      <Footer />
     </div>
   );
 }
