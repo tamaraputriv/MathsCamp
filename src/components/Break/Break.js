@@ -14,7 +14,7 @@ export default function Break() {
 
   useEffect(() => {}, []);
   return (
-    <Container fluid className="multiple-container">
+    <Container fluid className="break-container">
       <Row className="reward-row">
         <Col>
           <Image src={Camel} style={{ width: 566 }} />

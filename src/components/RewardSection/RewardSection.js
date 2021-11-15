@@ -52,7 +52,7 @@ export default function RewardSection() {
   }, []);
 
   return (
-    <Container fluid className="multiple-container">
+    <Container fluid className="reward-container">
       <Row className="reward-row">
         <Col>
           <Image src={imgsrc} style={{ width: 566 }} />
@@ -70,10 +70,16 @@ export default function RewardSection() {
           </p>
           <div className="button-div ">
             <Button
-              className="practice-again-btn quiz_btn" onClick={handleCollection}>See collection <VscSmiley className="btn-icon" />
+              className="practice-again-btn quiz_btn"
+              onClick={handleCollection}
+            >
+              See collection <VscSmiley className="btn-icon" />
             </Button>
             <Button
-              className="go-collection-btn quiz_btn" onClick={handleGoBack}>Go back <BsChevronRight className="btn-icon" />
+              className="go-collection-btn quiz_btn"
+              onClick={handleGoBack}
+            >
+              Go back <BsChevronRight className="btn-icon" />
             </Button>
           </div>
         </Col>
