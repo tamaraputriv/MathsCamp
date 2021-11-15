@@ -6,10 +6,6 @@
   width: 100%;
 }
 
-.sidebar-div {
-  transition: max-width 0.5s;
-}
-
 .user-welcome-h1 {
   font-family: Solway;
   font-style: normal;
@@ -20,6 +16,12 @@
   color: #4d4d4d;
   margin-top: 37px;
   margin-bottom: 50px;
+}
+
+.user-p {
+  font-size: 18px;
+  color: #4d4d4d;
+  font-family: "Rubik";
 }
 
 .user-info-col {

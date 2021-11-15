@@ -67,14 +67,7 @@ export default function UserInfo() {
 
   return (
     <div className="user-container">
-      <div
-        className="sidebar-div"
-        style={{
-          maxWidth: isOpen ? "30%" : "15%",
-        }}
-      >
-        <Sidebar isOpen={isOpen} toggle={toggle} />
-      </div>
+      <Sidebar isOpen={isOpen} toggle={toggle} />
       <div
         className="user-info-col"
         style={{
@@ -88,7 +81,9 @@ export default function UserInfo() {
           </h1>
         </div>
         <div>
-          <p>Start practicing your math skills to earn points and badges</p>
+          <p className="user-p">
+            Start practicing your math skills to earn points and badges
+          </p>
         </div>
         <div className="card-mascot-div">
           <div className="card-div">

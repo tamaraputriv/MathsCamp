@@ -132,7 +132,7 @@ export default function MultipleChoice() {
   };
 
   const retrieveStudent = () => {
-    const category = "number"; //getRandomCategory();
+    const category = getRandomCategory();
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");
@@ -181,7 +181,7 @@ export default function MultipleChoice() {
       "geometry",
     ];
     //TODO Add alle kategorierne og ændre 3 til 5 når vi har spørgsmål nok
-    const randomNumber = getRandomInt(3);
+    const randomNumber = getRandomInt(categories.length);
     const category = categories[randomNumber];
     console.log("Category: " + category);
     return category;

@@ -15,10 +15,6 @@ import {
 } from "react-bootstrap";
 
 const Footer = () => {
-  const scrollToTop = () => {
-    scroll.scrollToTop();
-  };
-
   const ButtonMailto = ({ mailto, label }) => {
     return (
       <Button

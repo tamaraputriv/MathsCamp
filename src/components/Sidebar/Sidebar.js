@@ -96,7 +96,10 @@ export default function Sidebar({ isOpen, toggle }) {
   };
 
   return (
-    <div className="sidebar-container">
+    <div
+      className="sidebar-container"
+      style={{ maxWidth: isOpen ? "450px" : "250px" }}
+    >
       <div className="sidebar-header">
         <h1
           className="sidebarH1"
