@@ -22,11 +22,11 @@ export default function LoginRegisterCard() {
     <Container className="login-container">
       <div className="text-center">
         <Tree size={30} color="#4D4D4D" />
-        <h1>
+        <h1 className="login-register-h1">
           Welcome to <br />
           Maths Camp
         </h1>
-        <p>Where exercising your brain is fun.</p>
+        <p className="login-register-p">Where exercising your brain is fun.</p>
       </div>
       <ButtonToolbar className="btn-toolbar login-register-toolbar">
         <Button onClick={handleRegister} className="register-btn landing-btn">

@@ -15,17 +15,17 @@ export default function RegisterComponent() {
   //Updates the state of the username when the input changes
   const updateUsername = (e) => {
     setUsername(e.target.value);
-  }
+  };
 
   //Updates the state of the password when the input changes
   const updatePassword = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   //Updates the state of the parental email when the input changes
   const updateEmail = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
   /*Signs the user in if there is a password and a username. signUp() checks 
   if the username and email are unique and stores the password securely */
@@ -36,40 +36,43 @@ export default function RegisterComponent() {
         title: "Oops!",
         text: "You need to fill out a username and password",
         icon: "error",
-        confirmButtonText: "OK"
-      })
+        confirmButtonText: "OK",
+      });
       return;
-    }else{
-        console.log("I am setting the users information");
-        const user = new Parse.User();
-        user.set("username", username);
-        user.set("password", password);
-        user.set("email", email);
-        var date = new Date().toLocaleDateString();
-        user.set("total_points", 1000);
-        user.add("active_days", date);
-        user.add("owned_mascot_ids", "arB9fEWmFp");
-        try {
-          await user.signUp();
-          history.push("/frontpage");
-        } catch (error) {
-          Swal.fire({
-            title: "Oops!",
-            text: "Something went wrong while registering you as a user: " + error.message + " Please try again!",
-            icon: "error",
-            confirmButtonText: "OK"
-          })
-          console.log(error.message);
-        }
+    } else {
+      console.log("I am setting the users information");
+      const user = new Parse.User();
+      user.set("username", username);
+      user.set("password", password);
+      user.set("email", email);
+      var date = new Date().toLocaleDateString();
+      user.set("total_points", 1000);
+      user.add("active_days", date);
+      user.add("owned_mascot_ids", "arB9fEWmFp");
+      try {
+        await user.signUp();
+        history.push("/frontpage");
+      } catch (error) {
+        Swal.fire({
+          title: "Oops!",
+          text:
+            "Something went wrong while registering you as a user: " +
+            error.message +
+            " Please try again!",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        console.log(error.message);
       }
-  }
+    }
+  };
 
   return (
     <Container className="login-container">
       <div className="text-center">
         <Tree size={30} color="#4D4D4D" />
-        <h1>Welcome!</h1>
-        <p>Create a user and play today</p>
+        <h1 className="register-h1">Welcome!</h1>
+        <p className="register-p">Create a user and play today</p>
       </div>
       <Container className="form-container">
         <Row>
@@ -77,18 +80,34 @@ export default function RegisterComponent() {
             <Form onSubmit={handleReg}>
               <Form.Group controlId="formUserName" className="upperform">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="name" placeholder="Enter a username" onChange={updateUsername}/>
+                <Form.Control
+                  type="name"
+                  placeholder="Enter a username"
+                  onChange={updateUsername}
+                />
               </Form.Group>
               <Form.Group controlId="formPassword" className="upperform">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Enter a password" onChange={updatePassword}/>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter a password"
+                  onChange={updatePassword}
+                />
               </Form.Group>
               <Form.Group controlId="formEmail" className="upperform">
                 <Form.Label>Parental email (optional)</Form.Label>
-                <Form.Control type="email" placeholder="Enter an email" onChange={updateEmail}/>
-                <p className="information-text">This email will be used for password recovery</p>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter an email"
+                  onChange={updateEmail}
+                />
+                <p className="information-text">
+                  This email will be used for password recovery
+                </p>
               </Form.Group>
-              <Button className="registerbtn" variant="primary" type="submit">Register <CardList/></Button>
+              <Button className="registerbtn" variant="primary" type="submit">
+                Register <CardList />
+              </Button>
             </Form>
           </Col>
         </Row>

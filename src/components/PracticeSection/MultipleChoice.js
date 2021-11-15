@@ -47,12 +47,7 @@ export default function MultipleChoice() {
     "You're a star",
     "Yes, correct!",
   ];
-  const motivationH1Wrong = [
-    "Woops!",
-    "Oh well..",
-    "Next time!",
-    "Better luck time!",
-  ];
+  const motivationH1Wrong = ["Woops!", "Oh well..", "Next time!"];
   const [hasWonReward, setHasWonReward] = useState(false);
   //const [brøk1, setBrøk1] = useState("");
   //const [brøk2, setBrøk2] = useState("");
@@ -137,7 +132,7 @@ export default function MultipleChoice() {
   };
 
   const retrieveStudent = () => {
-    const category = "number"; //getRandomCategory(); 
+    const category = "number"; //getRandomCategory();
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");
@@ -541,19 +536,20 @@ export default function MultipleChoice() {
         <Col md="auto" className="mascot-col">
           <div style={{ display: showHint ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
-            <div className="speakboble-text">
-              {hint ? (
+
+            {hint ? (
+              <div className="speakboble-text">
                 <p>{hint}</p>
-              ) : (
-                <>
-                  <h2>Sorry,</h2>
-                  <p>
-                    there's no hint for this question. Try ask your teacher for
-                    help.
-                  </p>
-                </>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="speakboble-text">
+                <h2>Sorry,</h2>
+                <p>
+                  there's no hint for this question. Try ask your teacher for
+                  help.
+                </p>
+              </div>
+            )}
           </div>
           <div style={{ display: showWarning ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
