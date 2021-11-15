@@ -87,7 +87,7 @@ export default function MultipleChoice() {
       let foundQuestion = false;
       while (!foundQuestion) {
         //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
-        let i = getRandomInt(3);
+        let i = getRandomInt(3); //[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         const currentId = question[i].id;
         console.log(currentId);
         if (!info.correct.includes(currentId)) {
@@ -137,7 +137,7 @@ export default function MultipleChoice() {
   };
 
   const retrieveStudent = () => {
-    const category = getRandomCategory(); //"number";
+    const category = "number"; //getRandomCategory(); 
     const student = Parse.User.current();
     if (student) {
       const total_points = student.get("total_points");

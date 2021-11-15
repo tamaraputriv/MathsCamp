@@ -138,14 +138,13 @@ export default function Sidebar({ isOpen, toggle }) {
       )}
       <div>
         <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
-          Hover the badges to learn how to win them. <br /> Or read more{" "}
+          Hover the badges to learn how to win them, or read more{" "}
           <span className="pointer-cursor" onClick={handleSeeBadgePage}>
             here
           </span>
-          .
         </p>
       </div>
-      <div className="badge-col" style={{}}>
+      <div className="badge-col text-center" style={{}}>
         {rewards.map((reward) => (
           <div className="reward-image-container" key={reward.id}>
             {owned_rewards.includes(reward.id) ? (
