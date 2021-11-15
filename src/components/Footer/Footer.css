@@ -3,14 +3,14 @@
   flex-direction: column;
   background-color: #5d5fef;
   justify-content: space-between;
-  height: 200px;
+  height: 150px;
   padding: 20px;
 }
 
 .row-1 {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .row-2 {
