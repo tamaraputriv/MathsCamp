@@ -421,9 +421,6 @@ export default function MultipleChoice() {
   return (
     <Container fluid className="multiple-container">
       <Row className="question-row">
-        <Col className="question-img-col">
-          <Image src={questionImage} className="question-img" />
-        </Col>
         <Col className="question-col">
           <div className="category-h1">
             {category ? (
@@ -439,6 +436,7 @@ export default function MultipleChoice() {
               </Card.Title>
             </Card.Body>
           </Card>
+          <Image src={questionImage} className="question-img" />
           <Form>
             <Card className="option-card">
               <Card.Body className="text-center">
@@ -513,6 +511,29 @@ export default function MultipleChoice() {
               )}
             </Form.Group>
           </Form>
+          <div>
+            {showExplanation ? (
+              explanation !== undefined ? (
+                <div className="explanation-div">
+                  <div className="explanation-img">
+                    <Image src={explanationImage} className="explanation-img" />
+                  </div>
+                  <div className="explanation-text">{explanation}</div>
+                </div>
+              ) : (
+                <div
+                  className="explanation-div"
+                  style={{ display: showExplanation ? "" : "none" }}
+                >
+                  <div className="explanation-text">
+                    Sorry, there is no explanation for this questions.
+                  </div>
+                </div>
+              )
+            ) : (
+              <div></div>
+            )}
+          </div>
         </Col>
         <Col md="auto" className="mascot-col">
           <div style={{ display: showHint ? "" : "none" }}>
@@ -557,34 +578,6 @@ export default function MultipleChoice() {
             src={getMascotImage(active_mascot_index)}
             className="quiz-mascot-img"
           />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          {" "}
-          <div>
-            {showExplanation ? (
-              explanation !== undefined ? (
-                <div className="explanation-div">
-                  <div className="explanation-text">{explanation}</div>
-                  <div className="explanation-img">
-                    <Image src={explanationImage} className="explanation-img" />
-                  </div>
-                </div>
-              ) : (
-                <div
-                  className="explanation-div"
-                  style={{ display: showExplanation ? "" : "none" }}
-                >
-                  <div className="explanation-text">
-                    Sorry, there is no explanation for this questions.
-                  </div>
-                </div>
-              )
-            ) : (
-              <div></div>
-            )}
-          </div>
         </Col>
       </Row>
       {hasWonReward ? (
