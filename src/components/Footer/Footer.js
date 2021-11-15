@@ -45,7 +45,7 @@ const Footer = () => {
         <div className="rights-c">
           <p className="rights">
             ©2021 All rights reserved. Maths Camp is created by Anne Schjødt and
-            Frederikke Drejer in collaboration with IT University of Copenhagen.
+            Frederikke Drejer in collaboration with IT University of Copenhagen
           </p>
         </div>
       </div>
