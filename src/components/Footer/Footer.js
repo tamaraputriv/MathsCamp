@@ -37,7 +37,7 @@ const Footer = () => {
   return (
     <div className="footer-c">
       <div className="row-1">
-        <ButtonMailto label="Contact us" mailto="mailto:no-reply@example.com" />
+        <ButtonMailto label="Contact us" mailto="mailto:fdtbdt5@gmail.com" />
         <Button className="contact-btn">About us</Button>
         <Button className="contact-btn">Join us</Button>
       </div>
