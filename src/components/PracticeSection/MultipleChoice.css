@@ -77,10 +77,6 @@
   text-align: left;
 }
 
-p {
-  line-height: 26px;
-}
-
 .options-form {
   display: flex;
   justify-content: flex-start;
@@ -247,13 +243,15 @@ p {
 }
 
 .speakboble-text {
+  font-family: Rubik;
+  font-size: 18px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   position: absolute;
   z-index: 1;
   top: -91px;
-  right: 190px;
+  right: 158px;
   width: 200px;
   height: 170px;
   color: #4d4d4d;
