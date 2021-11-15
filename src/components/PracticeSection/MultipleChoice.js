@@ -465,6 +465,32 @@ export default function MultipleChoice() {
             </Card>
 
             <Form.Group as={Row} className="mb-8 mt-8">
+              <div>
+                {showExplanation ? (
+                  explanation !== undefined ? (
+                    <div className="explanation-div">
+                      <div className="explanation-img">
+                        <Image
+                          src={explanationImage}
+                          className="explanation-img"
+                        />
+                      </div>
+                      <div className="explanation-text">{explanation}</div>
+                    </div>
+                  ) : (
+                    <div
+                      className="explanation-div"
+                      style={{ display: showExplanation ? "" : "none" }}
+                    >
+                      <div className="explanation-text">
+                        Sorry, there is no explanation for this questions.
+                      </div>
+                    </div>
+                  )
+                ) : (
+                  <div></div>
+                )}
+              </div>
               {submitted ? (
                 <div className="btn-div">
                   <Button
@@ -511,29 +537,6 @@ export default function MultipleChoice() {
               )}
             </Form.Group>
           </Form>
-          <div>
-            {showExplanation ? (
-              explanation !== undefined ? (
-                <div className="explanation-div">
-                  <div className="explanation-img">
-                    <Image src={explanationImage} className="explanation-img" />
-                  </div>
-                  <div className="explanation-text">{explanation}</div>
-                </div>
-              ) : (
-                <div
-                  className="explanation-div"
-                  style={{ display: showExplanation ? "" : "none" }}
-                >
-                  <div className="explanation-text">
-                    Sorry, there is no explanation for this questions.
-                  </div>
-                </div>
-              )
-            ) : (
-              <div></div>
-            )}
-          </div>
         </Col>
         <Col md="auto" className="mascot-col">
           <div style={{ display: showHint ? "" : "none" }}>
@@ -581,7 +584,7 @@ export default function MultipleChoice() {
         </Col>
       </Row>
       {hasWonReward ? (
-        <div className="text-center reward-container">
+        <div className="text-center reward-popup-container">
           <p className="reward_message">
             Congratulations! You have won a reward, check it out!
           </p>

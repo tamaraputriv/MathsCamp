@@ -41,7 +41,8 @@
 
 .question-img {
   max-height: 300px;
-  width: auto;
+  align-self: center;
+  margin-bottom: 20px;
 }
 
 .quiz-mascot-img {
@@ -293,7 +294,7 @@ h2 {
 .explanation-img {
   padding-bottom: 10px;
   max-height: 300px;
-  max-width: 300px;
+  align-self: center;
 }
 
 .form-control:not(active) {
@@ -339,10 +340,12 @@ h2 {
   background-color: #5d5fef !important;
 }
 
-.reward-container {
+.reward-popup-container {
   background-color: #f2b84b;
   padding: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: auto;
+  margin-right: 20px;
+  height: 100px;
 }
