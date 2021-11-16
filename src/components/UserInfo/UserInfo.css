@@ -111,6 +111,10 @@
   border-color: #5d5fef;
 }
 
+.sidebar-color-container{
+  background: #7c7ef2;
+}
+
 /* Medium screens */
 @media all and (max-width: 1300px) {
   .table-div {
