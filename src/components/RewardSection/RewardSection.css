@@ -26,6 +26,7 @@
   background-color: #f2b84b;
   border-color: #f7ac22;
   font-family: "Rubik";
+  padding: 10px 20px 10px 20px;
 }
 
 .practice-again-btn:hover {
@@ -39,6 +40,7 @@
   background-color: #7c7ef2;
   border-color: #7c7ef2;
   font-family: "Rubik";
+  padding: 10px 20px 10px 20px;
 }
 
 .go-collection-btn:hover {
