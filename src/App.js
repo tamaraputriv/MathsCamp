@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "@fontsource/rubik";
 import "@fontsource/solway";
 import Break from "./pages/BreakPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route exaxt path="/requestReset" component={Request} />
           <Route exaxt path="/break" component={Break} />
           <Route exaxt path="/badgeinfo" component={BadgeInfoPage} />
+          <Route exaxt path="/contact" component={ContactPage} />
         </Switch>
       </Router>
     </div>

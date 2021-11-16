@@ -104,7 +104,7 @@ export default function Sidebar({ isOpen, toggle }) {
         <h1
           className="sidebarH1"
           style={{
-            fontSize: isOpen ? "" : "18px",
+            fontSize: isOpen ? "" : "16px",
             marginBottom: isOpen ? "" : "0px",
           }}
         >
