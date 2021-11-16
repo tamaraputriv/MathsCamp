@@ -57,13 +57,33 @@
 
 .logout-btn-postlogin,
 .logout-btn-postlogin:not(:disabled) {
-  background-color: #7c7ef2;
-  border-color: #696bf5;
+  background-color: #ff6665;
+  border-color: #ff6665;
   font-family: "Rubik";
   margin-left: 12px;
 }
 
 .logout-btn-postlogin:hover {
+  background-color: #ff4443;
+  border-color: #ff4443;
+}
+
+.contact-btn,
+.contact-btn:not(:disabled) {
+  background-color: #7c7ef2;
+  border-color: #696bf5;
+  font-family: "Rubik";
+  margin-right: 12px;
+  text-decoration: none;
+}
+
+.contact-btn:hover {
   background-color: #5d5fef;
   border-color: #5d5fef;
+}
+
+.contact-btn:focus,
+.contact-btn:active {
+  outline: none !important;
+  box-shadow: none;
 }

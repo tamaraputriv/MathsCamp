@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   background-color: #5d5fef;
-  justify-content: space-between;
-  height: 150px;
+  justify-content: flex-end;
+  height: 100px;
   padding: 20px;
 }
 
@@ -57,28 +57,6 @@
   color: white;
   font-family: Rubik;
   font-style: normal;
-}
-
-.contact-btn,
-.contact-btn:not(:disabled) {
-  background-color: #ff6665;
-  border-color: #ff6665;
-  font-family: "Rubik";
-  width: 150px;
-  height: 48px;
-  text-decoration: none;
-  margin-right: 20px;
-}
-
-.contact-btn:hover {
-  background-color: #ff4443;
-  border-color: #ff4443;
-}
-
-.contact-btn:focus,
-.contact-btn:active {
-  outline: none !important;
-  box-shadow: none;
 }
 
 a,

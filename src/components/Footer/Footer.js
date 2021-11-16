@@ -6,19 +6,9 @@ import { Button } from "react-bootstrap";
 const Footer = () => {
   const history = useHistory();
 
-  const handleSendEmail = () => {
-    history.push("/contact");
-  };
-
   return (
     <div className="footer-c">
-      <div className="row-1">
-        <Button className="contact-link contact-btn" onClick={handleSendEmail}>
-          Contact us
-        </Button>
-        <Button className="contact-btn">About us</Button>
-        <Button className="contact-btn">Join us</Button>
-      </div>
+      <div className="row-1"></div>
       <div className="row-2">
         <div className="rights-c">
           <p className="rights">
