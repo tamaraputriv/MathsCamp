@@ -464,12 +464,17 @@ export default function MultipleChoice() {
                 {showExplanation ? (
                   explanation !== undefined ? (
                     <div className="explanation-div">
-                      <div className="explanation-img">
-                        <Image
-                          src={explanationImage}
-                          className="explanation-img"
-                        />
-                      </div>
+                      {explanationImage ? (
+                        <div className="explanation-img">
+                          <Image
+                            src={explanationImage}
+                            className="explanation-img"
+                          />
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+
                       <div className="explanation-text">{explanation}</div>
                     </div>
                   ) : (

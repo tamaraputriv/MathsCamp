@@ -8,15 +8,10 @@ const Footer = () => {
 
   return (
     <div className="footer-c">
-      <div className="row-1"></div>
-      <div className="row-2">
-        <div className="rights-c">
-          <p className="rights">
-            ©2021 All rights reserved. Maths Camp is created by Anne Schjødt and
-            Frederikke Drejer in collaboration with IT University of Copenhagen
-          </p>
-        </div>
-      </div>
+      <p className="rights">
+        ©2021 All rights reserved. Maths Camp is created by Anne Schjødt and
+        Frederikke Drejer in collaboration with IT University of Copenhagen
+      </p>
     </div>
   );
 };

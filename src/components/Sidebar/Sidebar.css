@@ -6,7 +6,7 @@
   overflow-y: scroll;
   transition: max-width 0.5s;
   height: 100vh;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 .arrow-icon {
@@ -127,22 +127,22 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #d9d9fb;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #7c7ef2;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #5d5fef;
 }
 
 /* Medium screens */
@@ -151,7 +151,7 @@
     overflow-y: scroll;
     transition: max-width 0.5s;
     height: 100vmax;
-    overflow-x: hidden; 
+    overflow-x: hidden;
   }
 }
 
