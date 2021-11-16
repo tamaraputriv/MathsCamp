@@ -45,7 +45,7 @@ export default function MultipleChoice() {
     "Correct!",
     "Well done!",
     "You're a star",
-    "Yes, correct!",
+    "Super!",
   ];
   const motivationH1Wrong = ["Woops!", "Oh well..", "Next time!"];
   const [hasWonReward, setHasWonReward] = useState(false);
