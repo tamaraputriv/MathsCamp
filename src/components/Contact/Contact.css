@@ -1,0 +1,32 @@
+.email-btn {
+  font-size: 18px;
+  width: 135px;
+  height: 48px;
+  font-family: "Rubik";
+}
+
+.sub-btn,
+.sub-btn:not(:disabled) {
+  background-color: #7c7ef2;
+  border-color: #7c7ef2;
+}
+
+.sub-btn:hover {
+  background-color: #5d5fef;
+  border-color: #5d5fef;
+}
+
+.sub-btn:focus,
+.sub-btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.email-container {
+  height: 100%;
+}
+
+.btn-div {
+  display: flex;
+  align-items: flex-end;
+}
