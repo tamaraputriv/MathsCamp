@@ -23,10 +23,14 @@
 }
 
 .email-container {
-  height: 100%;
+  height: calc(100vh - 320px);
 }
 
 .btn-div {
   display: flex;
   align-items: flex-end;
+}
+
+.email-text-div {
+  margin-bottom: 40px;
 }
