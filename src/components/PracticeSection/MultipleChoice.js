@@ -24,7 +24,7 @@ import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
 
 export default function MultipleChoice() {
-  const [counter, setCounter] = useState(10);
+  const [count, setCount] = useState();
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showMotivation, setShowMotivation] = useState(false);
@@ -41,7 +41,6 @@ export default function MultipleChoice() {
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [isCorrect, setIsCorrect] = useState();
   const [motivationMessage, setMotivationMessage] = useState("");
   const [motivationH1, setMotivationH1] = useState("");
   const motivationH1Correct = [
@@ -141,9 +140,12 @@ export default function MultipleChoice() {
       const total_points = student.get("total_points");
       const correct = student.get(category + "_correct_ids");
       const level = student.get(category + "_level");
+      const count = student.get("practice_timer_count");
+      console.log(count);
       console.log("Student retrieved correctids: " + correct);
       setTotalPoints(total_points);
       setCategory(category);
+      setCount(count);
       var activeMascotId = student.get("active_mascot_id");
       return { level, correct, category, activeMascotId };
     } else {
@@ -267,11 +269,12 @@ export default function MultipleChoice() {
     try {
       const student = Parse.User.current();
       if (student) {
+        let initialCount = count;
+        student.set("practice_timer_count", initialCount);
         student.increment("total_answered_questions");
         if (correct_answer === chosenOption) {
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
-          setIsCorrect(true);
           let new_total_points = total_points + 10;
           student.set("total_points", new_total_points);
           student.add(category + "_correct_ids", currentQuestionId);
@@ -328,7 +331,6 @@ export default function MultipleChoice() {
             student.set("total_points", rewardPoints);
           }
           console.log("The answer is NOT correct!");
-          setIsCorrect(false);
         }
         await student.save();
       }
@@ -417,13 +419,12 @@ export default function MultipleChoice() {
   };
 
   useEffect(() => {
-    const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-    if (counter == 0) {
+    const timer = count > 0 && setInterval(() => setCount(count - 1), 1000);
+    if (count == 0) {
       handleBreakTime();
     }
     return () => clearInterval(timer);
-  }, [counter]);
+  }, [count]);
 
   const handleBreakTime = () => {
     history.push("/break");
@@ -444,7 +445,6 @@ export default function MultipleChoice() {
               <></>
             )}
           </div>
-          <div>Countdown: {counter}</div>
           <Card className="title-card">
             <Card.Body className="text-center">
               <Card.Title className="question-description">
