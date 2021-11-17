@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Parse from "parse";
 import Swal from "sweetalert2";
 import {
@@ -24,6 +24,8 @@ import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
 
 export default function MultipleChoice() {
+  const [counter, setCounter] = useState(10);
+
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showMotivation, setShowMotivation] = useState(false);
@@ -409,6 +411,19 @@ export default function MultipleChoice() {
     history.push("/reward");
   };
 
+  useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    if (counter == 0) {
+      handleBreakTime();
+    }
+    return () => clearInterval(timer);
+  }, [counter]);
+
+  const handleBreakTime = () => {
+    history.push("/break");
+  };
+
   const handleClose = () => {
     setHasWonReward(false);
   };
@@ -424,6 +439,7 @@ export default function MultipleChoice() {
               <></>
             )}
           </div>
+          <div>Countdown: {counter}</div>
           <Card className="title-card">
             <Card.Body className="text-center">
               <Card.Title className="question-description">
