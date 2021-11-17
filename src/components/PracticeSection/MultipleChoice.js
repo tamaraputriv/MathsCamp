@@ -25,7 +25,6 @@ import "./MultipleChoice.css";
 
 export default function MultipleChoice() {
   const [counter, setCounter] = useState(10);
-
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showMotivation, setShowMotivation] = useState(false);
@@ -43,6 +42,8 @@ export default function MultipleChoice() {
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState();
+  const [motivationMessage, setMotivationMessage] = useState("");
+  const [motivationH1, setMotivationH1] = useState("");
   const motivationH1Correct = [
     "Correct!",
     "Well done!",
@@ -268,6 +269,8 @@ export default function MultipleChoice() {
       if (student) {
         student.increment("total_answered_questions");
         if (correct_answer === chosenOption) {
+          setMotivationH1(getRandomMotivation(motivationH1Correct));
+          setMotivationMessage(getRandomMotivation(correctMotivation));
           setIsCorrect(true);
           let new_total_points = total_points + 10;
           student.set("total_points", new_total_points);
@@ -308,6 +311,8 @@ export default function MultipleChoice() {
             student.set("total_points", rewardPoints);
           }
         } else {
+          setMotivationH1(getRandomMotivation(motivationH1Wrong));
+          setMotivationMessage(getRandomMotivation(wrongMotivation));
           let new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
           const total_answered = student.get("total_answered_questions");
@@ -582,16 +587,8 @@ export default function MultipleChoice() {
           <div style={{ display: showMotivation ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
             <div className="speakboble-text">
-              {isCorrect ? (
-                <h2>{getRandomMotivation(motivationH1Correct)}</h2>
-              ) : (
-                <h2>{getRandomMotivation(motivationH1Wrong)}</h2>
-              )}
-              {isCorrect ? (
-                <p>{getRandomMotivation(correctMotivation)}</p>
-              ) : (
-                <p>{getRandomMotivation(wrongMotivation)}</p>
-              )}
+              <h2>{motivationH1}</h2>
+              <p>{motivationMessage}</p>
             </div>
           </div>
           <Image
