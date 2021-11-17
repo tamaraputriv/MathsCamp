@@ -10,9 +10,22 @@ import "./NavbarPostlogin.css";
 export default function NavbarPostlogin() {
   const history = useHistory();
 
+  const resetTimer = async () => {
+    const student = Parse.User.current();
+    if (student) {
+      try {
+        student.set("practice_timer_count", 2100);
+        await student.save();
+      } catch {
+        console.log("timer did not reset");
+      }
+    }
+  };
+
   //Logs out the user and redirects the user to the landingpage
   const handleLogOut = () => {
     Parse.User.logOut();
+    resetTimer();
     history.push("/");
   };
 
