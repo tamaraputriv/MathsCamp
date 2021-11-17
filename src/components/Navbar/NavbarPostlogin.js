@@ -42,16 +42,16 @@ export default function NavbarPostlogin() {
         <Col>
           <div className="btn-toolbar postlogin-toolbar">
             <Button
-              className="contact-link contact-btn"
-              onClick={handleSendEmail}
-            >
-              Contact <BsMailbox size={15} />
-            </Button>
-            <Button
               className="btn-primary lg home-btn-postlogin"
               onClick={handleHome}
             >
               Home <HouseDoor size={15} />
+            </Button>
+            <Button
+              className="contact-link contact-btn"
+              onClick={handleSendEmail}
+            >
+              Contact <BsMailbox size={15} />
             </Button>
             <Button
               className="btn-primary lg logout-btn-postlogin"

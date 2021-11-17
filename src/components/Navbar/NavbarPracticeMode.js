@@ -59,14 +59,14 @@ export default function NavbarPracticeMode() {
       </Col>
       <Col lg={1.5}>
         <div className="btn-toolbar">
+          <Button className="btn-primary lg home-btn" onClick={handleHome}>
+            Home <HouseDoor size={15} />
+          </Button>
           <Button
             className="contact-link contact-btn"
             onClick={handleSendEmail}
           >
             Contact <BsMailbox size={15} />
-          </Button>
-          <Button className="btn-primary lg home-btn" onClick={handleHome}>
-            Home <HouseDoor size={15} />
           </Button>
           <Button
             className="btn-primary lg logout-btn-postlogin"

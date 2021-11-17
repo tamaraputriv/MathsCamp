@@ -36,6 +36,7 @@
   background-color: #f2b84b;
   border-color: #f7ac22;
   font-family: "Rubik";
+  margin-right: 12px;
 }
 
 .home-btn:hover {
@@ -48,7 +49,6 @@
   background-color: #ff6665;
   border-color: #ff6665;
   font-family: "Rubik";
-  margin-left: 12px;
 }
 
 .logout-btn-postlogin:hover {
