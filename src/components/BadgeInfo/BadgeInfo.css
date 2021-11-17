@@ -1,3 +1,14 @@
+.rewardi-container {
+  padding-top: 50px;
+  padding-bottom: 200px;
+}
+
+.rewardi-point-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 50px 20px 0;
+}
+
 .reward-card {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -23,7 +34,7 @@
   border-color: #5d5fef;
 }
 
-.locked-card{
+.locked-card {
   filter: blur(7px);
   opacity: 0.4;
 }
@@ -45,5 +56,3 @@
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-
-

@@ -13,9 +13,11 @@
   display: flex;
 }
 
-.row {
+/* is applied on all pages:( */
+
+/* .row {
   --bs-gutter-x: 0 !important;
-}
+} */
 
 .question-col {
   display: flex;

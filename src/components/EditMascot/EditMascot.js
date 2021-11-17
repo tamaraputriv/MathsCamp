@@ -49,8 +49,8 @@ export default function EditMascot() {
         title: "Oops, something went wrong!",
         text: "Please try to refresh the page",
         icon: "error",
-        confirmButtonText: "OK"
-      })
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -69,7 +69,7 @@ export default function EditMascot() {
         setTotalPoints(points);
         user.set("total_points", points);
         var owned = user.get("owned_mascot_ids");
-        setOwnedMascotIds(owned);   
+        setOwnedMascotIds(owned);
         var wonRewardId = getMascotReward(owned.length);
         var hasWon = wonRewardId !== "";
         if (hasWon) {
@@ -77,7 +77,7 @@ export default function EditMascot() {
           const rewardPoints = points + 50;
           user.set("total_points", rewardPoints);
           setTotalPoints(rewardPoints);
-        }   
+        }
         user.save();
         if (hasWon) {
           history.push("/reward");
@@ -88,8 +88,8 @@ export default function EditMascot() {
         title: "You don't have enough points to buy this mascot!",
         text: "You can earn more points by answering math questions",
         icon: "error",
-        confirmButtonText: "OK"
-      })
+        confirmButtonText: "OK",
+      });
     }
   };
 
