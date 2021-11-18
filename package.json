@@ -1,7 +1,7 @@
 {
   "name": "mathapp",
-  "homepage": "https://annsc.github.io/MathApp/",
   "version": "0.1.0",
+  "homepage": "https://annsc.github.io/MathApp/",
   "private": true,
   "dependencies": {
     "@fontsource/rubik": "^4.5.0",
