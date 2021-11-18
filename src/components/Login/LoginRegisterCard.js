@@ -10,12 +10,12 @@ export default function LoginRegisterCard() {
 
   //Redirects the user to the login-page
   const handleLogin = () => {
-    history.push("#login");
+    history.push("/login");
   };
 
   //Redirects the user to the register-page
   const handleRegister = () => {
-    history.push("#register");
+    history.push("/register");
   };
 
   return (

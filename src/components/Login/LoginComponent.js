@@ -42,7 +42,7 @@ export default function LoginComponent() {
           user.add("active_days", date);
           user.save();
         }
-        history.push("#frontpage");
+        history.push("/frontpage");
       }
     } catch (error) {
       Swal.fire({
@@ -55,7 +55,7 @@ export default function LoginComponent() {
   };
 
   const handleResetPassword = () => {
-    history.push("#requestReset");
+    history.push("/requestReset");
   };
 
   return (
