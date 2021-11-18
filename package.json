@@ -1,6 +1,5 @@
 {
   "name": "mathapp",
-  "homepage": "https://github.itu.dk/pages/annsc/MathApp/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

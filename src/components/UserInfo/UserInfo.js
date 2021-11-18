@@ -18,11 +18,11 @@ export default function UserInfo() {
   const history = useHistory();
 
   const handlePractice = () => {
-    history.push("#practice");
+    history.push("/practice");
   };
 
   const handleChangeMascot = () => {
-    history.push("#mascot");
+    history.push("/mascot");
   };
 
   const toggle = () => {

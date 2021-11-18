@@ -9,7 +9,7 @@ export default function NavbarPrelogin() {
 
   //Redirects the user to the frontpage
   const handleBack = () => {
-    history.push("#");
+    history.push("/");
   };
 
   return (
