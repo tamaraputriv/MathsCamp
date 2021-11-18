@@ -415,7 +415,7 @@ export default function MultipleChoice() {
   };
 
   const handleSeeReward = () => {
-    history.push("/reward");
+    history.push("#reward");
   };
 
   useEffect(() => {
@@ -427,7 +427,7 @@ export default function MultipleChoice() {
   }, [count]);
 
   const handleBreakTime = () => {
-    history.push("/break");
+    history.push("#break");
   };
 
   const handleClose = () => {

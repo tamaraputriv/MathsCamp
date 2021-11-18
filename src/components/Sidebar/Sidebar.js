@@ -84,11 +84,11 @@ export default function Sidebar({ isOpen, toggle }) {
   };
 
   const handleSeeReward = () => {
-    history.push("/reward");
+    history.push("#reward");
   };
 
   const handleSeeBadgePage = () => {
-    history.push("/badgeinfo");
+    history.push("#badgeinfo");
   };
 
   const handleClose = () => {

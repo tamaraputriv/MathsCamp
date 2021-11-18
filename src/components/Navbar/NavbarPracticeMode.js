@@ -33,11 +33,11 @@ export default function NavbarPracticeMode() {
 
   //Redirects the user to the frontpage
   const handleHome = () => {
-    history.push("/frontpage");
+    history.push("#frontpage");
   };
 
   const handleSendEmail = () => {
-    history.push("/contact");
+    history.push("#contact");
   };
 
   //Fetches the total_points of the current user and saves them in totalPoints state

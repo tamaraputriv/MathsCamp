@@ -15,7 +15,7 @@ export default function BadgeInfo() {
 
   //Redirects the user to the frontpage
   const handleGoBack = () => {
-    history.push("/frontpage");
+    history.push("#frontpage");
   };
 
   const fetchRewards = async () => {

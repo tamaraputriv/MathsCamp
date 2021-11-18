@@ -17,7 +17,7 @@ export default function EditMascot() {
 
   //Redirects the user to the frontpage
   const handleGoBack = () => {
-    history.push("/frontpage");
+    history.push("#frontpage");
   };
 
   /*Fetches the mascots from the database and removes the blank mascot used as a placeholder

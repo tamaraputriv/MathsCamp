@@ -20,7 +20,7 @@ export default function RewardSection() {
 
   //Redirects the user to the frontpage with their collection of badges
   const handleCollection = () => {
-    history.push("/frontpage");
+    history.push("#frontpage");
   };
 
   /*Gets the last element from the user's reward_badge_ids array and uses this to

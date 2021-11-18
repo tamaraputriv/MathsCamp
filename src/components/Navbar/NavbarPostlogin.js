@@ -26,16 +26,16 @@ export default function NavbarPostlogin() {
   const handleLogOut = () => {
     Parse.User.logOut();
     resetTimer();
-    history.push("/");
+    history.push("#");
   };
 
   //Redirects the user to the frontpage
   const handleHome = () => {
-    history.push("/frontpage");
+    history.push("#frontpage");
   };
 
   const handleSendEmail = () => {
-    history.push("/contact");
+    history.push("#contact");
   };
 
   return (

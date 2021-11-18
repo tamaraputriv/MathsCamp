@@ -9,7 +9,7 @@ export default function Break() {
   const history = useHistory();
 
   const handleGoBack = () => {
-    history.push("/frontpage");
+    history.push("#frontpage");
   };
 
   useEffect(() => {}, []);
