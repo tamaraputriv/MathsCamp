@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/pages/annsc/MathApp/static/css/main.a6221d4a.chunk.css",
-    "main.js": "/pages/annsc/MathApp/static/js/main.ce470cf0.chunk.js",
-    "main.js.map": "/pages/annsc/MathApp/static/js/main.ce470cf0.chunk.js.map",
-    "runtime-main.js": "/pages/annsc/MathApp/static/js/runtime-main.9e5eb55f.js",
-    "runtime-main.js.map": "/pages/annsc/MathApp/static/js/runtime-main.9e5eb55f.js.map",
+    "main.js": "/pages/annsc/MathApp/static/js/main.03d427e8.chunk.js",
+    "main.js.map": "/pages/annsc/MathApp/static/js/main.03d427e8.chunk.js.map",
+    "runtime-main.js": "/pages/annsc/MathApp/static/js/runtime-main.a230107e.js",
+    "runtime-main.js.map": "/pages/annsc/MathApp/static/js/runtime-main.a230107e.js.map",
     "static/css/2.21e42641.chunk.css": "/pages/annsc/MathApp/static/css/2.21e42641.chunk.css",
-    "static/js/2.e69de932.chunk.js": "/pages/annsc/MathApp/static/js/2.e69de932.chunk.js",
-    "static/js/2.e69de932.chunk.js.map": "/pages/annsc/MathApp/static/js/2.e69de932.chunk.js.map",
-    "static/js/3.d0d11b05.chunk.js": "/pages/annsc/MathApp/static/js/3.d0d11b05.chunk.js",
-    "static/js/3.d0d11b05.chunk.js.map": "/pages/annsc/MathApp/static/js/3.d0d11b05.chunk.js.map",
+    "static/js/2.b1dd623c.chunk.js": "/pages/annsc/MathApp/static/js/2.b1dd623c.chunk.js",
+    "static/js/2.b1dd623c.chunk.js.map": "/pages/annsc/MathApp/static/js/2.b1dd623c.chunk.js.map",
+    "static/js/3.7a74599e.chunk.js": "/pages/annsc/MathApp/static/js/3.7a74599e.chunk.js",
+    "static/js/3.7a74599e.chunk.js.map": "/pages/annsc/MathApp/static/js/3.7a74599e.chunk.js.map",
     "index.html": "/pages/annsc/MathApp/index.html",
     "static/css/2.21e42641.chunk.css.map": "/pages/annsc/MathApp/static/css/2.21e42641.chunk.css.map",
     "static/css/main.a6221d4a.chunk.css.map": "/pages/annsc/MathApp/static/css/main.a6221d4a.chunk.css.map",
-    "static/js/2.e69de932.chunk.js.LICENSE.txt": "/pages/annsc/MathApp/static/js/2.e69de932.chunk.js.LICENSE.txt",
+    "static/js/2.b1dd623c.chunk.js.LICENSE.txt": "/pages/annsc/MathApp/static/js/2.b1dd623c.chunk.js.LICENSE.txt",
     "static/media/SpeakBoble.95a5b408.svg": "/pages/annsc/MathApp/static/media/SpeakBoble.95a5b408.svg",
     "static/media/avocado.8a01b7f0.png": "/pages/annsc/MathApp/static/media/avocado.8a01b7f0.png",
     "static/media/bag.9adccfb9.png": "/pages/annsc/MathApp/static/media/bag.9adccfb9.png",
@@ -71,10 +71,10 @@
     "static/media/strawberry.d8dbd802.png": "/pages/annsc/MathApp/static/media/strawberry.d8dbd802.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.9e5eb55f.js",
+    "static/js/runtime-main.a230107e.js",
     "static/css/2.21e42641.chunk.css",
-    "static/js/2.e69de932.chunk.js",
+    "static/js/2.b1dd623c.chunk.js",
     "static/css/main.a6221d4a.chunk.css",
-    "static/js/main.ce470cf0.chunk.js"
+    "static/js/main.03d427e8.chunk.js"
   ]
 }
