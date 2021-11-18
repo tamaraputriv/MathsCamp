@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
@@ -17,21 +17,23 @@ import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
-    <div className="App">
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/frontpage" component={FrontPage} />
-        <Route exact path="/practice" component={PracticePage} />
-        <Route exact path="/mascot" component={EditMascotPage} />
-        <Route exaxt path="/reward" component={RewardPage} />
-        <Route exaxt path="/requestReset" component={Request} />
-        <Route exaxt path="/break" component={Break} />
-        <Route exaxt path="/badgeinfo" component={BadgeInfoPage} />
-        <Route exaxt path="/contact" component={ContactPage} />
-      </Switch>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/frontpage" component={FrontPage} />
+          <Route exact path="/practice" component={PracticePage} />
+          <Route exact path="/mascot" component={EditMascotPage} />
+          <Route exaxt path="/reward" component={RewardPage} />
+          <Route exaxt path="/requestReset" component={Request} />
+          <Route exaxt path="/break" component={Break} />
+          <Route exaxt path="/badgeinfo" component={BadgeInfoPage} />
+          <Route exaxt path="/contact" component={ContactPage} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

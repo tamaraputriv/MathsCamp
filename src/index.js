@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Parse from "parse";
-import { HashRouter } from "react-router-dom";
 
 Parse.serverURL = "https://mathapp.b4a.io";
 Parse.initialize(
@@ -14,9 +13,7 @@ Parse.initialize(
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
