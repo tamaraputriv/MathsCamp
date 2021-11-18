@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/pages/annsc/MathApp/static/css/main.a6221d4a.chunk.css",
-    "main.js": "/pages/annsc/MathApp/static/js/main.03d427e8.chunk.js",
-    "main.js.map": "/pages/annsc/MathApp/static/js/main.03d427e8.chunk.js.map",
+    "main.js": "/pages/annsc/MathApp/static/js/main.9743c2da.chunk.js",
+    "main.js.map": "/pages/annsc/MathApp/static/js/main.9743c2da.chunk.js.map",
     "runtime-main.js": "/pages/annsc/MathApp/static/js/runtime-main.a230107e.js",
     "runtime-main.js.map": "/pages/annsc/MathApp/static/js/runtime-main.a230107e.js.map",
     "static/css/2.21e42641.chunk.css": "/pages/annsc/MathApp/static/css/2.21e42641.chunk.css",
@@ -75,6 +75,6 @@
     "static/css/2.21e42641.chunk.css",
     "static/js/2.b1dd623c.chunk.js",
     "static/css/main.a6221d4a.chunk.css",
-    "static/js/main.03d427e8.chunk.js"
+    "static/js/main.9743c2da.chunk.js"
   ]
 }
