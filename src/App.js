@@ -18,7 +18,7 @@ import ContactPage from "./pages/ContactPage";
 function App() {
   return (
     <div className="App">
-      <Router>
+      <HashRouter>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={RegisterPage} />
@@ -32,7 +32,7 @@ function App() {
           <Route exaxt path="/badgeinfo" component={BadgeInfoPage} />
           <Route exaxt path="/contact" component={ContactPage} />
         </Switch>
-      </Router>
+      </HashRouter>
     </div>
   );
 }
