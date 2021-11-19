@@ -75,37 +75,36 @@ export default function MultipleChoice() {
     );
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
-    //query.equalTo("objectId", "3R6NXKvb4X");
-    //query.equalTo("objectId", "hIAvfLzfSo");
     try {
       let question = await query.find();
       console.log(question);
       let foundQuestion = false;
       while (!foundQuestion) {
         //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
-        let i = getRandomInt(3); 
+        let i = getRandomInt(3);
         const currentId = question[i].id;
         console.log(currentId);
         if (!info.correct.includes(currentId)) {
           console.log("This question is unanswered");
           const correct_answer = question[i].get("correct_answer");
-          const description = question[i].get("description"); 
+          const description = question[i].get("description");
           const options = question[i].get("options");
-          const hint = question[i].get("hint"); 
+          const hint = question[i].get("hint");
           const explanation = question[i].get("explanation");
           if (question[i].get("question_image")) {
             const questionImageURL = question[i].get("question_image")._url;
             setQuestionImage(questionImageURL);
           }
-          if (question[i].get("explanation_image")) { 
-            const explanationImageURL = question[i].get("explanation_image")._url; 
+          if (question[i].get("explanation_image")) {
+            const explanationImageURL =
+              question[i].get("explanation_image")._url;
             setExplanationImage(explanationImageURL);
           }
-          if(options[0].includes("/frac")){
+          if (options[0].includes("/frac")) {
             setHasOptionFraction(true);
             let regex = /{([^}]+)}/g;
             let result = [];
-            for(let i = 0; i < options.length; i++){
+            for (let i = 0; i < options.length; i++) {
               let matches = [...options[i].matchAll(regex)];
               let resultstring = '<div className="fractioncontainer"><sup><u><big>' + matches[0][1] + '</big></u></sup><br className="fractionbr"/><sup><big>' + matches[1][1] + '</big></sup></div>'
               result.push(resultstring);
@@ -138,20 +137,22 @@ export default function MultipleChoice() {
   const retrieveStudent = () => {
     const category = getRandomCategory();
     const student = Parse.User.current();
-    if (student) {
-      const total_points = student.get("total_points");
-      const correct = student.get(category + "_correct_ids");
-      const level = student.get(category + "_level");
-      const count = student.get("practice_timer_count");
-      console.log(count);
-      console.log("Student retrieved correctids: " + correct);
-      setTotalPoints(total_points);
-      setCategory(category);
-      setCount(count);
-      var activeMascotId = student.get("active_mascot_id");
-      return { level, correct, category, activeMascotId };
-    } else {
-      console.log("The user couldn't be retrieved");
+    try{
+      if (student) {
+        const total_points = student.get("total_points");
+        const correct = student.get(category + "_correct_ids");
+        const level = student.get(category + "_level");
+        const count = student.get("practice_timer_count");
+        console.log(count);
+        console.log("Student retrieved correctids: " + correct);
+        setTotalPoints(total_points);
+        setCategory(category);
+        setCount(count);
+        var activeMascotId = student.get("active_mascot_id");
+        return { level, correct, category, activeMascotId };
+      }
+    }catch (e){
+      console.log("The user couldn't be retrieved " + e.message);
       Swal.fire({
         title: "Oops, something went wrong!",
         text: "Please try to refresh the page",
@@ -449,7 +450,7 @@ export default function MultipleChoice() {
           <Card className="title-card">
             <Card.Body className="text-center">
               <Card.Title className="question-description">
-                <div dangerouslySetInnerHTML={{ __html: description }} />
+                {description}
               </Card.Title>
             </Card.Body>
           </Card>

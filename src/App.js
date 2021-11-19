@@ -26,11 +26,11 @@ function App() {
           <Route exact path="/frontpage" component={FrontPage} />
           <Route exact path="/practice" component={PracticePage} />
           <Route exact path="/mascot" component={EditMascotPage} />
-          <Route exaxt path="/reward" component={RewardPage} />
-          <Route exaxt path="/requestReset" component={Request} />
-          <Route exaxt path="/break" component={Break} />
-          <Route exaxt path="/badgeinfo" component={BadgeInfoPage} />
-          <Route exaxt path="/contact" component={ContactPage} />
+          <Route exact path="/reward" component={RewardPage} />
+          <Route exact path="/requestReset" component={Request} />
+          <Route exact path="/break" component={Break} />
+          <Route exact path="/badgeinfo" component={BadgeInfoPage} />
+          <Route exact path="/contact" component={ContactPage} />
         </Switch>
       </div>
     </Router>
