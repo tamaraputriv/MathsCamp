@@ -58,7 +58,7 @@ export default function MultipleChoice() {
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
   //const [hasExplanationFraction, setHasExplanationFraction] = useState(false);
   const [optionFractions, setOptionFractions] = useState([]);
-  //const [explanationFractions, setExplanationFractions] = useState([]);
+  //const [explanationFractions, setExplanationFractions] = useState([]); 
   const history = useHistory();
  
 
