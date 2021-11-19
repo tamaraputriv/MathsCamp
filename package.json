@@ -2,6 +2,7 @@
   "name": "mathapp",
   "version": "0.1.0",
   "private": true,
+  "homepage":"https://github.itu.dk/pages/annsc/MathApp/",
   "dependencies": {
     "@fontsource/rubik": "^4.5.0",
     "@fontsource/solway": "^4.5.0",
