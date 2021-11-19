@@ -17,11 +17,13 @@ export default function UserInfo() {
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const history = useHistory();
 
-  const handlePractice = () => {
+  const handlePractice = (e) => {
+    e.preventDefault();
     history.push("/practice");
   };
 
-  const handleChangeMascot = () => {
+  const handleChangeMascot = (e) => {
+    e.preventDefault();
     history.push("/mascot");
   };
 
@@ -33,7 +35,7 @@ export default function UserInfo() {
     }
   };
 
-  const retrieveUser = async () => {
+  const retrieveUser = async (e) => {
     const user = Parse.User.current();
     if (user) {
       var username = user.get("username");
@@ -48,6 +50,7 @@ export default function UserInfo() {
       setTotal_answered_questions(total_answered_questions);
       setActiveMascotIndex(activeMascotIndex);
     } else {
+      e.preventDefault();
       history.push("/login");
     }
   };

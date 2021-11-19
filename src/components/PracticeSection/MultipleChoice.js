@@ -49,18 +49,23 @@ export default function MultipleChoice() {
     "You're a star",
     "Super!",
   ];
-  const correctMotivation = ["You're a true math master. Let's do another question.", "You are doing so great! Keep on going."];
-  const wrongMotivation = ["That wasn’t quite right. Take a look at the explanantion.", "Math can be hard. Try taking a look at the explanation.",
-    "You still got this! Take a look at the explanation and keep going."];
+  const correctMotivation = [
+    "You're a true math master. Let's do another question.",
+    "You are doing so great! Keep on going.",
+  ];
+  const wrongMotivation = [
+    "That wasn’t quite right. Take a look at the explanantion.",
+    "Math can be hard. Try taking a look at the explanation.",
+    "You still got this! Take a look at the explanation and keep going.",
+  ];
   const motivationH1Wrong = ["Woops!", "Oh well..", "Next time!"];
   const [hasWonReward, setHasWonReward] = useState(false);
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
   //const [hasExplanationFraction, setHasExplanationFraction] = useState(false);
   const [optionFractions, setOptionFractions] = useState([]);
-  //const [explanationFractions, setExplanationFractions] = useState([]); 
+  //const [explanationFractions, setExplanationFractions] = useState([]);
   const history = useHistory();
- 
 
   const fetchQuestion = async (info) => {
     setShowMotivation(false);
@@ -106,11 +111,16 @@ export default function MultipleChoice() {
             let result = [];
             for (let i = 0; i < options.length; i++) {
               let matches = [...options[i].matchAll(regex)];
-              let resultstring = '<div className="fractioncontainer"><sup><u><big>' + matches[0][1] + '</big></u></sup><br className="fractionbr"/><sup><big>' + matches[1][1] + '</big></sup></div>'
+              let resultstring =
+                '<div className="fractioncontainer"><sup><u><big>' +
+                matches[0][1] +
+                '</big></u></sup><br className="fractionbr"/><sup><big>' +
+                matches[1][1] +
+                "</big></sup></div>";
               result.push(resultstring);
             }
             setOptions(result);
-          }else{
+          } else {
             setOptions(options);
           }
           setId(currentId);
@@ -137,7 +147,7 @@ export default function MultipleChoice() {
   const retrieveStudent = () => {
     const category = getRandomCategory();
     const student = Parse.User.current();
-    try{
+    try {
       if (student) {
         const total_points = student.get("total_points");
         const correct = student.get(category + "_correct_ids");
@@ -151,7 +161,7 @@ export default function MultipleChoice() {
         var activeMascotId = student.get("active_mascot_id");
         return { level, correct, category, activeMascotId };
       }
-    }catch (e){
+    } catch (e) {
       console.log("The user couldn't be retrieved " + e.message);
       Swal.fire({
         title: "Oops, something went wrong!",
@@ -160,6 +170,11 @@ export default function MultipleChoice() {
         confirmButtonText: "OK",
       });
     }
+  };
+
+  const refreshPage = (e) => {
+    e.preventDefault();
+    history.go(0);
   };
 
   const fetchMascots = async (active_mascot_id) => {
@@ -416,7 +431,8 @@ export default function MultipleChoice() {
     }
   };
 
-  const handleSeeReward = () => {
+  const handleSeeReward = (e) => {
+    e.preventDefault();
     history.push("/reward");
   };
 
@@ -428,7 +444,8 @@ export default function MultipleChoice() {
     return () => clearInterval(timer);
   }, [count]);
 
-  const handleBreakTime = () => {
+  const handleBreakTime = (e) => {
+    e.preventDefault();
     history.push("/break");
   };
 
@@ -461,41 +478,39 @@ export default function MultipleChoice() {
                 <fieldset className="options-form">
                   <Form.Group as={Row}>
                     <Col className="options">
-                    {hasOptionFraction ?
-                      (options.map((option) => (
-                          <div key={`${option}`}>
-                            <Form.Check
-                              type="radio"
-                              value={option}
-                              label={<div dangerouslySetInnerHTML={{ __html: option}} />}
-                              name="formHorizontalRadios"
-                              onChange={handleChange}
-                              disabled={submitted ? true : false}
-                              className={
-                                submitted ? checkAnswer(option) : ""
-                              }
-                            />
-                          </div>
-                        ))
-                      ) :
-                      (
-                        options.map((option) => (
-                          <div key={`${option}`}>
-                            <Form.Check
-                              type="radio"
-                              value={option}
-                              label={`${option}`}
-                              name="formHorizontalRadios"
-                              onChange={handleChange}
-                              disabled={submitted ? true : false}
-                              className={
-                                submitted ? checkAnswer(`${option}`) : ""
-                              }
-                            />
-                          </div>
-                        ))
-                      )    
-                    }    
+                      {hasOptionFraction
+                        ? options.map((option) => (
+                            <div key={`${option}`}>
+                              <Form.Check
+                                type="radio"
+                                value={option}
+                                label={
+                                  <div
+                                    dangerouslySetInnerHTML={{ __html: option }}
+                                  />
+                                }
+                                name="formHorizontalRadios"
+                                onChange={handleChange}
+                                disabled={submitted ? true : false}
+                                className={submitted ? checkAnswer(option) : ""}
+                              />
+                            </div>
+                          ))
+                        : options.map((option) => (
+                            <div key={`${option}`}>
+                              <Form.Check
+                                type="radio"
+                                value={option}
+                                label={`${option}`}
+                                name="formHorizontalRadios"
+                                onChange={handleChange}
+                                disabled={submitted ? true : false}
+                                className={
+                                  submitted ? checkAnswer(`${option}`) : ""
+                                }
+                              />
+                            </div>
+                          ))}
                     </Col>
                   </Form.Group>
                 </fieldset>
@@ -545,7 +560,7 @@ export default function MultipleChoice() {
                   </Button>
                   <Button
                     className="next-btn quiz-btn"
-                    onClick={() => fetchQuestion(retrieveStudent)}
+                    onClick={refreshPage}
                     type="submit"
                   >
                     Next question
