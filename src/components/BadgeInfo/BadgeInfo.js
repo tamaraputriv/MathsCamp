@@ -14,7 +14,8 @@ export default function BadgeInfo() {
   const [owned_rewards, setStudentRewards] = useState([]);
 
   //Redirects the user to the frontpage
-  const handleGoBack = () => {
+  const handleGoBack = (e) => {
+    e.preventDefault();
     history.push("/frontpage");
   };
 

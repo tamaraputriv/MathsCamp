@@ -8,7 +8,8 @@ export default function NavbarPrelogin() {
   const history = useHistory();
 
   //Redirects the user to the frontpage
-  const handleBack = () => {
+  const handleBack = (e) => {
+    e.preventDefault();
     history.push("/");
   };
 

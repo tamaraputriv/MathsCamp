@@ -35,7 +35,8 @@ export default function RequestReset() {
     }
   };
 
-  const handleGoBack = () => {
+  const handleGoBack = (e) => {
+    e.preventDefault();
     history.goBack();
   };
 

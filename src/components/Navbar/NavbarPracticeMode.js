@@ -25,18 +25,21 @@ export default function NavbarPracticeMode() {
   };
 
   //Logs out the user and redirects the user to the landingpage
-  const handleLogOut = () => {
+  const handleLogOut = (e) => {
+    e.preventDefault();
     Parse.User.logOut();
     resetTimer();
     history.push("/");
   };
 
   //Redirects the user to the frontpage
-  const handleHome = () => {
+  const handleHome = (e) => {
+    e.preventDefault();
     history.push("/frontpage");
   };
 
-  const handleSendEmail = () => {
+  const handleSendEmail = (e) => {
+    e.preventDefault();
     history.push("/contact");
   };
 

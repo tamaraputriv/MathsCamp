@@ -14,12 +14,14 @@ export default function RewardSection() {
   const history = useHistory();
 
   //Redirects the user to the page they were on when winning the badge
-  const handleGoBack = () => {
+  const handleGoBack = (e) => {
+    e.preventDefault();
     history.goBack();
   };
 
   //Redirects the user to the frontpage with their collection of badges
-  const handleCollection = () => {
+  const handleCollection = (e) => {
+    e.preventDefault();
     history.push("/frontpage");
   };
 
