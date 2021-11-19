@@ -49,6 +49,9 @@ export default function MultipleChoice() {
     "You're a star",
     "Super!",
   ];
+  const correctMotivation = ["You're a true math master. Let's do another question.", "You are doing so great! Keep on going."];
+  const wrongMotivation = ["That wasn’t quite right. Take a look at the explanantion.", "Math can be hard. Try taking a look at the explanation.",
+    "You still got this! Take a look at the explanation and keep going."];
   const motivationH1Wrong = ["Woops!", "Oh well..", "Next time!"];
   const [hasWonReward, setHasWonReward] = useState(false);
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
@@ -57,11 +60,7 @@ export default function MultipleChoice() {
   const [optionFractions, setOptionFractions] = useState([]);
   //const [explanationFractions, setExplanationFractions] = useState([]);
   const history = useHistory();
-  const motivationH1Correct = ["Correct!", "Well done!", "You're a star", "Yes, correct!"];
-  const motivationH1Wrong = ["Woops!", "Oh well..", "Next time!"];
-  const correctMotivation = ["You're a true math master. Let's do another question.", "You are doing so great! Keep on going."];
-  const wrongMotivation = ["That wasn’t quite right. Take a look at the explanantion.", "Math can be hard. Try taking a look at the explanation.",
-    "You still got this! Take a look at the explanation and keep going."];
+ 
 
   const fetchQuestion = async (info) => {
     setShowMotivation(false);
@@ -76,6 +75,8 @@ export default function MultipleChoice() {
     );
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
+    //query.equalTo("objectId", "3R6NXKvb4X");
+    //query.equalTo("objectId", "hIAvfLzfSo");
     try {
       let question = await query.find();
       console.log(question);
@@ -106,12 +107,13 @@ export default function MultipleChoice() {
             let result = [];
             for(let i = 0; i < options.length; i++){
               let matches = [...options[i].matchAll(regex)];
-              result.push(matches[0][1]);
-              result.push(matches[1][1]);
+              let resultstring = '<div className="fractioncontainer"><sup><u><big>' + matches[0][1] + '</big></u></sup><br className="fractionbr"/><sup><big>' + matches[1][1] + '</big></sup></div>'
+              result.push(resultstring);
             }
-            setOptionFractions(result);
+            setOptions(result);
+          }else{
+            setOptions(options);
           }
-          setOptions(options);
           setId(currentId);
           setDescription(description);
           setCorrectAnswer(correct_answer);
@@ -447,8 +449,7 @@ export default function MultipleChoice() {
           <Card className="title-card">
             <Card.Body className="text-center">
               <Card.Title className="question-description">
-                {description}
-                <br/>
+                <div dangerouslySetInnerHTML={{ __html: description }} />
               </Card.Title>
             </Card.Body>
           </Card>
@@ -460,17 +461,17 @@ export default function MultipleChoice() {
                   <Form.Group as={Row}>
                     <Col className="options">
                     {hasOptionFraction ?
-                      (options.map((option, index) => (
+                      (options.map((option) => (
                           <div key={`${option}`}>
                             <Form.Check
                               type="radio"
-                              value={`${option}`}
-                              label={<div className="fractioncontainer"><sup><u><big>{optionFractions[(index+index)]}</big></u></sup><br className="fractionbr"/><sup><big>{optionFractions[(index+index+1)]}</big></sup></div>}
+                              value={option}
+                              label={<div dangerouslySetInnerHTML={{ __html: option}} />}
                               name="formHorizontalRadios"
                               onChange={handleChange}
                               disabled={submitted ? true : false}
                               className={
-                                submitted ? checkAnswer(`${option}`) : ""
+                                submitted ? checkAnswer(option) : ""
                               }
                             />
                           </div>
