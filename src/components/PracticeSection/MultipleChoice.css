@@ -90,7 +90,7 @@
 .form-check-label {
   margin-left: 8px;
   font-size: 16px;
-  line-height: 27px;
+  line-height: 20px;
   color: #4d4d4d;
 }
 
@@ -363,4 +363,14 @@ h2 {
 
 /* Landscape */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+.fractionbr {   
+  content: "";
+  margin: -1%;
+  display: block;
+}
+
+.fractioncontainer{
+  margin-top: 5px;
 }
