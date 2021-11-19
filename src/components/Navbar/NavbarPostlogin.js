@@ -10,9 +10,22 @@ import "./NavbarPostlogin.css";
 export default function NavbarPostlogin() {
   const history = useHistory();
 
+  const resetTimer = async () => {
+    const student = Parse.User.current();
+    if (student) {
+      try {
+        student.set("practice_timer_count", 2100);
+        await student.save();
+      } catch {
+        console.log("timer did not reset");
+      }
+    }
+  };
+
   //Logs out the user and redirects the user to the landingpage
   const handleLogOut = () => {
     Parse.User.logOut();
+    resetTimer();
     history.push("/");
   };
 
@@ -42,16 +55,16 @@ export default function NavbarPostlogin() {
         <Col>
           <div className="btn-toolbar postlogin-toolbar">
             <Button
-              className="contact-link contact-btn"
-              onClick={handleSendEmail}
-            >
-              Contact <BsMailbox size={15} />
-            </Button>
-            <Button
               className="btn-primary lg home-btn-postlogin"
               onClick={handleHome}
             >
               Home <HouseDoor size={15} />
+            </Button>
+            <Button
+              className="contact-link contact-btn"
+              onClick={handleSendEmail}
+            >
+              Contact <BsMailbox size={15} />
             </Button>
             <Button
               className="btn-primary lg logout-btn-postlogin"

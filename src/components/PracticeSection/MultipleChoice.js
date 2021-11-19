@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Parse from "parse";
 import Swal from "sweetalert2";
 import {
@@ -24,6 +24,7 @@ import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
 
 export default function MultipleChoice() {
+  const [count, setCount] = useState();
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showMotivation, setShowMotivation] = useState(false);
@@ -40,7 +41,15 @@ export default function MultipleChoice() {
   const [total_points, setTotalPoints] = useState(0);
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [isCorrect, setIsCorrect] = useState();
+  const [motivationMessage, setMotivationMessage] = useState("");
+  const [motivationH1, setMotivationH1] = useState("");
+  const motivationH1Correct = [
+    "Correct!",
+    "Well done!",
+    "You're a star",
+    "Super!",
+  ];
+  const motivationH1Wrong = ["Woops!", "Oh well..", "Next time!"];
   const [hasWonReward, setHasWonReward] = useState(false);
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
@@ -131,9 +140,12 @@ export default function MultipleChoice() {
       const total_points = student.get("total_points");
       const correct = student.get(category + "_correct_ids");
       const level = student.get(category + "_level");
+      const count = student.get("practice_timer_count");
+      console.log(count);
       console.log("Student retrieved correctids: " + correct);
       setTotalPoints(total_points);
       setCategory(category);
+      setCount(count);
       var activeMascotId = student.get("active_mascot_id");
       return { level, correct, category, activeMascotId };
     } else {
@@ -256,9 +268,12 @@ export default function MultipleChoice() {
     try {
       const student = Parse.User.current();
       if (student) {
+        let initialCount = count;
+        student.set("practice_timer_count", initialCount);
         student.increment("total_answered_questions");
         if (correct_answer === chosenOption) {
-          setIsCorrect(true);
+          setMotivationH1(getRandomMotivation(motivationH1Correct));
+          setMotivationMessage(getRandomMotivation(correctMotivation));
           let new_total_points = total_points + 10;
           student.set("total_points", new_total_points);
           student.add(category + "_correct_ids", currentQuestionId);
@@ -298,6 +313,8 @@ export default function MultipleChoice() {
             student.set("total_points", rewardPoints);
           }
         } else {
+          setMotivationH1(getRandomMotivation(motivationH1Wrong));
+          setMotivationMessage(getRandomMotivation(wrongMotivation));
           let new_total_points = total_points + 5;
           student.set("total_points", new_total_points);
           const total_answered = student.get("total_answered_questions");
@@ -313,7 +330,6 @@ export default function MultipleChoice() {
             student.set("total_points", rewardPoints);
           }
           console.log("The answer is NOT correct!");
-          setIsCorrect(false);
         }
         await student.save();
       }
@@ -399,6 +415,18 @@ export default function MultipleChoice() {
 
   const handleSeeReward = () => {
     history.push("/reward");
+  };
+
+  useEffect(() => {
+    const timer = count > 0 && setInterval(() => setCount(count - 1), 1000);
+    if (count == 0) {
+      handleBreakTime();
+    }
+    return () => clearInterval(timer);
+  }, [count]);
+
+  const handleBreakTime = () => {
+    history.push("/break");
   };
 
   const handleClose = () => {
@@ -579,16 +607,8 @@ export default function MultipleChoice() {
           <div style={{ display: showMotivation ? "" : "none" }}>
             <Image src={SpeakBoble} className="speakboble" />
             <div className="speakboble-text">
-              {isCorrect ? (
-                <h2>{getRandomMotivation(motivationH1Correct)}</h2>
-              ) : (
-                <h2>{getRandomMotivation(motivationH1Wrong)}</h2>
-              )}
-              {isCorrect ? (
-                <p>{getRandomMotivation(correctMotivation)}</p>
-              ) : (
-                <p>{getRandomMotivation(wrongMotivation)}</p>
-              )}
+              <h2>{motivationH1}</h2>
+              <p>{motivationMessage}</p>
             </div>
           </div>
           <Image

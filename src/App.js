@@ -17,8 +17,8 @@ import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <div className="App">
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={RegisterPage} />
@@ -32,8 +32,8 @@ function App() {
           <Route exaxt path="/badgeinfo" component={BadgeInfoPage} />
           <Route exaxt path="/contact" component={ContactPage} />
         </Switch>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 

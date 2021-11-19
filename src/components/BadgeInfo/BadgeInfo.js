@@ -50,8 +50,8 @@ export default function BadgeInfo() {
   }, []);
 
   return (
-    <Container className="mascot-container">
-      <div className="point-container">
+    <Container className="rewardi-container">
+      <div className="rewardi-point-container">
         <div className="points-div">
           <Trophy color="#F2B84B" size={50} />
           <div className="header-circle">
@@ -68,19 +68,19 @@ export default function BadgeInfo() {
         {rewards.map((reward) => (
           <Col key={reward.id}>
             <Card className="reward-card">
-            {owned_rewards.includes(reward.id) ? ( 
-              <Card.Img
-              className="unlocked-card selector"
-                variant="top"
-                src={getRewardImage(rewards.indexOf(reward))}
-              />
-            ) : (  
-              <Card.Img
-                className="locked-card selector"
-                variant="top"
-                src={getRewardImage(rewards.indexOf(reward))}
-              />    
-            )}
+              {owned_rewards.includes(reward.id) ? (
+                <Card.Img
+                  className="unlocked-card selector"
+                  variant="top"
+                  src={getRewardImage(rewards.indexOf(reward))}
+                />
+              ) : (
+                <Card.Img
+                  className="locked-card selector"
+                  variant="top"
+                  src={getRewardImage(rewards.indexOf(reward))}
+                />
+              )}
               <Card.Body className="text-center">
                 <Card.Title className="point-text">
                   {reward.attributes.description}

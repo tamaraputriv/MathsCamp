@@ -13,9 +13,11 @@
   display: flex;
 }
 
-.row {
+/* is applied on all pages:( */
+
+/* .row {
   --bs-gutter-x: 0 !important;
-}
+} */
 
 .question-col {
   display: flex;
@@ -52,6 +54,7 @@
 
 .category-h1 {
   margin-bottom: 30px;
+  font-style: normal;
   margin-top: 10px;
   color: #4d4d4d;
   font-family: "Solway";

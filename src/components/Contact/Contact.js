@@ -29,7 +29,7 @@ export default function Contact() {
   };
 
   return (
-    <Container fluid className="email-container">
+    <Container fluid className="contact-container">
       <Row className="justify-content-md-center email-row">
         <Col sx md="8" lg="5" className="email-col">
           <div className="text-center email-text-div">

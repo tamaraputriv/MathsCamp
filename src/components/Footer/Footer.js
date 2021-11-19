@@ -4,8 +4,6 @@ import "./Footer.css";
 import { Button } from "react-bootstrap";
 
 const Footer = () => {
-  const history = useHistory();
-
   return (
     <div className="footer-c">
       <p className="rights">
