@@ -49,7 +49,6 @@ export default function MultipleChoice() {
     "You're a star",
     "Super!",
   ];
-  const motivationH1Wrong = ["Woops!", "Oh well..", "Next time!"];
   const [hasWonReward, setHasWonReward] = useState(false);
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
@@ -57,11 +56,16 @@ export default function MultipleChoice() {
   const [optionFractions, setOptionFractions] = useState([]);
   //const [explanationFractions, setExplanationFractions] = useState([]);
   const history = useHistory();
-  const motivationH1Correct = ["Correct!", "Well done!", "You're a star", "Yes, correct!"];
   const motivationH1Wrong = ["Woops!", "Oh well..", "Next time!"];
-  const correctMotivation = ["You're a true math master. Let's do another question.", "You are doing so great! Keep on going."];
-  const wrongMotivation = ["That wasn’t quite right. Take a look at the explanantion.", "Math can be hard. Try taking a look at the explanation.",
-    "You still got this! Take a look at the explanation and keep going."];
+  const correctMotivation = [
+    "You're a true math master. Let's do another question.",
+    "You are doing so great! Keep on going.",
+  ];
+  const wrongMotivation = [
+    "That wasn’t quite right. Take a look at the explanantion.",
+    "Math can be hard. Try taking a look at the explanation.",
+    "You still got this! Take a look at the explanation and keep going.",
+  ];
 
   const fetchQuestion = async (info) => {
     setShowMotivation(false);
@@ -82,29 +86,30 @@ export default function MultipleChoice() {
       let foundQuestion = false;
       while (!foundQuestion) {
         //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
-        let i = getRandomInt(3); 
+        let i = getRandomInt(3);
         const currentId = question[i].id;
         console.log(currentId);
         if (!info.correct.includes(currentId)) {
           console.log("This question is unanswered");
           const correct_answer = question[i].get("correct_answer");
-          const description = question[i].get("description"); 
+          const description = question[i].get("description");
           const options = question[i].get("options");
-          const hint = question[i].get("hint"); 
+          const hint = question[i].get("hint");
           const explanation = question[i].get("explanation");
           if (question[i].get("question_image")) {
             const questionImageURL = question[i].get("question_image")._url;
             setQuestionImage(questionImageURL);
           }
-          if (question[i].get("explanation_image")) { 
-            const explanationImageURL = question[i].get("explanation_image")._url; 
+          if (question[i].get("explanation_image")) {
+            const explanationImageURL =
+              question[i].get("explanation_image")._url;
             setExplanationImage(explanationImageURL);
           }
-          if(options[0].includes("/frac")){
+          if (options[0].includes("/frac")) {
             setHasOptionFraction(true);
             let regex = /{([^}]+)}/g;
             let result = [];
-            for(let i = 0; i < options.length; i++){
+            for (let i = 0; i < options.length; i++) {
               let matches = [...options[i].matchAll(regex)];
               result.push(matches[0][1]);
               result.push(matches[1][1]);
@@ -448,7 +453,7 @@ export default function MultipleChoice() {
             <Card.Body className="text-center">
               <Card.Title className="question-description">
                 {description}
-                <br/>
+                <br />
               </Card.Title>
             </Card.Body>
           </Card>
@@ -459,41 +464,53 @@ export default function MultipleChoice() {
                 <fieldset className="options-form">
                   <Form.Group as={Row}>
                     <Col className="options">
-                    {hasOptionFraction ?
-                      (options.map((option, index) => (
-                          <div key={`${option}`}>
-                            <Form.Check
-                              type="radio"
-                              value={`${option}`}
-                              label={<div className="fractioncontainer"><sup><u><big>{optionFractions[(index+index)]}</big></u></sup><br className="fractionbr"/><sup><big>{optionFractions[(index+index+1)]}</big></sup></div>}
-                              name="formHorizontalRadios"
-                              onChange={handleChange}
-                              disabled={submitted ? true : false}
-                              className={
-                                submitted ? checkAnswer(`${option}`) : ""
-                              }
-                            />
-                          </div>
-                        ))
-                      ) :
-                      (
-                        options.map((option) => (
-                          <div key={`${option}`}>
-                            <Form.Check
-                              type="radio"
-                              value={option}
-                              label={`${option}`}
-                              name="formHorizontalRadios"
-                              onChange={handleChange}
-                              disabled={submitted ? true : false}
-                              className={
-                                submitted ? checkAnswer(`${option}`) : ""
-                              }
-                            />
-                          </div>
-                        ))
-                      )    
-                    }    
+                      {hasOptionFraction
+                        ? options.map((option, index) => (
+                            <div key={`${option}`}>
+                              <Form.Check
+                                type="radio"
+                                value={`${option}`}
+                                label={
+                                  <div className="fractioncontainer">
+                                    <sup>
+                                      <u>
+                                        <big>
+                                          {optionFractions[index + index]}
+                                        </big>
+                                      </u>
+                                    </sup>
+                                    <br className="fractionbr" />
+                                    <sup>
+                                      <big>
+                                        {optionFractions[index + index + 1]}
+                                      </big>
+                                    </sup>
+                                  </div>
+                                }
+                                name="formHorizontalRadios"
+                                onChange={handleChange}
+                                disabled={submitted ? true : false}
+                                className={
+                                  submitted ? checkAnswer(`${option}`) : ""
+                                }
+                              />
+                            </div>
+                          ))
+                        : options.map((option) => (
+                            <div key={`${option}`}>
+                              <Form.Check
+                                type="radio"
+                                value={option}
+                                label={`${option}`}
+                                name="formHorizontalRadios"
+                                onChange={handleChange}
+                                disabled={submitted ? true : false}
+                                className={
+                                  submitted ? checkAnswer(`${option}`) : ""
+                                }
+                              />
+                            </div>
+                          ))}
                     </Col>
                   </Form.Group>
                 </fieldset>
