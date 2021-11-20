@@ -80,9 +80,9 @@ export default function MultipleChoice() {
       ", correctids: " +
       info.correct
     );
-    query.equalTo("category", info.category);
-    query.equalTo("level", info.level);
-    //query.equalTo("objectId", "kPdyGu8ycH");
+    //query.equalTo("category", info.category);
+    //query.equalTo("level", info.level);
+    query.equalTo("objectId", "kPdyGu8ycH");
     //query.equalTo("objectId", "XRQNYRsiuK");
     try {
       let question = await query.find();
@@ -90,7 +90,7 @@ export default function MultipleChoice() {
       let foundQuestion = false;
       while (!foundQuestion) {
         //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
-        let i = getRandomInt(3);
+        let i = 0;//getRandomInt(3);
         const currentId = question[i].id;
         console.log("The current question has this id: " + currentId);
         if (!info.correct.includes(currentId)) {
@@ -130,16 +130,20 @@ export default function MultipleChoice() {
           setId(currentId);
           setDescription(description);
           setCorrectAnswer(correct_answer);
-          if (hint.includes("/frac")) {
-            let regex = /{([^}]+)}/g;
-            let matches = [...hint.matchAll(regex)];
-            let resultstring = '<br/><br/><p> '+ 
-            matches[1][1] + '<br/><u>' +
-            matches[0][1] +
-            matches[2][1] + '</u></p>';
-            let end = hint.indexOf("/frac"); 
-            let newHint = hint.substring(0, end);
-            setHint(newHint + resultstring); 
+          if(hint !== undefined){
+            if (hint.includes("/frac")) {
+              let regex = /{([^}]+)}/g;
+              let matches = [...hint.matchAll(regex)];
+              let resultstring = '<br/><br/><p> '+ 
+              matches[1][1] + '<br/><u>' +
+              matches[0][1] +
+              matches[2][1] + '</u></p>';
+              let end = hint.indexOf("/frac"); 
+              let newHint = hint.substring(0, end);
+              setHint(newHint + resultstring); 
+            }else{
+              setHint(hint);
+            }
           }else{
             setHint(hint);
           } 
