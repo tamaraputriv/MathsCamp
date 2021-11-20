@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Trophy } from "react-bootstrap-icons";
-import { BsChevronRight } from "react-icons/bs";
+import { BsChevronRight} from "react-icons/bs";
+import { VscSmiley } from "react-icons/vsc";
 import { useHistory } from "react-router";
 import Parse from "parse";
 import "./BadgeInfo.css";
@@ -15,10 +16,15 @@ export default function BadgeInfo() {
   const [owned_rewards, setStudentRewards] = useState([]);
 
   //Redirects the user to the frontpage
-  const handleGoBack = (e) => {
+  const handleGoFrontpage = (e) => {
     e.preventDefault();
     history.push("/frontpage");
   };
+
+  const handleGoQuiz = (e) => {
+    e.preventDefault();
+    history.push("/practice");
+  }
 
   const fetchRewards = async () => {
     const Rewards = new Parse.Object.extend("Reward");
@@ -62,8 +68,11 @@ export default function BadgeInfo() {
           </div>
         </div>
         <div>
-          <Button className="go-back-btn" onClick={handleGoBack}>
-            Go back <BsChevronRight />
+          <Button className="go-quiz-btn" onClick={handleGoQuiz}>
+            Go to quiz <VscSmiley />
+          </Button>
+          <Button className="filter-btn" onClick={handleGoFrontpage}>
+            Go to frontpage <BsChevronRight />
           </Button>
         </div>
       </div>
