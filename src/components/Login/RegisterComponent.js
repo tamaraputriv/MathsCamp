@@ -1,7 +1,7 @@
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { CardList, Tree } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Parse from "parse";
 import Swal from "sweetalert2";
 import "./RegisterComponent.css";
