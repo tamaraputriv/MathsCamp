@@ -1,7 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
 import "./Footer.css";
-import { Button } from "react-bootstrap";
 
 const Footer = () => {
   return (
