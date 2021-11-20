@@ -62,7 +62,7 @@ export default function RewardSection() {
     <Container fluid className="reward-container">
       <Row className="reward-row">
         <Col>
-          <Image src={imgsrc} style={{ width: 566 }} />
+          <Image src={imgsrc} style={{ width: 366 }} />
         </Col>
         <Col className="text-div">
           <h2 className="h2-reward">
