@@ -7,6 +7,7 @@ import Parse from "parse";
 import "./BadgeInfo.css";
 import Swal from "sweetalert2";
 import { getRewardImage } from "../Utils";
+import { hotjar } from "react-hotjar";
 
 export default function BadgeInfo() {
   const history = useHistory();
@@ -28,6 +29,7 @@ export default function BadgeInfo() {
 
   useEffect(() => {
     fetchRewards();
+    hotjar.initialize(2701912);
   }, []);
 
   const retrieveStudent = async () => {

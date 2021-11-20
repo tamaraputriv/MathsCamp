@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import { Container, Button, ButtonToolbar } from "react-bootstrap";
 import "./LoginRegisterCard.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { hotjar } from "react-hotjar";
 
 export default function LoginRegisterCard() {
   const history = useHistory();
@@ -19,6 +20,10 @@ export default function LoginRegisterCard() {
     e.preventDefault();
     history.push("/register");
   };
+
+  useEffect(() => {
+    hotjar.initialize(2701912);
+  }, []);
 
   return (
     <Container className="login-container">

@@ -22,6 +22,7 @@ import { useHistory } from "react-router";
 import { getMascotImage } from "../Utils";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
+import { hotjar } from "react-hotjar";
 
 export default function MultipleChoice() {
   const [level, setLevel] = useState();
@@ -180,6 +181,7 @@ export default function MultipleChoice() {
 
   const refreshPage = (e) => {
     e.preventDefault();
+    hotjar.event("new question");
     history.go(0);
   };
 
@@ -195,6 +197,10 @@ export default function MultipleChoice() {
 
   useEffect(() => {
     fetchQuestion(retrieveStudent());
+  }, []);
+
+  useEffect(() => {
+    hotjar.initialize(2701912);
   }, []);
 
   function getRandomInt(max) {

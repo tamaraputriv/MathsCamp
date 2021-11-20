@@ -4,6 +4,7 @@ import "./Break.css";
 import { useHistory } from "react-router";
 import { VscSmiley } from "react-icons/vsc";
 import Camel from "../../images/Break/breakCamel.png";
+import { hotjar } from "react-hotjar";
 
 export default function Break() {
   const history = useHistory();
@@ -12,7 +13,9 @@ export default function Break() {
     history.push("/frontpage");
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    hotjar.initialize(2701912);
+  }, []);
   return (
     <Container fluid className="break-container">
       <Row className="reward-row">

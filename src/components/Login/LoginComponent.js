@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Parse from "parse";
 import Swal from "sweetalert2";
 import "./LoginComponent.css";
+import { hotjar } from "react-hotjar";
 
 export default function LoginComponent() {
   const [username, setUsername] = useState("");
@@ -57,6 +58,10 @@ export default function LoginComponent() {
   const handleResetPassword = () => {
     history.push("/requestReset");
   };
+
+  useEffect(() => {
+    hotjar.initialize(2701912);
+  }, []);
 
   return (
     <Container className="login-container">
