@@ -82,6 +82,10 @@ export default function MultipleChoice() {
     );
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
+    //query.equalTo("objectId", "kPdyGu8ycH");
+    //query.equalTo("objectId", "XRQNYRsiuK");
+    //query.equalTo("objectId", "Wwt01UZpJe");
+    //query.equalTo("objectId", "hbngtWxpah");
     try {
       let question = await query.find();
       console.log("array with questions: " + question);
@@ -128,17 +132,20 @@ export default function MultipleChoice() {
           setId(currentId);
           setDescription(description);
           setCorrectAnswer(correct_answer);
-          if (hint.includes("/frac")) {
-            let regex = /{([^}]+)}/g;
-            let matches = [...hint.matchAll(regex)];
-            let resultstring = 
-            '<br/><br/><div className="fractioncontainer text-center"><sup><u><big>' + 
-            matches[0][1] +
-            '</big></u></sup><br className="fractionbr"/><sup><big>' +
-            matches[1][1] +
-            "</big></sup></div>";
-            let newHint = hint.replace("/frac{108}{525}", resultstring);
-            setHint(newHint); 
+          if(hint !== undefined){
+            if (hint.includes("/frac")) {
+              let regex = /{([^}]+)}/g;
+              let matches = [...hint.matchAll(regex)];
+              let resultstring = '<br/><br/><p> '+ 
+              matches[1][1] + '<br/><u>' +
+              matches[0][1] +
+              matches[2][1] + '</u></p>';
+              let end = hint.indexOf("/frac"); 
+              let newHint = hint.substring(0, end);
+              setHint(newHint + resultstring); 
+            }else{
+              setHint(hint);
+            }
           }else{
             setHint(hint);
           } 
