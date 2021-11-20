@@ -68,9 +68,9 @@ export default function MultipleChoice() {
   const [hasWonReward, setHasWonReward] = useState(false);
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
-  //const [hasExplanationFraction, setHasExplanationFraction] = useState(false);
+  const [hasHintFraction, setHasHintFraction] = useState(false);
   const [optionFractions, setOptionFractions] = useState([]);
-  //const [explanationFractions, setExplanationFractions] = useState([]);
+  const [hintFraction, setHintFraction] = useState([]);
   const history = useHistory();
 
   const fetchQuestion = async (info) => {
@@ -84,15 +84,16 @@ export default function MultipleChoice() {
       ", correctids: " +
       info.correct
     );
-    query.equalTo("category", info.category);
-    query.equalTo("level", info.level);
+    //query.equalTo("category", info.category);
+    //query.equalTo("level", info.level);
+    query.equalTo("objectId", "XRQNYRsiuK");
     try {
       let question = await query.find();
       console.log("array with questions: " + question);
       let foundQuestion = false;
       while (!foundQuestion) {
         //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
-        let i = getRandomInt(3);
+        let i = 0;//getRandomInt(3);
         const currentId = question[i].id;
         console.log("The current question has this id: " + currentId);
         if (!info.correct.includes(currentId)) {
@@ -132,7 +133,23 @@ export default function MultipleChoice() {
           setId(currentId);
           setDescription(description);
           setCorrectAnswer(correct_answer);
-          setHint(hint);
+          if (hint.includes("/frac")) {
+            setHasHintFraction(true);
+            let regex = /{([^}]+)}/g;
+            let matches = [...hint.matchAll(regex)];
+            console.log(matches[0][1] + " " + matches[1][1] + " " + matches[2][1]);
+            let resultstring = 
+            '<br/><br/><div className="fractioncontainer text-center"><sup><u><big>' 
+            + matches[0][1] + matches[1][1] +
+            '</big></u></sup><br className="fractionbr"/><sup><big>' +
+            matches[2][1] +
+            "</big></sup></div>";
+            let newHint = hint.replace("/frac{-}{108}{525}", resultstring);
+            console.log(newHint);
+            setHint(newHint); 
+          }else{
+            setHint(hint);
+          } 
           setExplanation(explanation);
           foundQuestion = true;
         } else {
@@ -510,11 +527,6 @@ export default function MultipleChoice() {
     }
   };
 
-  const handleSeeReward = (e) => {
-    e.preventDefault();
-    history.push("/reward");
-  };
-
   useEffect(() => {
     const timer = count > 0 && setInterval(() => setCount(count - 1), 1000);
     if (count == 0) {
@@ -526,10 +538,6 @@ export default function MultipleChoice() {
   const handleBreakTime = (e) => {
     e.preventDefault();
     history.push("/break");
-  };
-
-  const handleClose = () => {
-    setHasWonReward(false);
   };
 
   return (
@@ -680,8 +688,8 @@ export default function MultipleChoice() {
             <Image src={SpeakBoble} className="speakboble" />
 
             {hint ? (
-              <div className="speakboble-text">
-                <p>{hint}</p>
+              <div className="speakboble-text text-center">
+                <div dangerouslySetInnerHTML={{ __html: hint }}/>
               </div>
             ) : (
               <div className="speakboble-text">
