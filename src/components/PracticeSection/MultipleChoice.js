@@ -65,12 +65,8 @@ export default function MultipleChoice() {
     "You still got this! Take a look at the explanation and keep going.",
   ];
   const motivationH1Wrong = ["Woops!", "Oh well..", "Next time!"];
-  const [hasWonReward, setHasWonReward] = useState(false);
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
-  const [hasHintFraction, setHasHintFraction] = useState(false);
-  const [optionFractions, setOptionFractions] = useState([]);
-  const [hintFraction, setHintFraction] = useState([]);
   const history = useHistory();
 
   const fetchQuestion = async (info) => {
@@ -84,16 +80,15 @@ export default function MultipleChoice() {
       ", correctids: " +
       info.correct
     );
-    //query.equalTo("category", info.category);
-    //query.equalTo("level", info.level);
-    query.equalTo("objectId", "XRQNYRsiuK");
+    query.equalTo("category", info.category);
+    query.equalTo("level", info.level);
     try {
       let question = await query.find();
       console.log("array with questions: " + question);
       let foundQuestion = false;
       while (!foundQuestion) {
         //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
-        let i = 0;//getRandomInt(3);
+        let i = getRandomInt(3);
         const currentId = question[i].id;
         console.log("The current question has this id: " + currentId);
         if (!info.correct.includes(currentId)) {
@@ -134,18 +129,15 @@ export default function MultipleChoice() {
           setDescription(description);
           setCorrectAnswer(correct_answer);
           if (hint.includes("/frac")) {
-            setHasHintFraction(true);
             let regex = /{([^}]+)}/g;
             let matches = [...hint.matchAll(regex)];
-            console.log(matches[0][1] + " " + matches[1][1] + " " + matches[2][1]);
             let resultstring = 
-            '<br/><br/><div className="fractioncontainer text-center"><sup><u><big>' 
-            + matches[0][1] + matches[1][1] +
+            '<br/><br/><div className="fractioncontainer text-center"><sup><u><big>' + 
+            matches[0][1] +
             '</big></u></sup><br className="fractionbr"/><sup><big>' +
-            matches[2][1] +
+            matches[1][1] +
             "</big></sup></div>";
-            let newHint = hint.replace("/frac{-}{108}{525}", resultstring);
-            console.log(newHint);
+            let newHint = hint.replace("/frac{108}{525}", resultstring);
             setHint(newHint); 
           }else{
             setHint(hint);
@@ -571,11 +563,7 @@ export default function MultipleChoice() {
                               <Form.Check
                                 type="radio"
                                 value={option}
-                                label={
-                                  <div
-                                    dangerouslySetInnerHTML={{ __html: option }}
-                                  />
-                                }
+                                label={<div dangerouslySetInnerHTML={{ __html: option }}/>}
                                 name="formHorizontalRadios"
                                 onChange={handleChange}
                                 disabled={submitted ? true : false}
