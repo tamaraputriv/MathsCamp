@@ -80,17 +80,19 @@ export default function MultipleChoice() {
       ", correctids: " +
       info.correct
     );
-    //query.equalTo("category", info.category);
-    //query.equalTo("level", info.level);
-    query.equalTo("objectId", "kPdyGu8ycH");
+    query.equalTo("category", info.category);
+    query.equalTo("level", info.level);
+    //query.equalTo("objectId", "kPdyGu8ycH");
     //query.equalTo("objectId", "XRQNYRsiuK");
+    //query.equalTo("objectId", "Wwt01UZpJe");
+    //query.equalTo("objectId", "hbngtWxpah");
     try {
       let question = await query.find();
       console.log("array with questions: " + question);
       let foundQuestion = false;
       while (!foundQuestion) {
         //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
-        let i = 0;//getRandomInt(3);
+        let i = getRandomInt(3);
         const currentId = question[i].id;
         console.log("The current question has this id: " + currentId);
         if (!info.correct.includes(currentId)) {
