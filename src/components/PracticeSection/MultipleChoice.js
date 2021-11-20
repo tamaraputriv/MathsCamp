@@ -257,8 +257,8 @@ export default function MultipleChoice() {
           const rewardPoints = points + 50;
           student.set("total_points", rewardPoints);
           Swal.fire({  
-            title: 'Yay! You won a reward!',
-            text: "Click OK to see your reward", 
+            title: 'Yay! You won a badge!',
+            text: "Click OK to see your badge", 
             icon: "success", 
             showDenyButton: true,   
             confirmButtonText: `OK`,  
@@ -356,8 +356,8 @@ export default function MultipleChoice() {
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
             Swal.fire({  
-              title: 'Yay! You won a reward!',
-              text: "Click OK to see your reward", 
+              title: 'Yay! You won a badge!',
+              text: "Click OK to see your badge", 
               icon: "success", 
               showDenyButton: true,   
               confirmButtonText: `OK`,  
@@ -382,8 +382,8 @@ export default function MultipleChoice() {
             const rewardPoints = originalpoints + 50;
             student.set("total_points", rewardPoints);
             Swal.fire({  
-              title: 'Yay! You won a reward!',
-              text: "Click OK to see your reward", 
+              title: 'Yay! You won a badge!',
+              text: "Click OK to see your badge", 
               icon: "success", 
               showDenyButton: true,   
               confirmButtonText: `OK`,  
@@ -412,8 +412,8 @@ export default function MultipleChoice() {
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
             Swal.fire({  
-              title: 'Yay! You won a reward!',
-              text: "Click OK to see your reward", 
+              title: 'Yay! You won a badge!',
+              text: "Click OK to see your badge", 
               icon: "success", 
               showDenyButton: true,   
               confirmButtonText: `OK`,  
