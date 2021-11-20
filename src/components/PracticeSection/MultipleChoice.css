@@ -38,6 +38,7 @@
 
 .question-img {
   max-height: 300px;
+  max-width: 600px;
   align-self: center;
   margin-bottom: 20px;
 }
@@ -252,8 +253,8 @@
   justify-content: flex-start;
   position: absolute;
   z-index: 1;
-  top: -91px;
-  right: 171px;
+  top: -82px;
+  right: 191px;
   width: 200px;
   height: 170px;
   color: #4d4d4d;
@@ -368,12 +369,12 @@ h2 {
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
 }
 
-.fractionbr {   
+.fractionbr {
   content: "";
   margin: -1%;
   display: block;
 }
 
-.fractioncontainer{
+.fractioncontainer {
   margin-top: 9px;
 }
