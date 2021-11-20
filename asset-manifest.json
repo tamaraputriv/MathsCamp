@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/MathsCamp/static/css/main.7cbb8c1f.chunk.css",
-    "main.js": "/MathsCamp/static/js/main.873930e4.chunk.js",
-    "main.js.map": "/MathsCamp/static/js/main.873930e4.chunk.js.map",
+    "main.css": "/MathsCamp/static/css/main.2f51f8e7.chunk.css",
+    "main.js": "/MathsCamp/static/js/main.9272b361.chunk.js",
+    "main.js.map": "/MathsCamp/static/js/main.9272b361.chunk.js.map",
     "runtime-main.js": "/MathsCamp/static/js/runtime-main.538e167a.js",
     "runtime-main.js.map": "/MathsCamp/static/js/runtime-main.538e167a.js.map",
     "static/css/2.4605b3fb.chunk.css": "/MathsCamp/static/css/2.4605b3fb.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.838f5b08.chunk.js.map": "/MathsCamp/static/js/3.838f5b08.chunk.js.map",
     "index.html": "/MathsCamp/index.html",
     "static/css/2.4605b3fb.chunk.css.map": "/MathsCamp/static/css/2.4605b3fb.chunk.css.map",
-    "static/css/main.7cbb8c1f.chunk.css.map": "/MathsCamp/static/css/main.7cbb8c1f.chunk.css.map",
+    "static/css/main.2f51f8e7.chunk.css.map": "/MathsCamp/static/css/main.2f51f8e7.chunk.css.map",
     "static/js/2.f24d18af.chunk.js.LICENSE.txt": "/MathsCamp/static/js/2.f24d18af.chunk.js.LICENSE.txt",
     "static/media/SpeakBoble.86cf4a0e.svg": "/MathsCamp/static/media/SpeakBoble.86cf4a0e.svg",
     "static/media/avocado.8a01b7f0.png": "/MathsCamp/static/media/avocado.8a01b7f0.png",
@@ -74,7 +74,7 @@
     "static/js/runtime-main.538e167a.js",
     "static/css/2.4605b3fb.chunk.css",
     "static/js/2.f24d18af.chunk.js",
-    "static/css/main.7cbb8c1f.chunk.css",
-    "static/js/main.873930e4.chunk.js"
+    "static/css/main.2f51f8e7.chunk.css",
+    "static/js/main.9272b361.chunk.js"
   ]
 }
