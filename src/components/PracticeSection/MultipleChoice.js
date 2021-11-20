@@ -74,9 +74,9 @@ export default function MultipleChoice() {
     const query = new Parse.Query("Questions");
     console.log(
       "Retrievestudent returned level: " +
-        info.level +
-        ", correctids: " +
-        info.correct
+      info.level +
+      ", correctids: " +
+      info.correct
     );
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
@@ -244,7 +244,20 @@ export default function MultipleChoice() {
           const points = student.get("total_points");
           const rewardPoints = points + 50;
           student.set("total_points", rewardPoints);
-          setHasWonReward(true);
+          Swal.fire({  
+            title: 'Yay! You won a reward!',
+            text: "Click OK to see your reward", 
+            icon: "success", 
+            showDenyButton: true,   
+            confirmButtonText: `OK`,  
+            denyButtonText: `Close`,
+          }).then((result) => {    
+              if (result.isConfirmed) {      
+                history.push("/reward");
+              } else if (result.isDenied) {    
+                Swal.close(); 
+             }
+          });
         }
         student.save();
       }
@@ -314,9 +327,23 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
-            setHasWonReward(true);
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
+            Swal.fire({  
+              title: 'Yay! You won a reward!',
+              text: "Click OK to see your reward", 
+              icon: "success", 
+              showDenyButton: true,   
+              confirmButtonText: `OK`,  
+              denyButtonText: `Close`,
+            }).then((result) => {    
+                if (result.isConfirmed) {      
+                  history.push("/reward");
+                } else if (result.isDenied) {    
+                  Swal.close(); 
+               }
+            });
+            
           }
           if (
             (total_correct % 20 === 0 || total_correct === 5) &&
@@ -325,10 +352,23 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
-            setHasWonReward(true);
             const originalpoints = student.get("total_points");
             const rewardPoints = originalpoints + 50;
             student.set("total_points", rewardPoints);
+            Swal.fire({  
+              title: 'Yay! You won a reward!',
+              text: "Click OK to see your reward", 
+              icon: "success", 
+              showDenyButton: true,   
+              confirmButtonText: `OK`,  
+              denyButtonText: `Close`,
+            }).then((result) => {    
+                if (result.isConfirmed) {      
+                  history.push("/reward");
+                } else if (result.isDenied) {    
+                  Swal.close(); 
+               }
+            });
           }
         } else {
           setMotivationH1(getRandomMotivation(motivationH1Wrong));
@@ -343,9 +383,22 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
-            setHasWonReward(true);
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
+            Swal.fire({  
+              title: 'Yay! You won a reward!',
+              text: "Click OK to see your reward", 
+              icon: "success", 
+              showDenyButton: true,   
+              confirmButtonText: `OK`,  
+              denyButtonText: `Close`,
+            }).then((result) => {    
+                if (result.isConfirmed) {      
+                  history.push("/reward");
+                } else if (result.isDenied) {    
+                  Swal.close(); 
+               }
+            });
           }
           console.log("The answer is NOT correct!");
         }
@@ -634,21 +687,6 @@ export default function MultipleChoice() {
           />
         </Col>
       </Row>
-      {hasWonReward ? (
-        <div className="text-center reward-popup-container">
-          <p className="reward_message">
-            Congratulations! You have won a reward, check it out!
-          </p>
-          <Button className="see_reward_btn" onClick={handleSeeReward}>
-            See reward <BsTrophy />
-          </Button>
-          <Button className="close_btn" onClick={handleClose}>
-            Close <BsX size={21} />
-          </Button>
-        </div>
-      ) : (
-        <div></div>
-      )}
     </Container>
   );
 }
