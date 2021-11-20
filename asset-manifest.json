@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/MathsCamp/static/css/main.1313f086.chunk.css",
-    "main.js": "/MathsCamp/static/js/main.d070257c.chunk.js",
-    "main.js.map": "/MathsCamp/static/js/main.d070257c.chunk.js.map",
+    "main.css": "/MathsCamp/static/css/main.c2a99254.chunk.css",
+    "main.js": "/MathsCamp/static/js/main.25b71825.chunk.js",
+    "main.js.map": "/MathsCamp/static/js/main.25b71825.chunk.js.map",
     "runtime-main.js": "/MathsCamp/static/js/runtime-main.5e07ea27.js",
     "runtime-main.js.map": "/MathsCamp/static/js/runtime-main.5e07ea27.js.map",
     "static/css/2.b22c0343.chunk.css": "/MathsCamp/static/css/2.b22c0343.chunk.css",
-    "static/js/2.6fbd842f.chunk.js": "/MathsCamp/static/js/2.6fbd842f.chunk.js",
-    "static/js/2.6fbd842f.chunk.js.map": "/MathsCamp/static/js/2.6fbd842f.chunk.js.map",
+    "static/js/2.de89edd9.chunk.js": "/MathsCamp/static/js/2.de89edd9.chunk.js",
+    "static/js/2.de89edd9.chunk.js.map": "/MathsCamp/static/js/2.de89edd9.chunk.js.map",
     "static/js/3.7a74599e.chunk.js": "/MathsCamp/static/js/3.7a74599e.chunk.js",
     "static/js/3.7a74599e.chunk.js.map": "/MathsCamp/static/js/3.7a74599e.chunk.js.map",
     "index.html": "/MathsCamp/index.html",
     "static/css/2.b22c0343.chunk.css.map": "/MathsCamp/static/css/2.b22c0343.chunk.css.map",
-    "static/css/main.1313f086.chunk.css.map": "/MathsCamp/static/css/main.1313f086.chunk.css.map",
-    "static/js/2.6fbd842f.chunk.js.LICENSE.txt": "/MathsCamp/static/js/2.6fbd842f.chunk.js.LICENSE.txt",
+    "static/css/main.c2a99254.chunk.css.map": "/MathsCamp/static/css/main.c2a99254.chunk.css.map",
+    "static/js/2.de89edd9.chunk.js.LICENSE.txt": "/MathsCamp/static/js/2.de89edd9.chunk.js.LICENSE.txt",
     "static/media/SpeakBoble.95a5b408.svg": "/MathsCamp/static/media/SpeakBoble.95a5b408.svg",
     "static/media/avocado.8a01b7f0.png": "/MathsCamp/static/media/avocado.8a01b7f0.png",
     "static/media/bag.9adccfb9.png": "/MathsCamp/static/media/bag.9adccfb9.png",
@@ -73,8 +73,8 @@
   "entrypoints": [
     "static/js/runtime-main.5e07ea27.js",
     "static/css/2.b22c0343.chunk.css",
-    "static/js/2.6fbd842f.chunk.js",
-    "static/css/main.1313f086.chunk.css",
-    "static/js/main.d070257c.chunk.js"
+    "static/js/2.de89edd9.chunk.js",
+    "static/css/main.c2a99254.chunk.css",
+    "static/js/main.25b71825.chunk.js"
   ]
 }
