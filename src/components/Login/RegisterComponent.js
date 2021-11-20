@@ -1,10 +1,11 @@
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { CardList, Tree } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Parse from "parse";
 import Swal from "sweetalert2";
 import "./RegisterComponent.css";
+import { hotjar } from "react-hotjar";
 
 export default function RegisterComponent() {
   const [username, setUsername] = useState("");
@@ -66,6 +67,10 @@ export default function RegisterComponent() {
       }
     }
   };
+
+  useEffect(() => {
+    hotjar.initialize(2701912);
+  }, []);
 
   return (
     <Container className="login-container">

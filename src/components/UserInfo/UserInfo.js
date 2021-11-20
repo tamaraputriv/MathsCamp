@@ -7,6 +7,7 @@ import { BsPerson } from "react-icons/bs";
 import { getMascotImage } from "../Utils";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
 import "./UserInfo.css";
+import { hotjar } from "react-hotjar";
 
 export default function UserInfo() {
   const [isOpen, setIsOpen] = useState(true);
@@ -57,6 +58,10 @@ export default function UserInfo() {
 
   useEffect(() => {
     retrieveUser();
+  }, []);
+
+  useEffect(() => {
+    hotjar.initialize(2701912);
   }, []);
 
   const fetchMascots = async (active_mascot_id) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Parse from "parse";
 import Swal from "sweetalert2";
 import {
@@ -22,8 +22,10 @@ import { useHistory } from "react-router";
 import { getMascotImage } from "../Utils";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
+import { hotjar } from "react-hotjar";
 
 export default function MultipleChoice() {
+  const [level, setLevel] = useState();
   const [count, setCount] = useState();
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -46,8 +48,12 @@ export default function MultipleChoice() {
   const motivationH1Correct = [
     "Correct!",
     "Well done!",
-    "You're a star",
+    "Impressive,",
     "Super!",
+    "Outstanding,",
+    "Excellent",
+    "Cool!",
+    "Groovy,",
   ];
   const correctMotivation = [
     "You're a true math master. Let's do another question.",
@@ -82,13 +88,13 @@ export default function MultipleChoice() {
     query.equalTo("level", info.level);
     try {
       let question = await query.find();
-      console.log(question);
+      console.log("array with questions: " + question);
       let foundQuestion = false;
       while (!foundQuestion) {
         //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
         let i = getRandomInt(3);
         const currentId = question[i].id;
-        console.log(currentId);
+        console.log("The current question has this id: " + currentId);
         if (!info.correct.includes(currentId)) {
           console.log("This question is unanswered");
           const correct_answer = question[i].get("correct_answer");
@@ -158,6 +164,7 @@ export default function MultipleChoice() {
         setTotalPoints(total_points);
         setCategory(category);
         setCount(count);
+        setLevel(level);
         var activeMascotId = student.get("active_mascot_id");
         return { level, correct, category, activeMascotId };
       }
@@ -174,6 +181,7 @@ export default function MultipleChoice() {
 
   const refreshPage = (e) => {
     e.preventDefault();
+    hotjar.event("new question");
     history.go(0);
   };
 
@@ -189,6 +197,10 @@ export default function MultipleChoice() {
 
   useEffect(() => {
     fetchQuestion(retrieveStudent());
+  }, []);
+
+  useEffect(() => {
+    hotjar.initialize(2701912);
   }, []);
 
   function getRandomInt(max) {
@@ -299,6 +311,7 @@ export default function MultipleChoice() {
     try {
       const student = Parse.User.current();
       if (student) {
+        const studentLevel = level;
         let initialCount = count;
         student.set("practice_timer_count", initialCount);
         student.increment("total_answered_questions");
@@ -313,8 +326,21 @@ export default function MultipleChoice() {
           var correct = student.get(category + "_correct_ids");
           //TODO ændrer når vi har alle spørgsmål i databasen
           if (correct.length === 3) {
-            student.increment(category + "_level");
-            student.set(category + "_correct_ids", []);
+            if (studentLevel === 3) {
+              student.set(category + "_level", 1);
+              Swal.fire({
+                title: "Congrats! You finished " + category + "!",
+                text:
+                  "You have answered all the questions in the " +
+                  category +
+                  " category. Let's take another round with the same questions. Practice makes perfect.",
+                icon: "success",
+                confirmButtonText: "OK",
+              });
+            } else {
+              student.increment(category + "_level");
+              student.set(category + "_correct_ids", []);
+            }
           }
           console.log("Added to the database in submit: " + correct);
           console.log("The answer is correct!");

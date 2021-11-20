@@ -1,7 +1,6 @@
 import NavBarPre from "../components/Navbar/NavbarPrelogin";
 import LoginRegisterCard from "../components/Login/LoginRegisterCard";
 import Footer from "../components/Footer/Footer";
-import { Columns, Display } from "react-bootstrap-icons";
 
 export default function LandingPage() {
   return (

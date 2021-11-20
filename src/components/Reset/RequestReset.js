@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Parse from "parse";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Tree, Envelope, ChevronRight } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 import "./RequestReset.css";
+import { hotjar } from "react-hotjar";
 
 export default function RequestReset() {
   const [email, setEmail] = useState("");
@@ -39,6 +40,10 @@ export default function RequestReset() {
     e.preventDefault();
     history.goBack();
   };
+
+  useEffect(() => {
+    hotjar.initialize(2701912);
+  }, []);
 
   return (
     <div>

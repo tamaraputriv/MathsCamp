@@ -7,6 +7,7 @@ import { Trophy } from "react-bootstrap-icons";
 import { getRewardImage } from "../Utils";
 import Parse from "parse";
 import "./RewardSection.css";
+import { hotjar } from "react-hotjar";
 
 export default function RewardSection() {
   const [description, setDescription] = useState("");
@@ -51,6 +52,10 @@ export default function RewardSection() {
 
   useEffect(() => {
     getReward();
+  }, []);
+
+  useEffect(() => {
+    hotjar.initialize(2701912);
   }, []);
 
   return (

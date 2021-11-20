@@ -7,6 +7,7 @@ import { getMascotImage } from "../Utils";
 import Swal from "sweetalert2";
 import Parse from "parse";
 import "./EditMascot.css";
+import { hotjar } from "react-hotjar";
 
 export default function EditMascot() {
   const history = useHistory();
@@ -32,6 +33,7 @@ export default function EditMascot() {
 
   useEffect(() => {
     fetchMascots();
+    hotjar.initialize(2701912);
   }, []);
 
   //Fetches the student and sets the states used in this component
