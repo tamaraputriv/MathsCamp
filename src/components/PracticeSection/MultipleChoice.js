@@ -76,23 +76,18 @@ export default function MultipleChoice() {
     const query = new Parse.Query("Questions");
     console.log(
       "Retrievestudent returned level: " +
-      info.level +
-      ", correctids: " +
-      info.correct
+        info.level +
+        ", correctids: " +
+        info.correct
     );
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
-    //query.equalTo("objectId", "kPdyGu8ycH");
-    //query.equalTo("objectId", "XRQNYRsiuK");
-    //query.equalTo("objectId", "Wwt01UZpJe");
-    //query.equalTo("objectId", "hbngtWxpah");
     try {
       let question = await query.find();
       console.log("array with questions: " + question);
       let foundQuestion = false;
       while (!foundQuestion) {
-        //TODO ændre til 9 når vi har fået spørgsmål ind i alle kategorier
-        let i = getRandomInt(3);
+        let i = getRandomInt(10);
         const currentId = question[i].id;
         console.log("The current question has this id: " + currentId);
         if (!info.correct.includes(currentId)) {
@@ -132,23 +127,26 @@ export default function MultipleChoice() {
           setId(currentId);
           setDescription(description);
           setCorrectAnswer(correct_answer);
-          if(hint !== undefined){
+          if (hint !== undefined) {
             if (hint.includes("/frac")) {
               let regex = /{([^}]+)}/g;
               let matches = [...hint.matchAll(regex)];
-              let resultstring = '<br/><br/><p> '+ 
-              matches[1][1] + '<br/><u>' +
-              matches[0][1] +
-              matches[2][1] + '</u></p>';
-              let end = hint.indexOf("/frac"); 
+              let resultstring =
+                "<br/><br/><p> " +
+                matches[1][1] +
+                "<br/><u>" +
+                matches[0][1] +
+                matches[2][1] +
+                "</u></p>";
+              let end = hint.indexOf("/frac");
               let newHint = hint.substring(0, end);
-              setHint(newHint + resultstring); 
-            }else{
+              setHint(newHint + resultstring);
+            } else {
               setHint(hint);
             }
-          }else{
+          } else {
             setHint(hint);
-          } 
+          }
           setExplanation(explanation);
           foundQuestion = true;
         } else {
@@ -224,13 +222,7 @@ export default function MultipleChoice() {
   }
 
   const getRandomCategory = () => {
-    const categories = [
-      "number",
-      // "algebra",
-      "measurement",
-      // "statistics",
-      "geometry",
-    ];
+    const categories = ["number", "algebra", "measurement", "geometry"];
     const randomNumber = getRandomInt(categories.length);
     const category = categories[randomNumber];
     console.log("Category: " + category);
@@ -272,19 +264,19 @@ export default function MultipleChoice() {
           const points = student.get("total_points");
           const rewardPoints = points + 50;
           student.set("total_points", rewardPoints);
-          Swal.fire({  
-            title: 'Yay! You won a badge!',
-            text: "Click OK to see your badge", 
-            icon: "success", 
-            showDenyButton: true,   
-            confirmButtonText: `OK`,  
+          Swal.fire({
+            title: "Yay! You won a badge!",
+            text: "Click OK to see your badge",
+            icon: "success",
+            showDenyButton: true,
+            confirmButtonText: `OK`,
             denyButtonText: `Close`,
-          }).then((result) => {    
-              if (result.isConfirmed) {      
-                history.push("/reward");
-              } else if (result.isDenied) {    
-                Swal.close(); 
-             }
+          }).then((result) => {
+            if (result.isConfirmed) {
+              history.push("/reward");
+            } else if (result.isDenied) {
+              Swal.close();
+            }
           });
         }
         student.save();
@@ -340,8 +332,7 @@ export default function MultipleChoice() {
           console.log(currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
-          //TODO ændrer når vi har alle spørgsmål i databasen
-          if (correct.length === 3) {
+          if (correct.length === 7) {
             if (studentLevel === 3) {
               student.set(category + "_level", 1);
               Swal.fire({
@@ -371,21 +362,20 @@ export default function MultipleChoice() {
             student.add("reward_badge_ids", reward);
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
-            Swal.fire({  
-              title: 'Yay! You won a badge!',
-              text: "Click OK to see your badge", 
-              icon: "success", 
-              showDenyButton: true,   
-              confirmButtonText: `OK`,  
+            Swal.fire({
+              title: "Yay! You won a badge!",
+              text: "Click OK to see your badge",
+              icon: "success",
+              showDenyButton: true,
+              confirmButtonText: `OK`,
               denyButtonText: `Close`,
-            }).then((result) => {    
-                if (result.isConfirmed) {      
-                  history.push("/reward");
-                } else if (result.isDenied) {    
-                  Swal.close(); 
-               }
+            }).then((result) => {
+              if (result.isConfirmed) {
+                history.push("/reward");
+              } else if (result.isDenied) {
+                Swal.close();
+              }
             });
-            
           }
           if (
             (total_correct % 20 === 0 || total_correct === 5) &&
@@ -397,19 +387,19 @@ export default function MultipleChoice() {
             const originalpoints = student.get("total_points");
             const rewardPoints = originalpoints + 50;
             student.set("total_points", rewardPoints);
-            Swal.fire({  
-              title: 'Yay! You won a badge!',
-              text: "Click OK to see your badge", 
-              icon: "success", 
-              showDenyButton: true,   
-              confirmButtonText: `OK`,  
+            Swal.fire({
+              title: "Yay! You won a badge!",
+              text: "Click OK to see your badge",
+              icon: "success",
+              showDenyButton: true,
+              confirmButtonText: `OK`,
               denyButtonText: `Close`,
-            }).then((result) => {    
-                if (result.isConfirmed) {      
-                  history.push("/reward");
-                } else if (result.isDenied) {    
-                  Swal.close(); 
-               }
+            }).then((result) => {
+              if (result.isConfirmed) {
+                history.push("/reward");
+              } else if (result.isDenied) {
+                Swal.close();
+              }
             });
           }
         } else {
@@ -427,19 +417,19 @@ export default function MultipleChoice() {
             student.add("reward_badge_ids", reward);
             const rewardPoints = new_total_points + 50;
             student.set("total_points", rewardPoints);
-            Swal.fire({  
-              title: 'Yay! You won a badge!',
-              text: "Click OK to see your badge", 
-              icon: "success", 
-              showDenyButton: true,   
-              confirmButtonText: `OK`,  
+            Swal.fire({
+              title: "Yay! You won a badge!",
+              text: "Click OK to see your badge",
+              icon: "success",
+              showDenyButton: true,
+              confirmButtonText: `OK`,
               denyButtonText: `Close`,
-            }).then((result) => {    
-                if (result.isConfirmed) {      
-                  history.push("/reward");
-                } else if (result.isDenied) {    
-                  Swal.close(); 
-               }
+            }).then((result) => {
+              if (result.isConfirmed) {
+                history.push("/reward");
+              } else if (result.isDenied) {
+                Swal.close();
+              }
             });
           }
           console.log("The answer is NOT correct!");
@@ -570,7 +560,11 @@ export default function MultipleChoice() {
                               <Form.Check
                                 type="radio"
                                 value={option}
-                                label={<div dangerouslySetInnerHTML={{ __html: option }}/>}
+                                label={
+                                  <div
+                                    dangerouslySetInnerHTML={{ __html: option }}
+                                  />
+                                }
                                 name="formHorizontalRadios"
                                 onChange={handleChange}
                                 disabled={submitted ? true : false}
@@ -684,7 +678,7 @@ export default function MultipleChoice() {
 
             {hint ? (
               <div className="speakboble-text text-center">
-                <div dangerouslySetInnerHTML={{ __html: hint }}/>
+                <div dangerouslySetInnerHTML={{ __html: hint }} />
               </div>
             ) : (
               <div className="speakboble-text">
