@@ -247,7 +247,7 @@
 
 .speakboble-text {
   font-family: Rubik;
-  font-size: 18px;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -379,4 +379,3 @@ h2 {
   margin-top: 9px;
   line-height: 20px !important;
 }
-
