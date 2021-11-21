@@ -141,7 +141,7 @@ export default function Sidebar({ isOpen, toggle }) {
       )}
       <div>
         <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
-          Hover the badges to learn how to win them, or read more{" "}
+          Hover over the badges to learn how to win them, or read more{" "}
           <span className="pointer-cursor" onClick={handleSeeBadgePage}>
             here
           </span>

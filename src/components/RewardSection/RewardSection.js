@@ -66,13 +66,13 @@ export default function RewardSection() {
         </Col>
         <Col className="text-div">
           <h2 className="h2-reward">
-            Congratulations! <br /> You won a new badge
+            Congratulations! <br /> You earned a badge
           </h2>
           <p className="p-reward">
             You earned your badge for this task:
             <br /> <b>{description} </b> <Trophy className="trophy-icon" />{" "}
             <br />
-            You earned 50 points! Good job!
+            You also earned 50 points! Good job!
             <br />
           </p>
           <div className="button-div ">

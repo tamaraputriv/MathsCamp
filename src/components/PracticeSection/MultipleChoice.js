@@ -265,7 +265,7 @@ export default function MultipleChoice() {
           const rewardPoints = points + 50;
           student.set("total_points", rewardPoints);
           Swal.fire({
-            title: "Yay! You won a badge!",
+            title: "Yay! You earned a badge!",
             text: "Click OK to see your badge",
             icon: "success",
             showDenyButton: true,
