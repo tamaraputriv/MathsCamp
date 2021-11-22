@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Tree } from "react-bootstrap-icons";
 import "./Contact.css";
 import { hotjar } from "react-hotjar";
+import Swal from "sweetalert2";
 
 export default function Contact() {
   const form = useRef();
@@ -19,10 +20,20 @@ export default function Contact() {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          Swal.fire({
+            title: "Your message was sent!",
+            text: "We will get back to you as soon as possible!",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
         },
         (error) => {
-          console.log(error.text);
+          Swal.fire({
+            title: "Oops!",
+            text: "Something went wrong, try again later!",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
         }
       );
     e.target.reset();
