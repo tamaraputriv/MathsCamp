@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/MathsCamp/static/css/main.81bb19bd.chunk.css",
-    "main.js": "/MathsCamp/static/js/main.22ca30f9.chunk.js",
-    "main.js.map": "/MathsCamp/static/js/main.22ca30f9.chunk.js.map",
+    "main.js": "/MathsCamp/static/js/main.6a0aec2e.chunk.js",
+    "main.js.map": "/MathsCamp/static/js/main.6a0aec2e.chunk.js.map",
     "runtime-main.js": "/MathsCamp/static/js/runtime-main.538e167a.js",
     "runtime-main.js.map": "/MathsCamp/static/js/runtime-main.538e167a.js.map",
     "static/css/2.4605b3fb.chunk.css": "/MathsCamp/static/css/2.4605b3fb.chunk.css",
@@ -75,6 +75,6 @@
     "static/css/2.4605b3fb.chunk.css",
     "static/js/2.bee34a81.chunk.js",
     "static/css/main.81bb19bd.chunk.css",
-    "static/js/main.22ca30f9.chunk.js"
+    "static/js/main.6a0aec2e.chunk.js"
   ]
 }
