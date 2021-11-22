@@ -27,8 +27,8 @@ export default function NavbarPracticeMode() {
   //Logs out the user and redirects the user to the landingpage
   const handleLogOut = (e) => {
     e.preventDefault();
-    Parse.User.logOut();
     resetTimer();
+    Parse.User.logOut();
     history.push("/");
   };
 

@@ -74,24 +74,24 @@ export default function MultipleChoice() {
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
     const query = new Parse.Query("Questions");
-    console.log(
+    /*console.log(
       "Retrievestudent returned level: " +
         info.level +
         ", correctids: " +
         info.correct
-    );
+    );*/
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
     try {
       let question = await query.find();
-      console.log("array with questions: " + question);
+      //console.log("array with questions: " + question);
       let foundQuestion = false;
       while (!foundQuestion) {
         let i = getRandomInt(10);
         const currentId = question[i].id;
-        console.log("The current question has this id: " + currentId);
+        //console.log("The current question has this id: " + currentId);
         if (!info.correct.includes(currentId)) {
-          console.log("This question is unanswered");
+          //console.log("This question is unanswered");
           const correct_answer = question[i].get("correct_answer");
           const description = question[i].get("description");
           const options = question[i].get("options");
@@ -173,8 +173,8 @@ export default function MultipleChoice() {
         const correct = student.get(category + "_correct_ids");
         const level = student.get(category + "_level");
         const count = student.get("practice_timer_count");
-        console.log(count);
-        console.log("Student retrieved correctids: " + correct);
+        //console.log(count);
+        //console.log("Student retrieved correctids: " + correct);
         setTotalPoints(total_points);
         setCategory(category);
         setCount(count);
@@ -205,7 +205,7 @@ export default function MultipleChoice() {
     const mascotArray = await query.find();
     var mascotIdArray = mascotArray.map((obj) => obj.id);
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
-    console.log(mascotIndex + " " + active_mascot_id);
+    //console.log(mascotIndex + " " + active_mascot_id);
     return mascotIndex;
   };
 
@@ -225,7 +225,7 @@ export default function MultipleChoice() {
     const categories = ["number", "algebra", "measurement", "geometry"];
     const randomNumber = getRandomInt(categories.length);
     const category = categories[randomNumber];
-    console.log("Category: " + category);
+    //console.log("Category: " + category);
     return category;
   };
 
@@ -329,7 +329,7 @@ export default function MultipleChoice() {
           let new_total_points = total_points + 10;
           student.set("total_points", new_total_points);
           student.add(category + "_correct_ids", currentQuestionId);
-          console.log(currentQuestionId);
+          //console.log(currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
           if (correct.length === 7) {
@@ -349,8 +349,8 @@ export default function MultipleChoice() {
               student.set(category + "_correct_ids", []);
             }
           }
-          console.log("Added to the database in submit: " + correct);
-          console.log("The answer is correct!");
+          //console.log("Added to the database in submit: " + correct);
+          //console.log("The answer is correct!");
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
           if (
@@ -432,7 +432,6 @@ export default function MultipleChoice() {
               }
             });
           }
-          console.log("The answer is NOT correct!");
         }
         await student.save();
       }
