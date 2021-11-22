@@ -29,7 +29,7 @@ export default function LoginComponent() {
         icon: "error",
         confirmButtonText: "OK",
       });
-    }else{
+    }else if (password.length > 0 || username.length > 0){
       try {
         const user = await Parse.User.logIn(username, password);
         if (user) {
