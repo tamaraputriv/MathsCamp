@@ -14,7 +14,7 @@ export default function NavbarPostlogin() {
     const student = Parse.User.current();
     if (student) {
       try {
-        student.set("practice_timer_count", 2100);
+        student.set("practice_timer_count", 1200);
         await student.save();
       } catch {
         console.log("Timer did not reset");

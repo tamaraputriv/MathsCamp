@@ -29,27 +29,27 @@ export default function LoginComponent() {
         icon: "error",
         confirmButtonText: "OK",
       });
-      return;
-    }
-    try {
-      const user = await Parse.User.logIn(username, password);
-      if (user) {
-        var active = await user.get("active_days");
-        var date = new Date().toLocaleDateString();
-        if (!active.find((element) => element === date)) {
-          user.add("active_days", date);
-          user.save();
+    }else{
+      try {
+        const user = await Parse.User.logIn(username, password);
+        if (user) {
+          var active = await user.get("active_days");
+          var date = new Date().toLocaleDateString();
+          if (!active.find((element) => element === date)) {
+            user.add("active_days", date);
+            user.save();
+          }
+          history.push("/frontpage");
         }
-        history.push("/frontpage");
+      } catch (error) {
+        Swal.fire({
+          title: "Oops!",
+          text: "The username or password is incorrect!",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
       }
-    } catch (error) {
-      Swal.fire({
-        title: "Oops!",
-        text: "The username or password is incorrect!",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
-    }
+    }  
   };
 
   const handleResetPassword = () => {

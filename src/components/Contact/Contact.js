@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from "react";
 import emailjs from "emailjs-com";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Tree } from "react-bootstrap-icons";
-import "./Contact.css";
 import { hotjar } from "react-hotjar";
 import Swal from "sweetalert2";
+import "./Contact.css";
 
 export default function Contact() {
   const form = useRef();
