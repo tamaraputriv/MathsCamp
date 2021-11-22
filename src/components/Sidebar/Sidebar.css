@@ -126,6 +126,10 @@
   color: #babbf8;
 }
 
+.reward-image-container{
+  display:inline-block;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }

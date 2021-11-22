@@ -12,17 +12,14 @@ export default function LoginComponent() {
   const [password, setPassword] = useState("");
   const history = useHistory();
 
-  //Updates the state of the username when the input changes
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
 
-  //Updates the state of the password when the input changes
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  //Attempts to log in the user if they have filled out a username and a password
   const handleLogUser = async (e) => {
     e.preventDefault();
     if (password === "" || username === "") {

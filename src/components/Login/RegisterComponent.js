@@ -13,23 +13,18 @@ export default function RegisterComponent() {
   const [email, setEmail] = useState("");
   const history = useHistory();
 
-  //Updates the state of the username when the input changes
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
 
-  //Updates the state of the password when the input changes
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  //Updates the state of the parental email when the input changes
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  /*Signs the user in if there is a password and a username. signUp() checks 
-  if the username and email are unique and stores the password securely */
   const handleReg = async (e) => {
     e.preventDefault();
     if (password === "" || username === "") {
@@ -39,9 +34,7 @@ export default function RegisterComponent() {
         icon: "error",
         confirmButtonText: "OK",
       });
-      return;
     } else {
-      console.log("I am setting the users information");
       const user = new Parse.User();
       user.set("username", username);
       user.set("password", password);
@@ -62,7 +55,6 @@ export default function RegisterComponent() {
           icon: "error",
           confirmButtonText: "OK",
         });
-        console.log(error.message);
       }
     }
   };
