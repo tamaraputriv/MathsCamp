@@ -684,8 +684,8 @@ export default function MultipleChoice() {
               <div className="speakboble-text">
                 <h2>Sorry,</h2>
                 <p>
-                  there's no hint for this question. Try ask your teacher for
-                  help.
+                  there's no hint for this question. Try to ask your teacher 
+                  for help.
                 </p>
               </div>
             )}
