@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import "./Break.css";
+import Parse from "parse";
 import { useHistory } from "react-router";
 import { VscSmiley } from "react-icons/vsc";
 import Camel from "../../images/Break/breakCamel.png";
@@ -9,7 +10,21 @@ import { hotjar } from "react-hotjar";
 export default function Break() {
   const history = useHistory();
 
-  const handleGoBack = () => {
+  const resetTimer = async () => {
+    const student = Parse.User.current();
+    if (student) {
+      try {
+        student.set("practice_timer_count", 1200);
+        await student.save();
+      } catch {
+        console.log("Timer did not reset");
+      }
+    }
+  };
+
+  const handleGoBack = async (e) => {
+    e.preventDefault();
+    await resetTimer();
     history.push("/frontpage");
   };
 
