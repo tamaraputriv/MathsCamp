@@ -26,8 +26,8 @@ export default function RegisterComponent() {
   };
 
   const generateRandomEmail = () => {
-    const email = "random" + getRandomInt(1000) + "@email.com";
-    setEmail(email);
+    const randomEmail = "random" + getRandomInt(1000) + "@email.com";
+    return randomEmail;
   };
 
   const getRandomInt = (max) => {
@@ -47,15 +47,16 @@ export default function RegisterComponent() {
       });
       return;
     }
-    if (email == "" || email == undefined) {
-      console.log("randomgenerator");
-      generateRandomEmail();
-    }
     console.log("I am setting the users information");
     const user = new Parse.User();
     user.set("username", username);
     user.set("password", password);
-    user.set("email", email);
+    if (email == "" || email == undefined) {
+      const randomEmail = generateRandomEmail();
+      user.set("email", randomEmail);
+    } else {
+      user.set("email", email);
+    }
     var date = new Date().toLocaleDateString();
     user.add("active_days", date);
     user.add("owned_mascot_ids", "arB9fEWmFp");
