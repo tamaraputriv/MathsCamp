@@ -9,13 +9,11 @@ import { hotjar } from "react-hotjar";
 export default function LoginRegisterCard() {
   const history = useHistory();
 
-  //Redirects the user to the login-page
   const handleLogin = (e) => {
     e.preventDefault();
     history.push("/login");
   };
 
-  //Redirects the user to the register-page
   const handleRegister = (e) => {
     e.preventDefault();
     history.push("/register");

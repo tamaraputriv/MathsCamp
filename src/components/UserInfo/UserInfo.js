@@ -58,6 +58,7 @@ export default function UserInfo() {
 
   useEffect(() => {
     retrieveUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

@@ -13,17 +13,14 @@ export default function RegisterComponent() {
   const [email, setEmail] = useState("");
   const history = useHistory();
 
-  //Updates the state of the username when the input changes
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
 
-  //Updates the state of the password when the input changes
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  //Updates the state of the parental email when the input changes
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };

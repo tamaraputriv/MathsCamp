@@ -58,6 +58,7 @@ export default function Sidebar({ isOpen, toggle }) {
 
   useEffect(() => {
     retrieveStudent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getActiveDayReward = (length) => {
@@ -149,10 +150,9 @@ export default function Sidebar({ isOpen, toggle }) {
       </div>
       <div className="badge-col text-center" style={{}}>
         {rewards.map((reward) => (
-          <>
+          <div className="reward-image-container" key={reward.id}>
             {owned_rewards.includes(reward.id) ? (
               <img
-                key={reward.id}
                 alt="reward"
                 className="unlocked-badge selector"
                 src={getRewardImage(rewards.indexOf(reward))}
@@ -160,14 +160,13 @@ export default function Sidebar({ isOpen, toggle }) {
               />
             ) : (
               <img
-                key={reward.id}
                 alt="reward"
                 className="locked-badge selector"
                 src={getRewardImage(rewards.indexOf(reward))}
                 title={reward.attributes.description}
               />
             )}
-          </>
+          </div>
         ))}
       </div>
     </div>

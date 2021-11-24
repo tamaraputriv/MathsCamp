@@ -7,7 +7,6 @@ import { useHistory } from "react-router";
 export default function NavbarPrelogin() {
   const history = useHistory();
 
-  //Redirects the user to the frontpage
   const handleBack = (e) => {
     e.preventDefault();
     history.push("/");

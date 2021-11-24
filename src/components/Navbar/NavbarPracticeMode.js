@@ -16,23 +16,21 @@ export default function NavbarPracticeMode() {
     const student = Parse.User.current();
     if (student) {
       try {
-        student.set("practice_timer_count", 2100);
+        student.set("practice_timer_count", 1200);
         await student.save();
       } catch {
-        console.log("timer did not reset");
+        console.log("Timer did not reset");
       }
     }
   };
 
-  //Logs out the user and redirects the user to the landingpage
-  const handleLogOut = (e) => {
+  const handleLogOut = async (e) => {
     e.preventDefault();
+    await resetTimer();
     Parse.User.logOut();
-    resetTimer();
     history.push("/");
   };
 
-  //Redirects the user to the frontpage
   const handleHome = (e) => {
     e.preventDefault();
     history.push("/frontpage");
@@ -43,7 +41,6 @@ export default function NavbarPracticeMode() {
     history.push("/contact");
   };
 
-  //Fetches the total_points of the current user and saves them in totalPoints state
   const fetchPoints = () => {
     const user = Parse.User.current();
     if (user) {

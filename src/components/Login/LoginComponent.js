@@ -12,17 +12,14 @@ export default function LoginComponent() {
   const [password, setPassword] = useState("");
   const history = useHistory();
 
-  //Updates the state of the username when the input changes
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
 
-  //Updates the state of the password when the input changes
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  //Attempts to log in the user if they have filled out a username and a password
   const handleLogUser = async (e) => {
     e.preventDefault();
     if (password === "" || username === "") {
@@ -32,27 +29,27 @@ export default function LoginComponent() {
         icon: "error",
         confirmButtonText: "OK",
       });
-      return;
-    }
-    try {
-      const user = await Parse.User.logIn(username, password);
-      if (user) {
-        var active = await user.get("active_days");
-        var date = new Date().toLocaleDateString();
-        if (!active.find((element) => element === date)) {
-          user.add("active_days", date);
-          user.save();
+    }else if (password.length > 0 || username.length > 0){
+      try {
+        const user = await Parse.User.logIn(username, password);
+        if (user) {
+          var active = await user.get("active_days");
+          var date = new Date().toLocaleDateString();
+          if (!active.find((element) => element === date)) {
+            user.add("active_days", date);
+            user.save();
+          }
+          history.push("/frontpage");
         }
-        history.push("/frontpage");
+      } catch (error) {
+        Swal.fire({
+          title: "Oops!",
+          text: "The username or password is incorrect!",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
       }
-    } catch (error) {
-      Swal.fire({
-        title: "Oops!",
-        text: "The username or password is incorrect!",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
-    }
+    }  
   };
 
   const handleResetPassword = () => {
