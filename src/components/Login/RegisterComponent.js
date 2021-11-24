@@ -51,7 +51,7 @@ export default function RegisterComponent() {
     const user = new Parse.User();
     user.set("username", username);
     user.set("password", password);
-    if (email == "" || email == undefined) {
+    if (email === "" || email === undefined) {
       const randomEmail = generateRandomEmail();
       user.set("email", randomEmail);
     } else {
