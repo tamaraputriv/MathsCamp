@@ -25,6 +25,17 @@ export default function RegisterComponent() {
     setEmail(e.target.value);
   };
 
+  const generateRandomEmail = () => {
+    const randomEmail = "random" + getRandomInt(1000) + "@email.com";
+    return randomEmail;
+  };
+
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * max);
+  };
+
+  /*Signs the user in if there is a password and a username. signUp() checks 
+  if the username and email are unique and stores the password securely */
   const handleReg = async (e) => {
     e.preventDefault();
     if (password === "" || username === "") {
@@ -34,28 +45,35 @@ export default function RegisterComponent() {
         icon: "error",
         confirmButtonText: "OK",
       });
+      return;
+    }
+    console.log("I am setting the users information");
+    const user = new Parse.User();
+    user.set("username", username);
+    user.set("password", password);
+    if (email === "" || email === undefined) {
+      const randomEmail = generateRandomEmail();
+      user.set("email", randomEmail);
     } else {
-      const user = new Parse.User();
-      user.set("username", username);
-      user.set("password", password);
       user.set("email", email);
-      var date = new Date().toLocaleDateString();
-      user.add("active_days", date);
-      user.add("owned_mascot_ids", "arB9fEWmFp");
-      try {
-        await user.signUp();
-        history.push("/frontpage");
-      } catch (error) {
-        Swal.fire({
-          title: "Oops!",
-          text:
-            "Something went wrong while registering you as a user: " +
-            error.message +
-            " Please try again!",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-      }
+    }
+    var date = new Date().toLocaleDateString();
+    user.add("active_days", date);
+    user.add("owned_mascot_ids", "arB9fEWmFp");
+    try {
+      await user.signUp();
+      history.push("/frontpage");
+    } catch (error) {
+      Swal.fire({
+        title: "Oops!",
+        text:
+          "Something went wrong while registering you as a user: " +
+          error.message +
+          " Please try again!",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      console.log(error.message);
     }
   };
 

@@ -14,7 +14,7 @@ import {
   BsLifePreserver,
   BsCheckCircle,
   BsChevronRight,
-  BsFileText
+  BsFileText,
 } from "react-icons/bs";
 import { useHistory } from "react-router";
 import { getMascotImage } from "../Utils";
@@ -508,7 +508,6 @@ export default function MultipleChoice() {
   }, [count]);
 
   const handleBreakTime = (e) => {
-    e.preventDefault();
     history.push("/break");
   };
 
@@ -667,8 +666,8 @@ export default function MultipleChoice() {
               <div className="speakboble-text">
                 <h2>Sorry,</h2>
                 <p>
-                  there's no hint for this question. Try to ask your teacher 
-                  for help.
+                  there's no hint for this question. Try to ask your teacher for
+                  help.
                 </p>
               </div>
             )}
