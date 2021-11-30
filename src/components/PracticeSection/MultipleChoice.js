@@ -74,7 +74,6 @@ export default function MultipleChoice() {
     const query = new Parse.Query("Questions");
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
-    //query.equalTo("objectId", "hIAvfLzfSo");
     try {
       let question = await query.find();
       let foundQuestion = false;

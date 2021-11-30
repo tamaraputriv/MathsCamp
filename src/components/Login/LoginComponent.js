@@ -37,8 +37,9 @@ export default function LoginComponent() {
           var date = new Date().toLocaleDateString();
           if (!active.find((element) => element === date)) {
             user.add("active_days", date);
-            user.save();
           }
+          user.set("practice_timer_count", 1200);
+          user.save();
           history.push("/frontpage");
         }
       } catch (error) {
