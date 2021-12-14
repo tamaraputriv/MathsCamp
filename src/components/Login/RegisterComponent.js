@@ -25,15 +25,6 @@ export default function RegisterComponent() {
     setEmail(e.target.value);
   };
 
-  const generateRandomEmail = () => {
-    const randomEmail = "random" + getRandomInt(1000) + "@email.com";
-    return randomEmail;
-  };
-
-  const getRandomInt = (max) => {
-    return Math.floor(Math.random() * max);
-  };
-
   /*Signs the user in if there is a password and a username. signUp() checks 
   if the username and email are unique and stores the password securely */
   const handleReg = async (e) => {
@@ -51,10 +42,7 @@ export default function RegisterComponent() {
     const user = new Parse.User();
     user.set("username", username);
     user.set("password", password);
-    if (email === "" || email === undefined) {
-      const randomEmail = generateRandomEmail();
-      user.set("email", randomEmail);
-    } else {
+    if (email !== "" || email !== undefined) {
       user.set("email", email);
     }
     var date = new Date().toLocaleDateString();
