@@ -252,10 +252,10 @@ export default function MultipleChoice() {
           student.set("total_points", rewardPoints);
           Swal.fire({
             title: "Yay! You earned a badge!",
-            text: "Click OK to see your badge",
+            text: "Take a look at the badge you earned or continue your practice.",
             icon: "success",
             showDenyButton: true,
-            confirmButtonText: `OK`,
+            confirmButtonText: `See badge`,
             denyButtonText: `Close`,
           }).then((result) => {
             if (result.isConfirmed) {
