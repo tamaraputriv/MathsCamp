@@ -65,6 +65,10 @@
   display: inline-block;
 }
 
+.locked-badge:hover {
+  filter: blur(1px);
+}
+
 .badge-col {
   padding-top: 20px;
   justify-content: center;
@@ -126,8 +130,8 @@
   color: #babbf8;
 }
 
-.reward-image-container{
-  display:inline-block;
+.reward-image-container {
+  display: inline-block;
 }
 
 ::-webkit-scrollbar {
@@ -141,7 +145,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #7c7ef2;
+  background: #5d5fef;
 }
 
 /* Handle on hover */
