@@ -53,6 +53,10 @@
   opacity: 0.4;
 }
 
+.locked-card:hover {
+  filter: blur(1px);
+}
+
 .header-circle {
   display: inline-block;
   background-color: #f0ac2b;
