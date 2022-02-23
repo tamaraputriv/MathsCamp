@@ -4,6 +4,10 @@
   cursor: default;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
 .logo-postlogin {
   width: 40px;
   margin-left: 5px;
