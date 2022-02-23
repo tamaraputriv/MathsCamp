@@ -18,6 +18,10 @@
   margin-top: 15px;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
 .app-name-col {
   position: absolute;
   margin-left: 90px;

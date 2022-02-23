@@ -542,11 +542,8 @@ export default function MultipleChoice() {
                               <Form.Check
                                 type="radio"
                                 value={option}
-                                label={
-                                  <div
-                                    dangerouslySetInnerHTML={{ __html: option }}
-                                  />
-                                }
+                                id={option}
+                                label={option}
                                 name="formHorizontalRadios"
                                 onChange={handleChange}
                                 disabled={submitted ? true : false}
@@ -559,6 +556,7 @@ export default function MultipleChoice() {
                               <Form.Check
                                 type="radio"
                                 value={option}
+                                id={option}
                                 label={`${option}`}
                                 name="formHorizontalRadios"
                                 onChange={handleChange}

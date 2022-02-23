@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Trophy } from "react-bootstrap-icons";
-import { BsChevronRight} from "react-icons/bs";
+import { BsChevronRight } from "react-icons/bs";
 import { VscSmiley } from "react-icons/vsc";
 import { useHistory } from "react-router";
 import Parse from "parse";
@@ -24,7 +24,7 @@ export default function BadgeInfo() {
   const handleGoQuiz = (e) => {
     e.preventDefault();
     history.push("/practice");
-  }
+  };
 
   const fetchRewards = async () => {
     const Rewards = new Parse.Object.extend("Reward");

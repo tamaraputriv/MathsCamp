@@ -7,6 +7,7 @@
     "@fontsource/rubik": "^4.5.0",
     "@fontsource/solway": "^4.5.0",
     "@parse/react": "0.0.1-alpha.16",
+    "@syncfusion/ej2-react-popups": "^19.4.52",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
