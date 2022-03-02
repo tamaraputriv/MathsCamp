@@ -5,10 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Parse from "parse";
 
-Parse.serverURL = "https://mathapp.b4a.io";
+Parse.serverURL = "https://parseapi.back4app.com/";
 Parse.initialize(
-  "V9n8X7uIrcCMcJre0nqCFfnyaka6MwkvrN5vnBcv",
-  "iTt0twJCFnn5sNxOXzNb7Ek9YC6mEKRQ98aoVey8"
+  "Tzl6Z6gWvz93cfVCmGQWFwwRKRpzBJFV0xsPMqU8",
+  "70uH31rDkRZhbtc0cztHblH7As16Vke0G2sBUFsN"
 );
 
 ReactDOM.render(
