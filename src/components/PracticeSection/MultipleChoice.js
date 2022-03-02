@@ -317,7 +317,6 @@ export default function MultipleChoice() {
           student.add(category + "_correct_ids", currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
-          // The number below should be changed, based on the number of questions in the database
           if (correct.length === 7) {
             if (studentLevel === 3) {
               student.set(category + "_level", 1);
