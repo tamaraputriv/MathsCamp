@@ -99,19 +99,19 @@ export default function EditMascot() {
   const getMascotReward = (length) => {
     switch (length) {
       case 3: {
-        return "Q6AkAx4llp";
+        return "Ew7kanM6BV";
       }
       case 5: {
-        return "skz6uxOpI6";
+        return "9LvJMwk6wA";
       }
       case 7: {
-        return "6U3vVNGZOO";
+        return "rLzNhYRhvT";
       }
       case 9: {
-        return "A66daWHfAy";
+        return "LHU7VSmdEr";
       }
       case 11: {
-        return "liTmaZ30Tb";
+        return "kHy719Xtt3";
       }
       default: {
         return "";

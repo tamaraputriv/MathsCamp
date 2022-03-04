@@ -59,7 +59,7 @@ export default function RegisterComponent() {
     }
     var date = new Date().toLocaleDateString();
     user.add("active_days", date);
-    user.add("owned_mascot_ids", "arB9fEWmFp");
+    user.add("owned_mascot_ids", "syMxG0A2nM");
     try {
       await user.signUp();
       history.push("/frontpage");
