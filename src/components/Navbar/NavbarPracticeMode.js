@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container, Col } from "react-bootstrap";
 import { DoorOpen, HouseDoor, Gem } from "react-bootstrap-icons";
-import { BsMailbox } from "react-icons/bs";
+import { BsMailbox, BsCoin } from "react-icons/bs";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import Parse from "parse";
@@ -10,6 +10,7 @@ import "./NavbarPracticeMode.css";
 
 export default function NavbarPracticeMode() {
   const [points, setPoints] = useState(0);
+  const [coins, setCoins] = useState(0);
   const history = useHistory();
 
   const handleLogOut = async (e) => {
@@ -32,7 +33,9 @@ export default function NavbarPracticeMode() {
     const user = Parse.User.current();
     if (user) {
       const totalPoints = user.get("total_points");
+      const totalCoins = user.get("coins");
       setPoints(totalPoints);
+      setCoins(totalCoins);
     }
   };
 
@@ -54,7 +57,10 @@ export default function NavbarPracticeMode() {
       </Col>
       <Col className="app-name-col">
         <h5 className="navbar-brand">
-          <Gem size={15} color="#F4C46B" /> {points}
+          <Gem size={20} color="#F4C46B" /> {points}
+        </h5>
+        <h5 className="navbar-brand">
+          <BsCoin size={20} color="#F4C46B" /> {coins}
         </h5>
       </Col>
       <Col lg={1.5}>

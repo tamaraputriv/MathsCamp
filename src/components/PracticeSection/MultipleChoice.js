@@ -39,6 +39,7 @@ export default function MultipleChoice() {
   const [explanationImage, setExplanationImage] = useState("");
   const [currentQuestionId, setId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
+  const [total_coins, setTotalCoins] = useState(0);
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [motivationMessage, setMotivationMessage] = useState("");
@@ -159,10 +160,12 @@ export default function MultipleChoice() {
     try {
       if (student) {
         const total_points = student.get("total_points");
+        const totalCoins = student.get("coins");
         const correct = student.get(category + "_correct_ids");
         const level = student.get(category + "_level");
         const count = student.get("practice_timer_count");
         setTotalPoints(total_points);
+        setTotalCoins(totalCoins);
         setCategory(category);
         setCount(count);
         setLevel(level);
@@ -312,8 +315,10 @@ export default function MultipleChoice() {
         if (correct_answer === chosenOption) {
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
-          let new_total_points = total_points + 10;
+          let new_total_points = total_points + 25;
+          let new_total_coins = total_coins + 10;
           student.set("total_points", new_total_points);
+          student.set("coins", new_total_coins);
           student.add(category + "_correct_ids", currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");

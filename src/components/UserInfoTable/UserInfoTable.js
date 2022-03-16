@@ -6,10 +6,12 @@ import {
   BsFillFilterSquareFill,
   BsGem,
   BsTrophy,
+  BsCoin,
 } from "react-icons/bs";
 
 export default function UserInfoTable({
   total_points,
+  total_Coins,
   active_days,
   total_answered_questions,
   ranking,
@@ -64,10 +66,19 @@ export default function UserInfoTable({
         </tr>
         <tr>
           <td className="body-text">
+            <BsCoin size={25} className="category-icon" color={"#28A3EE"} />
+            Your Points
+          </td>
+          <td data-label="Your coins" className="body-text">
+            <span>{total_Coins} coins</span>
+          </td>
+        </tr>
+        <tr>
+          <td className="body-text">
             <BsTrophy size={25} className="category-icon" color={"#F2B84B"} />
             Your ranking
           </td>
-          <td data-label="Your points" className="body-text">
+          <td data-label="Your ranking" className="body-text">
             <span>{ranking} place</span>
           </td>
         </tr>
