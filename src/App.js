@@ -11,6 +11,7 @@ import Request from "./pages/Reset";
 import BadgeInfoPage from "./pages/BadgeInfoPage";
 import Break from "./pages/BreakPage";
 import ContactPage from "./pages/ContactPage";
+import Mypage from "./pages/MyPage";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fontsource/rubik";
 import "@fontsource/solway";
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/break" component={Break} />
           <Route exact path="/badgeinfo" component={BadgeInfoPage} />
           <Route exact path="/contact" component={ContactPage} />
+          <Route exact path="/MyPage" component={Mypage} />
         </Switch>
       </div>
     </Router>
