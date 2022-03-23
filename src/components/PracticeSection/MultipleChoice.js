@@ -71,7 +71,7 @@ export default function MultipleChoice() {
     setShowMotivation(false);
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
-    const query = new Parse.Query("Questions");
+    const query = new Parse.Query("questions");
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
     try {
@@ -317,8 +317,8 @@ export default function MultipleChoice() {
           student.add(category + "_correct_ids", currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
-          if (correct.length === 7) {
-            if (studentLevel === 3) {
+          if (correct.length === 1) {
+            if (studentLevel === 2) {
               student.set(category + "_level", 1);
               Swal.fire({
                 title: "Congrats! You finished " + category + "!",
@@ -432,19 +432,19 @@ export default function MultipleChoice() {
   const getTotalAnsweredReward = (length) => {
     switch (length) {
       case 5: {
-        return "QmMHU6HOyE";
+        return "BnZeRFtRs0";
       }
       case 20: {
-        return "GwG4dzfCuT";
+        return "mmwJQW74iG";
       }
       case 40: {
-        return "5IFox85lUC";
+        return "TEbtu5kejQ";
       }
       case 60: {
-        return "pjukkloh3r";
+        return "H0ncvYchC7";
       }
       case 80: {
-        return "0qfqFayIZw";
+        return "ksFhan0che";
       }
       default: {
         return "";
@@ -455,19 +455,19 @@ export default function MultipleChoice() {
   const getTotalCorrectReward = (length) => {
     switch (length) {
       case 5: {
-        return "QzQhNUEEp3";
+        return "TQU7vTDs0e";
       }
       case 20: {
-        return "IxEXq05Whj";
+        return "b8heC968Mn";
       }
       case 40: {
-        return "tSi2TA2olv";
+        return "O67JfE5HPq";
       }
       case 60: {
-        return "SlmCKp4FMX";
+        return "2kZLCBzlJi";
       }
       case 80: {
-        return "f6C0n4oGX6";
+        return "OP6QgCLbfx";
       }
       default: {
         return "";
@@ -478,19 +478,19 @@ export default function MultipleChoice() {
   const getExplanationReward = (length) => {
     switch (length) {
       case 5: {
-        return "gRPbOWs9nE";
+        return "ywFMR01L0";
       }
       case 20: {
-        return "HwjknOcp4Y";
+        return "S1SjOBpHBo";
       }
       case 40: {
-        return "rCADOvIMcB";
+        return "EOfdWQ4gBl";
       }
       case 60: {
-        return "zonuJlC6ZN";
+        return "bfNFdVO9uo";
       }
       case 80: {
-        return "TBYdE77gyD";
+        return "LhRXTLKZAND";
       }
       default: {
         return "";
