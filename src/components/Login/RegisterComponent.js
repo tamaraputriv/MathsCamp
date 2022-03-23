@@ -70,26 +70,22 @@ export default function RegisterComponent() {
     try {
       await user.signUp();
 
-      const classroom = new Parse.Object.extend("classroom");
+      const classroom = Parse.Object.extend("Classroom");
       const query = new Parse.Query(classroom);
       query.equalTo("classroom_id", classroomid);
       const res = await query.find();
       console.log(res);
 
-      for (let i = 0; i < res.length; i++) {
-        const student = Parse.User.current();
-        const classid = res[i]["id"];
-        const addQuery = new Parse.Query(classroom);
-        addQuery
-          .get(classid)
-          .then((ob) => {
-            ob.add("students", student["id"]);
-            ob.save();
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
+      const student = Parse.User.current();
+      query
+        .get(res[0]["id"])
+        .then((ob) => {
+          ob.add("students", student["id"]);
+          ob.save();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
       history.push("/frontpage");
     } catch (error) {

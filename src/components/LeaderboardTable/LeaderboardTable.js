@@ -35,13 +35,13 @@ export default function Leaderboard({
       <tbody>
         <tr>
           <td className="body-text">{rank}</td>
-          <td data-label="Days played" className="body-text">
+          <td data-label="mascot" className="body-text">
             {current_mascot}
           </td>
-          <td data-label="Days played" className="body-text">
+          <td data-label="username" className="body-text">
             {username}
           </td>
-          <td data-label="Days played" className="body-text">
+          <td data-label="total points" className="body-text">
             {total_points}
           </td>
         </tr>

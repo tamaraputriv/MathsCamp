@@ -68,11 +68,16 @@ export default function MultipleChoice() {
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
   const history = useHistory();
 
+  const correct_answer_point_reward = 25;
+  const correct_answer_coins_reward = 10;
+  const get_bagde_point_reward = 50;
+  const get_bagde_coins_reward = 25;
+
   const fetchQuestion = async (info) => {
     setShowMotivation(false);
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
-    const query = new Parse.Query("questions");
+    const query = new Parse.Query("Questions");
     query.equalTo("category", info.category);
     query.equalTo("level", info.level);
     try {
@@ -251,11 +256,11 @@ export default function MultipleChoice() {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
           const points = student.get("total_points");
-          const rewardPoints = points + 50;
+          //const rewardPoints = points + 50;
           const originalCoins = student.get("coins");
-          const rewardCoins = originalCoins + 25;
-          student.set("total_points", rewardPoints);
-          student.set("coins", rewardCoins);
+          //const rewardCoins = originalCoins + 25;
+          student.set("total_points", points + get_bagde_point_reward);
+          student.set("coins", originalCoins + get_bagde_coins_reward);
           Swal.fire({
             title: "Yay! You earned a badge!",
             text: "Take a look at the badge you earned or continue your practice.",
@@ -318,10 +323,11 @@ export default function MultipleChoice() {
         if (correct_answer === chosenOption) {
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
-          let new_total_points = total_points + 25;
-          let new_total_coins = total_coins + 10;
-          student.set("total_points", new_total_points);
-          student.set("coins", new_total_coins);
+          student.set(
+            "total_points",
+            total_points + correct_answer_point_reward
+          );
+          student.set("coins", total_coins + correct_answer_coins_reward);
           student.add(category + "_correct_ids", currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
@@ -351,8 +357,7 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
-            const rewardPoints = new_total_points + 50;
-            student.set("total_points", rewardPoints);
+            student.set("total_points", total_points + get_bagde_point_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",
@@ -375,13 +380,10 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
-            const originalpoints = student.get("total_points");
+            const points = student.get("total_points");
             const originalCoins = student.get("coins");
-            const rewardPoints = originalpoints + 50;
-            const rewardCoins = originalCoins + 25;
-
-            student.set("total_points", rewardPoints);
-            student.set("coins", rewardCoins);
+            student.set("total_points", points + get_bagde_point_reward);
+            student.set("coins", originalCoins + get_bagde_coins_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",
@@ -408,12 +410,10 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
-            const originalpoints = student.get("total_points");
+            const points = student.get("total_points");
             const originalCoins = student.get("coins");
-            const rewardPoints = originalpoints + 50;
-            const rewardCoins = originalCoins + 25;
-            student.set("total_points", rewardPoints);
-            student.set("coins", rewardCoins);
+            student.set("total_points", points + get_bagde_point_reward);
+            student.set("coins", originalCoins + get_bagde_coins_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",

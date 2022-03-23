@@ -1,11 +1,9 @@
-// import { async } from "parse/lib/browser/Storage";
 import React, { useEffect, useState } from "react";
 // import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import Parse from "parse";
 // import UserInfoTable from "../UserInfoTable/UserInfoTable";
 import Leaderboard from "../LeaderboardTable/LeaderboardTable";
-import "./MyPage.css";
-// import { Query } from "parse/lib/browser/Parse";
+import "./Ranking.css";
 
 export default function MyPage() {
   const [username, setUsername] = useState("");
