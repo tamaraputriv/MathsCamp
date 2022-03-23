@@ -43,7 +43,6 @@ export default function UserInfo() {
       var username = user.get("username");
       var total_points = user.get("total_points");
       var totalCoins = user.get("coins");
-      console.log(user.get("coins"));
       var active_days = user.get("active_days");
       var total_answered_questions = user.get("total_answered_questions");
       var activeMascot = user.get("active_mascot_id");
