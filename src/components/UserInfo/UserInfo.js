@@ -13,6 +13,7 @@ export default function UserInfo() {
   const [isOpen, setIsOpen] = useState(true);
   const [username, setUsername] = useState("");
   const [total_points, setTotal_points] = useState(0);
+  const [total_coins, setTotal_coins] = useState(0);
   const [active_days, set_active_days] = useState([]);
   const [total_answered_questions, setTotal_answered_questions] = useState(0);
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
@@ -41,12 +42,14 @@ export default function UserInfo() {
     if (user) {
       var username = user.get("username");
       var total_points = user.get("total_points");
+      var totalCoins = user.get("coins");
       var active_days = user.get("active_days");
       var total_answered_questions = user.get("total_answered_questions");
       var activeMascot = user.get("active_mascot_id");
       var activeMascotIndex = await fetchMascots(activeMascot);
       setUsername(username);
       setTotal_points(total_points);
+      setTotal_coins(totalCoins);
       set_active_days(active_days);
       setTotal_answered_questions(total_answered_questions);
       setActiveMascotIndex(activeMascotIndex);
@@ -123,8 +126,10 @@ export default function UserInfo() {
         <div className="table-div">
           <UserInfoTable
             total_points={total_points}
+            total_Coins={total_coins}
             active_days={active_days.length}
             total_answered_questions={total_answered_questions}
+            ranking={"25"}
           />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router";
-import { DoorOpen, HouseDoor } from "react-bootstrap-icons";
+import { DoorOpen, HouseDoor, Trophy } from "react-bootstrap-icons";
 import { BsMailbox } from "react-icons/bs";
 import Logo from "../../images/Logo/logo-postlogin.svg";
 import Parse from "parse";
@@ -26,6 +26,11 @@ export default function NavbarPostlogin() {
     history.push("/contact");
   };
 
+  const handleMyPage = (e) => {
+    e.preventDefault();
+    history.push("/MyPage");
+  };
+
   return (
     <Container fluid className="navbar-postlogin">
       <Row>
@@ -42,6 +47,12 @@ export default function NavbarPostlogin() {
         </Col>
         <Col>
           <div className="btn-toolbar postlogin-toolbar">
+            <Button
+              className="btn-primary lg ranking-btn-postlogin"
+              onClick={handleMyPage}
+            >
+              Ranking <Trophy size={15} />
+            </Button>
             <Button
               className="btn-primary lg home-btn-postlogin"
               onClick={handleHome}
