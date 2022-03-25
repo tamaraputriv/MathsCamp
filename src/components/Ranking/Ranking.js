@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import Parse from "parse";
-// import UserInfoTable from "../UserInfoTable/UserInfoTable";
 import Leaderboard from "../LeaderboardTable/LeaderboardTable";
 import "./Ranking.css";
 
@@ -33,10 +31,9 @@ export default function MyPage() {
   const Ranking = async (e) => {
     const Users = new Parse.Object.extend("User");
     const q = new Parse.Query(Users).addDescending("total_points");
-    const UserArray = await q.find();
+    const user_array = await q.find();
 
-    console.log(UserArray);
-    return UserArray;
+    return user_array;
   };
 
   useEffect(() => {
@@ -52,12 +49,6 @@ export default function MyPage() {
           current_mascot={current_mascot}
           total_points={points}
         />
-        {/* <UserInfoTable
-          total_points={points}
-          active_days={active_days.length}
-          total_answered_questions={total_answered_questions}
-          ranking={"25"}
-        /> */}
       </div>
     </div>
   );

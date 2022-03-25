@@ -256,9 +256,7 @@ export default function MultipleChoice() {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
           const points = student.get("total_points");
-          //const rewardPoints = points + 50;
           const originalCoins = student.get("coins");
-          //const rewardCoins = originalCoins + 25;
           student.set("total_points", points + get_bagde_point_reward);
           student.set("coins", originalCoins + get_bagde_coins_reward);
           Swal.fire({

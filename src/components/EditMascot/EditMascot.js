@@ -71,7 +71,6 @@ export default function EditMascot() {
       if (user) {
         user.add("owned_mascot_ids", mascotId);
         coins -= mascotPrice;
-        // setTotalPoints(points);
         setTotalCoins(coins);
         user.set("coins", coins);
         var owned = user.get("owned_mascot_ids");
@@ -80,7 +79,6 @@ export default function EditMascot() {
         var hasWon = wonRewardId !== "";
         if (hasWon) {
           user.add("reward_badge_ids", wonRewardId);
-          //this rewardpoints should still be here. NOT changed to coins
           const rewardPoints = points + 50;
           user.set("total_points", rewardPoints);
           setTotalPoints(rewardPoints);

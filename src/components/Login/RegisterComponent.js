@@ -74,7 +74,6 @@ export default function RegisterComponent() {
       const query = new Parse.Query(classroom);
       query.equalTo("classroom_id", classroomid);
       const res = await query.find();
-      console.log(res);
 
       const student = Parse.User.current();
       query
