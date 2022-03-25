@@ -28,7 +28,7 @@ export default function NavbarPostlogin() {
 
   const handleMyPage = (e) => {
     e.preventDefault();
-    history.push("/MyPage");
+    history.push("/ranking");
   };
 
   return (

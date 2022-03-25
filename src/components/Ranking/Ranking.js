@@ -4,6 +4,7 @@ import Parse from "parse";
 // import UserInfoTable from "../UserInfoTable/UserInfoTable";
 import Leaderboard from "../LeaderboardTable/LeaderboardTable";
 import "./Ranking.css";
+import { async } from "parse/lib/browser/Storage";
 
 export default function MyPage() {
   const [username, setUsername] = useState("");
@@ -30,17 +31,50 @@ export default function MyPage() {
     }
   };
 
-  const Ranking = async (e) => {
-    const Users = new Parse.Object.extend("User");
-    const q = new Parse.Query(Users).addDescending("total_points");
-    const UserArray = await q.find();
+  const fetchClass = async (e) => {
+    const student_info = [];
 
-    console.log(UserArray);
-    return UserArray;
+    const user = Parse.User.current();
+    const classroom = Parse.Object.extend("Classroom");
+    const query = new Parse.Query(classroom);
+    query.contains("students", user["id"]);
+    const CR = await query.find();
+
+    query
+      .get(CR[0]["id"])
+      .then((object) => {
+        const studentids = object.get("students");
+        const students = Parse.Object.extend("User");
+        const q_student = new Parse.Query(students);
+
+        studentids.forEach((student) => {
+          console.log(student);
+          q_student
+            .get(student)
+            .then((stud) => {
+              student_info.push(stud.get("username"));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    console.log(student_info);
+  };
+
+  const Ranking = async (e) => {
+    // const Users = new Parse.Object.extend("User");
+    // const q = new Parse.Query(Users).addDescending("total_points");
+    // const user_array = await q.find();
+    // return user_array;
   };
 
   useEffect(() => {
-    retrieveStudent();
+    fetchClass();
   }, []);
 
   return (
