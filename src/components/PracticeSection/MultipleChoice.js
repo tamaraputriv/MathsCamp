@@ -78,7 +78,7 @@ export default function MultipleChoice() {
       let question = await query.find();
       let foundQuestion = false;
       while (!foundQuestion) {
-        let i = getRandomInt(10);
+        let i = getRandomInt(question.length);
         const currentId = question[i].id;
         if (!info.correct.includes(currentId)) {
           const correct_answer = question[i].get("correct_answer");
@@ -478,7 +478,7 @@ export default function MultipleChoice() {
   const getExplanationReward = (length) => {
     switch (length) {
       case 5: {
-        return "ywFMR01L0";
+        return "UywFMR01L0";
       }
       case 20: {
         return "S1SjOBpHBo";
@@ -490,7 +490,7 @@ export default function MultipleChoice() {
         return "bfNFdVO9uo";
       }
       case 80: {
-        return "LhRXTLKZAND";
+        return "LhRXTLKZAN";
       }
       default: {
         return "";
