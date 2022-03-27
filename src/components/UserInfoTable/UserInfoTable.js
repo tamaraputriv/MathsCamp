@@ -7,6 +7,7 @@ export default function UserInfoTable({
   total_points,
   active_days,
   total_answered_questions,
+  total_categories,
 }) {
   return (
     <Table>
@@ -54,6 +55,12 @@ export default function UserInfoTable({
           </td>
           <td data-label="Your points" className="body-text">
             <span>{total_points} points</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Current algebra level</td>
+          <td>
+            <span>{total_categories} categories</span>
           </td>
         </tr>
       </tbody>

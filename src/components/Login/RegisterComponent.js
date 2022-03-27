@@ -30,6 +30,18 @@ export default function RegisterComponent() {
     return randomEmail;
   };
 
+  const generateProgressTables = async (u) => {
+    const query = new Parse.Query("Category");
+    let categories = await query.find();
+
+    for (let i = 0; i < categories.length; i++) {
+      const progressTable = new Parse.Object("Progress");
+      progressTable.set("user_id", u.id);
+      progressTable.set("category_name", categories[i].get("name"));
+      await progressTable.save();
+    }
+  };
+
   const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
   };
@@ -59,7 +71,8 @@ export default function RegisterComponent() {
     }
     var date = new Date().toLocaleDateString();
     user.add("active_days", date);
-    user.add("owned_mascot_ids", "syMxG0A2nM");
+    user.add("owned_mascot_ids", "yMxG0A2nM");
+
     try {
       await user.signUp();
       history.push("/frontpage");
@@ -75,6 +88,7 @@ export default function RegisterComponent() {
       });
       console.log(error.message);
     }
+    generateProgressTables(user);
   };
 
   useEffect(() => {
