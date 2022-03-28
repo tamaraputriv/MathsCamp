@@ -40,26 +40,6 @@ export default function RegisterComponent() {
       progressTable.set("category_name", categories[i].get("name"));
       await progressTable.save();
     }
-    /*const number = new Parse.Object("Category");
-    number.set("name", "number");
-    number.set("user_id", u.id);
-
-    const algebra = new Parse.Object("Category");
-    algebra.set("name", "algebra");
-    algebra.set("user_id", u.id);
-
-    const geometry = new Parse.Object("Category");
-    geometry.set("name", "geometry");
-    geometry.set("user_id", u.id);
-
-    const measurement = new Parse.Object("Category");
-    measurement.set("name", "measurement");
-    measurement.set("user_id", u.id);
-
-    await number.save();
-    await algebra.save();
-    await geometry.save();
-    await measurement.save();*/
   };
 
   const getRandomInt = (max) => {
@@ -91,7 +71,7 @@ export default function RegisterComponent() {
     }
     var date = new Date().toLocaleDateString();
     user.add("active_days", date);
-    user.add("owned_mascot_ids", "yMxG0A2nM");
+    user.add("owned_mascot_ids", "syMxG0A2nM");
     try {
       await user.signUp();
       history.push("/frontpage");
