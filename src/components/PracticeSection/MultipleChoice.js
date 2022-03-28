@@ -329,8 +329,8 @@ export default function MultipleChoice() {
           student.add(category + "_correct_ids", currentQuestionId);
           student.increment("total_correct_questions");
           var correct = student.get(category + "_correct_ids");
-          if (correct.length === 7) {
-            if (studentLevel === 3) {
+          if (correct.length === 1) {
+            if (studentLevel === 2) {
               student.set(category + "_level", 1);
               Swal.fire({
                 title: "Congrats! You finished " + category + "!",
@@ -554,11 +554,8 @@ export default function MultipleChoice() {
                               <Form.Check
                                 type="radio"
                                 value={option}
-                                label={
-                                  <div
-                                    dangerouslySetInnerHTML={{ __html: option }}
-                                  />
-                                }
+                                id={option}
+                                label={option}
                                 name="formHorizontalRadios"
                                 onChange={handleChange}
                                 disabled={submitted ? true : false}
@@ -571,6 +568,7 @@ export default function MultipleChoice() {
                               <Form.Check
                                 type="radio"
                                 value={option}
+                                id={option}
                                 label={`${option}`}
                                 name="formHorizontalRadios"
                                 onChange={handleChange}

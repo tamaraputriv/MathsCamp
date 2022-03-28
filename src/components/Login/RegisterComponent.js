@@ -36,6 +36,18 @@ export default function RegisterComponent() {
     return randomEmail;
   };
 
+  const generateProgressTables = async (u) => {
+    const query = new Parse.Query("Category");
+    let categories = await query.find();
+
+    for (let i = 0; i < categories.length; i++) {
+      const progressTable = new Parse.Object("Progress");
+      progressTable.set("user_id", u.id);
+      progressTable.set("category_name", categories[i].get("name"));
+      await progressTable.save();
+    }
+  };
+
   const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
   };
@@ -99,6 +111,7 @@ export default function RegisterComponent() {
       });
       console.log(error.message);
     }
+    generateProgressTables(user);
   };
 
   useEffect(() => {
