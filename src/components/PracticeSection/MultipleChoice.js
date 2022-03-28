@@ -78,7 +78,7 @@ export default function MultipleChoice() {
       let question = await query.find();
       let foundQuestion = false;
       while (!foundQuestion) {
-        let i = getRandomInt(10);
+        let i = getRandomInt(question.length);
         const currentId = question[i].id;
         /* Checking if the question has been answered */
         if (!info.correct.includes(currentId)) {
