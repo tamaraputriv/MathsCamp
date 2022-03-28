@@ -6,11 +6,13 @@ import Parse from "parse";
 import Swal from "sweetalert2";
 import "./RegisterComponent.css";
 import { hotjar } from "react-hotjar";
+import { async } from "parse/lib/browser/StorageController.browser";
 
 export default function RegisterComponent() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [classroomid, setClassroomid] = useState("");
   const history = useHistory();
 
   const updateUsername = (e) => {
@@ -23,6 +25,10 @@ export default function RegisterComponent() {
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const updateClassroom = (e) => {
+    setClassroomid(e.target.value);
   };
 
   const generateRandomEmail = () => {
@@ -71,10 +77,27 @@ export default function RegisterComponent() {
     }
     var date = new Date().toLocaleDateString();
     user.add("active_days", date);
-    user.add("owned_mascot_ids", "yMxG0A2nM");
+    user.add("owned_mascot_ids", "syMxG0A2nM");
 
     try {
       await user.signUp();
+
+      const classroom = Parse.Object.extend("Classroom");
+      const query = new Parse.Query(classroom);
+      query.equalTo("classroom_id", classroomid);
+      const res = await query.find();
+
+      const student = Parse.User.current();
+      query
+        .get(res[0]["id"])
+        .then((ob) => {
+          ob.add("students", student["id"]);
+          ob.save();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
       history.push("/frontpage");
     } catch (error) {
       Swal.fire({
@@ -132,6 +155,14 @@ export default function RegisterComponent() {
                 <p className="information-text">
                   This email will be used for password recovery
                 </p>
+              </Form.Group>
+              <Form.Group controlId="formClassroom" className="upperform">
+                <Form.Label>Classroom code (optional)</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter classcode given by teacher"
+                  onChange={updateClassroom}
+                />
               </Form.Group>
               <Button className="registerbtn" variant="primary" type="submit">
                 Register <CardList />
