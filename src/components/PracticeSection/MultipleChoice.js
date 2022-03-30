@@ -21,6 +21,7 @@ import { getMascotImage } from "../Utils";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
 import { hotjar } from "react-hotjar";
+import {updatePointsOnCorrectAnswer} from '../../db/submittingAnswers'
 
 export default function MultipleChoice() {
   const [level, setLevel] = useState();
@@ -296,6 +297,19 @@ export default function MultipleChoice() {
     setShowHint(false);
   };
 
+  const categoryCompleteNotification = () => {
+    Swal.fire({
+      title: "Congrats! You finished " + category + "!",
+      text:
+        "You have answered all the questions in the " +
+        category +
+        " category. Let's take another round with the same questions. Practice makes perfect.",
+      icon: "success",
+      confirmButtonText: "OK",
+
+    })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!chosenOption) {
@@ -306,52 +320,25 @@ export default function MultipleChoice() {
     try {
       const student = Parse.User.current();
       if (student) {
+
         const studentId = student.id;
         const studentLevel = level;
         let initialCount = count;
         student.set("practice_timer_count", initialCount);
         student.increment("total_answered_questions");
+
+
         if (correct_answer === chosenOption) {
+
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
+
           let new_total_points = total_points + 10;
-          student.set("total_points", new_total_points);
-          const Progress = Parse.Object.extend("Progress");
-          const query = new Parse.Query(Progress);
-          query.equalTo("user_id", studentId);
-          query.equalTo("category_name", category);
-          const res = await query.find();
-          const progressTable = res[0];
-          query
-            .get(progressTable["id"])
-            .then((obj) => {
-              obj.add("correct_question_ids", currentQuestionId);
-              obj.save();
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-          student.increment("total_correct_questions");
-          var correct = progressTable.get("correct_question_ids");
-          if (correct.length === 7) {
-            if (studentLevel === 3) {
-              student.set(category + "_level", 1);
-              Swal.fire({
-                title: "Congrats! You finished " + category + "!",
-                text:
-                  "You have answered all the questions in the " +
-                  category +
-                  " category. Let's take another round with the same questions. Practice makes perfect.",
-                icon: "success",
-                confirmButtonText: "OK",
-              });
-            } else {
-              progressTable.increment("current_level");
-              progressTable.set("correct_question:ids", []);
-            }
-          }
+          updatePointsOnCorrectAnswer(student, studentId, category, currentQuestionId, studentLevel, new_total_points, categoryCompleteNotification);
+
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
+          
           if (
             (total_answered % 20 === 0 || total_answered === 5) &&
             0 < total_answered &&
