@@ -40,6 +40,7 @@ export default function MultipleChoice() {
   const [explanationImage, setExplanationImage] = useState("");
   const [currentQuestionId, setId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
+  const [total_coins, setTotalCoins] = useState(0);
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [motivationMessage, setMotivationMessage] = useState("");
@@ -67,6 +68,11 @@ export default function MultipleChoice() {
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
   const history = useHistory();
+
+  const correct_answer_point_reward = 25;
+  const correct_answer_coins_reward = 10;
+  const get_bagde_point_reward = 50;
+  const get_bagde_coins_reward = 25;
 
   const fetchQuestion = async (info) => {
     setShowMotivation(false);
@@ -161,10 +167,12 @@ export default function MultipleChoice() {
     try {
       if (student) {
         const total_points = student.get("total_points");
+        const totalCoins = student.get("coins");
         const correct = student.get(category + "_correct_ids");
         const level = student.get(category + "_level");
         const count = student.get("practice_timer_count");
         setTotalPoints(total_points);
+        setTotalCoins(totalCoins);
         setCategory(category);
         setCount(count);
         setLevel(level);
@@ -250,8 +258,9 @@ export default function MultipleChoice() {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
           const points = student.get("total_points");
-          const rewardPoints = points + 50;
-          student.set("total_points", rewardPoints);
+          const originalCoins = student.get("coins");
+          student.set("total_points", points + get_bagde_point_reward);
+          student.set("coins", originalCoins + get_bagde_coins_reward);
           Swal.fire({
             title: "Yay! You earned a badge!",
             text: "Take a look at the badge you earned or continue your practice.",
@@ -332,10 +341,8 @@ export default function MultipleChoice() {
 
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
-
           let new_total_points = total_points + 10;
           updatePointsOnCorrectAnswer(student, studentId, category, currentQuestionId, studentLevel, new_total_points, categoryCompleteNotification);
-
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
           
@@ -346,8 +353,7 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
-            const rewardPoints = new_total_points + 50;
-            student.set("total_points", rewardPoints);
+            student.set("total_points", total_points + get_bagde_point_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",
@@ -370,9 +376,10 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
-            const originalpoints = student.get("total_points");
-            const rewardPoints = originalpoints + 50;
-            student.set("total_points", rewardPoints);
+            const points = student.get("total_points");
+            const originalCoins = student.get("coins");
+            student.set("total_points", points + get_bagde_point_reward);
+            student.set("coins", originalCoins + get_bagde_coins_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",
@@ -391,8 +398,6 @@ export default function MultipleChoice() {
         } else {
           setMotivationH1(getRandomMotivation(motivationH1Wrong));
           setMotivationMessage(getRandomMotivation(wrongMotivation));
-          let new_total_points = total_points + 5;
-          student.set("total_points", new_total_points);
           const total_answered = student.get("total_answered_questions");
           if (
             (total_answered % 20 === 0 || total_answered === 5) &&
@@ -401,8 +406,10 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
-            const rewardPoints = new_total_points + 50;
-            student.set("total_points", rewardPoints);
+            const points = student.get("total_points");
+            const originalCoins = student.get("coins");
+            student.set("total_points", points + get_bagde_point_reward);
+            student.set("coins", originalCoins + get_bagde_coins_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",

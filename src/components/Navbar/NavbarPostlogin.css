@@ -36,6 +36,24 @@
   justify-content: end;
 }
 
+.ranking-btn-postlogin,
+.ranking-btn-postlogin:not(:disabled) {
+  background-color: #67bef3;
+  border-color: #67bef3;
+  font-family: "Rubik";
+  margin-right: 12px;
+}
+
+.ranking-btn-postlogin:hover {
+  background-color: #28a3ee;
+  border-color: #28a3ee;
+}
+
+.ranking-btn-postlogin:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 .home-btn-postlogin,
 .home-btn-postlogin:not(:disabled) {
   background-color: #f2b84b;
