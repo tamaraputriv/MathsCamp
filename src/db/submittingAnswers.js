@@ -30,7 +30,7 @@ async function updatePointsOnCorrectAnswer(student, studentId, category, current
         categoryCompleteNotification();
       } else {
         progressTable.increment("current_level");
-        progressTable.set("correct_question:ids", []);
+        progressTable.set("correct_question_ids", []);
       }
     }
 
