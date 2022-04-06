@@ -4,6 +4,10 @@
   cursor: default;
 }
 
+.logo-container {
+  background-color: #ff6665;
+}
+
 .logo:hover {
   cursor: pointer;
 }

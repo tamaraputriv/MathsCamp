@@ -347,7 +347,7 @@ export default function MultipleChoice() {
               });
             } else {
               progressTable.increment("current_level");
-              progressTable.set("correct_question:ids", []);
+              progressTable.set("correct_question_ids", []);
             }
           }
           const total_correct = student.get("total_correct_questions");
