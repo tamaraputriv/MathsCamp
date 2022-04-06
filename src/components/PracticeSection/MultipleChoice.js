@@ -21,6 +21,7 @@ import { getMascotImage } from "../Utils";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
 import { hotjar } from "react-hotjar";
+import {updatePointsOnCorrectAnswer} from '../../db/submittingAnswers'
 
 export default function MultipleChoice() {
   const [level, setLevel] = useState();
@@ -39,6 +40,7 @@ export default function MultipleChoice() {
   const [explanationImage, setExplanationImage] = useState("");
   const [currentQuestionId, setId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
+  const [total_coins, setTotalCoins] = useState(0);
   const [category, setCategory] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [motivationMessage, setMotivationMessage] = useState("");
@@ -67,6 +69,11 @@ export default function MultipleChoice() {
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
   const history = useHistory();
 
+  const correct_answer_point_reward = 25;
+  const correct_answer_coins_reward = 10;
+  const get_bagde_point_reward = 50;
+  const get_bagde_coins_reward = 25;
+
   const fetchQuestion = async (info) => {
     setShowMotivation(false);
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
@@ -78,7 +85,7 @@ export default function MultipleChoice() {
       let question = await query.find();
       let foundQuestion = false;
       while (!foundQuestion) {
-        let i = getRandomInt(10);
+        let i = getRandomInt(question.length);
         const currentId = question[i].id;
         /* Checking if the question has been answered */
         if (!info.correct.includes(currentId)) {
@@ -160,10 +167,12 @@ export default function MultipleChoice() {
     try {
       if (student) {
         const total_points = student.get("total_points");
+        const totalCoins = student.get("coins");
         const correct = student.get(category + "_correct_ids");
         const level = student.get(category + "_level");
         const count = student.get("practice_timer_count");
         setTotalPoints(total_points);
+        setTotalCoins(totalCoins);
         setCategory(category);
         setCount(count);
         setLevel(level);
@@ -249,8 +258,9 @@ export default function MultipleChoice() {
           const reward = getExplanationReward(totalexplanation);
           student.add("reward_badge_ids", reward);
           const points = student.get("total_points");
-          const rewardPoints = points + 50;
-          student.set("total_points", rewardPoints);
+          const originalCoins = student.get("coins");
+          student.set("total_points", points + get_bagde_point_reward);
+          student.set("coins", originalCoins + get_bagde_coins_reward);
           Swal.fire({
             title: "Yay! You earned a badge!",
             text: "Take a look at the badge you earned or continue your practice.",
@@ -296,6 +306,19 @@ export default function MultipleChoice() {
     setShowHint(false);
   };
 
+  const categoryCompleteNotification = () => {
+    Swal.fire({
+      title: "Congrats! You finished " + category + "!",
+      text:
+        "You have answered all the questions in the " +
+        category +
+        " category. Let's take another round with the same questions. Practice makes perfect.",
+      icon: "success",
+      confirmButtonText: "OK",
+
+    })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!chosenOption) {
@@ -306,12 +329,16 @@ export default function MultipleChoice() {
     try {
       const student = Parse.User.current();
       if (student) {
+
         const studentId = student.id;
         const studentLevel = level;
         let initialCount = count;
         student.set("practice_timer_count", initialCount);
         student.increment("total_answered_questions");
+
+
         if (correct_answer === chosenOption) {
+
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
           let new_total_points = total_points + 10;
@@ -350,8 +377,10 @@ export default function MultipleChoice() {
               progressTable.set("correct_question_ids", []);
             }
           }
+          updatePointsOnCorrectAnswer(student, studentId, category, currentQuestionId, studentLevel, new_total_points, categoryCompleteNotification);
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
+          
           if (
             (total_answered % 20 === 0 || total_answered === 5) &&
             0 < total_answered &&
@@ -359,8 +388,7 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
-            const rewardPoints = new_total_points + 50;
-            student.set("total_points", rewardPoints);
+            student.set("total_points", total_points + get_bagde_point_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",
@@ -383,9 +411,10 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalCorrectReward(total_correct);
             student.add("reward_badge_ids", reward);
-            const originalpoints = student.get("total_points");
-            const rewardPoints = originalpoints + 50;
-            student.set("total_points", rewardPoints);
+            const points = student.get("total_points");
+            const originalCoins = student.get("coins");
+            student.set("total_points", points + get_bagde_point_reward);
+            student.set("coins", originalCoins + get_bagde_coins_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",
@@ -404,8 +433,6 @@ export default function MultipleChoice() {
         } else {
           setMotivationH1(getRandomMotivation(motivationH1Wrong));
           setMotivationMessage(getRandomMotivation(wrongMotivation));
-          let new_total_points = total_points + 5;
-          student.set("total_points", new_total_points);
           const total_answered = student.get("total_answered_questions");
           if (
             (total_answered % 20 === 0 || total_answered === 5) &&
@@ -414,8 +441,10 @@ export default function MultipleChoice() {
           ) {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
-            const rewardPoints = new_total_points + 50;
-            student.set("total_points", rewardPoints);
+            const points = student.get("total_points");
+            const originalCoins = student.get("coins");
+            student.set("total_points", points + get_bagde_point_reward);
+            student.set("coins", originalCoins + get_bagde_coins_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",

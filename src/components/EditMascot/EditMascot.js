@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Gem, Person } from "react-bootstrap-icons";
-import { BsChevronRight } from "react-icons/bs";
+import { BsChevronRight, BsCoin } from "react-icons/bs";
 import { useHistory } from "react-router";
 import { getMascotImage } from "../Utils";
 import Swal from "sweetalert2";
@@ -15,6 +15,7 @@ export default function EditMascot() {
   const [owned_mascot_ids, setOwnedMascotIds] = useState([]);
   const [active_mascot_id, setActiveMascotId] = useState("");
   const [total_points, setTotalPoints] = useState(0);
+  const [total_coins, setTotalCoins] = useState(0);
 
   //Redirects the user to the frontpage
   const handleGoBack = () => {
@@ -43,9 +44,11 @@ export default function EditMascot() {
       var owned = user.get("owned_mascot_ids");
       var active = user.get("active_mascot_id");
       var points = user.get("total_points");
+      var coins = user.get("coins");
       setOwnedMascotIds(owned);
       setActiveMascotId(active);
       setTotalPoints(points);
+      setTotalCoins(coins);
     } else {
       Swal.fire({
         title: "Oops, something went wrong!",
@@ -62,14 +65,14 @@ export default function EditMascot() {
 
   /*Checks if a student has sufficient points to buy a mascot. If they do, checks if 
   the student has won a reward for owning a certain number of mascots*/
-  const buyMascot = (mascotId, mascotPrice, points) => {
-    if (points >= mascotPrice) {
+  const buyMascot = (mascotId, mascotPrice, points, coins) => {
+    if (coins >= mascotPrice) {
       const user = Parse.User.current();
       if (user) {
         user.add("owned_mascot_ids", mascotId);
-        points -= mascotPrice;
-        setTotalPoints(points);
-        user.set("total_points", points);
+        coins -= mascotPrice;
+        setTotalCoins(coins);
+        user.set("coins", coins);
         var owned = user.get("owned_mascot_ids");
         setOwnedMascotIds(owned);
         var wonRewardId = getMascotReward(owned.length);
@@ -133,9 +136,9 @@ export default function EditMascot() {
     <Container className="mascot-container">
       <div className="point-container">
         <div className="points-div">
-          <Gem color="#F2B84B" size={50} />
+          <BsCoin color="#28A3EE" size={50} />
           <div className="point-circle">
-            <p className="top-point-text text-center">{total_points}</p>
+            <p className="top-point-text text-center">{total_coins}</p>
           </div>
         </div>
         <div>
@@ -169,7 +172,7 @@ export default function EditMascot() {
                 </Card.Title>
                 <Card.Text className="point-text">
                   <Gem color="#F2B84B" /> {mascot.attributes.required_points}{" "}
-                  points
+                  Coins
                 </Card.Text>
                 <div>
                   {owned_mascot_ids.includes(mascot.id) ? (
@@ -198,7 +201,8 @@ export default function EditMascot() {
                         buyMascot(
                           mascot.id,
                           mascot.attributes.required_points,
-                          total_points
+                          total_points,
+                          total_coins
                         )
                       }
                     >
