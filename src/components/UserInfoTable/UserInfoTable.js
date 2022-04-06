@@ -14,7 +14,7 @@ export default function UserInfoTable({
   total_Coins,
   active_days,
   total_answered_questions,
-  total_categories,
+  total_rewards,
   ranking,
 }) {
   return (
@@ -24,7 +24,7 @@ export default function UserInfoTable({
           <th scope="col" className="table-header">
             CATEGORY
           </th>
-          <th scope="col" className="table-header">
+          <th scope="col" className="table-header-amount">
             AMOUNT
           </th>
         </tr>
@@ -37,7 +37,7 @@ export default function UserInfoTable({
               className="category-icon"
               color={"#F2B84B"}
             />
-            Days you played
+            Days played
           </td>
           <td data-label="Days played" className="body-text">
             {active_days} days
@@ -50,7 +50,7 @@ export default function UserInfoTable({
               className="category-icon"
               color={"#FF6665"}
             />
-            Questions you answered
+            Questions answered
           </td>
           <td data-label="Questions you answered" className="body-text">
             <span>{total_answered_questions} questions</span>
@@ -58,17 +58,20 @@ export default function UserInfoTable({
         </tr>
         <tr>
           <td className="body-text">
-            <BsGem size={25} className="category-icon" color={"#7C7EF2"} />
-            Your Points
+            <BsGem size={25} className="category-icon" color={"#47B0F1"} />
+            Points
           </td>
           <td data-label="Your points" className="body-text">
             <span>{total_points} points</span>
           </td>
         </tr>
         <tr>
-          <td>Current algebra level</td>
+          <td className="body-text">
+            <BsTrophy size={25} className="category-icon" color={"#F2B84B"} />
+            Badges
+          </td>
           <td>
-            <span>{total_categories} categories</span>
+            <span>{total_rewards}</span>
           <td className="body-text">
             <BsCoin size={25} className="category-icon" color={"#28A3EE"} />
             Your Points

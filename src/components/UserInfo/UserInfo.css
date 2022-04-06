@@ -75,10 +75,6 @@
   color: #4d4d4d;
 }
 
-.table-div {
-  width: 500px;
-}
-
 /* mascot section */
 .user-mascot-col {
   display: flex;
@@ -117,10 +113,6 @@
 
 /* Medium screens */
 @media all and (max-width: 1300px) {
-  .table-div {
-    width: fit-content;
-  }
-
   .user-card {
     max-width: fit-content;
   }
