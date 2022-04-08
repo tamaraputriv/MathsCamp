@@ -1,41 +1,44 @@
-.table-header {
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px !important;
-  line-height: 21px;
-  letter-spacing: -0.02em;
-  color: #8492a6 !important;
-}
-
-.thead-light {
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 21px;
-  letter-spacing: -0.02em;
-  color: #27272e;
-}
-
-.body-text {
-  font-size: 16px !important;
-  color: #4d4d4d;
-}
-
-.category-icon {
-  margin-right: 23px;
-}
-
-.category-col {
-  padding-right: 50px;
-}
-/* 
-* {
-  font-family: sans-serif;
+.ranking-user-container {
+  display: flex;
+  flex-direction: column;
   margin: 0;
-} */
+  padding: 0;
+  width: 100%;
+  align-items: center;
+}
 
-.table-div {
-  height: 500px;
+.ranking-table-div {
+  width: 1000px;
+}
+/* Medium screens */
+@media all and (max-width: 1300px) {
+  .table-div {
+    width: fit-content;
+  }
+
+  .user-card {
+    max-width: fit-content;
+  }
+}
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .user-practice-btn {
+    width: 350px;
+  }
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .table-div {
+    max-width: fit-content;
+  }
 }

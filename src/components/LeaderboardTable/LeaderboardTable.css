@@ -30,3 +30,7 @@
 .category-col {
   padding-right: 50px;
 }
+
+.ranking-row {
+  display: flex;
+}
