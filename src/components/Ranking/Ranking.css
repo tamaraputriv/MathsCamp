@@ -1,3 +1,24 @@
+.ranking-table-header {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px !important;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: #8492a6 !important;
+  background-color: #edf2f7;
+}
+
+.thead-light {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: #27272e;
+}
+
 .ranking-user-container {
   display: flex;
   flex-direction: column;
@@ -10,6 +31,7 @@
 .ranking-table-div {
   width: 1000px;
 }
+
 /* Medium screens */
 @media all and (max-width: 1300px) {
   .table-div {

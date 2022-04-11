@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar/NavbarPostlogin";
 import Ranking from "../components/Ranking/Ranking";
 import Footer from "../components/Footer/Footer";
 
-export default function MyPage() {
+export default function Mypage() {
   return (
     <div>
       <Navbar />

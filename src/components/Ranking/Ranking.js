@@ -38,7 +38,6 @@ export default function MyPage() {
                 console.log(err);
               });
           }
-          students_info.sort((a, b) => (b.points > a.points ? 1 : -1));
         })
         .catch((error) => {
           console.log(error);
@@ -61,7 +60,7 @@ export default function MyPage() {
         </div>
         <div className="ranking-table-div">
           <Table>
-            <thead className="thead-light table-header">
+            <thead className="thead-light ranking-table-header">
               <tr>
                 <th scope="col">Rank</th>
                 <th scope="col">Mascot</th>
@@ -69,16 +68,24 @@ export default function MyPage() {
                 <th scope="col">Points</th>
               </tr>
             </thead>
+            <tbody>
+              {students_info
+                .sort(
+                  ({ points: previousID }, { points: currentID }) =>
+                    currentID - previousID
+                )
+                .map((student, index) => (
+                  <tr key={index}>
+                    <Leaderboard
+                      rank={index + 1}
+                      username={student.name}
+                      current_mascot={student.mascotid}
+                      total_points={student.points}
+                    />
+                  </tr>
+                ))}
+            </tbody>
           </Table>
-          {students_info.map((student, index) => (
-            <Leaderboard
-              key={index}
-              rank={index + 1}
-              username={student.name}
-              current_mascot={student.mascotid}
-              total_points={student.points}
-            />
-          ))}
         </div>
       </div>
     </div>
