@@ -1,6 +1,9 @@
 .ranking-body-text {
-  font-size: 16px !important;
+  font-size: 18px;
   color: #4d4d4d;
+  font-family: "Rubik";
+  line-height: 80px;
+  height: 80px;
 }
 
 .ranking-row {
@@ -10,4 +13,21 @@
 
 .ranking-mascot-img {
   width: 85px;
+}
+
+.ranking-points {
+  text-align: right;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.rank-text {
+  line-height: 101px;
+  font-size: 20px;
+  text-align: center;
+  width: 100px;
+}
+
+.rank-mascot {
+  text-align: center;
 }

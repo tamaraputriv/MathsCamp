@@ -7,6 +7,9 @@
   letter-spacing: -0.02em;
   color: #8492a6 !important;
   background-color: #edf2f7;
+  border-radius: 16px !important;
+  border-collapse: separate;
+  perspective: 1px;
 }
 
 .thead-light {
@@ -29,7 +32,53 @@
 }
 
 .ranking-table-div {
-  width: 1000px;
+  width: 800px;
+}
+
+.ranking-rank {
+  width: 100px;
+  text-align: center;
+}
+
+.ranking-user-info-col {
+  display: flex;
+  flex-direction: row;
+}
+
+.ranking-h1-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.filter-bnt {
+  margin-top: 10px;
+  width: 180px;
+  height: 48px;
+  background-color: #67bef3;
+  border-color: #67bef3;
+  font-family: "Rubik";
+}
+
+.filter-bnt:hover {
+  background-color: #47b0f1;
+  border-color: #47b0f1;
+}
+
+.user_information {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  padding-left: 200px;
+}
+
+.user-info-h1 {
+  text-align: center;
 }
 
 /* Medium screens */
