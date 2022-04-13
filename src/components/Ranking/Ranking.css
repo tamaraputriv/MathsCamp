@@ -1,4 +1,4 @@
-.table-header {
+.ranking-table-header {
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
@@ -6,6 +6,10 @@
   line-height: 21px;
   letter-spacing: -0.02em;
   color: #8492a6 !important;
+  background-color: #edf2f7;
+  border-radius: 16px !important;
+  border-collapse: separate;
+  perspective: 1px;
 }
 
 .thead-light {
@@ -18,15 +22,94 @@
   color: #27272e;
 }
 
-.body-text {
-  font-size: 16px !important;
-  color: #4d4d4d;
+.ranking-user-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  align-items: center;
 }
 
-.category-icon {
-  margin-right: 23px;
+.ranking-table-div {
+  width: 800px;
 }
 
-.category-col {
-  padding-right: 50px;
+.ranking-rank {
+  width: 100px;
+  text-align: center;
+}
+
+.ranking-user-info-col {
+  display: flex;
+  flex-direction: row;
+}
+
+.ranking-h1-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.filter-bnt {
+  margin-top: 10px;
+  width: 180px;
+  height: 48px;
+  background-color: #67bef3;
+  border-color: #67bef3;
+  font-family: "Rubik";
+}
+
+.filter-bnt:hover {
+  background-color: #47b0f1;
+  border-color: #47b0f1;
+}
+
+.user_information {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  padding-left: 200px;
+}
+
+.user-info-h1 {
+  text-align: center;
+}
+
+/* Medium screens */
+@media all and (max-width: 1300px) {
+  .table-div {
+    width: fit-content;
+  }
+
+  .user-card {
+    max-width: fit-content;
+  }
+}
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .user-practice-btn {
+    width: 350px;
+  }
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .table-div {
+    max-width: fit-content;
+  }
 }

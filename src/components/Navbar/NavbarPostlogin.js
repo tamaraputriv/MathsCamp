@@ -26,9 +26,9 @@ export default function NavbarPostlogin() {
     history.push("/contact");
   };
 
-  const handleMyPage = (e) => {
+  const handleRanking = (e) => {
     e.preventDefault();
-    history.push("/MyPage");
+    history.push("/ranking");
   };
 
   return (
@@ -50,7 +50,7 @@ export default function NavbarPostlogin() {
           <div className="btn-toolbar postlogin-toolbar">
             <Button
               className="btn-primary lg ranking-btn-postlogin"
-              onClick={handleMyPage}
+              onClick={handleRanking}
             >
               Ranking <Trophy size={15} />
             </Button>

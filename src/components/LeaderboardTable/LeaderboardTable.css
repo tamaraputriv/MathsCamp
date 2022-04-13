@@ -1,32 +1,33 @@
-.table-header {
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px !important;
-  line-height: 21px;
-  letter-spacing: -0.02em;
-  color: #8492a6 !important;
-}
-
-.thead-light {
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 21px;
-  letter-spacing: -0.02em;
-  color: #27272e;
-}
-
-.body-text {
-  font-size: 16px !important;
+.ranking-body-text {
+  font-size: 18px;
   color: #4d4d4d;
+  font-family: "Rubik";
+  line-height: 80px;
+  height: 80px;
 }
 
-.category-icon {
-  margin-right: 23px;
+.ranking-row {
+  display: flex;
+  justify-content: space-between;
 }
 
-.category-col {
-  padding-right: 50px;
+.ranking-mascot-img {
+  width: 85px;
+}
+
+.ranking-points {
+  text-align: right;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.rank-text {
+  line-height: 101px;
+  font-size: 20px;
+  text-align: center;
+  width: 100px;
+}
+
+.rank-mascot {
+  text-align: center;
 }
