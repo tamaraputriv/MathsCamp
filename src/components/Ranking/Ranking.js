@@ -9,8 +9,7 @@ import Swal from "sweetalert2";
 
 export default function MyPage() {
   const [students_info, setStudentInfo] = useState([]);
-  const [current_user, setCurrentUser] = useState("");
-  const [current_rank, setCurrentRank] = useState();
+  // const [current_user, setCurrentUser] = useState("");
 
   const [total_points, setTotal_points] = useState(0);
   const [total_coins, setTotal_coins] = useState(0);
@@ -58,7 +57,7 @@ export default function MyPage() {
     const CR = await query.find();
 
     try {
-      setCurrentUser(user["id"]);
+      // setCurrentUser(user["id"]);
 
       query
         .get(CR[0]["id"])
@@ -111,6 +110,7 @@ export default function MyPage() {
     retrieveUser();
     fetchMascots();
     getClassroom();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -126,7 +126,7 @@ export default function MyPage() {
               This week
             </Button>
             <Button className="filter-bnt" onClick={handlebnt}>
-              This month
+              All time
             </Button>
           </div>
           <div className="ranking-table-div">

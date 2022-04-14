@@ -3,7 +3,6 @@ import Parse from "parse";
 import "./LeaderboardTable.css";
 import { Image } from "react-bootstrap";
 import { getMascotImage } from "../Utils";
-import { BsTrophy } from "react-icons/bs";
 
 export default function Leaderboard(props) {
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
