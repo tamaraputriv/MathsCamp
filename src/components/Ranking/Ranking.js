@@ -6,10 +6,10 @@ import { Table, Image, Button } from "react-bootstrap";
 import { getMascotImage } from "../Utils";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
 import Swal from "sweetalert2";
+import { GetPoints } from "./GetPoints";
 
 export default function MyPage() {
   const [students_info, setStudentInfo] = useState([]);
-  // const [current_user, setCurrentUser] = useState("");
 
   const [total_points, setTotal_points] = useState(0);
   const [total_coins, setTotal_coins] = useState(0);
@@ -36,7 +36,6 @@ export default function MyPage() {
 
   const fetchMascots = async () => {
     var activeMascot = user.get("active_mascot_id");
-    console.log(activeMascot);
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
     const mascotArray = await query.find();
@@ -50,29 +49,41 @@ export default function MyPage() {
     }
   };
 
-  const getClassroom = async () => {
+  const addTodayFilter = () => {
+    getClassroom("today");
+  };
+
+  const addWeekFilter = () => {
+    getClassroom("week");
+  };
+
+  const addAllTimeFilter = () => {
+    getClassroom("all time");
+  };
+
+  const getClassroom = async (filt) => {
+    setStudentInfo([]);
     const classroom = Parse.Object.extend("Classroom");
     const query = new Parse.Query(classroom);
     query.contains("students", user["id"]);
     const CR = await query.find();
 
     try {
-      // setCurrentUser(user["id"]);
-
       query
         .get(CR[0]["id"])
-        .then((object) => {
+        .then(async function (object) {
           const studentids = object.get("students");
           const students = Parse.Object.extend("User");
 
           for (let i = 0; i < studentids.length; i++) {
+            const points = await GetPoints(studentids[i], filt);
+
             const q_student = new Parse.Query(students);
             q_student
               .get(studentids[i])
               .then((student) => {
                 const name = student.get("username");
                 const mascotId = student.get("active_mascot_id");
-                const points = student.get("total_points");
                 const user = studentids[i];
 
                 const stud = {
@@ -97,19 +108,11 @@ export default function MyPage() {
     }
   };
 
-  const handlebnt = (e) => {
-    Swal.fire({
-      title: "Sorry",
-      text: "This functionality has not been implemented yet",
-      icon: "Error",
-      confirmButtonText: "OK",
-    });
-  };
-
   useEffect(() => {
     retrieveUser();
     fetchMascots();
-    getClassroom();
+    getClassroom("all time");
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -119,13 +122,13 @@ export default function MyPage() {
         <div className="ranking-h1-table">
           <h1 className="user-welcome-h1">Your classroom ranking!</h1>
           <div className="button-row">
-            <Button className="filter-bnt" onClick={handlebnt}>
+            <Button className="filter-bnt" onClick={() => addTodayFilter()}>
               Today
             </Button>
-            <Button className="filter-bnt" onClick={handlebnt}>
+            <Button className="filter-bnt" onClick={() => addWeekFilter()}>
               This week
             </Button>
-            <Button className="filter-bnt" onClick={handlebnt}>
+            <Button className="filter-bnt" onClick={() => addAllTimeFilter()}>
               All time
             </Button>
           </div>

@@ -86,6 +86,7 @@ export default function MultipleChoice() {
       while (!foundQuestion) {
         let i = getRandomInt(question.length);
         const currentId = question[i].id;
+        /* Checking if the question has been answered */
         if (!info.correct.includes(currentId)) {
           const correct_answer = question[i].get("correct_answer");
           const description = question[i].get("description");
@@ -304,6 +305,18 @@ export default function MultipleChoice() {
     setShowHint(false);
   };
 
+  const categoryCompleteNotification = () => {
+    Swal.fire({
+      title: "Congrats! You finished " + category + "!",
+      text:
+        "You have answered all the questions in the " +
+        category +
+        " category. Let's take another round with the same questions. Practice makes perfect.",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!chosenOption) {
@@ -314,6 +327,7 @@ export default function MultipleChoice() {
     try {
       const student = Parse.User.current();
       if (student) {
+        const studentId = student.id;
         const studentLevel = level;
         let initialCount = count;
         student.set("practice_timer_count", initialCount);
@@ -326,11 +340,26 @@ export default function MultipleChoice() {
             total_points + correct_answer_point_reward
           );
           student.set("coins", total_coins + correct_answer_coins_reward);
-          student.add(category + "_correct_ids", currentQuestionId);
+          const Progress = Parse.Object.extend("Progress");
+          const query = new Parse.Query(Progress);
+          query.equalTo("user_id", studentId);
+          query.equalTo("category_name", category);
+          const res = await query.find();
+          const progressTable = res[0];
+          query
+            .get(progressTable["id"])
+            .then((obj) => {
+              obj.add("correct_question_ids", currentQuestionId);
+              obj.save();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+          // student.add(category + "_correct_ids", currentQuestionId);
           student.increment("total_correct_questions");
-          var correct = student.get(category + "_correct_ids");
-          if (correct.length === 1) {
-            if (studentLevel === 2) {
+          var correct = progressTable.get("correct_question_ids");
+          if (correct.length === 7) {
+            if (studentLevel === 3) {
               student.set(category + "_level", 1);
               Swal.fire({
                 title: "Congrats! You finished " + category + "!",
@@ -342,8 +371,10 @@ export default function MultipleChoice() {
                 confirmButtonText: "OK",
               });
             } else {
-              student.increment(category + "_level");
-              student.set(category + "_correct_ids", []);
+              // student.increment(category + "_level");
+              // student.set(category + "_correct_ids", []);
+              progressTable.increment("current_level");
+              progressTable.set("correct_question:ids", []);
             }
           }
           const total_correct = student.get("total_correct_questions");
