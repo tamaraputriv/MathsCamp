@@ -6,7 +6,7 @@ import { getMascotImage } from "../Utils";
 
 export default function Leaderboard(props) {
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
-  const [current_user_id, setCurrentUser] = useState("");
+  const [current_user_id, setCurrentUser] = useState();
 
   const fetchMascots = async () => {
     const current_user = Parse.User.current();
@@ -20,37 +20,11 @@ export default function Leaderboard(props) {
       var mascotIndex = mascotIdArray.indexOf(props.current_mascot);
       setActiveMascotIndex(mascotIndex);
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
     }
   };
 
   //methods defining the different return views
-
-  // //first place have a trophy by their rank
-  // const firstPlace = () => {
-  //   return (
-  //     <>
-  //       <th className="rank-text">
-  //         <div className="body-text">
-  //           <BsTrophy size={25} className="category-icon" color={"#F0AC2B"} />
-  //         </div>
-  //         {props.rank}
-  //       </th>
-  //       <td className="ranking-body-text rank-mascot">
-  //         {" "}
-  //         <Image
-  //           src={getMascotImage(active_mascot_index)}
-  //           className="ranking-mascot-img"
-  //         />
-  //       </td>
-  //       <td className="ranking-body-text">{props.username}</td>
-  //       <td className="ranking-body-text ranking-points">
-  //         {props.total_points}
-  //       </td>
-  //     </>
-  //   );
-  // };
-
   //View for the current user (Current user highlighted in the leaderboard)
   const currentUserPlace = () => {
     return (
