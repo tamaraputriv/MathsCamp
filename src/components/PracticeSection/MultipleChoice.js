@@ -23,7 +23,9 @@ import { getTeacherImage } from "../Utils";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
 import { hotjar } from "react-hotjar";
-//import { updatePointsOnCorrectAnswer } from "../../db/submittingAnswers";
+
+import { updatePointsOnCorrectAnswer } from "../../db/submittingAnswers";
+import { registerPoints } from "../../db/submittingPoints";
 
 export default function MultipleChoice() {
   const [level, setLevel] = useState();
@@ -83,16 +85,11 @@ export default function MultipleChoice() {
   const get_bagde_coins_reward = 25;
 
   const fetchQuestion = async (info) => {
-    console.log(info.activeMascotId);
-    console.log(info.category);
-    console.log(location.state);
-    console.log(info.category);
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
     const student = Parse.User.current();
     console.log(student);
     const Progress = Parse.Object.extend("Progress");
-    console.log(Progress);
     const query = new Parse.Query(Progress);
     console.log(query);
     query.equalTo("user_id", student.id);
@@ -181,7 +178,7 @@ export default function MultipleChoice() {
         }
       }
     } catch (error) {
-      console.log(`Error! ${error.message}`);
+      console.log(error.message);
       Swal.fire({
         title: "Oops, something went wrong!",
         text: "Please try to refresh the page",
@@ -234,11 +231,6 @@ export default function MultipleChoice() {
     setSubmitted(false);
     setShowExplanation(false);
     setShowMotivation(false);
-    /* history.replace({
-      pathname: "/practice",
-      state: location.state,
-    });
-    history.go();*/
   };
 
   const fetchMascots = async (active_mascot_id) => {
@@ -308,6 +300,9 @@ export default function MultipleChoice() {
           const originalCoins = student.get("coins");
           student.set("total_points", points + get_bagde_point_reward);
           student.set("coins", originalCoins + get_bagde_coins_reward);
+
+          registerPoints(student.id, get_bagde_point_reward);
+
           Swal.fire({
             title: "Yay! You earned a badge!",
             text: "Take a look at the badge you earned or continue your practice.",
@@ -376,18 +371,20 @@ export default function MultipleChoice() {
     try {
       const student = Parse.User.current();
       if (student) {
-
         const studentId = student.id;
         const studentLevel = level;
         let initialCount = count;
         student.set("practice_timer_count", initialCount);
         student.increment("total_answered_questions");
+
         if (correct_answer === chosenOption) {
 
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
           let new_total_points = total_points + 10;
           student.set("total_points", new_total_points);
+          let new_total_coins = total_coins + correct_answer_coins_reward;
+          student.set("coins", new_total_coins);
           const Progress = Parse.Object.extend("Progress");
           const query = new Parse.Query(Progress);
           query.equalTo("user_id", studentId);
@@ -422,17 +419,23 @@ export default function MultipleChoice() {
               progressTable.set("correct_question_ids", []);
             }
           }
-          /*updatePointsOnCorrectAnswer(
+
+          updatePointsOnCorrectAnswer(
+
             student,
             studentId,
             category,
             currentQuestionId,
             studentLevel,
-            new_total_points,
+            new_total_coins,
             categoryCompleteNotification
-          );*/
+          );
+
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
+
+          registerPoints(student.id, correct_answer_point_reward);
+
           if (
             (total_answered % 20 === 0 || total_answered === 5) &&
             0 < total_answered &&
@@ -441,6 +444,7 @@ export default function MultipleChoice() {
             const reward = getTotalAnsweredReward(total_answered);
             student.add("reward_badge_ids", reward);
             student.set("total_points", total_points + get_bagde_point_reward);
+            registerPoints(student.id, get_bagde_point_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",
@@ -467,6 +471,7 @@ export default function MultipleChoice() {
             const originalCoins = student.get("coins");
             student.set("total_points", points + get_bagde_point_reward);
             student.set("coins", originalCoins + get_bagde_coins_reward);
+            registerPoints(student.id, get_bagde_point_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",
@@ -497,6 +502,7 @@ export default function MultipleChoice() {
             const originalCoins = student.get("coins");
             student.set("total_points", points + get_bagde_point_reward);
             student.set("coins", originalCoins + get_bagde_coins_reward);
+            registerPoints(student.id, get_bagde_point_reward);
             Swal.fire({
               title: "Yay! You won a badge!",
               text: "Click OK to see your badge",
