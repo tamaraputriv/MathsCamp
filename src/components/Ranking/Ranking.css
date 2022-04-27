@@ -64,12 +64,20 @@
   margin-top: 10px;
   width: 180px;
   height: 48px;
-  background-color: #67bef3;
-  border-color: #67bef3;
-  font-family: "Rubik";
+  background-color: #edf2f7;
+  border-color: #edf2f7;
+  font-family: Rubik;
+  font-size: 18px;
+  border-radius: 10px;
+  color: #4d4d4d;
 }
 
 .filter-bnt:hover {
+  background-color: #47b0f1;
+  border-color: #47b0f1;
+}
+
+.filter-bnt:active {
   background-color: #47b0f1;
   border-color: #47b0f1;
 }
@@ -83,6 +91,11 @@
 
 .user-info-h1 {
   text-align: center;
+}
+
+.clicked {
+  background-color: #47b0f1;
+  color: #f7fafc;
 }
 
 /* Medium screens */

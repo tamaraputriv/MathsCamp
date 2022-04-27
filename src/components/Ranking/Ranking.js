@@ -5,12 +5,13 @@ import Leaderboard from "../LeaderboardTable/LeaderboardTable";
 import { Table, Image, Button } from "react-bootstrap";
 import { getMascotImage } from "../Utils";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
-import Swal from "sweetalert2";
 import { GetPoints } from "./GetPoints";
 
 export default function MyPage() {
   const [students_info, setStudentInfo] = useState([]);
+  const [rank, setRank] = useState();
 
+  const [username, setUsername] = useState("");
   const [total_points, setTotal_points] = useState(0);
   const [total_coins, setTotal_coins] = useState(0);
   const [active_days, set_active_days] = useState([]);
@@ -21,10 +22,12 @@ export default function MyPage() {
 
   const retrieveUser = async (e) => {
     if (user) {
+      var name = user.get("username");
       var total_points = user.get("total_points");
       var totalCoins = user.get("coins");
       var active_days = user.get("active_days");
       var total_answered_questions = user.get("total_answered_questions");
+      setUsername(name);
       setTotal_points(total_points);
       setTotal_coins(totalCoins);
       set_active_days(active_days);
@@ -49,31 +52,27 @@ export default function MyPage() {
     }
   };
 
-  const addTodayFilter = () => {
-    getClassroom("today");
-  };
-
-  const addWeekFilter = () => {
-    getClassroom("week");
-  };
-
-  const addAllTimeFilter = () => {
-    getClassroom("all time");
-  };
-
   const getClassroom = async (filt) => {
-    setStudentInfo([]);
+    const filtrer = ["today", "week", "all_time"];
+    for (let i = 0; i < filtrer.length; i++) {
+      let f = filtrer[i];
+      if (f === filt) {
+        document.getElementById(filt).classList.add("clicked");
+      } else {
+        document.getElementById(f).classList.remove("clicked");
+      }
+    }
     const classroom = Parse.Object.extend("Classroom");
     const query = new Parse.Query(classroom);
     query.contains("students", user["id"]);
     const CR = await query.find();
-
+    const students = Parse.Object.extend("User");
+    setStudentInfo([]);
     try {
       query
         .get(CR[0]["id"])
         .then(async function (object) {
           const studentids = object.get("students");
-          const students = Parse.Object.extend("User");
 
           for (let i = 0; i < studentids.length; i++) {
             const points = await GetPoints(studentids[i], filt);
@@ -81,7 +80,7 @@ export default function MyPage() {
             const q_student = new Parse.Query(students);
             q_student
               .get(studentids[i])
-              .then((student) => {
+              .then(async function (student) {
                 const name = student.get("username");
                 const mascotId = student.get("active_mascot_id");
                 const user = studentids[i];
@@ -96,7 +95,7 @@ export default function MyPage() {
                 setStudentInfo((students_info) => [...students_info, stud]);
               })
               .catch((err) => {
-                console.log(err);
+                console.log(err.message);
               });
           }
         })
@@ -111,7 +110,7 @@ export default function MyPage() {
   useEffect(() => {
     retrieveUser();
     fetchMascots();
-    getClassroom("all time");
+    getClassroom("all_time");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -120,15 +119,27 @@ export default function MyPage() {
     <div className="ranking-user-container">
       <div className="ranking-user-info-col">
         <div className="ranking-h1-table">
-          <h1 className="user-welcome-h1">Your classroom ranking!</h1>
+          <h1 className="user-welcome-h1">Here is your classroom ranking!</h1>
           <div className="button-row">
-            <Button className="filter-bnt" onClick={() => addTodayFilter()}>
+            <Button
+              className="filter-bnt"
+              id="today"
+              onClick={() => getClassroom("today")}
+            >
               Today
             </Button>
-            <Button className="filter-bnt" onClick={() => addWeekFilter()}>
+            <Button
+              className="filter-bnt"
+              id="week"
+              onClick={() => getClassroom("week")}
+            >
               This week
             </Button>
-            <Button className="filter-bnt" onClick={() => addAllTimeFilter()}>
+            <Button
+              className="filter-bnt"
+              id="all_time"
+              onClick={() => getClassroom("all_time")}
+            >
               All time
             </Button>
           </div>
@@ -166,17 +177,32 @@ export default function MyPage() {
                       />
                     </tr>
                   ))}
-                <tr
-                  style={{ borderTopWidth: "25px", borderTopStyle: "double" }}
-                >
-                  <Leaderboard
-                    userid={"xxxxxx"}
-                    rank={20}
-                    username={"TESTING"}
-                    current_mascot={"F9NDoW7kCq"}
-                    total_points={0}
-                  />
-                </tr>
+                {students_info
+                  .sort(
+                    ({ points: previousID }, { points: currentID }) =>
+                      currentID - previousID
+                  )
+                  .map((student, index) => {
+                    if (student.userID === user["id"] && index > 9) {
+                      return (
+                        <tr
+                          key={index}
+                          style={{
+                            borderTopWidth: "25px",
+                            borderTopStyle: "double",
+                          }}
+                        >
+                          <Leaderboard
+                            userid={student.userID}
+                            rank={index + 1}
+                            username={student.name}
+                            current_mascot={student.mascotid}
+                            total_points={student.points}
+                          />
+                        </tr>
+                      );
+                    }
+                  })}
               </tbody>
             </Table>
           </div>
@@ -188,7 +214,7 @@ export default function MyPage() {
               className="user-mascot-img"
             />
           </div>
-          <h1 className="user-welcome-h1 user-info-h1">Your strikes</h1>
+          <h1 className="user-welcome-h1 user-info-h1"> Your stikes</h1>
           <div className="table-div">
             <UserInfoTable
               total_points={total_points}
