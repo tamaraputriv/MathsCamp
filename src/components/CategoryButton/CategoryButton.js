@@ -28,7 +28,7 @@ export default function CategoryButton({ category, level, correct_answers }) {
         <div className="level-div">{level}</div>
       </div>
       <div className="right-div">
-        <p>x/y questions answered!</p>
+        <p> {correct_answers}/7 questions answered!</p>
         <div className="progressbar-div">
           <div
             className="progressbar"
