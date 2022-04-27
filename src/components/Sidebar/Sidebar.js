@@ -144,7 +144,7 @@ export default function Sidebar({ isOpen, toggle }) {
         <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
           Hover over the badges to learn how to win them, or read more{" "}
           <span className="pointer-cursor" onClick={handleSeeBadgePage}>
-            here
+            here.
           </span>
         </p>
       </div>
@@ -157,6 +157,8 @@ export default function Sidebar({ isOpen, toggle }) {
                 className="unlocked-badge selector"
                 src={getRewardImage(rewards.indexOf(reward))}
                 title={reward.attributes.description}
+                //Take user to reward page on click
+                onClick={handleSeeBadgePage}
               />
             ) : (
               <img
@@ -164,6 +166,8 @@ export default function Sidebar({ isOpen, toggle }) {
                 className="locked-badge selector"
                 src={getRewardImage(rewards.indexOf(reward))}
                 title={reward.attributes.description}
+                //Take user to reward page on click
+                onClick={handleSeeBadgePage}
               />
             )}
           </div>

@@ -129,7 +129,6 @@ export default function UserInfo() {
             total_Coins={total_coins}
             active_days={active_days.length}
             total_answered_questions={total_answered_questions}
-            ranking={"25"}
           />
         </div>
       </div>

@@ -7,8 +7,8 @@ import Parse from "parse";
 
 Parse.serverURL = "https://parseapi.back4app.com/";
 Parse.initialize(
-  "Tzl6Z6gWvz93cfVCmGQWFwwRKRpzBJFV0xsPMqU8",
-  "70uH31rDkRZhbtc0cztHblH7As16Vke0G2sBUFsN"
+  "DuIYzArtIdG1IAUOtcbKjcpI3uMmnTAHpBfiapav",
+  "XJTdoT6eJgRvDWi7nWBCP20eP6vZ8Zghspq5qJuS"
 );
 
 ReactDOM.render(
