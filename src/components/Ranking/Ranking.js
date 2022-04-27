@@ -9,7 +9,6 @@ import { GetPoints } from "./GetPoints";
 
 export default function MyPage() {
   const [students_info, setStudentInfo] = useState([]);
-  const [rank, setRank] = useState();
 
   const [username, setUsername] = useState("");
   const [total_points, setTotal_points] = useState(0);
@@ -119,7 +118,7 @@ export default function MyPage() {
     <div className="ranking-user-container">
       <div className="ranking-user-info-col">
         <div className="ranking-h1-table">
-          <h1 className="user-welcome-h1">Here is your classroom ranking!</h1>
+          <h1 className="ranking-user-welcome-h1">Here is your classroom ranking!</h1>
           <div className="button-row">
             <Button
               className="filter-bnt"

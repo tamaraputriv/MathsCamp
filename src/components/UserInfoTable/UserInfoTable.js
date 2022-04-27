@@ -11,7 +11,7 @@ import {
 
 export default function UserInfoTable({
   total_points,
-  total_Coins,
+  total_coins,
   active_days,
   total_answered_questions,
   total_rewards,
@@ -79,7 +79,7 @@ export default function UserInfoTable({
             Your Coins
           </td>
           <td data-label="Your coins" className="body-text">
-            <span>{total_Coins} coins</span>
+            <span>{total_coins} coins</span>
           </td>
         </tr>
       </tbody>

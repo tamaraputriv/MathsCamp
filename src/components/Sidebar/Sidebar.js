@@ -9,7 +9,7 @@ import { getMascotImage } from "../Utils";
 import { getRewardImage } from "../Utils";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
 
-export default function Sidebar({ isOpen, toggle }) {
+export default function Sidebar() {
   const [rewards, setRewards] = useState([]);
   const [owned_rewards, setStudentRewards] = useState([]);
   const [recent_rewards, setRecentRewards] = useState([]);
@@ -169,7 +169,7 @@ export default function Sidebar({ isOpen, toggle }) {
         <div className="table-div">
           <UserInfoTable
             total_points={total_points}
-            total_Coins={total_coins}
+            total_coins={total_coins}
             active_days={active_days.length}
             total_answered_questions={total_answered_questions}
             total_rewards={owned_rewards.length}
