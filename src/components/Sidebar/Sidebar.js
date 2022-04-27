@@ -2,27 +2,45 @@ import React, { useEffect, useState } from "react";
 import Parse from "parse";
 import "./Sidebar.css";
 import Swal from "sweetalert2";
-import { Button } from "react-bootstrap";
-import {
-  BsChevronDoubleRight,
-  BsChevronDoubleLeft,
-  BsTrophy,
-  BsX,
-} from "react-icons/bs";
+import { Button, Image } from "react-bootstrap";
+import { BsTrophy, BsX } from "react-icons/bs";
 import { useHistory } from "react-router";
+import { getMascotImage } from "../Utils";
 import { getRewardImage } from "../Utils";
+import UserInfoTable from "../UserInfoTable/UserInfoTable";
 
 export default function Sidebar({ isOpen, toggle }) {
   const [rewards, setRewards] = useState([]);
   const [owned_rewards, setStudentRewards] = useState([]);
+  const [recent_rewards, setRecentRewards] = useState([]);
   const [hasWonReward, setHasWonReward] = useState(false);
+  const [username, setUsername] = useState("");
+  const [total_points, setTotal_points] = useState(0);
+  const [active_days, set_active_days] = useState([]);
+  const [total_answered_questions, setTotal_answered_questions] = useState(0);
+  const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const history = useHistory();
 
   const fetchRewards = async () => {
     const Rewards = new Parse.Object.extend("Reward");
     const query = new Parse.Query(Rewards);
+    query.ascending();
     const result = await query.find();
     setRewards(result);
+  };
+
+  const fetchMascots = async (active_mascot_id) => {
+    const Mascots = new Parse.Object.extend("Mascot");
+    const query = new Parse.Query(Mascots);
+    const mascotArray = await query.find();
+    var mascotIdArray = mascotArray.map((obj) => obj.id);
+    var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
+    return mascotIndex;
+  };
+
+  const handleChangeMascot = (e) => {
+    e.preventDefault();
+    history.push("/mascot");
   };
 
   useEffect(() => {
@@ -32,9 +50,19 @@ export default function Sidebar({ isOpen, toggle }) {
   const retrieveStudent = async () => {
     const student = Parse.User.current();
     if (student) {
+      var username = student.get("username");
+      var total_points = student.get("total_points");
+      var total_answered_questions = student.get("total_answered_questions");
       var active_days = student.get("active_days");
       var wonRewardId = getActiveDayReward(active_days.length);
       var rewards = student.get("reward_badge_ids");
+      var activeMascot = student.get("active_mascot_id");
+      var activeMascotIndex = await fetchMascots(activeMascot);
+      setActiveMascotIndex(activeMascotIndex);
+      setUsername(username);
+      setTotal_points(total_points);
+      set_active_days(active_days);
+      setTotal_answered_questions(total_answered_questions);
       if (wonRewardId !== "" && !rewards.includes(wonRewardId)) {
         student.add("reward_badge_ids", wonRewardId);
         student.save();
@@ -45,6 +73,7 @@ export default function Sidebar({ isOpen, toggle }) {
         student.set("total_points", rewardPoints);
       }
       setStudentRewards(rewards);
+      await getRecentRewards(student);
     } else {
       console.log("The user couldn't be retrieved");
       Swal.fire({
@@ -56,6 +85,19 @@ export default function Sidebar({ isOpen, toggle }) {
     }
   };
 
+  const getRecentRewards = async (user) => {
+    var rewards = user.get("reward_badge_ids");
+    let rewards_owned = [];
+    const reward_amount = rewards.length;
+    for (var i = reward_amount; i > reward_amount - 3; i--) {
+      console.log(rewards[i - 1]);
+      rewards_owned.push(rewards[i - 1]);
+    }
+    setRecentRewards(rewards_owned);
+    console.log(rewards);
+    console.log(rewards_owned.length);
+  };
+
   useEffect(() => {
     retrieveStudent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,20 +105,20 @@ export default function Sidebar({ isOpen, toggle }) {
 
   const getActiveDayReward = (length) => {
     switch (length) {
-      case 3: {
-        return "Xn9GW6PD18";
+      case 2: {
+        return "nL66ZyFsgw";
       }
       case 5: {
-        return "BDOyMkhoXE";
+        return "AIMc67Bzb7";
       }
       case 7: {
-        return "1qWSzGiLPd";
+        return "PB5OfPZuSH";
       }
       case 11: {
-        return "ThWu7K9V65";
+        return "LaClB4CF1m";
       }
       case 15: {
-        return "K4Sp4TC7SA";
+        return "q8qhIKpKOZ";
       }
       default: {
         return "";
@@ -97,33 +139,38 @@ export default function Sidebar({ isOpen, toggle }) {
   };
 
   return (
-    <div
-      className="sidebar-container"
-      style={{ maxWidth: isOpen ? "450px" : "250px" }}
-    >
+    <div className="sidebar-container">
       <div className="sidebar-header">
-        <h1
-          className="sidebarH1"
-          style={{
-            fontSize: isOpen ? "" : "16px",
-            marginBottom: isOpen ? "" : "0px",
-          }}
-        >
-          Your Collection
-        </h1>
-        {isOpen ? (
-          <BsChevronDoubleLeft
-            onClick={toggle}
-            className="arrow-icon"
-            alt="icon arrow"
-          ></BsChevronDoubleLeft>
-        ) : (
-          <BsChevronDoubleRight
-            onClick={toggle}
-            className="arrow-icon"
-            alt="icon arrow"
-          ></BsChevronDoubleRight>
-        )}
+        <div className="user-macot-div">
+          <Image
+            src={getMascotImage(active_mascot_index)}
+            className="user-mascot-img-sb"
+          />
+        </div>
+        <div className="user-info-div">
+          <h1 className="username-h1">{username}</h1>
+          <Button
+            onClick={handleChangeMascot}
+            className="user-change-mascot-btn-sb"
+            variant="primary"
+            type="submit"
+          >
+            Change mascot!
+          </Button>
+        </div>
+      </div>
+      <div className="user-strike-div">
+        <div className="user-strike-h2-div">
+          <h2 className="user-strike-h2-sb">Your strikes!</h2>
+        </div>
+        <div className="table-div">
+          <UserInfoTable
+            total_points={total_points}
+            active_days={active_days.length}
+            total_answered_questions={total_answered_questions}
+            total_rewards={owned_rewards.length}
+          />
+        </div>
       </div>
       {hasWonReward ? (
         <div className="text-center reward_container">
@@ -140,38 +187,33 @@ export default function Sidebar({ isOpen, toggle }) {
       ) : (
         <div></div>
       )}
-      <div>
-        <p className="sidebarP" style={{ display: isOpen ? "" : "none" }}>
-          Hover over the badges to learn how to win them, or read more{" "}
+      <div className="user-bagde-div">
+        <div className="user-badge-h2-div">
+          <h2 className="user-badge-h2-sb">Recent earned badges</h2>
+        </div>
+        <div className="show-bagde-div">
           <span className="pointer-cursor" onClick={handleSeeBadgePage}>
-            here.
+            Click to see all your bagdes!
           </span>
-        </p>
-      </div>
-      <div className="badge-col text-center" style={{}}>
-        {rewards.map((reward) => (
-          <div className="reward-image-container" key={reward.id}>
-            {owned_rewards.includes(reward.id) ? (
-              <img
-                alt="reward"
-                className="unlocked-badge selector"
-                src={getRewardImage(rewards.indexOf(reward))}
-                title={reward.attributes.description}
-                //Take user to reward page on click
-                onClick={handleSeeBadgePage}
-              />
-            ) : (
-              <img
-                alt="reward"
-                className="locked-badge selector"
-                src={getRewardImage(rewards.indexOf(reward))}
-                title={reward.attributes.description}
-                //Take user to reward page on click
-                onClick={handleSeeBadgePage}
-              />
-            )}
-          </div>
-        ))}
+        </div>
+        <div className="badge-col text-center" style={{}}>
+          {rewards.map((reward) => (
+            <div className="reward-image-container" key={reward.id}>
+              {recent_rewards.includes(reward.id) ? (
+                <img
+                  alt="reward"
+                  className="unlocked-badge selector"
+                  src={getRewardImage(rewards.indexOf(reward))}
+                  title={reward.attributes.description}
+                  //Take user to reward page on click
+                  onClick={handleSeeBadgePage}
+                />
+              ) : (
+                <p></p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

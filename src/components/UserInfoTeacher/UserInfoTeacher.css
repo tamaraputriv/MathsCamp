@@ -1,0 +1,74 @@
+.user-container {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.row {
+  margin: 0%;
+}
+
+.category-div {
+  display: flex;
+  flex-direction: column;
+  padding: 4%;
+  height: 100%;
+}
+
+.teacher-speaker-bubble-div {
+  background-color: #f2b84b;
+  padding: 8%;
+  border-radius: 35px;
+  max-width: 460px;
+}
+
+.teacher-welcome {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.teacher-img-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 35%;
+}
+
+.teacher-img {
+  max-height: 280px;
+  align-items: center;
+}
+
+.category-row {
+  padding-top: 3%;
+}
+
+/* Medium screens */
+
+@media all and (max-width: 1300px) {
+  .welcome-div {
+    max-width: fit-content;
+  }
+
+  .teacher-img {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .user-practice-btn {
+    width: 350px;
+  }
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+}

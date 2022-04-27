@@ -17,10 +17,13 @@ import {
   BsFileText,
 } from "react-icons/bs";
 import { useHistory } from "react-router";
+import { useLocation } from "react-router-dom";
 import { getMascotImage } from "../Utils";
+import { getTeacherImage } from "../Utils";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
 import { hotjar } from "react-hotjar";
+
 import { updatePointsOnCorrectAnswer } from "../../db/submittingAnswers";
 import { registerPoints } from "../../db/submittingPoints";
 
@@ -69,6 +72,12 @@ export default function MultipleChoice() {
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const [hasOptionFraction, setHasOptionFraction] = useState(false);
   const history = useHistory();
+  const location = useLocation();
+
+  const correct_answer_point_reward = 25;
+  const correct_answer_coins_reward = 10;
+  const get_bagde_point_reward = 50;
+  const get_bagde_coins_reward = 25;
 
   const correct_answer_point_reward = 25;
   const correct_answer_coins_reward = 10;
@@ -76,9 +85,6 @@ export default function MultipleChoice() {
   const get_bagde_coins_reward = 25;
 
   const fetchQuestion = async (info) => {
-    setShowMotivation(false);
-    console.log(info.activeMascotId);
-    console.log(info.category);
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
     const student = Parse.User.current();
@@ -182,9 +188,18 @@ export default function MultipleChoice() {
     }
   };
 
-  const retrieveStudent = () => {
-    const category = getRandomCategory();
+  const retrieveStudent = (categoryState) => {
+    const category = location.state;
+    var cat;
+    if (typeof category === "undefined") {
+      cat = categoryState;
+    } else {
+      cat = category;
+    }
+    console.log(category);
+    console.log(cat);
     const student = Parse.User.current();
+    console.log(student);
     try {
       if (student) {
         const total_points = student.get("total_points");
@@ -211,15 +226,21 @@ export default function MultipleChoice() {
   const refreshPage = (e) => {
     e.preventDefault();
     hotjar.event("new question");
-    history.go(0);
+    console.log(location.state);
+    fetchQuestion(retrieveStudent(location.state));
+    setSubmitted(false);
+    setShowExplanation(false);
+    setShowMotivation(false);
   };
 
   const fetchMascots = async (active_mascot_id) => {
+    console.log(active_mascot_id);
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
     const mascotArray = await query.find();
     var mascotIdArray = mascotArray.map((obj) => obj.id);
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
+    console.log(mascotIndex);
     return mascotIndex;
   };
 
@@ -345,6 +366,7 @@ export default function MultipleChoice() {
       showSubmitWarning();
     } else {
       showSubmitMotivation();
+      console.log(location.state);
     }
     try {
       const student = Parse.User.current();
@@ -356,6 +378,7 @@ export default function MultipleChoice() {
         student.increment("total_answered_questions");
 
         if (correct_answer === chosenOption) {
+
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
           let new_total_points = total_points + 10;
@@ -377,12 +400,11 @@ export default function MultipleChoice() {
             .catch((error) => {
               console.log(error);
             });
-
           student.increment("total_correct_questions");
           var correct = progressTable.get("correct_question_ids");
+          var currentLevel = progressTable.get("correct_question_ids");
           if (correct.length === 7) {
-            if (studentLevel === 3) {
-              student.set(category + "_level", 1);
+            if (currentLevel === 3) {
               Swal.fire({
                 title: "Congrats! You finished " + category + "!",
                 text:
@@ -393,21 +415,22 @@ export default function MultipleChoice() {
                 confirmButtonText: "OK",
               });
             } else {
-              // console.log("CL", typeof progressTable.get("current_level"));
               progressTable.increment("current_level");
               progressTable.set("correct_question_ids", []);
             }
           }
+
           updatePointsOnCorrectAnswer(
+
             student,
             studentId,
             category,
             currentQuestionId,
             studentLevel,
-            new_total_points,
             new_total_coins,
             categoryCompleteNotification
           );
+
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
 
@@ -764,10 +787,7 @@ export default function MultipleChoice() {
               <p>{motivationMessage}</p>
             </div>
           </div>
-          <Image
-            src={getMascotImage(active_mascot_index)}
-            className="quiz-mascot-img"
-          />
+          <Image src={getTeacherImage(0)} className="quiz-mascot-img" />
         </Col>
       </Row>
     </Container>

@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import Parse from "parse";
 import Sidebar from "../Sidebar/Sidebar";
 import { useHistory } from "react-router";
-import { Button, Image } from "react-bootstrap";
+import { Button, Image, Container, Row, Col } from "react-bootstrap";
 import { BsPerson } from "react-icons/bs";
 import { getMascotImage } from "../Utils";
-import UserInfoTable from "../UserInfoTable/UserInfoTable";
 import "./UserInfo.css";
 import { hotjar } from "react-hotjar";
 
@@ -78,16 +77,11 @@ export default function UserInfo() {
   };
 
   return (
-    <div className="user-container">
+    <Container fluid className="user-container">
       <div className="sidebar-color-container">
-        <Sidebar isOpen={isOpen} toggle={toggle} />
+        <Sidebar />
       </div>
-      <div
-        className="user-info-col"
-        style={{
-          width: isOpen ? "70%" : "85%",
-        }}
-      >
+      <div className="user-info-col">
         <div>
           <h1 className="user-welcome-h1">
             Welcome {}
@@ -120,18 +114,7 @@ export default function UserInfo() {
             </Button>
           </div>
         </div>
-        <div>
-          <h2 className="user-strike-h2">Your strikes</h2>
-        </div>
-        <div className="table-div">
-          <UserInfoTable
-            total_points={total_points}
-            total_Coins={total_coins}
-            active_days={active_days.length}
-            total_answered_questions={total_answered_questions}
-          />
-        </div>
       </div>
-    </div>
+    </Container>
   );
 }

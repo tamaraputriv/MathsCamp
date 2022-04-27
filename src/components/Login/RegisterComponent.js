@@ -44,6 +44,7 @@ export default function RegisterComponent() {
       const progressTable = new Parse.Object("Progress");
       progressTable.set("user_id", u.id);
       progressTable.set("category_name", categories[i].get("name"));
+      progressTable.set("correct_question_ids", []);
       await progressTable.save();
     }
   };
@@ -78,7 +79,6 @@ export default function RegisterComponent() {
     var date = new Date().toLocaleDateString();
     user.add("active_days", date);
     user.add("owned_mascot_ids", "syMxG0A2nM");
-
     try {
       await user.signUp();
 
