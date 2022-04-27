@@ -79,11 +79,6 @@ export default function MultipleChoice() {
   const get_bagde_point_reward = 50;
   const get_bagde_coins_reward = 25;
 
-  const correct_answer_point_reward = 25;
-  const correct_answer_coins_reward = 10;
-  const get_bagde_point_reward = 50;
-  const get_bagde_coins_reward = 25;
-
   const fetchQuestion = async (info) => {
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);

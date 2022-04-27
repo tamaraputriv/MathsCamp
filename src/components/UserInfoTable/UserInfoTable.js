@@ -72,7 +72,7 @@ export default function UserInfoTable({
           </td>
           <td>
             <span>{total_rewards}</span>
-
+</td>
           <td className="body-text">
             <BsCoin size={25} className="category-icon" color={"#28A3EE"} />
             Your Coins
