@@ -11,11 +11,10 @@ import {
 
 export default function UserInfoTable({
   total_points,
-  total_Coins,
+  total_coins,
   active_days,
   total_answered_questions,
   total_rewards,
-  ranking,
 }) {
   return (
     <Table>
@@ -72,13 +71,15 @@ export default function UserInfoTable({
           </td>
           <td>
             <span>{total_rewards}</span>
-</td>
+          </td>
+        </tr>
+        <tr>
           <td className="body-text">
             <BsCoin size={25} className="category-icon" color={"#28A3EE"} />
             Your Coins
           </td>
           <td data-label="Your coins" className="body-text">
-            <span>{total_Coins} coins</span>
+            <span>{total_coins} coins</span>
           </td>
         </tr>
       </tbody>
