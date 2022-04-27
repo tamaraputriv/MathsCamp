@@ -89,7 +89,7 @@ export default function UserInfo() {
   }, []);
 
   useEffect(() => {
-    hotjar.initialize(2701912);
+    hotjar.initialize(2944506);
   }, []);
 
   const fetchMascots = async (active_mascot_id) => {
