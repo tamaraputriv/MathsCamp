@@ -46,7 +46,7 @@ export default function NavbarPostlogin() {
       <Col className="app-name-col-postlogin">
         <h6 className="navbar-brand-postlogin">Maths Camp</h6>
       </Col>
-      <Col>
+      <Col lg={1.5}>
         <div className="btn-toolbar postlogin-toolbar">
           <Button
             className="btn-primary lg ranking-btn-postlogin"
