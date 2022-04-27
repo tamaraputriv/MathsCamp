@@ -77,6 +77,11 @@ export default function MultipleChoice() {
   const get_bagde_point_reward = 50;
   const get_bagde_coins_reward = 25;
 
+  const correct_answer_point_reward = 25;
+  const correct_answer_coins_reward = 10;
+  const get_bagde_point_reward = 50;
+  const get_bagde_coins_reward = 25;
+
   const fetchQuestion = async (info) => {
     console.log(info.activeMascotId);
     console.log(info.category);
@@ -371,13 +376,14 @@ export default function MultipleChoice() {
     try {
       const student = Parse.User.current();
       if (student) {
+
         const studentId = student.id;
         const studentLevel = level;
         let initialCount = count;
         student.set("practice_timer_count", initialCount);
         student.increment("total_answered_questions");
-
         if (correct_answer === chosenOption) {
+
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
           let new_total_points = total_points + 10;
@@ -427,7 +433,6 @@ export default function MultipleChoice() {
           );*/
           const total_correct = student.get("total_correct_questions");
           const total_answered = student.get("total_answered_questions");
-
           if (
             (total_answered % 20 === 0 || total_answered === 5) &&
             0 < total_answered &&
