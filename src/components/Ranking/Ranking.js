@@ -15,6 +15,7 @@ export default function MyPage() {
   const [total_coins, setTotal_coins] = useState(0);
   const [active_days, set_active_days] = useState([]);
   const [total_answered_questions, setTotal_answered_questions] = useState(0);
+  const [owned_rewards, setStudentRewards] = useState([]);
 
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
   const user = Parse.User.current();
@@ -26,11 +27,13 @@ export default function MyPage() {
       var totalCoins = user.get("coins");
       var active_days = user.get("active_days");
       var total_answered_questions = user.get("total_answered_questions");
+      var rewards = user.get("reward_badge_ids");
       setUsername(name);
       setTotal_points(total_points);
       setTotal_coins(totalCoins);
       set_active_days(active_days);
       setTotal_answered_questions(total_answered_questions);
+      setStudentRewards(rewards);
     } else {
       e.preventDefault();
     }
@@ -220,6 +223,7 @@ export default function MyPage() {
               total_Coins={total_coins}
               active_days={active_days.length}
               total_answered_questions={total_answered_questions}
+              total_rewards={owned_rewards.length}
             />
           </div>
         </div>
