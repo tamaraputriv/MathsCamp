@@ -1,6 +1,6 @@
 {
   "name": "mathapp",
-  "homepage": "https://MathsCamp.github.io/MathsCamp/",
+  "homepage": "http://mathscamp.org/MathsCamp/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
