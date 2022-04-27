@@ -97,7 +97,7 @@ export default function RegisterComponent() {
         .catch((error) => {
           console.log(error);
         });
-
+      await generateProgressTables(user);
       history.push("/frontpage");
     } catch (error) {
       Swal.fire({
@@ -111,7 +111,6 @@ export default function RegisterComponent() {
       });
       console.log(error.message);
     }
-    generateProgressTables(user);
   };
 
   useEffect(() => {
