@@ -44,6 +44,7 @@ export default function RegisterComponent() {
       const progressTable = new Parse.Object("Progress");
       progressTable.set("user_id", u.id);
       progressTable.set("category_name", categories[i].get("name"));
+      progressTable.set("correct_question_ids", []);
       await progressTable.save();
     }
   };
@@ -96,7 +97,7 @@ export default function RegisterComponent() {
         .catch((error) => {
           console.log(error);
         });
-
+      await generateProgressTables(user);
       history.push("/frontpage");
     } catch (error) {
       Swal.fire({
@@ -110,7 +111,6 @@ export default function RegisterComponent() {
       });
       console.log(error.message);
     }
-    generateProgressTables(user);
   };
 
   useEffect(() => {

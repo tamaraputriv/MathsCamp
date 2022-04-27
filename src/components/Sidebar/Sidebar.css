@@ -1,41 +1,107 @@
 .sidebar-container {
   color: #ffffff;
   background: #7c7ef2;
-  padding-left: 15px;
-  padding-right: 15px;
-  overflow-y: scroll;
-  transition: max-width 0.5s;
-  height: 100vh;
-  overflow-x: hidden;
-}
-
-.arrow-icon {
-  width: 43px;
-  height: 41px;
-  margin-top: 20px;
-}
-
-.arrow-icon:hover {
-  cursor: pointer;
-  color: #babbf8;
-}
-
-.sidebarH1 {
-  font-family: Solway;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 34px;
-  line-height: 48px;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  margin-bottom: 5px;
-  margin-top: 20px;
+  padding: 25px;
+  width: 500px;
+  height: 100%;
 }
 
 .sidebar-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: left;
+}
+
+.user-mascot-div {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+  align-items: center;
+}
+
+.user-mascot-img-sb {
+  width: 150px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.user-info-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.username-h1 {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.user-change-mascot-btn-sb {
+  width: 105px;
+  height: 25px;
+  background-color: #f2b84b;
+  border-color: #f2b84b;
+  border-radius: 8px;
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 0;
+}
+
+.user-change-mascot-btn-sb:hover {
+  background-color: #f0ac2b;
+  border: none;
+}
+
+.user-strike-div {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  height: wrap;
+  width: 450px;
+  background-color: #bebff9;
+  border-radius: 8px;
+  padding: 20px;
+  padding-bottom: 25px;
+  margin-top: 5%;
+}
+
+.user-strike-h2-sb,
+.user-badge-h2-sb {
+  font-family: Solway;
+  font-style: normal;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 36px;
+  letter-spacing: -0.02em;
+}
+
+.table-div {
+  background-color: #fbfbff;
+  width: 410px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.user-bagde-div {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  height: 255px;
+  width: 450px;
+  background-color: #bebff9;
+  border-radius: 8px;
+  padding: 20px;
+  padding-bottom: 25px;
+  margin-top: 5%;
 }
 
 .sidebarP {
@@ -127,7 +193,7 @@
 
 .pointer-cursor {
   cursor: pointer;
-  color: #babbf8;
+  color: #ffffff;
 }
 
 .reward-image-container {
@@ -154,6 +220,7 @@
 }
 
 /* Medium screens */
+/*
 @media all and (max-width: 1350px) {
   .sidebar-container {
     overflow-y: scroll;
@@ -161,7 +228,7 @@
     height: 100vmax;
     overflow-x: hidden;
   }
-}
+}*/
 
 /* Small screens */
 @media all and (max-width: 500px) {

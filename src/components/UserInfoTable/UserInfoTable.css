@@ -1,21 +1,19 @@
+table {
+  table-layout: fixed;
+}
+
 .table-header {
-  font-family: Rubik;
+  font-family: Solway;
   font-style: normal;
-  font-weight: normal;
+  width: 200px;
   font-size: 18px !important;
-  line-height: 21px;
+  line-height: 28px;
   letter-spacing: -0.02em;
   color: #8492a6 !important;
 }
 
-.thead-light {
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 21px;
-  letter-spacing: -0.02em;
-  color: #27272e;
+.table-header-amount {
+  width: 100px;
 }
 
 .body-text {
@@ -24,9 +22,9 @@
 }
 
 .category-icon {
-  margin-right: 23px;
+  margin-right: 10px;
 }
 
-.category-col {
-  padding-right: 50px;
+.td {
+  padding-right: 10px;
 }

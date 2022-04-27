@@ -1,4 +1,13 @@
-.table-header {
+.ranking-user-welcome-h1{
+  font-family: Solway;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.ranking-table-header {
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
@@ -6,6 +15,7 @@
   line-height: 21px;
   letter-spacing: -0.02em;
   color: #8492a6 !important;
+  background-color: #edf2f7;
 }
 
 .thead-light {
@@ -18,15 +28,116 @@
   color: #27272e;
 }
 
-.body-text {
-  font-size: 16px !important;
+.ranking-user-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  align-items: center;
+}
+
+.ranking-table-div {
+  width: 600px;
+}
+
+.ranking-rank {
+  width: 100px;
+  text-align: center;
+}
+
+.ranking-user-info-col {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.ranking-h1-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.filter-bnt {
+  margin-top: 10px;
+  width: 180px;
+  height: 48px;
+  background-color: #edf2f7;
+  border-color: #edf2f7;
+  font-family: Rubik;
+  font-size: 18px;
+  border-radius: 10px;
   color: #4d4d4d;
 }
 
-.category-icon {
-  margin-right: 23px;
+.filter-bnt:hover {
+  background-color: #47b0f1;
+  border-color: #47b0f1;
 }
 
-.category-col {
-  padding-right: 50px;
+.filter-bnt:active {
+  background-color: #47b0f1;
+  border-color: #47b0f1;
+}
+
+.user_information {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  padding-left: 200px;
+}
+
+.user-info-h1 {
+  font-family: Solway;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.clicked {
+  background-color: #47b0f1;
+  color: #f7fafc;
+}
+
+/* Medium screens */
+@media all and (max-width: 1300px) {
+  .table-div {
+    width: fit-content;
+  }
+
+  .user-card {
+    max-width: fit-content;
+  }
+}
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .user-practice-btn {
+    width: 350px;
+  }
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .table-div {
+    max-width: fit-content;
+  }
 }

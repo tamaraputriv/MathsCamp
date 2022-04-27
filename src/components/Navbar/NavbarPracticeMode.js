@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Container, Col } from "react-bootstrap";
-import { DoorOpen, HouseDoor, Gem } from "react-bootstrap-icons";
+import { DoorOpen, HouseDoor, Gem, Trophy } from "react-bootstrap-icons";
 import { BsMailbox, BsCoin } from "react-icons/bs";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
@@ -27,6 +27,11 @@ export default function NavbarPracticeMode() {
   const handleSendEmail = (e) => {
     e.preventDefault();
     history.push("/contact");
+  };
+
+  const handleRanking = (e) => {
+    e.preventDefault();
+    history.push("/ranking");
   };
 
   const fetchPoints = () => {
@@ -65,6 +70,12 @@ export default function NavbarPracticeMode() {
       </Col>
       <Col lg={1.5}>
         <div className="btn-toolbar">
+          <Button
+            className="btn-primary lg ranking-btn-postlogin"
+            onClick={handleRanking}
+          >
+            Ranking <Trophy size={15} />
+          </Button>
           <Button className="btn-primary lg home-btn" onClick={handleHome}>
             Home <HouseDoor size={15} />
           </Button>
