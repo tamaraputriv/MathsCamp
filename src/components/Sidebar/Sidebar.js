@@ -16,6 +16,7 @@ export default function Sidebar({ isOpen, toggle }) {
   const [hasWonReward, setHasWonReward] = useState(false);
   const [username, setUsername] = useState("");
   const [total_points, setTotal_points] = useState(0);
+  const [total_coins, setTotal_coins] = useState(0);
   const [active_days, set_active_days] = useState([]);
   const [total_answered_questions, setTotal_answered_questions] = useState(0);
   const [active_mascot_index, setActiveMascotIndex] = useState(24);
@@ -52,6 +53,7 @@ export default function Sidebar({ isOpen, toggle }) {
     if (student) {
       var username = student.get("username");
       var total_points = student.get("total_points");
+      var totalCoins = student.get("coins");
       var total_answered_questions = student.get("total_answered_questions");
       var active_days = student.get("active_days");
       var wonRewardId = getActiveDayReward(active_days.length);
@@ -61,6 +63,7 @@ export default function Sidebar({ isOpen, toggle }) {
       setActiveMascotIndex(activeMascotIndex);
       setUsername(username);
       setTotal_points(total_points);
+      setTotal_coins(totalCoins);
       set_active_days(active_days);
       setTotal_answered_questions(total_answered_questions);
       if (wonRewardId !== "" && !rewards.includes(wonRewardId)) {
@@ -166,6 +169,7 @@ export default function Sidebar({ isOpen, toggle }) {
         <div className="table-div">
           <UserInfoTable
             total_points={total_points}
+            total_Coins={total_coins}
             active_days={active_days.length}
             total_answered_questions={total_answered_questions}
             total_rewards={owned_rewards.length}

@@ -15,7 +15,6 @@ export default function UserInfoTable({
   active_days,
   total_answered_questions,
   total_rewards,
-  ranking,
 }) {
   return (
     <Table>
@@ -72,7 +71,9 @@ export default function UserInfoTable({
           </td>
           <td>
             <span>{total_rewards}</span>
-</td>
+          </td>
+        </tr>
+        <tr>
           <td className="body-text">
             <BsCoin size={25} className="category-icon" color={"#28A3EE"} />
             Your Coins
