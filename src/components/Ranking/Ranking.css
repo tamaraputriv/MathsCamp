@@ -1,3 +1,12 @@
+.ranking-user-welcome-h1{
+  font-family: Solway;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 .ranking-table-header {
   font-family: Rubik;
   font-style: normal;
@@ -90,7 +99,12 @@
 }
 
 .user-info-h1 {
+  font-family: Solway;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: bold;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .clicked {
