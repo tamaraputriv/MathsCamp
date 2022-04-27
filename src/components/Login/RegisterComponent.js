@@ -44,6 +44,7 @@ export default function RegisterComponent() {
       const progressTable = new Parse.Object("Progress");
       progressTable.set("user_id", u.id);
       progressTable.set("category_name", categories[i].get("name"));
+      progressTable.set("correct_question_ids", []);
       await progressTable.save();
     }
   };

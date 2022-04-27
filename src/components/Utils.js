@@ -48,12 +48,13 @@ import Badge22 from "../images/Rewards/helmet-man.png";
 import Badge23 from "../images/Rewards/coffee.png";
 import Badge24 from "../images/Rewards/love-letter.png";
 import Badge25 from "../images/Rewards/calculator-badge.png";
+import Teacher from "../images/Teacher/teacher.png";
 import Swal from "sweetalert2";
 
 /*Returns a mascot image based on the index of the mascot in the mascot array 
 retrieved from the database*/
 export const getMascotImage = (index) => {
-  switch(index){
+  switch (index) {
     case 0: {
       return Mascot1;
     }
@@ -126,13 +127,13 @@ export const getMascotImage = (index) => {
     case 23: {
       return Mascot24;
     }
-    case 24:{
+    case 24: {
       return BlankImage;
     }
     default:
       return BlankImage;
   }
-}
+};
 
 /*Returns a reward image based on the index of the reward in the reward array 
 retrieved from the database*/
@@ -219,7 +220,23 @@ export const getRewardImage = (index) => {
         title: "Oops, something went wrong!",
         text: "Please try to refresh the page",
         icon: "error",
-        confirmButtonText: "OK"
-      })
+        confirmButtonText: "OK",
+      });
+  }
+};
+
+export const getTeacherImage = (index) => {
+  switch (index) {
+    case 0: {
+      return Teacher;
+    }
+    default:
+      console.log("The teacher image cannot be loaded");
+      Swal.fire({
+        title: "Oops, something went wrong!",
+        text: "Please try to refresh the page",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
   }
 };
