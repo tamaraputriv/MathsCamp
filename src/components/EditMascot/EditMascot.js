@@ -171,7 +171,7 @@ export default function EditMascot() {
                   {mascot.attributes.name}
                 </Card.Title>
                 <Card.Text className="point-text">
-                  <Gem color="#F2B84B" /> {mascot.attributes.required_points}{" "}
+                  <BsCoin color="#28A3EE" /> {mascot.attributes.required_points}{" "}
                   Coins
                 </Card.Text>
                 <div>
@@ -206,7 +206,7 @@ export default function EditMascot() {
                         )
                       }
                     >
-                      Buy mascot <Gem />
+                      Buy mascot <BsCoin />
                     </Button>
                   )}
                 </div>
