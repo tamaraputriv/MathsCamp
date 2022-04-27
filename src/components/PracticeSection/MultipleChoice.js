@@ -373,7 +373,6 @@ export default function MultipleChoice() {
         student.increment("total_answered_questions");
 
         if (correct_answer === chosenOption) {
-
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
           let new_total_points = total_points + 10;
@@ -416,7 +415,6 @@ export default function MultipleChoice() {
           }
 
           updatePointsOnCorrectAnswer(
-
             student,
             studentId,
             category,
@@ -524,6 +522,29 @@ export default function MultipleChoice() {
         icon: "error",
         confirmButtonText: "OK",
       });
+    }
+  };
+
+  const handleFeedback = async () => {
+    const { value: text } = await Swal.fire({
+      input: "textarea",
+      inputLabel: "Feedback",
+      inputPlaceholder:
+        "We will love to hear your thoughts. \nWrite your feedback here!",
+      confirmButtonText: "Send",
+      inputAttributes: {
+        "aria-label": "Type your message here",
+      },
+      showCancelButton: true,
+    });
+    if (text) {
+      const currentUser = Parse.User.current();
+      const feedback = new Parse.Object("Feedback");
+      feedback.set("user_id", currentUser.id);
+      feedback.set("feedback", text);
+      await feedback.save();
+    } else {
+      Swal.close();
     }
   };
 
@@ -783,6 +804,11 @@ export default function MultipleChoice() {
             </div>
           </div>
           <Image src={getTeacherImage(0)} className="quiz-mascot-img" />
+          <div className="feedback-div">
+            <Button className="feedback-btn quiz-btn" onClick={handleFeedback}>
+              Give feedback
+            </Button>
+          </div>
         </Col>
       </Row>
     </Container>

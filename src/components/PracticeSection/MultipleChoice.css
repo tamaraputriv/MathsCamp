@@ -264,6 +264,26 @@
   line-height: 26px;
 }
 
+.feedback-div {
+  margin: 10%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.feedback-btn {
+  font-family: Rubik;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #ff6665;
+  border-color: #ff6665;
+}
+
+.feedback-btn:hover {
+  background-color: #ff4443;
+  border-color: #ff4443;
+}
+
 h2 {
   font-family: Solway;
   font-style: normal;
@@ -328,6 +348,14 @@ h2 {
   background-color: #d9d9fb;
   border-radius: 6px;
   border-left: 2px;
+}
+
+.feedback-btn:active,
+.feedback-btn:focus {
+  outline: none !important;
+  box-shadow: none;
+  background-color: #ff4443;
+  border-color: #ff4443;
 }
 
 .form-check-input:checked {
