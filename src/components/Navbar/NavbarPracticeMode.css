@@ -22,9 +22,16 @@
   cursor: pointer;
 }
 
-.app-name-col {
+.points-col {
   position: absolute;
   margin-left: 90px;
+  margin-top: 8px;
+  width: auto !important;
+}
+
+.coins-col {
+  position: absolute;
+  margin-left: 150px;
   margin-top: 8px;
   width: auto !important;
 }

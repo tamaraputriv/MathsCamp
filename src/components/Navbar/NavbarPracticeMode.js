@@ -60,10 +60,12 @@ export default function NavbarPracticeMode() {
           ></img>
         </div>
       </Col>
-      <Col className="app-name-col">
+      <Col className="points-col">
         <h5 className="navbar-brand">
           <Gem size={20} color="#F4C46B" /> {points}
         </h5>
+      </Col>
+      <Col className="coins-col">
         <h5 className="navbar-brand">
           <BsCoin size={20} color="#F4C46B" /> {coins}
         </h5>
