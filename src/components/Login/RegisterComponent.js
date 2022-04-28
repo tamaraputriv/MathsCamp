@@ -156,12 +156,13 @@ export default function RegisterComponent() {
                 </p>
               </Form.Group>
               <Form.Group controlId="formClassroom" className="upperform">
-                <Form.Label>Classroom code (optional)</Form.Label>
+                <Form.Label>Classroom code</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter classcode given by teacher"
                   onChange={updateClassroom}
                 />
+                <p className="information-text">If no class type: noClass</p>
               </Form.Group>
               <Button className="registerbtn" variant="primary" type="submit">
                 Register <CardList />
