@@ -15,7 +15,9 @@ import {
   BsCheckCircle,
   BsChevronRight,
   BsFileText,
+  BsCoin
 } from "react-icons/bs";
+import { Gem } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
 import { getTeacherImage } from "../Utils";
@@ -27,6 +29,8 @@ import { updatePointsOnCorrectAnswer } from "../../db/submittingAnswers";
 import { registerPoints } from "../../db/submittingPoints";
 
 export default function MultipleChoice() {
+  const [points, setPoints] = useState(0);
+  const [coins, setCoins] = useState(0);
   const [level, setLevel] = useState();
   const [count, setCount] = useState();
   const [showHint, setShowHint] = useState(false);
@@ -82,10 +86,15 @@ export default function MultipleChoice() {
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
     const student = Parse.User.current();
-    console.log(student);
+
+    const totalPoints = student.get("total_points");
+    const totalCoins = student.get("coins");
+    setPoints(totalPoints);
+    setCoins(totalCoins);
+
     const Progress = Parse.Object.extend("Progress");
     const query = new Parse.Query(Progress);
-    console.log(query);
+
     query.equalTo("user_id", student.id);
     query.equalTo("category_name", info.category);
     const res = await query.find();
@@ -363,7 +372,7 @@ export default function MultipleChoice() {
         if (correct_answer === chosenOption) {
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
-          let new_total_points = total_points + 10;
+          let new_total_points = total_points + correct_answer_point_reward;
           student.set("total_points", new_total_points);
           let new_total_coins = total_coins + correct_answer_coins_reward;
           student.set("coins", new_total_coins);
@@ -623,6 +632,10 @@ export default function MultipleChoice() {
       <Container fluid className="multiple-container">
         <Row className="question-row">
           <Col className="question-col">
+            <h5 className="navbar-brand">
+              <p><Gem size={20} color="#F4C46B" /> {points}</p>
+              <p className="coin-logo"><BsCoin size={20} color="#F4C46B" /> {coins}</p>  
+            </h5>
             <div className="category-h1">
               {category ? (
                 <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
