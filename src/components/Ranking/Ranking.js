@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Ranking.css";
 import Parse from "parse";
+import { hotjar } from "react-hotjar";
 import Leaderboard from "../LeaderboardTable/LeaderboardTable";
 import { Table, Image, Button } from "react-bootstrap";
 import { getMascotImage } from "../Utils";
@@ -10,7 +11,6 @@ import { GetPoints } from "./GetPoints";
 export default function MyPage() {
   const [students_info, setStudentInfo] = useState([]);
 
-  const [username, setUsername] = useState("");
   const [total_points, setTotal_points] = useState(0);
   const [total_coins, setTotal_coins] = useState(0);
   const [active_days, set_active_days] = useState([]);
@@ -22,13 +22,11 @@ export default function MyPage() {
 
   const retrieveUser = async (e) => {
     if (user) {
-      var name = user.get("username");
       var total_points = user.get("total_points");
       var totalCoins = user.get("coins");
       var active_days = user.get("active_days");
       var total_answered_questions = user.get("total_answered_questions");
       var rewards = user.get("reward_badge_ids");
-      setUsername(name);
       setTotal_points(total_points);
       setTotal_coins(totalCoins);
       set_active_days(active_days);
@@ -116,6 +114,10 @@ export default function MyPage() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    hotjar.initialize(2944506);
+  })
 
   return (
     <div className="ranking-user-container">
@@ -216,7 +218,7 @@ export default function MyPage() {
               className="user-mascot-img"
             />
           </div>
-          <h1 className="user-welcome-h1 user-info-h1"> Your stikes</h1>
+          <h1 className="user-welcome-h1 user-info-h1"> Your strikes</h1>
           <div className="table-div">
             <UserInfoTable
               total_points={total_points}

@@ -34,7 +34,7 @@ export default function EditMascot() {
 
   useEffect(() => {
     fetchMascots();
-    hotjar.initialize(2701912);
+    hotjar.initialize(2944506);
   }, []);
 
   //Fetches the student and sets the states used in this component

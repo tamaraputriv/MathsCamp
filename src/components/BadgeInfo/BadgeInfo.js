@@ -35,7 +35,7 @@ export default function BadgeInfo() {
 
   useEffect(() => {
     fetchRewards();
-    hotjar.initialize(2701912);
+    hotjar.initialize(2944506);
   }, []);
 
   const retrieveStudent = async () => {
