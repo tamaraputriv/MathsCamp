@@ -20,7 +20,6 @@ import {
 import { Gem } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
-import { getMascotImage } from "../Utils";
 import { getTeacherImage } from "../Utils";
 import SpeakBoble from "../../images/Icons/SpeakBoble.svg";
 import "./MultipleChoice.css";
@@ -227,7 +226,6 @@ export default function MultipleChoice() {
   const refreshPage = (e) => {
     e.preventDefault();
     hotjar.event("new question");
-    console.log(location.state);
     fetchQuestion(retrieveStudent(location.state));
     setSubmitted(false);
     setShowExplanation(false);
@@ -257,13 +255,6 @@ export default function MultipleChoice() {
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
-
-  const getRandomCategory = () => {
-    const categories = ["number", "algebra", "measurement", "geometry"];
-    const randomNumber = getRandomInt(categories.length);
-    const category = categories[randomNumber];
-    return category;
-  };
 
   const getRandomMotivation = (motivationArray) => {
     let motivation =
@@ -637,190 +628,200 @@ export default function MultipleChoice() {
   };
 
   return (
-    <Container fluid className="multiple-container">
-      <Row className="question-row">
-        <Col className="question-col">
-        <h5 className="navbar-brand">
-          <p><Gem size={20} color="#F4C46B" /> {points}</p>
-          <p className="coin-logo"><BsCoin size={20} color="#F4C46B" /> {coins}</p>  
-        </h5>
-          <div className="category-h1">
-            {category ? (
-              <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
-            ) : (
-              <></>
-            )}
-          </div>
-          <Card className="title-card">
-            <Card.Body className="text-center">
-              <Card.Title className="question-description">
-                {description}
-              </Card.Title>
-            </Card.Body>
-          </Card>
-          <Image src={questionImage} className="question-img" />
-          <Form>
-            <Card className="option-card">
+    <>
+      <Container fluid className="multiple-container">
+        <Row className="question-row">
+          <Col className="question-col">
+            <h5 className="navbar-brand">
+              <p><Gem size={20} color="#F4C46B" /> {points}</p>
+              <p className="coin-logo"><BsCoin size={20} color="#F4C46B" /> {coins}</p>  
+            </h5>
+            <div className="category-h1">
+              {category ? (
+                <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
+              ) : (
+                <></>
+              )}
+            </div>
+            <Card className="title-card">
               <Card.Body className="text-center">
-                <fieldset className="options-form">
-                  <Form.Group as={Row}>
-                    <Col className="options">
-                      {hasOptionFraction
-                        ? options.map((option) => (
-                            <div key={`${option}`}>
-                              <Form.Check
-                                type="radio"
-                                value={option}
-                                id={option}
-                                label={option}
-                                name="formHorizontalRadios"
-                                onChange={handleChange}
-                                disabled={submitted ? true : false}
-                                className={submitted ? checkAnswer(option) : ""}
-                              />
-                            </div>
-                          ))
-                        : options.map((option) => (
-                            <div key={`${option}`}>
-                              <Form.Check
-                                type="radio"
-                                value={option}
-                                id={option}
-                                label={`${option}`}
-                                name="formHorizontalRadios"
-                                onChange={handleChange}
-                                disabled={submitted ? true : false}
-                                className={
-                                  submitted ? checkAnswer(`${option}`) : ""
-                                }
-                              />
-                            </div>
-                          ))}
-                    </Col>
-                  </Form.Group>
-                </fieldset>
+                <Card.Title className="question-description">
+                  {description}
+                </Card.Title>
               </Card.Body>
             </Card>
+            <Image src={questionImage} className="question-img" />
+            <Form>
+              <Card className="option-card">
+                <Card.Body className="text-center">
+                  <fieldset className="options-form">
+                    <Form.Group as={Row}>
+                      <Col className="options">
+                        {hasOptionFraction
+                          ? options.map((option) => (
+                              <div key={`${option}`}>
+                                <Form.Check
+                                  type="radio"
+                                  value={option}
+                                  id={option}
+                                  label={option}
+                                  name="formHorizontalRadios"
+                                  onChange={handleChange}
+                                  disabled={submitted ? true : false}
+                                  className={
+                                    submitted ? checkAnswer(option) : ""
+                                  }
+                                />
+                              </div>
+                            ))
+                          : options.map((option) => (
+                              <div key={`${option}`}>
+                                <Form.Check
+                                  type="radio"
+                                  value={option}
+                                  id={option}
+                                  label={`${option}`}
+                                  name="formHorizontalRadios"
+                                  onChange={handleChange}
+                                  disabled={submitted ? true : false}
+                                  className={
+                                    submitted ? checkAnswer(`${option}`) : ""
+                                  }
+                                />
+                              </div>
+                            ))}
+                      </Col>
+                    </Form.Group>
+                  </fieldset>
+                </Card.Body>
+              </Card>
 
-            <Form.Group as={Row} className="mb-8 mt-8">
-              <div>
-                {showExplanation ? (
-                  explanation !== undefined ? (
-                    <div className="explanation-div">
-                      {explanationImage ? (
-                        <div className="explanation-img">
-                          <Image
-                            src={explanationImage}
-                            className="explanation-img"
-                          />
-                        </div>
-                      ) : (
-                        <></>
-                      )}
+              <Form.Group as={Row} className="mb-8 mt-8">
+                <div>
+                  {showExplanation ? (
+                    explanation !== undefined ? (
+                      <div className="explanation-div">
+                        {explanationImage ? (
+                          <div className="explanation-img">
+                            <Image
+                              src={explanationImage}
+                              className="explanation-img"
+                            />
+                          </div>
+                        ) : (
+                          <></>
+                        )}
 
-                      <div className="explanation-text">{explanation}</div>
-                    </div>
-                  ) : (
-                    <div
-                      className="explanation-div"
-                      style={{ display: showExplanation ? "" : "none" }}
-                    >
-                      <div className="explanation-text">
-                        Sorry, there is no explanation for this questions.
+                        <div className="explanation-text">{explanation}</div>
                       </div>
-                    </div>
-                  )
+                    ) : (
+                      <div
+                        className="explanation-div"
+                        style={{ display: showExplanation ? "" : "none" }}
+                      >
+                        <div className="explanation-text">
+                          Sorry, there is no explanation for this questions.
+                        </div>
+                      </div>
+                    )
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+                {submitted ? (
+                  <div className="btn-div">
+                    <Button
+                      className="expl-btn quiz-btn"
+                      onClick={toggleExplanation}
+                    >
+                      Explanation
+                      <BsFileText className="btn-icon" />
+                    </Button>
+                    <Button
+                      className="next-btn quiz-btn"
+                      onClick={refreshPage}
+                      type="submit"
+                    >
+                      Next question
+                      <BsChevronRight className="btn-icon" />
+                    </Button>
+                  </div>
                 ) : (
-                  <div></div>
+                  <div className="btn-div">
+                    {showHint ? (
+                      <Button
+                        className="close-hint-btn quiz-btn"
+                        onClick={toggleHint}
+                      >
+                        Close hint
+                        <BsLifePreserver className="btn-icon" />
+                      </Button>
+                    ) : (
+                      <Button
+                        className="hint-btn quiz-btn"
+                        onClick={toggleHint}
+                      >
+                        Hint
+                        <BsLifePreserver className="btn-icon" />
+                      </Button>
+                    )}
+                    <Button
+                      id="sub-btn"
+                      className="sub-btn quiz-btn"
+                      onClick={handleSubmit}
+                      type="submit"
+                    >
+                      Submit <BsCheckCircle className="btn-icon" />
+                    </Button>
+                  </div>
                 )}
-              </div>
-              {submitted ? (
-                <div className="btn-div">
-                  <Button
-                    className="expl-btn quiz-btn"
-                    onClick={toggleExplanation}
-                  >
-                    Explanation
-                    <BsFileText className="btn-icon" />
-                  </Button>
-                  <Button
-                    className="next-btn quiz-btn"
-                    onClick={refreshPage}
-                    type="submit"
-                  >
-                    Next question
-                    <BsChevronRight className="btn-icon" />
-                  </Button>
+              </Form.Group>
+            </Form>
+          </Col>
+          <Col md="auto" className="mascot-col">
+            <div style={{ display: showHint ? "" : "none" }}>
+              <Image src={SpeakBoble} className="speakboble" />
+
+              {hint ? (
+                <div className="speakboble-text text-center">
+                  <div dangerouslySetInnerHTML={{ __html: hint }} />
                 </div>
               ) : (
-                <div className="btn-div">
-                  {showHint ? (
-                    <Button
-                      className="close-hint-btn quiz-btn"
-                      onClick={toggleHint}
-                    >
-                      Close hint
-                      <BsLifePreserver className="btn-icon" />
-                    </Button>
-                  ) : (
-                    <Button className="hint-btn quiz-btn" onClick={toggleHint}>
-                      Hint
-                      <BsLifePreserver className="btn-icon" />
-                    </Button>
-                  )}
-                  <Button
-                    id="sub-btn"
-                    className="sub-btn quiz-btn"
-                    onClick={handleSubmit}
-                    type="submit"
-                  >
-                    Submit <BsCheckCircle className="btn-icon" />
-                  </Button>
+                <div className="speakboble-text">
+                  <h2>Sorry,</h2>
+                  <p>
+                    there's no hint for this question. Try to ask your teacher
+                    for help.
+                  </p>
                 </div>
               )}
-            </Form.Group>
-          </Form>
-        </Col>
-        <Col md="auto" className="mascot-col">
-          <div style={{ display: showHint ? "" : "none" }}>
-            <Image src={SpeakBoble} className="speakboble" />
-
-            {hint ? (
-              <div className="speakboble-text text-center">
-                <div dangerouslySetInnerHTML={{ __html: hint }} />
-              </div>
-            ) : (
+            </div>
+            <div style={{ display: showWarning ? "" : "none" }}>
+              <Image src={SpeakBoble} className="speakboble" />
               <div className="speakboble-text">
-                <h2>Sorry,</h2>
-                <p>
-                  there's no hint for this question. Try to ask your teacher for
-                  help.
-                </p>
+                <h2>Hold your horses!</h2>
+                <p>You need to pick an option.</p>
               </div>
-            )}
-          </div>
-          <div style={{ display: showWarning ? "" : "none" }}>
-            <Image src={SpeakBoble} className="speakboble" />
-            <div className="speakboble-text">
-              <h2>Hold your horses!</h2>
-              <p>You need to pick an option.</p>
             </div>
-          </div>
-          <div style={{ display: showMotivation ? "" : "none" }}>
-            <Image src={SpeakBoble} className="speakboble" />
-            <div className="speakboble-text">
-              <h2>{motivationH1}</h2>
-              <p>{motivationMessage}</p>
+            <div style={{ display: showMotivation ? "" : "none" }}>
+              <Image src={SpeakBoble} className="speakboble" />
+              <div className="speakboble-text">
+                <h2>{motivationH1}</h2>
+                <p>{motivationMessage}</p>
+              </div>
             </div>
-          </div>
-          <Image src={getTeacherImage(0)} className="quiz-mascot-img" />
-          <div className="feedback-div">
-            <Button className="feedback-btn quiz-btn" onClick={handleFeedback}>
-              Give feedback
-            </Button>
-          </div>
-        </Col>
-      </Row>
-    </Container>
+            <Image src={getTeacherImage(0)} className="quiz-mascot-img" />
+            <div className="feedback-div">
+              <Button
+                className="feedback-btn quiz-btn"
+                onClick={handleFeedback}
+              >
+                Give feedback
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
