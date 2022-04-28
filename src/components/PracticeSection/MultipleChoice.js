@@ -375,7 +375,7 @@ export default function MultipleChoice() {
         if (correct_answer === chosenOption) {
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
-          let new_total_points = total_points + 10;
+          let new_total_points = total_points + correct_answer_point_reward;
           student.set("total_points", new_total_points);
           let new_total_coins = total_coins + correct_answer_coins_reward;
           student.set("coins", new_total_coins);
