@@ -1,4 +1,5 @@
 import React from "react";
+import Parse from "parse";
 import { Button } from "react-bootstrap";
 import "./CategoryButton.css";
 import { BsFillFilterSquareFill } from "react-icons/bs";
@@ -7,9 +8,19 @@ import { useHistory } from "react-router";
 export default function CategoryButton({ category, level, correct_answers }) {
   const history = useHistory();
 
+  const logActivity = async () => {
+    const user = Parse.User.current();
+    const userActivity = new Parse.Object("UserActivity");
+    userActivity.set("user_id", user.id);
+    userActivity.set("activity", "category_click");
+    userActivity.set("value", category);
+    userActivity.set("level", level);
+    await userActivity.save();
+  };
+
   const handlePractice = (e) => {
     e.preventDefault();
-    console.log(category);
+    logActivity();
     history.push({
       pathname: "/practice",
       state: category,
