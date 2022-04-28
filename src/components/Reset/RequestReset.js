@@ -42,7 +42,7 @@ export default function RequestReset() {
   };
 
   useEffect(() => {
-    hotjar.initialize(2701912);
+    hotjar.initialize(2944506);
   }, []);
 
   return (

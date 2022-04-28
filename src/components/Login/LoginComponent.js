@@ -58,7 +58,7 @@ export default function LoginComponent() {
   };
 
   useEffect(() => {
-    hotjar.initialize(2701912);
+    hotjar.initialize(2944506);
   }, []);
 
   return (

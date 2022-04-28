@@ -29,7 +29,7 @@ export default function Break() {
   };
 
   useEffect(() => {
-    hotjar.initialize(2701912);
+    hotjar.initialize(2944506);
   }, []);
   return (
     <Container fluid className="break-container">
