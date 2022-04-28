@@ -60,14 +60,14 @@ export default function NavbarPracticeMode() {
           ></img>
         </div>
       </Col>
-      <Col className="app-name-col">
+      {/* <Col className="app-name-col">
         <h5 className="navbar-brand">
           <Gem size={20} color="#F4C46B" /> {points}
         </h5>
         <h5 className="navbar-brand">
           <BsCoin size={20} color="#F4C46B" /> {coins}
         </h5>
-      </Col>
+      </Col> */}
       <Col lg={1.5}>
         <div className="btn-toolbar">
           <Button

@@ -13,6 +13,15 @@
   display: flex;
 }
 
+.navbar-brand {
+  display: flex;
+  flex-direction: row;
+}
+
+.coin-logo{
+  padding-left: 15px;
+}
+
 /* is applied on all pages:( */
 
 /* .row {
