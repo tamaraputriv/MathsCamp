@@ -40,8 +40,8 @@ export default function NavbarPracticeMode() {
 
   const handleRanking = (e) => {
     e.preventDefault();
-    logActivity();
     hotjar.event("Ranking clicked");
+    logActivity();
     history.push("/ranking");
   };
 

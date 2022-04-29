@@ -39,8 +39,8 @@ export default function NavbarPostlogin() {
 
   const handleRanking = (e) => {
     e.preventDefault();
-    logActivity();
     hotjar.event("Ranking clicked");
+    logActivity();
     history.push("/ranking");
   };
 
