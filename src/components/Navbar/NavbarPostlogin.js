@@ -11,6 +11,16 @@ import "./NavbarPostlogin.css";
 export default function NavbarPostlogin() {
   const history = useHistory();
 
+  const logActivity = async () => {
+    const user = Parse.User.current();
+    const userActivity = new Parse.Object("UserActivity");
+    userActivity.set("user_id", user.id);
+    userActivity.set("activity", "Ranking_click");
+    userActivity.set("value", "no");
+    userActivity.set("level", 0);
+    await userActivity.save();
+  };
+
   const handleLogOut = async (e) => {
     e.preventDefault();
     Parse.User.logOut();
@@ -29,6 +39,7 @@ export default function NavbarPostlogin() {
 
   const handleRanking = (e) => {
     e.preventDefault();
+    logActivity();
     hotjar.event("Ranking clicked");
     history.push("/ranking");
   };
