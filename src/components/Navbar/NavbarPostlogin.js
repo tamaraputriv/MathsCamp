@@ -5,6 +5,7 @@ import { DoorOpen, HouseDoor, Trophy } from "react-bootstrap-icons";
 import { BsMailbox } from "react-icons/bs";
 import Logo from "../../images/Logo/logo-postlogin.svg";
 import Parse from "parse";
+import { hotjar } from "react-hotjar";
 import "./NavbarPostlogin.css";
 
 export default function NavbarPostlogin() {
@@ -28,6 +29,7 @@ export default function NavbarPostlogin() {
 
   const handleRanking = (e) => {
     e.preventDefault();
+    hotjar.event("Ranking clicked");
     history.push("/ranking");
   };
 

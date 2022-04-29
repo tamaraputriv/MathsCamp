@@ -4,6 +4,7 @@ import { DoorOpen, HouseDoor, Gem, Trophy } from "react-bootstrap-icons";
 import { BsMailbox, BsCoin } from "react-icons/bs";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
+import { hotjar } from "react-hotjar";
 import Parse from "parse";
 import Logo from "../../images/Logo/logo-prelogin.svg";
 import "./NavbarPracticeMode.css";
@@ -31,6 +32,7 @@ export default function NavbarPracticeMode() {
 
   const handleRanking = (e) => {
     e.preventDefault();
+    hotjar.event("Ranking clicked");
     history.push("/ranking");
   };
 
