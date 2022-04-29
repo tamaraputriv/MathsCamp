@@ -98,24 +98,18 @@ export default function MultipleChoice() {
     query.equalTo("user_id", student.id);
     query.equalTo("category_name", info.category);
     const res = await query.find();
-    console.log(res);
     const progressTable = res[0];
-    console.log(progressTable);
     const progressLevel = progressTable.get("current_level");
     const answeredQuestions = progressTable.get("correct_question_ids");
-    console.log(progressLevel);
     const questionQuery = new Parse.Query("Questions");
     questionQuery.equalTo("category", info.category);
     questionQuery.equalTo("level", progressLevel);
     try {
       let question = await questionQuery.find();
-      console.log(question);
       let foundQuestion = false;
       while (!foundQuestion) {
         let i = getRandomInt(question.length);
         const currentId = question[i].id;
-        console.log(currentId);
-        console.log(answeredQuestions);
         /* Checking if the question has been answered */
         if (!answeredQuestions.includes(currentId)) {
           const correct_answer = question[i].get("correct_answer");
@@ -233,13 +227,11 @@ export default function MultipleChoice() {
   };
 
   const fetchMascots = async (active_mascot_id) => {
-    console.log(active_mascot_id);
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
     const mascotArray = await query.find();
     var mascotIdArray = mascotArray.map((obj) => obj.id);
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
-    console.log(mascotIndex);
     return mascotIndex;
   };
 

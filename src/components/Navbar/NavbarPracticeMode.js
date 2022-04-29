@@ -1,17 +1,15 @@
 import React from "react";
 import { Button, Container, Col } from "react-bootstrap";
-import { DoorOpen, HouseDoor, Gem, Trophy } from "react-bootstrap-icons";
-import { BsMailbox, BsCoin } from "react-icons/bs";
+import { DoorOpen, HouseDoor, Trophy } from "react-bootstrap-icons";
+import { BsMailbox } from "react-icons/bs";
 import { useHistory } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { hotjar } from "react-hotjar";
 import Parse from "parse";
 import Logo from "../../images/Logo/logo-prelogin.svg";
 import "./NavbarPracticeMode.css";
 
 export default function NavbarPracticeMode() {
-  const [points, setPoints] = useState(0);
-  const [coins, setCoins] = useState(0);
   const history = useHistory();
 
   const logActivity = async () => {

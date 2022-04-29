@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Col, Row } from "react-bootstrap";
+import { Button, Container, Col } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { DoorOpen, HouseDoor, Trophy } from "react-bootstrap-icons";
 import { BsMailbox } from "react-icons/bs";
