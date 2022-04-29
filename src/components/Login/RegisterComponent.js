@@ -6,7 +6,6 @@ import Parse from "parse";
 import Swal from "sweetalert2";
 import "./RegisterComponent.css";
 import { hotjar } from "react-hotjar";
-import { async } from "parse/lib/browser/StorageController.browser";
 
 export default function RegisterComponent() {
   const [username, setUsername] = useState("");
