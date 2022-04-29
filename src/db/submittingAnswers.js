@@ -1,8 +1,9 @@
 import Parse from 'parse'
 
-async function updatePointsOnCorrectAnswer(student, studentId, category, currentQuestionId, studentLevel, new_total_points, categoryCompleteNotification) {
+async function updatePointsOnCorrectAnswer(student, studentId, category, currentQuestionId, studentLevel, new_total_points, new_total_coins, categoryCompleteNotification) {
    
     student.set("total_points", new_total_points);
+    student.set("coins", new_total_coins);
     
     const Progress = Parse.Object.extend("Progress");
     const query = new Parse.Query(Progress);
