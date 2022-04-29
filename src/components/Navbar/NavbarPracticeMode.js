@@ -45,20 +45,6 @@ export default function NavbarPracticeMode() {
     history.push("/ranking");
   };
 
-  const fetchPoints = () => {
-    const user = Parse.User.current();
-    if (user) {
-      const totalPoints = user.get("total_points");
-      const totalCoins = user.get("coins");
-      setPoints(totalPoints);
-      setCoins(totalCoins);
-    }
-  };
-
-  useEffect(() => {
-    fetchPoints();
-  }, []);
-
   return (
     <Container fluid className="navbar">
       <Col>
