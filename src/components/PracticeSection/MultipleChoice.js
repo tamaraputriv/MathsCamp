@@ -29,8 +29,6 @@ import { updatePointsOnCorrectAnswer } from "../../db/submittingAnswers";
 import { registerPoints } from "../../db/submittingPoints";
 
 export default function MultipleChoice() {
-  const [points, setPoints] = useState(0);
-  const [coins, setCoins] = useState(0);
   const [level, setLevel] = useState();
   const [count, setCount] = useState();
   const [showHint, setShowHint] = useState(false);
@@ -86,11 +84,6 @@ export default function MultipleChoice() {
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
     const student = Parse.User.current();
-
-    const totalPoints = student.get("total_points");
-    const totalCoins = student.get("coins");
-    setPoints(totalPoints);
-    setCoins(totalCoins);
 
     const Progress = Parse.Object.extend("Progress");
     const query = new Parse.Query(Progress);
@@ -196,13 +189,16 @@ export default function MultipleChoice() {
     const student = Parse.User.current();
     try {
       if (student) {
-        const total_points = student.get("total_points");
-        const totalCoins = student.get("coins");
+        console.log("who is student", student);
+        const user_points = student.get("total_points");
+        const user_coins = student.get("coins");
         const count = student.get("practice_timer_count");
-        setTotalPoints(total_points);
-        setTotalCoins(totalCoins);
+
+        setTotalPoints(user_points);
+        setTotalCoins(user_coins);
         setCategory(category);
         setCount(count);
+
         var activeMascotId = student.get("active_mascot_id");
         return { category, activeMascotId };
       }
@@ -409,6 +405,7 @@ export default function MultipleChoice() {
             category,
             currentQuestionId,
             studentLevel,
+            new_total_points,
             new_total_coins,
             categoryCompleteNotification
           );
@@ -625,8 +622,8 @@ export default function MultipleChoice() {
         <Row className="question-row">
           <Col className="question-col">
             <h5 className="navbar-brand">
-              <p><Gem size={20} color="#F4C46B" /> {points}</p>
-              <p className="coin-logo"><BsCoin size={20} color="#F4C46B" /> {coins}</p>  
+              <p><Gem size={20} color="#F4C46B" /> {total_points}</p>
+              <p className="coin-logo"><BsCoin size={20} color="#F4C46B" /> {total_coins}</p>  
             </h5>
             <div className="category-h1">
               {category ? (
