@@ -37,7 +37,6 @@ export default function UserInfo() {
     setCategoryNames(categoryNames);
     setCategoryLevels(categoryLevels);
     setCorrectQuestionIds(answeredQuestions);
-    //Ryk til retrieveStident...
     var correctQuestions = [];
 
     for (let i = 0; i < categoryNames.length; i++) {

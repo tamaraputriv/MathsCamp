@@ -118,7 +118,7 @@ export default function MultipleChoice() {
           if (question[i].get("question_image")) {
             const questionImageURL = question[i].get("question_image")._url;
             setQuestionImage(questionImageURL);
-          }
+          } else setQuestionImage(false);
           if (question[i].get("explanation_image")) {
             const explanationImageURL =
               question[i].get("explanation_image")._url;
