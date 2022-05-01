@@ -15,7 +15,7 @@ import {
   BsCheckCircle,
   BsChevronRight,
   BsFileText,
-  BsCoin
+  BsCoin,
 } from "react-icons/bs";
 import { Gem } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
@@ -114,7 +114,7 @@ export default function MultipleChoice() {
           if (question[i].get("question_image")) {
             const questionImageURL = question[i].get("question_image")._url;
             setQuestionImage(questionImageURL);
-          } else setQuestionImage(false);
+          } else setQuestionImage("");
           if (question[i].get("explanation_image")) {
             const explanationImageURL =
               question[i].get("explanation_image")._url;
@@ -216,10 +216,10 @@ export default function MultipleChoice() {
   const refreshPage = (e) => {
     e.preventDefault();
     hotjar.event("new question");
-    fetchQuestion(retrieveStudent(location.state));
     setSubmitted(false);
     setShowExplanation(false);
     setShowMotivation(false);
+    fetchQuestion(retrieveStudent(location.state));
   };
 
   const fetchMascots = async (active_mascot_id) => {
@@ -622,8 +622,12 @@ export default function MultipleChoice() {
         <Row className="question-row">
           <Col className="question-col">
             <h5 className="navbar-brand">
-              <p><Gem size={20} color="#F4C46B" /> {total_points}</p>
-              <p className="coin-logo"><BsCoin size={20} color="#F4C46B" /> {total_coins}</p>  
+              <p>
+                <Gem size={20} color="#F4C46B" /> {total_points}
+              </p>
+              <p className="coin-logo">
+                <BsCoin size={20} color="#F4C46B" /> {total_coins}
+              </p>
             </h5>
             <div className="category-h1">
               {category ? (
