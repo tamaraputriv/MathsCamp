@@ -222,7 +222,7 @@ export default function MyPage() {
           <div className="table-div">
             <UserInfoTable
               total_points={total_points}
-              total_Coins={total_coins}
+              total_coins={total_coins}
               active_days={active_days.length}
               total_answered_questions={total_answered_questions}
               total_rewards={owned_rewards.length}

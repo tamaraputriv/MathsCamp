@@ -1,14 +1,25 @@
 import React from "react";
-import { Button, Container, Col, Row } from "react-bootstrap";
+import { Button, Container, Col } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { DoorOpen, HouseDoor, Trophy } from "react-bootstrap-icons";
 import { BsMailbox } from "react-icons/bs";
 import Logo from "../../images/Logo/logo-postlogin.svg";
 import Parse from "parse";
+import { hotjar } from "react-hotjar";
 import "./NavbarPostlogin.css";
 
 export default function NavbarPostlogin() {
   const history = useHistory();
+
+  const logActivity = async () => {
+    const user = Parse.User.current();
+    const userActivity = new Parse.Object("UserActivity");
+    userActivity.set("user_id", user.id);
+    userActivity.set("activity", "Ranking_click");
+    userActivity.set("value", "no");
+    userActivity.set("level", 0);
+    await userActivity.save();
+  };
 
   const handleLogOut = async (e) => {
     e.preventDefault();
@@ -28,6 +39,8 @@ export default function NavbarPostlogin() {
 
   const handleRanking = (e) => {
     e.preventDefault();
+    hotjar.event("Ranking clicked");
+    logActivity();
     history.push("/ranking");
   };
 

@@ -15,7 +15,9 @@ import {
   BsCheckCircle,
   BsChevronRight,
   BsFileText,
+  BsCoin
 } from "react-icons/bs";
+import { Gem } from "react-bootstrap-icons";
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
 import { getTeacherImage } from "../Utils";
@@ -82,31 +84,25 @@ export default function MultipleChoice() {
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
     setActiveMascotIndex(activeMascotIndex);
     const student = Parse.User.current();
-    console.log(student);
+
     const Progress = Parse.Object.extend("Progress");
     const query = new Parse.Query(Progress);
-    console.log(query);
+
     query.equalTo("user_id", student.id);
     query.equalTo("category_name", info.category);
     const res = await query.find();
-    console.log(res);
     const progressTable = res[0];
-    console.log(progressTable);
     const progressLevel = progressTable.get("current_level");
     const answeredQuestions = progressTable.get("correct_question_ids");
-    console.log(progressLevel);
     const questionQuery = new Parse.Query("Questions");
     questionQuery.equalTo("category", info.category);
     questionQuery.equalTo("level", progressLevel);
     try {
       let question = await questionQuery.find();
-      console.log(question);
       let foundQuestion = false;
       while (!foundQuestion) {
         let i = getRandomInt(question.length);
         const currentId = question[i].id;
-        console.log(currentId);
-        console.log(answeredQuestions);
         /* Checking if the question has been answered */
         if (!answeredQuestions.includes(currentId)) {
           const correct_answer = question[i].get("correct_answer");
@@ -193,13 +189,16 @@ export default function MultipleChoice() {
     const student = Parse.User.current();
     try {
       if (student) {
-        const total_points = student.get("total_points");
-        const totalCoins = student.get("coins");
+        console.log("who is student", student);
+        const user_points = student.get("total_points");
+        const user_coins = student.get("coins");
         const count = student.get("practice_timer_count");
-        setTotalPoints(total_points);
-        setTotalCoins(totalCoins);
+
+        setTotalPoints(user_points);
+        setTotalCoins(user_coins);
         setCategory(category);
         setCount(count);
+
         var activeMascotId = student.get("active_mascot_id");
         return { category, activeMascotId };
       }
@@ -224,13 +223,11 @@ export default function MultipleChoice() {
   };
 
   const fetchMascots = async (active_mascot_id) => {
-    console.log(active_mascot_id);
     const Mascots = new Parse.Object.extend("Mascot");
     const query = new Parse.Query(Mascots);
     const mascotArray = await query.find();
     var mascotIdArray = mascotArray.map((obj) => obj.id);
     var mascotIndex = mascotIdArray.indexOf(active_mascot_id);
-    console.log(mascotIndex);
     return mascotIndex;
   };
 
@@ -363,7 +360,7 @@ export default function MultipleChoice() {
         if (correct_answer === chosenOption) {
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
-          let new_total_points = total_points + 10;
+          let new_total_points = total_points + correct_answer_point_reward;
           student.set("total_points", new_total_points);
           let new_total_coins = total_coins + correct_answer_coins_reward;
           student.set("coins", new_total_coins);
@@ -408,6 +405,7 @@ export default function MultipleChoice() {
             category,
             currentQuestionId,
             studentLevel,
+            new_total_points,
             new_total_coins,
             categoryCompleteNotification
           );
@@ -623,6 +621,10 @@ export default function MultipleChoice() {
       <Container fluid className="multiple-container">
         <Row className="question-row">
           <Col className="question-col">
+            <h5 className="navbar-brand">
+              <p><Gem size={20} color="#F4C46B" /> {total_points}</p>
+              <p className="coin-logo"><BsCoin size={20} color="#F4C46B" /> {total_coins}</p>  
+            </h5>
             <div className="category-h1">
               {category ? (
                 <h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>

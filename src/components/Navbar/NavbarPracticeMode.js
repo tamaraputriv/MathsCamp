@@ -1,17 +1,26 @@
 import React from "react";
 import { Button, Container, Col } from "react-bootstrap";
-import { DoorOpen, HouseDoor, Gem, Trophy } from "react-bootstrap-icons";
-import { BsMailbox, BsCoin } from "react-icons/bs";
+import { DoorOpen, HouseDoor, Trophy } from "react-bootstrap-icons";
+import { BsMailbox } from "react-icons/bs";
 import { useHistory } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { hotjar } from "react-hotjar";
 import Parse from "parse";
 import Logo from "../../images/Logo/logo-prelogin.svg";
 import "./NavbarPracticeMode.css";
 
 export default function NavbarPracticeMode() {
-  const [points, setPoints] = useState(0);
-  const [coins, setCoins] = useState(0);
   const history = useHistory();
+
+  const logActivity = async () => {
+    const user = Parse.User.current();
+    const userActivity = new Parse.Object("UserActivity");
+    userActivity.set("user_id", user.id);
+    userActivity.set("activity", "Ranking_click");
+    userActivity.set("value", "no");
+    userActivity.set("level", 0);
+    await userActivity.save();
+  };
 
   const handleLogOut = async (e) => {
     e.preventDefault();
@@ -31,22 +40,10 @@ export default function NavbarPracticeMode() {
 
   const handleRanking = (e) => {
     e.preventDefault();
+    hotjar.event("Ranking clicked");
+    logActivity();
     history.push("/ranking");
   };
-
-  const fetchPoints = () => {
-    const user = Parse.User.current();
-    if (user) {
-      const totalPoints = user.get("total_points");
-      const totalCoins = user.get("coins");
-      setPoints(totalPoints);
-      setCoins(totalCoins);
-    }
-  };
-
-  useEffect(() => {
-    fetchPoints();
-  }, []);
 
   return (
     <Container fluid className="navbar">
@@ -59,16 +56,6 @@ export default function NavbarPracticeMode() {
             onClick={handleHome}
           ></img>
         </div>
-      </Col>
-      <Col className="points-col">
-        <h5 className="navbar-brand">
-          <Gem size={20} color="#F4C46B" /> {points}
-        </h5>
-      </Col>
-      <Col className="coins-col">
-        <h5 className="navbar-brand">
-          <BsCoin size={20} color="#F4C46B" /> {coins}
-        </h5>
       </Col>
       <Col lg={1.5}>
         <div className="btn-toolbar">
