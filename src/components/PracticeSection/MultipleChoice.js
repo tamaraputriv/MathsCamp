@@ -382,7 +382,7 @@ export default function MultipleChoice() {
           student.increment("total_correct_questions");
           var correct = progressTable.get("correct_question_ids");
           var currentLevel = progressTable.get("correct_question_ids");
-          if (correct.length === 7) {
+          if (correct.length >= 7) {
             if (currentLevel === 3) {
               Swal.fire({
                 title: "Congrats! You finished " + category + "!",
