@@ -361,9 +361,7 @@ export default function MultipleChoice() {
           setMotivationH1(getRandomMotivation(motivationH1Correct));
           setMotivationMessage(getRandomMotivation(correctMotivation));
           let new_total_points = total_points + correct_answer_point_reward;
-          student.set("total_points", new_total_points);
           let new_total_coins = total_coins + correct_answer_coins_reward;
-          student.set("coins", new_total_coins);
           const Progress = Parse.Object.extend("Progress");
           const query = new Parse.Query(Progress);
           query.equalTo("user_id", studentId);

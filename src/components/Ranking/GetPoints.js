@@ -8,7 +8,7 @@ async function GetPoints(studentid, filter) {
     const first = date.getDate() - date.getDay() + 1;
     for (let j = 0; j < 6; j++) {
       var d = first + j;
-      var da = new Date(date.setDate(d)).toLocaleDateString();
+      var da = new Date(date.setDate(d)).toLocaleDateString("dk");
       week.push(da);
     }
 
@@ -18,7 +18,7 @@ async function GetPoints(studentid, filter) {
   const st_id = studentid;
   let rank_points = 0;
 
-  var today = new Date().toLocaleDateString();
+  var today = new Date().toLocaleDateString("dk");
 
   const point_schema = Parse.Object.extend("Points");
   const point_query = new Parse.Query(point_schema);
