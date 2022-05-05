@@ -371,8 +371,12 @@ export default function MultipleChoice() {
           query
             .get(progressTable["id"])
             .then((obj) => {
-              obj.add("correct_question_ids", currentQuestionId);
-              obj.save();
+              if (obj.exists(currentQuestionId)) {
+                console.log("question already answered");
+              } else {
+                obj.add("correct_question_ids", currentQuestionId);
+                obj.save();
+              }
             })
             .catch((error) => {
               console.log(error);
