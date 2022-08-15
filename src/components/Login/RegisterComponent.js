@@ -35,6 +35,10 @@ export default function RegisterComponent() {
     return randomEmail;
   };
 
+  /**
+   * This function is a new addition implemented by Tamara-Putri Nge.
+   * It is a part of the final bachelor product.
+   */
   const generateProgressTables = async (u) => {
     const query = new Parse.Query("Category");
     let categories = await query.find();

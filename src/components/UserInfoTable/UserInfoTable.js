@@ -9,6 +9,10 @@ import {
   BsCoin,
 } from "react-icons/bs";
 
+/**
+ * The information displayed and the UI of this component has been changed by Tamara.
+ */
+
 export default function UserInfoTable({
   total_points,
   total_coins,

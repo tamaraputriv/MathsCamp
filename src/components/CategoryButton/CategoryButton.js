@@ -5,6 +5,11 @@ import "./CategoryButton.css";
 import { BsFillFilterSquareFill } from "react-icons/bs";
 import { useHistory } from "react-router";
 
+/**
+ * This component is a new addition implemented by Tamara-Putri Nge.
+ * It is a part of the final bachelor product.
+ */
+
 export default function CategoryButton({ category, level, correct_answers }) {
   const history = useHistory();
 

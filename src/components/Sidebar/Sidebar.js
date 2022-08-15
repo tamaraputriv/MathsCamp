@@ -9,7 +9,22 @@ import { getMascotImage } from "../Utils";
 import { getRewardImage } from "../Utils";
 import UserInfoTable from "../UserInfoTable/UserInfoTable";
 
+/**
+ * Changes to this component has been implemented by Tamara-Putri Nge.
+ * It is a part of the final bachelor product.
+ *
+ * Look for comments in order to know the exact contributions.
+ */
+
 export default function Sidebar() {
+  /** Added hooks by Tamara:
+   * recent_rewards
+   * username
+   * total_points
+   * active_days
+   * total_answered_questions
+   * active_mascot_index
+   */
   const [rewards, setRewards] = useState([]);
   const [owned_rewards, setStudentRewards] = useState([]);
   const [recent_rewards, setRecentRewards] = useState([]);
@@ -39,6 +54,10 @@ export default function Sidebar() {
     return mascotIndex;
   };
 
+  /**
+   * This function has been added to allow the change of mascot fon the sidebar.
+   */
+
   const handleChangeMascot = (e) => {
     e.preventDefault();
     history.push("/mascot");
@@ -47,6 +66,11 @@ export default function Sidebar() {
   useEffect(() => {
     fetchRewards();
   }, []);
+
+  /**
+   * This function has been added in order to display relevant user information.
+   * A similar function can be found in MultipleChoice.js
+   */
 
   const retrieveStudent = async () => {
     const student = Parse.User.current();
@@ -87,6 +111,10 @@ export default function Sidebar() {
       });
     }
   };
+
+  /**
+   * This function has been altered in order to only show the three most recent rewards.
+   */
 
   const getRecentRewards = async (user) => {
     var rewards = user.get("reward_badge_ids");
@@ -140,6 +168,11 @@ export default function Sidebar() {
   const handleClose = () => {
     setHasWonReward(false);
   };
+
+  /**
+   * The complete layout of this compenent has been changed by Tamara.
+   * It now displays category buttons with belonging progress bars.
+   */
 
   return (
     <div className="sidebar-container">

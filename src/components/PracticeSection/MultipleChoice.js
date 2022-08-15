@@ -28,7 +28,18 @@ import { hotjar } from "react-hotjar";
 import { updatePointsOnCorrectAnswer } from "../../db/submittingAnswers";
 import { registerPoints } from "../../db/submittingPoints";
 
+/**
+ * Changes to this component has been implemented by Tamara-Putri Nge.
+ * It is a part of the final bachelor product.
+ *
+ * Look for comments in order to know the exact contributions.
+ */
+
 export default function MultipleChoice() {
+  /** Added hooks by Tamara:
+   * setLevel
+   * set
+   */
   const [level, setLevel] = useState();
   const [count, setCount] = useState();
   const [showHint, setShowHint] = useState(false);
@@ -79,6 +90,12 @@ export default function MultipleChoice() {
   const correct_answer_coins_reward = 10;
   const get_bagde_point_reward = 50;
   const get_bagde_coins_reward = 25;
+
+  /**
+   * This function has been altered by Tamara.
+   * It now fetches a question based on the information provided by the user return by the retrieveStudent-function.
+   * Also, it only presents questions within a chosen category.
+   */
 
   const fetchQuestion = async (info) => {
     var activeMascotIndex = await fetchMascots(info.activeMascotId);
@@ -177,6 +194,11 @@ export default function MultipleChoice() {
       });
     }
   };
+
+  /**
+   * This function has been altered by Tamara.
+   * It now fetches the progress table related to the user and chosen category.
+   */
 
   const retrieveStudent = (categoryState) => {
     const category = location.state;
@@ -339,6 +361,12 @@ export default function MultipleChoice() {
       confirmButtonText: "OK",
     });
   };
+
+  /**
+   * This function has been altered by Tamara.
+   * It now fetches updated information in the current users related progress table.
+   * Also, the amount of points rewarded when answering questions has been altered.
+   */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -513,6 +541,10 @@ export default function MultipleChoice() {
     }
   };
 
+  /**
+   * This function has been implemented in order to allow the students to provide direct feedback through the application.
+   */
+
   const handleFeedback = async () => {
     const { value: text } = await Swal.fire({
       input: "textarea",
@@ -617,6 +649,10 @@ export default function MultipleChoice() {
   const handleBreakTime = (e) => {
     history.push("/break");
   };
+
+  /**
+   * A feedback button has been added to the layout.
+   */
 
   return (
     <>

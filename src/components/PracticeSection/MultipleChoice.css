@@ -1,3 +1,5 @@
+/** Alterations to this stylesheet has been made by Tamara*/
+
 .multiple-container {
   display: flex;
   flex-direction: column;
@@ -18,7 +20,7 @@
   flex-direction: row;
 }
 
-.coin-logo{
+.coin-logo {
   padding-left: 15px;
 }
 

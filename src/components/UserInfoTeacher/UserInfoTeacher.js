@@ -11,6 +11,12 @@ import "./UserInfoTeacher.css";
 import { hotjar } from "react-hotjar";
 import { async } from "parse/lib/browser/Storage";
 
+/**
+ * This component is a new addition implemented by Tamara-Putri Nge.
+ * It is the new front page of Maths Camp showing the new sidebar and the main feature: the progress bar.
+ * It is a part of the final bachelor product.
+ */
+
 export default function UserInfo() {
   const [username, setUsername] = useState("");
   const [total_answered_questions, setTotal_answered_questions] = useState(0);
